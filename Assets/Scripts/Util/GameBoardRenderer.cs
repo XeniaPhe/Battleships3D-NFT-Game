@@ -1,7 +1,8 @@
-using UnityEngine;
-using System.Reflection;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using UnityEngine;
+using BattleShips.GameComponents.Tiles;
 
 namespace BattleShips.Utils
 {
@@ -14,7 +15,8 @@ namespace BattleShips.Utils
 
         [Header("Grid Specs")]
         [SerializeField] LineRenderer lineTemplate;
-        [SerializeField] Transform tileTemplate;
+        [SerializeField] DefenseTile defenseTile;
+        [SerializeField] AttackTile attackTile;
         [SerializeField] float tileSize;
         [SerializeField] float extraLength;
 
@@ -27,25 +29,27 @@ namespace BattleShips.Utils
         Transform parent;
         Transform prevEmpty = null;
         LineRenderer prevLine = null;
-        Transform prevTile = null;
+        DefenseTile prevDefTile = null;
+        AttackTile prevAttTile = null;
         float prevTileSize = -9999123f;
         float prevTinyExtraLength = -12412871293f;
         float prevThickness = -23487982374;
         Color prevColor = new Color(72, 144, 216);
 
         List<LineRenderer> lines;
-        List<Transform> tiles;
+        List<Tile> tiles;
         Vector3 prevRot = Vector3.zero;
         Vector3 prevPos = Vector3.zero;
 
         private void Update()
         {
+            if (Application.isPlaying) return;
             if (!IsInstantiated()) return;
             if (IsBuildNecessary()) BuildGameBoard();
             UpdateTransform();
         }
 
-        bool IsInstantiated() => lineTemplate && tileTemplate && emptyGameObject && tileSize > 0 && extraLength >= 0 && thickness > 0;
+        bool IsInstantiated() => lineTemplate && defenseTile && attackTile && emptyGameObject && tileSize > 0 && extraLength >= 0 && thickness > 0;
 
         bool IsBuildNecessary()
         {
@@ -72,7 +76,8 @@ namespace BattleShips.Utils
 
             if (emptyGameObject is null) emptyGameObject = prevEmpty;
             if (lineTemplate is null) lineTemplate = prevLine;
-            if (tileTemplate is null) tileTemplate = prevTile;
+            if (defenseTile is null) defenseTile = prevDefTile;
+            if (attackTile is null) attackTile = prevAttTile;
             if (tileSize <= 0) tileSize = prevTileSize;
             if (extraLength < 0) extraLength = prevTinyExtraLength;
             if (thickness < 0) thickness = prevThickness;
@@ -84,8 +89,10 @@ namespace BattleShips.Utils
             if (!parent) return true;
             if (!lineTemplate.Equals(prevLine)) return true;
             if (!Compare(lineTemplate, prevLine)) return true;
-            if (!tileTemplate.Equals(prevTile)) return true;
-            if (!Compare(tileTemplate, prevTile)) return true;
+            if (!defenseTile.Equals(prevDefTile)) return true;
+            if (!Compare(defenseTile, prevDefTile)) return true;
+            if (!attackTile.Equals(prevAttTile)) return true;
+            if (!Compare(attackTile, prevAttTile)) return true;
             if (tileSize != prevTileSize) return true;
             if (extraLength != prevTinyExtraLength) return true;
             if (thickness != prevThickness) return true;
@@ -97,17 +104,18 @@ namespace BattleShips.Utils
         private void BuildGameBoard()
         {
             if (parent) DestroyImmediate(parent.gameObject);
+            FindObjectsOfType<Transform>().Where(o => o.name == "Grid Parent").ToList().ForEach(o => DestroyImmediate(o.gameObject));
+
             parent = Instantiate<Transform>(emptyGameObject, Vector3.zero, Quaternion.Euler(Vector3.zero), null);
             parent.name = "Grid Parent";
-            tileTemplate.localScale = new Vector3(tileSize, tileSize, tileSize);
+            defenseTile.transform.localScale = attackTile.transform.localScale = new Vector3(tileSize, tileSize, tileSize);
             prevRot = Vector3.zero;
             prevPos = Vector3.zero;
             lines = new List<LineRenderer>();
-            tiles = new List<Transform>();
-
+            tiles = new List<Tile>();
 
             LineRenderer line;
-            Transform tile;
+            Tile tile;
 
             float pos = 0;
             float min = -5 * tileSize;
@@ -140,8 +148,9 @@ namespace BattleShips.Utils
             for (int i = 0; i < 10; i++)
                 for (int j = 0; j < 10; j++)
                 {
-                    tile = Instantiate<Transform>(tileTemplate, new Vector3(i * tileSize + min + centerDif, 0, j * tileSize + min + centerDif), tileTemplate.rotation, parent);
-                    tile.name = $"Tile #{i + 1}-{j + 1}";
+                    tile = Instantiate<DefenseTile>(defenseTile, new Vector3(i * tileSize + min + centerDif, 0, j * tileSize + min + centerDif), defenseTile.transform.rotation, parent);
+                    tile.name = $"Tile #{i+1}-{j+1}";
+                    tile.GetComponent<CoordinateWrapper>().Coordinates = new Vector2Int(i+1, j+1);
                     tiles.Add(tile);
                 }
 
@@ -149,7 +158,8 @@ namespace BattleShips.Utils
 
             prevEmpty = emptyGameObject;
             prevLine = lineTemplate;
-            prevTile = tileTemplate;
+            prevDefTile = defenseTile;
+            prevAttTile = attackTile;
             prevTileSize = tileSize;
             prevTinyExtraLength = extraLength;
             prevThickness = thickness;

@@ -20,7 +20,7 @@ namespace BattleShips.GameComponents.Tiles
 
         public override void OnPointerEnter(PointerEventData eventData)
         {
-            mask.gameObject.SetActive(true);
+            self.color = normalColor;
 
             if (maskMode == TileMaskMode.TemporaryMask)
             {
@@ -46,7 +46,7 @@ namespace BattleShips.GameComponents.Tiles
         private IEnumerator TurnOffMask()
         {
             yield return maskWait;
-            mask.gameObject.SetActive(false);
+            self.color = disabledColor;
             currentCoroutine = null;
             yield return null;
         }
@@ -54,7 +54,7 @@ namespace BattleShips.GameComponents.Tiles
         internal void PlaceShip(Ship ship)
         {
             tileData.tileState = TileState.HasShip;
-            self.color = shipColor;
+            self.color = disabledColor;
             tileData.ship = ship;
         }
     }

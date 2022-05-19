@@ -1,22 +1,22 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
+using BattleShips.Utils;
 
 namespace BattleShips.GameComponents.Tiles
 {
+    [RequireComponent(typeof(CoordinateWrapper))]
     internal abstract class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
     {
         #region Serialized Fields
 
-        [SerializeField] protected SpriteRenderer mask;
-        [SerializeField] protected Color maskColor;
-        [SerializeField] protected Color shipColor;
+        [SerializeField] protected Color disabledColor;
         [SerializeField] protected float temporaryMaskDuration = 0.18f;
-        [SerializeField] protected TileData tileData;
 
         #endregion
 
         #region Cached Fields
 
+        protected TileData tileData;
         protected SpriteRenderer self;
         protected Color normalColor;
         protected WaitForSeconds maskWait;
@@ -29,7 +29,9 @@ namespace BattleShips.GameComponents.Tiles
         {
             self = GetComponent<SpriteRenderer>();
             normalColor = self.color;
-            mask.color = maskColor;
+            self.color = disabledColor;
+            var wrapper = GetComponent<CoordinateWrapper>();
+            tileData = new TileData(wrapper.x, wrapper.y);
             maskWait = new WaitForSeconds(temporaryMaskDuration);
         }
 
@@ -40,13 +42,13 @@ namespace BattleShips.GameComponents.Tiles
 
         public virtual void OnPointerEnter(PointerEventData eventData)
         {
-            mask.gameObject.SetActive(true);
+            self.color = normalColor;
             board.EnteredTile = this;
         }
         public abstract void OnPointerClick(PointerEventData eventData);
         public virtual void OnPointerExit(PointerEventData eventData)
         {
-            mask.gameObject.SetActive(false);
+            self.color = disabledColor;
             board.EnteredTile = null;
         }
         internal Coordinate GetTileCoordinatesAt(Directions direction) =>
@@ -58,8 +60,6 @@ namespace BattleShips.GameComponents.Tiles
                 Directions.Right => tileData.Coordinates.Right,
                 _ => null
             };
-
-        
 
         internal bool IsTileInNormalState() => (tileData.tileState == TileState.Normal && !isTemporarilyPainted);
 

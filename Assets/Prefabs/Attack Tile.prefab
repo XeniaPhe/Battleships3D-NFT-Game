@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6016079767482959499}
   - component: {fileID: 6016079767482959496}
-  - component: {fileID: -3758315995876321957}
   - component: {fileID: -7839106854977478495}
   - component: {fileID: 7267182283623783763}
+  - component: {fileID: -3758315995876321957}
   m_Layer: 0
   m_Name: Attack Tile
   m_TagString: Untagged
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 6016079767482959497}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 1.7173849, y: 26.05488, z: -30.855047}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 4.38, y: 4.38, z: 4.38}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6,
     type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -88,19 +88,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!65 &-3758315995876321957
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6016079767482959497}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1.0000002, z: 0.20000005}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &-7839106854977478495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 0, g: 0, b: 0, a: 0}
+  disabledColor: {r: 1, g: 1, b: 1, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -132,3 +119,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   x: 0
   y: 0
+--- !u!65 &-3758315995876321957
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6016079767482959497}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.0000002, z: 0.20000005}
+  m_Center: {x: 0, y: 0, z: 0}

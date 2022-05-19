@@ -1,3 +1,4 @@
+using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -19,6 +20,7 @@ namespace BattleShips.Utils
         [SerializeField] AttackTile attackTile;
         [SerializeField] float tileSize;
         [SerializeField] float extraLength;
+        [SerializeField] float gapBetweenGrids;
 
         [Header("Line Specs")]
         [SerializeField] float thickness;
@@ -26,20 +28,24 @@ namespace BattleShips.Utils
 
         #endregion
 
+        #region Cached Fields
+
         Transform parent;
         Transform prevEmpty = null;
         LineRenderer prevLine = null;
         DefenseTile prevDefTile = null;
         AttackTile prevAttTile = null;
-        float prevTileSize = -9999123f;
-        float prevTinyExtraLength = -12412871293f;
-        float prevThickness = -23487982374;
-        Color prevColor = new Color(72, 144, 216);
+        float prevTileSize;
+        float prevTinyExtraLength;
+        float prevThickness;
+        Color prevColor;
 
         List<LineRenderer> lines;
         List<Tile> tiles;
         Vector3 prevRot = Vector3.zero;
         Vector3 prevPos = Vector3.zero;
+
+        #endregion
 
         private void Update()
         {
@@ -49,7 +55,11 @@ namespace BattleShips.Utils
             UpdateTransform();
         }
 
-        bool IsInstantiated() => lineTemplate && defenseTile && attackTile && emptyGameObject && tileSize > 0 && extraLength >= 0 && thickness > 0;
+        bool IsInstantiated()
+        {
+             return lineTemplate && defenseTile && attackTile && emptyGameObject &&
+                tileSize > 0 && extraLength >= 0 && thickness > 0 && gapBetweenGrids >= 0;
+        }
 
         bool IsBuildNecessary()
         {
@@ -115,44 +125,63 @@ namespace BattleShips.Utils
             tiles = new List<Tile>();
 
             LineRenderer line;
-            Tile tile;
-
-            float pos = 0;
-            float min = -5 * tileSize;
-            float max = tileSize * 5;
-            for (int i = 0; i < 11; i++)
-            {
-                pos = min + tileSize * i;
-
-                line = Instantiate<LineRenderer>(lineTemplate, Vector3.zero, transform.rotation, parent);
-                line.SetPositions(new Vector3[] { new Vector3(pos, 0, min - extraLength), new Vector3(pos, 0, max + extraLength) });
-                line.startWidth = thickness;
-                line.endWidth = thickness;
-                line.startColor = color;
-                line.endColor = color;
-                line.name = $"Line #{2 * i}";
-                lines.Add(line);
-
-                line = Instantiate<LineRenderer>(lineTemplate, Vector3.zero, transform.rotation, parent);
-                line.SetPositions(new Vector3[] { new Vector3(min - extraLength, 0, pos), new Vector3(max + extraLength, 0, pos) });
-                line.startWidth = thickness;
-                line.endWidth = thickness;
-                line.startColor = color;
-                line.endColor = color;
-                line.name = $"Line #{2 * i + 1}";
-                lines.Add(line);
-            }
 
             float centerDif = tileSize / 2;
+            string tileName = "Defense Tile #";
+            Tile tile = defenseTile;
+            float len = 10 * tileSize;
 
-            for (int i = 0; i < 10; i++)
-                for (int j = 0; j < 10; j++)
+            float zMin = -len - gapBetweenGrids/2;
+            float zMax = zMin + len;
+            float zPos = zMin;
+
+            float xMin = -len / 2;
+            float xMax = xMin + len;
+            float xPos = xMin;
+
+            for (int i = 0; i < 2; i++)
+            {
+                for (int j = 0; j < 11; j++)
                 {
-                    tile = Instantiate<DefenseTile>(defenseTile, new Vector3(i * tileSize + min + centerDif, 0, j * tileSize + min + centerDif), defenseTile.transform.rotation, parent);
-                    tile.name = $"Tile #{i+1}-{j+1}";
-                    tile.GetComponent<CoordinateWrapper>().Coordinates = new Vector2Int(i+1, j+1);
-                    tiles.Add(tile);
+                    line = Instantiate<LineRenderer>(lineTemplate, Vector3.zero, transform.rotation, parent);
+                    line.SetPositions(new Vector3[] { new Vector3(xPos, 0, zMin - extraLength), new Vector3(xPos, 0, zMax + extraLength) });
+                    line.startWidth = thickness;
+                    line.endWidth = thickness;
+                    line.startColor = color;
+                    line.endColor = color;
+                    line.name = $"Line #{22 * i + 2 * j +1}";
+                    lines.Add(line);
+
+                    line = Instantiate<LineRenderer>(lineTemplate, Vector3.zero, transform.rotation, parent);
+                    line.SetPositions(new Vector3[] { new Vector3(xMin - extraLength, 0, zPos), new Vector3(xMax + extraLength , 0, zPos) });
+                    line.startWidth = thickness;
+                    line.endWidth = thickness;
+                    line.startColor = color;
+                    line.endColor = color;
+                    line.name = $"Line #{22 * i + 2 * (j + 1)}";
+                    lines.Add(line);
+
+                    zPos += tileSize;
+                    xPos += tileSize;
                 }
+
+                for (int j = 0; j < 10; j++)
+                    for (int k = 0; k < 10; k++)
+                    {
+                        tile = Instantiate<Tile>(tile, new Vector3(j * tileSize + xMin + centerDif, 0, k * tileSize + zMin + centerDif), tile.transform.rotation, parent);
+                        tile.name = string.Concat(tileName, $"{j + 1}-{k + 1}");
+                        tile.GetComponent<CoordinateWrapper>().Coordinates = new Vector2Int(j + 1, k + 1);
+                        tiles.Add(tile);
+                    }
+
+                zMin = gapBetweenGrids / 2;
+                zMax = zMin + len;
+                zPos = zMin;
+                xPos = xMin;
+
+                tile = attackTile;
+                tileName = "Attack Tile #";
+            }
 
             UpdateTransform();
 

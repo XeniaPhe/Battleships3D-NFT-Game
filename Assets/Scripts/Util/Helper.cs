@@ -1,5 +1,5 @@
 ﻿using System;
-
+using BattleShips.GameComponents.Tiles;
 
 namespace BattleShips.Utils
 {
@@ -23,5 +23,7 @@ namespace BattleShips.Utils
         internal static double Random(double low,double high) => rnd.NextDouble() * (high - low) + low;
 
         internal static double Random100() => Random(0, 100);
+
+        internal static Directions GetOppositeDirection(Directions direction) => (Directions)(((int)direction + 2) % 4);
     }
 }

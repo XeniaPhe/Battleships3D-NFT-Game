@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00a5f73bb7ed9f04ba74620ad0e2d49e, type: 3}
   m_Name: Submarine
   m_EditorClassIdentifier: 
-  image: {fileID: 3625043607559282579, guid: 0728eaaafabcd5748983bf09f10046b4, type: 3}
+  model: {fileID: -8679921383154817045, guid: 16062b27eb9131b4c8282e12a1326c4a, type: 3}
+  preferedScale: {x: 14, y: 14, z: 14}
+  normalRotation: {x: -90, y: 0, z: 0}
+  texture: {fileID: 8400000, guid: 19122e39ce3975a42a4e05fbffd5c302, type: 2}
   armour: 80

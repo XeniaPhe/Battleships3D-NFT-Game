@@ -17,7 +17,6 @@ namespace BattleShips.Management.UI
 
         #region Serialized Fields
 
-        [SerializeField] RectTransform main;
         [SerializeField] RectTransform shipPlacementMenu;
 
         #endregion
@@ -45,6 +44,7 @@ namespace BattleShips.Management.UI
 
         internal void Initialize()
         {
+            Start();
             TurnOnMenu(UIParts.Main);
 
             Player player = Player.Instance;
@@ -62,9 +62,6 @@ namespace BattleShips.Management.UI
         {
             switch (menu)
             {
-                case UIParts.Main:
-                    main.gameObject.SetActive(true);
-                    break;
                 case UIParts.ShipPlacement:
                     shipPlacementMenu.gameObject.SetActive(true);
                     break;
@@ -75,9 +72,6 @@ namespace BattleShips.Management.UI
         {
             switch(menu)
             {
-                case UIParts.Main:
-                    main.gameObject.SetActive(false);
-                    break;
                 case UIParts.ShipPlacement:
                     shipPlacementMenu.gameObject.SetActive(false);
                     break;
@@ -88,9 +82,6 @@ namespace BattleShips.Management.UI
         {
             switch (menu)
             {
-                case UIParts.Main:
-                    main.gameObject.SetActive(!main.gameObject.activeSelf);
-                    break;
                 case UIParts.ShipPlacement:
                     shipPlacementMenu.gameObject.SetActive(!shipPlacementMenu.gameObject.activeSelf);
                     break;

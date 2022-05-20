@@ -1,8 +1,9 @@
-using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
+using BattleShips.Management;
+using BattleShips.GameComponents;
 using BattleShips.GameComponents.Tiles;
 
 namespace BattleShips.Utils
@@ -38,6 +39,7 @@ namespace BattleShips.Utils
         float prevTileSize;
         float prevTinyExtraLength;
         float prevThickness;
+        float prevGap;
         Color prevColor;
 
         List<LineRenderer> lines;
@@ -90,13 +92,15 @@ namespace BattleShips.Utils
             if (attackTile is null) attackTile = prevAttTile;
             if (tileSize <= 0) tileSize = prevTileSize;
             if (extraLength < 0) extraLength = prevTinyExtraLength;
-            if (thickness < 0) thickness = prevThickness;
+            if (thickness <= 0) thickness = prevThickness;
+            if (gapBetweenGrids < 0) gapBetweenGrids = prevGap;
 
             if (lines is null) return true;
             if (tiles is null) return true;
-            if (lines.Count != 22) return true;
-            if (tiles.Count != 100) return true;
+            if (lines.Count != 44) return true;
+            if (tiles.Count != 200) return true;
             if (!parent) return true;
+            if (FindObjectsOfType<Transform>().Where(o => o.name == "Grid Parent").ToList().Count > 1) return true;
             if (!lineTemplate.Equals(prevLine)) return true;
             if (!Compare(lineTemplate, prevLine)) return true;
             if (!defenseTile.Equals(prevDefTile)) return true;
@@ -106,6 +110,7 @@ namespace BattleShips.Utils
             if (tileSize != prevTileSize) return true;
             if (extraLength != prevTinyExtraLength) return true;
             if (thickness != prevThickness) return true;
+            if (gapBetweenGrids != prevGap) return true;
             if (color != prevColor) return true;
 
             return false;
@@ -117,6 +122,7 @@ namespace BattleShips.Utils
             FindObjectsOfType<Transform>().Where(o => o.name == "Grid Parent").ToList().ForEach(o => DestroyImmediate(o.gameObject));
 
             parent = Instantiate<Transform>(emptyGameObject, Vector3.zero, Quaternion.Euler(Vector3.zero), null);
+            parent.gameObject.AddComponent<GameBoard>();
             parent.name = "Grid Parent";
             defenseTile.transform.localScale = attackTile.transform.localScale = new Vector3(tileSize, tileSize, tileSize);
             prevRot = Vector3.zero;
@@ -192,6 +198,7 @@ namespace BattleShips.Utils
             prevTileSize = tileSize;
             prevTinyExtraLength = extraLength;
             prevThickness = thickness;
+            prevGap = gapBetweenGrids;
             prevColor = color;
         }
 

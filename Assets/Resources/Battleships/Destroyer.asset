@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40250c327a791314685ec51d23f1fe54, type: 3}
   m_Name: Destroyer
   m_EditorClassIdentifier: 
-  image: {fileID: -2135585597343286014, guid: 0989ec7690c24164ea9080283efe913b, type: 3}
+  model: {fileID: -8679921383154817045, guid: d9445486668aa7e47a0ccb487c63cfaf, type: 3}
+  preferedScale: {x: 10, y: 10, z: 10}
+  normalRotation: {x: -90, y: 0, z: 0}
+  correction: {x: 0.2, y: 0, z: 0}
+  texture: {fileID: 8400000, guid: f944e963665917549b3e75f57674dd68, type: 2}
   armour: 80

@@ -16,13 +16,8 @@ namespace BattleShips.GameComponents
         #region Cached Fields
 
         Player player;
-
-        #endregion
-
-        #region Serialized Fields
-
-        [SerializeField] DefenseTile[] defenseTiles;
-        [SerializeField] AttackTile[] attackTiles;
+        DefenseTile[] defenseTiles;
+        AttackTile[] attackTiles;
 
         #endregion
 
@@ -51,6 +46,9 @@ namespace BattleShips.GameComponents
             }
         }
 
+        float tileSize;
+
+        internal float TileSize { get => tileSize; }
 
         #endregion
 
@@ -61,6 +59,9 @@ namespace BattleShips.GameComponents
             else
             {
                 instance = this;
+                defenseTiles = GetComponentsInChildren<DefenseTile>();
+                attackTiles = GetComponentsInChildren<AttackTile>();
+                tileSize = GetComponentInChildren<Tile>().transform.localScale.x;
             }
         }
 

@@ -20,13 +20,14 @@ namespace BattleShips.GameComponents.Tiles
 
         public override void OnPointerEnter(PointerEventData eventData)
         {
+            if (isTemporarilyPainted) return;
             self.color = normalColor;
 
-            if (maskMode == TileMaskMode.TemporaryMask)
-            {
-                currentCoroutine = TurnOffMask();
-                StartCoroutine(currentCoroutine);
-            }
+            //if (maskMode == TileMaskMode.TemporaryMask)
+            //{
+            //    currentCoroutine = TurnOffMask();
+            //    StartCoroutine(currentCoroutine);
+            //}
 
             board.EnteredTile = this;
         }

@@ -10,7 +10,7 @@ namespace BattleShips.GUI
     {
         #region Serialized Fields
 
-        [SerializeField] protected Image shipImage;
+        [SerializeField] protected RawImage shipImage;
         [SerializeField] protected TMP_Text typeText;
         [SerializeField] protected ShipType constraint;
 
@@ -32,7 +32,7 @@ namespace BattleShips.GUI
                 {
                     ship = value;
                     shipImage.gameObject.SetActive(true);
-                    shipImage.sprite = ship.Image;
+                    shipImage.texture = ship.Texture;
                     typeText.text = constraint.ToString();
                 }
                 else

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using BattleShips.GameComponents;
 using BattleShips.GameComponents.Tiles;
+using BattleShips.Utils;
 
 namespace BattleShips.Management
 {
@@ -28,6 +29,7 @@ namespace BattleShips.Management
         Directions currentDirection = Directions.Right;
         DefenseTile enteredTile;
         List<DefenseTile> tilesToPlaceTo = new List<DefenseTile>();
+        Transform shipInstance;
         bool isSelectionSuccessful;
 
         #endregion
@@ -37,10 +39,15 @@ namespace BattleShips.Management
             if (instance)
                 Destroy(gameObject);
             else
+            {
                 instance = this;
+            }
         }
 
-        private void Start() => board = GameBoard.Instance;
+        private void Start()
+        {
+            board = GameBoard.Instance;
+        }
 
         internal void SelectShip(Ship ship)
         {
@@ -60,6 +67,8 @@ namespace BattleShips.Management
         {
             enteredTile = startTile;
 
+            if(shipInstance) Destroy(shipInstance.gameObject);
+
             foreach (var tile in tilesToPlaceTo)
                 tile.RemoveTemporaryPaint();
 
@@ -69,22 +78,51 @@ namespace BattleShips.Management
             tilesToPlaceTo = new List<DefenseTile>() { startTile };
             DefenseTile temp;
             isSelectionSuccessful = true;
-            for (int i = 0; i < selectedShip.Length - 1; i++)
-            {
-                Coordinate coord = startTile.GetTileCoordinatesAt(currentDirection);
-                temp = board.GetTile(coord,TileType.Defense) as DefenseTile;
 
-                if (temp is not null && temp.IsTileInNormalState())
+            void Traverse(DefenseTile tile,Directions direction,int distance)
+            {
+                for (int i = 0; i < distance; i++)
                 {
-                    tilesToPlaceTo.Add(temp);
-                    startTile = temp;
-                }
-                else
-                {
-                    isSelectionSuccessful = false;
-                    break;
+                    Coordinate coord = tile.GetTileCoordinatesAt(direction);
+                    temp = board.GetTile(coord, TileType.Defense) as DefenseTile;
+
+                    if (temp is not null && temp.IsTileInNormalState())
+                    {
+                        tilesToPlaceTo.Add(temp);
+                        tile = temp;
+                    }
+                    else
+                    {
+                        isSelectionSuccessful = false;
+                        break;
+                    }
                 }
             }
+
+            tilesToPlaceTo.Add(startTile);
+            int firstDir = selectedShip.Length / 2;
+            Traverse(startTile, currentDirection, firstDir);
+            Directions oppositeDir = Helper.GetOppositeDirection(currentDirection);
+            int secondDir = selectedShip.Length - firstDir - 1;
+            Traverse(startTile, oppositeDir,secondDir);
+
+            Vector3 rotation = selectedShip.NormalRotation;
+            rotation.y = ((int)currentDirection-1) * 90;
+            Vector3 pos = enteredTile.transform.position;
+            Vector3 correction = selectedShip.Correction * board.TileSize;
+
+            pos += currentDirection switch
+            {
+                Directions.Left => -correction,
+                Directions.Right => correction,
+                Directions.Up => new Vector3(-correction.z,0,-correction.x),
+                Directions.Down => new Vector3(correction.z,0,correction.x),
+                _ => Vector3.zero
+            };
+
+            shipInstance = Instantiate<Transform>(selectedShip.Model, pos, Quaternion.Euler(rotation), null);
+            shipInstance.localScale = selectedShip.PreferedScale;
+            shipInstance.GetComponent<MeshRenderer>().material.color = isSelectionSuccessful ? Color.white : unsuccessfulColor;
 
             foreach (var tile in tilesToPlaceTo)
                 tile.PaintTemporarily(isSelectionSuccessful ? successfulColor : unsuccessfulColor);

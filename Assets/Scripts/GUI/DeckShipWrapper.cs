@@ -31,11 +31,11 @@ namespace BattleShips.GUI
                     if(ship)
                     {
                         shipImage.gameObject.SetActive(true);
-                        shipImage.sprite = ship.Image;
+                        shipImage.texture = ship.Texture;
                     }
                     else
                     {
-                        shipImage.sprite = null;
+                        shipImage.texture = null;
                         shipImage.gameObject.SetActive(false);
                     }
                 }

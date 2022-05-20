@@ -7,7 +7,6 @@ namespace BattleShips.Management
 {
     internal class GameManager : MonoBehaviour
     {
-
         #region Singleton
 
         static GameManager instance;

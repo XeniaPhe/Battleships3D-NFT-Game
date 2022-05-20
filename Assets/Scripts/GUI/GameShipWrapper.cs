@@ -22,14 +22,14 @@ namespace BattleShips.GUI
 
         protected override void Awake()
         {
-            base.Awake();
             button = GetComponent<GameShipWrapperButton>();
             button.onClick.AddListener(OnClick);
         }
 
         internal void Initialise(Ship ship)
         {
-            Ship = ship;
+            this.ship = ship;
+            shipImage.texture = ship.Texture;
             ship.ShipPlaced += OnShipPlaced;
         }
 

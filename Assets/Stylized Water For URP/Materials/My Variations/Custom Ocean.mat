@@ -24,7 +24,6 @@ Material:
   m_Shader: {fileID: -6465566751694194690, guid: b85c5e2c0d0c9774ab24e77078fc44cb,
     type: 3}
   m_ValidKeywords:
-  - COLOR_GRADIENT_ON
   - FOAM_SHADOWS_ON
   - INTERSECTION_EFFECTS_ON
   - WATER_LIGHTING_ON
@@ -89,14 +88,14 @@ Material:
     - _FoamShadowStrength: 0.45
     - _IntersectionFoamBlend: 1
     - _IntersectionFoamDepth: 0.72
-    - _IntersectionFoamScale: 0.19
+    - _IntersectionFoamScale: 0
     - _IntersectionFoamShadowProjection: 4.6
     - _IntersectionWaterBlend: 0
     - _LightingHardness: 0
     - _LightingSmoothness: 0.72
     - _NormalsStrength: 1
-    - _PlanarReflectionFresnel: 7
-    - _PlanarReflectionStrength: 1
+    - _PlanarReflectionFresnel: 0
+    - _PlanarReflectionStrength: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     - _RefractionStrength: 0.097
@@ -122,16 +121,16 @@ Material:
     - _LightingDiffuseColor: {r: 0, g: 0, b: 0, a: 0}
     - _LightingSpecularColor: {r: 1, g: 1, b: 1, a: 0}
     - _NormalsMovement: {r: 0.07, g: 1.61, b: 0, a: 0}
-    - _ShoreColor: {r: 0, g: 0.98039216, b: 0.3013534, a: 0}
+    - _ShoreColor: {r: 0, g: 0.98039216, b: 0.30132818, a: 0}
     - _SurfaceFoamColor1: {r: 0.88235295, g: 0.88235295, b: 1, a: 0.39215687}
     - _SurfaceFoamColor2: {r: 0.92156863, g: 0.92156863, b: 1, a: 0.78431374}
     - _SurfaceFoamMovement: {r: 0.47, g: 0.05, b: 0.53, a: 0.06}
     - _SurfaceFoamSampling: {r: 0.56, g: 0.4, b: 0, a: 0}
     - _SurfaceFoamTilingAndOffset: {r: 0.8, g: 0.6, b: 1.5, a: 1.5}
     - _WaterColorDeep: {r: 0, g: 0.47743303, b: 0.78431374, a: 1}
-    - _WaterColorHorizon: {r: 0, g: 0.22684363, b: 0.8, a: 1}
+    - _WaterColorHorizon: {r: 0, g: 0.22681841, b: 0.8, a: 1}
     - _WaterColorShallow: {r: 0, g: 0.7725491, b: 0.62352943, a: 0.5019608}
-    - _WaterColorUnderwater: {r: 0.20334587, g: 0.3091965, b: 0.517647, a: 0}
+    - _WaterColorUnderwater: {r: 0.20332196, g: 0.3091713, b: 0.517647, a: 0}
     - _WaveColor: {r: 0, g: 0, b: 0, a: 0}
     - _WaveDirections: {r: 0.1, g: 0.2, b: 0.4, a: 0.8}
     - _WaveVisuals: {r: 0.16, g: 15, b: 3, a: 0}

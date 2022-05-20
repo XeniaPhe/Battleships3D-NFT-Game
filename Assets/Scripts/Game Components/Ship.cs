@@ -14,19 +14,26 @@ namespace BattleShips.GameComponents
 
         #region Serialized Fields
 
-        [SerializeField] protected Sprite image;
+        [SerializeField] protected Transform model;
+        [SerializeField] protected Vector3 preferedScale;
+        [SerializeField] protected Vector3 normalRotation;
+        [SerializeField] protected Vector3 correction;
+        [SerializeField] protected RenderTexture texture;
         [SerializeField] protected int armour;
-        [SerializeField] protected Weapon weapon1;
-        [SerializeField] protected Weapon weapon2;
+        //[SerializeField] protected Weapon weapon1;
+        //[SerializeField] protected Weapon weapon2;
 
         #endregion
 
         #region Public Fields/Properties
-
-        internal Sprite Image => image;
+        internal Vector3 PreferedScale => preferedScale;
+        internal Vector3 NormalRotation => normalRotation;
+        internal Vector3 Correction => correction;
+        internal Transform Model => model;
+        internal RenderTexture Texture => texture;
         internal int Armour => armour;
-        internal Weapon Weapon1 => weapon1;
-        internal Weapon Weapon2 => weapon2;
+        //internal Weapon Weapon1 => weapon1;
+        //internal Weapon Weapon2 => weapon2;
 
         #endregion
 

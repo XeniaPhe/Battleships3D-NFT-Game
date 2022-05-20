@@ -71,7 +71,7 @@ namespace BattleShips.GameComponents.Tiles
 
         internal virtual void RemoveTemporaryPaint()
         {
-            self.color = normalColor;
+            self.color = disabledColor;
             isTemporarilyPainted = false;
         }
     }

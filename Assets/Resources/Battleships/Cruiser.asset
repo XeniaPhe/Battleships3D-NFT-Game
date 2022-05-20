@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98e806b9178646c4caa23a80fe3d4095, type: 3}
   m_Name: Cruiser
   m_EditorClassIdentifier: 
-  image: {fileID: 2747690628134850419, guid: 5f7558bf1e2a2074aae179ddd6ed8211, type: 3}
+  model: {fileID: -8679921383154817045, guid: 3cc439e0f95bc4646813205a14c24463, type: 3}
+  preferedScale: {x: 9, y: 9, z: 9}
+  normalRotation: {x: -90, y: 0, z: 0}
+  correction: {x: 0.2, y: 0, z: 0}
+  texture: {fileID: 8400000, guid: 48fabc14650d08d439bffd038d15b569, type: 2}
   armour: 80

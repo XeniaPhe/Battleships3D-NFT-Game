@@ -9,6 +9,7 @@ namespace BattleShips.GUI
         #region Serialized Fields
 
         [SerializeField] public Sprite selectedSprite;
+        [SerializeField] public Sprite placedSprite;
 
         #endregion
 
@@ -42,8 +43,13 @@ namespace BattleShips.GUI
             if(eventData is null)
             {
                 base.OnDeselect(eventData);
-                imageComponent.sprite = normalSprite;
+                if(imageComponent.sprite !=placedSprite)
+                    imageComponent.sprite = normalSprite;
             }
+        }
+        public void SetSprite()
+        {
+            imageComponent.sprite = placedSprite;
         }
     }
 }

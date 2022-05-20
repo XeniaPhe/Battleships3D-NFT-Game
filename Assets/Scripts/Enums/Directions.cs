@@ -3,8 +3,8 @@ namespace BattleShips.GameComponents.Tiles
     internal enum Directions
     {
         Right = 0,
-        Down,
+        Up,
         Left,
-        Up
+        Down
     }
 }

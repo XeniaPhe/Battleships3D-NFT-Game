@@ -88,8 +88,7 @@ namespace BattleShips.Management
 
         internal void OnShipPlaced()
         {
-            if (++shipsPlaced == 5)
-                StartAIShipPlacement();
+            
         }
     }
 }

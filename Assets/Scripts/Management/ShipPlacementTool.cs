@@ -107,22 +107,14 @@ namespace BattleShips.Management
             Traverse(startTile, oppositeDir,secondDir);
 
             Vector3 rotation = selectedShip.NormalRotation;
-            rotation.y = ((int)currentDirection-1) * 90;
             Vector3 pos = enteredTile.transform.position;
-            Vector3 correction = selectedShip.Correction * board.TileSize;
-
-            pos += currentDirection switch
-            {
-                Directions.Left => -correction,
-                Directions.Right => correction,
-                Directions.Up => new Vector3(-correction.z,0,-correction.x),
-                Directions.Down => new Vector3(correction.z,0,correction.x),
-                _ => Vector3.zero
-            };
-
+            pos.y = 1;
+            rotation.y = (int)(currentDirection+1) * 90;
+            
             shipInstance = Instantiate<Transform>(selectedShip.Model, pos, Quaternion.Euler(rotation), null);
             shipInstance.localScale = selectedShip.PreferedScale;
-            shipInstance.GetComponent<MeshRenderer>().material.color = isSelectionSuccessful ? Color.white : unsuccessfulColor;
+            foreach(var mat in shipInstance.GetComponent<MeshRenderer>().materials)
+                mat.color = Color.black;
 
             foreach (var tile in tilesToPlaceTo)
                 tile.PaintTemporarily(isSelectionSuccessful ? successfulColor : unsuccessfulColor);
@@ -141,6 +133,11 @@ namespace BattleShips.Management
 
             tilesToPlaceTo.Clear();
             selectedShip.OnShipPlaced();
+            if(selectedShip.Type == ShipType.Submarine)
+                shipInstance.position = new Vector3(shipInstance.position.x, 0f, shipInstance.position.z);
+            else
+                shipInstance.position = new Vector3(shipInstance.position.x, 0.4f, shipInstance.position.z);
+            shipInstance = null;
             selectedShip = null;
             DefenseTile.maskMode = TileMaskMode.PermanentMask;
         }

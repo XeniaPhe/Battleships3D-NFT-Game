@@ -41,6 +41,7 @@ namespace BattleShips.GUI
             data.selectedObject = null;
             button.OnDeselect(data);
             button.interactable = false;
+            button.SetSprite();
         }
     }
 }

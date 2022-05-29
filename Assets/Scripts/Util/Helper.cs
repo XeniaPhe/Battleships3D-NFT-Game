@@ -1,11 +1,12 @@
 ﻿using System;
+using UnityEngine;
 using BattleShips.GameComponents.Tiles;
 
 namespace BattleShips.Utils
 {
     internal static class Helper
     {
-        static Random rnd = new Random();
+        static System.Random rnd = new System.Random();
 
         internal static double Root2n(double num, uint n)
         {
@@ -25,5 +26,14 @@ namespace BattleShips.Utils
         internal static double Random100() => Random(0, 100);
 
         internal static Directions GetOppositeDirection(Directions direction) => (Directions)(((int)direction + 2) % 4);
+
+        internal static Vector3 GetDirectionVector(Directions direction) => direction switch
+        {
+            Directions.Up => Vector3.up,
+            Directions.Down => Vector3.down,
+            Directions.Right => Vector3.right,
+            Directions.Left => Vector3.left,
+            _ => throw new NotImplementedException("Undefined Direction!")
+        };
     }
 }

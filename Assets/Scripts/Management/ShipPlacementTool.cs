@@ -26,7 +26,7 @@ namespace BattleShips.Management
 
         GameBoard board;
         Ship selectedShip;
-        Directions currentDirection = Directions.Right;
+        Directions currentDirection = Directions.Up;
         DefenseTile enteredTile;
         List<DefenseTile> tilesToPlaceTo = new List<DefenseTile>();
         Transform shipInstance;
@@ -59,6 +59,7 @@ namespace BattleShips.Management
         {
             currentDirection = (Directions)(((int)currentDirection + 1) % 4);
             HighlightShipPlacement(enteredTile);
+            Debug.Log(currentDirection);
         }
 
         internal void HighlightShipPlacement(DefenseTile startTile)
@@ -91,6 +92,12 @@ namespace BattleShips.Management
 
             Vector3 rotation = selectedShip.NormalRotation;
             Vector3 pos = enteredTile.transform.position;
+            
+            if(selectedShip.Length %2 == 0)
+            {
+
+            }
+
             pos.y = 1;
             rotation.y = (int)(currentDirection+1) * 90;
             

@@ -25,7 +25,7 @@ namespace BattleShips.Management
         [SerializeField] float aiShipPlacementTime;
         [SerializeField] float aiTurnTime;
         [SerializeField] float timeTillWinLoseScreen;
-        [SerializeField] float winLoseScreenDisplayDuration;
+        [SerializeField] float intermediateTextDuration;
 
         #endregion
 
@@ -36,7 +36,7 @@ namespace BattleShips.Management
         GameUIManager uiManager;
         ShipPlacementTool shipPlacementTool;
         Timer timer;
-        MoveReporter moveReporter;
+        MoveLogger moveReporter;
         GamePhase phase;
         Turn turn = Turn.Player;
         bool canExecuteAction;
@@ -98,7 +98,7 @@ namespace BattleShips.Management
             player = Player.Instance;
             uiManager = GameUIManager.Instance;
             timer = Timer.Instance;
-            moveReporter = MoveReporter.Instance;
+            moveReporter = MoveLogger.Instance;
             uiManager.Initialize();
             shipPlacementTool = ShipPlacementTool.Instance;
             StartShipPlacementPhase();
@@ -119,7 +119,7 @@ namespace BattleShips.Management
         {
             uiManager.DisableReadyButton();
             phase = GamePhase.ShipPlacement;
-            moveReporter.PublishReport("Please place your ships and press Ready",Color.white,shipPlacementTime);
+            moveReporter.PublishReport("Place your ships and press ready",Color.white,shipPlacementTime);
             timer.StartCountdown(shipPlacementTime, player.PlaceShipsRandom);
         }
 
@@ -216,13 +216,12 @@ namespace BattleShips.Management
             {
                 if (phase == GamePhase.ShipPlacement)
                 {
-                    moveReporter.PublishReport("Enemy placed his ships,player's turn to attack", Color.white, turnTime);
+                    moveReporter.PublishReport("Enemy placed his ships", Color.white, turnTime);
                     phase = GamePhase.Bombarding;
                 }
-                else
-                {
-                    moveReporter.PublishReport("Player's turn", Color.white, turnTime);
-                }
+
+                moveReporter.PublishReport("Player's turn", Color.white, turnTime,intermediateTextDuration);
+
                 timer.StartCountdown(turnTime, () =>
                 {
                     var attack = player.PlayRandom();
@@ -231,7 +230,7 @@ namespace BattleShips.Management
             }
             else
             {
-                moveReporter.PublishReport("Enemy's turn", Color.white, aiTurnTime);
+                moveReporter.PublishReport("Enemy's turn", Color.white, aiTurnTime,intermediateTextDuration);
                 var attack = computer.PlayRandom(hit);
                 EnemyAttack(attack);
             }

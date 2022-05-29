@@ -375,6 +375,8 @@ namespace BattleShips.GameComponents.AI
                     }
                 }
             }
+
+            PrintTileInformation();
         }
 
         AttackResult IPlayer.CheckTile(Attack attack)

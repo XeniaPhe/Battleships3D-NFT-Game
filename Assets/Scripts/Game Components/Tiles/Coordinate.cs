@@ -19,8 +19,8 @@ namespace BattleShips.GameComponents.Tiles
         {
             get
             {
-                if (!IsValidCoordinate(x, y + 1)) return null;
-                return new Coordinate(x, y + 1);
+                if (!IsValidCoordinate(x-1, y)) return null;
+                return new Coordinate(x-1, y);
             }
         }
 
@@ -28,8 +28,8 @@ namespace BattleShips.GameComponents.Tiles
         {
             get
             {
-                if (!IsValidCoordinate(x, y - 1)) return null;
-                return new Coordinate(x, y - 1);
+                if (!IsValidCoordinate(x+1, y)) return null;
+                return new Coordinate(x+1, y);
             }
         }
 
@@ -37,8 +37,8 @@ namespace BattleShips.GameComponents.Tiles
         {
             get
             {
-                if (!IsValidCoordinate(x + 1, y)) return null;
-                return new Coordinate(x + 1, y);
+                if (!IsValidCoordinate(x, y+1)) return null;
+                return new Coordinate(x, y+1);
             }
         }
 
@@ -46,8 +46,8 @@ namespace BattleShips.GameComponents.Tiles
         {
             get
             {
-                if (!IsValidCoordinate(x - 1, y)) return null;
-                return new Coordinate(x - 1, y);
+                if (!IsValidCoordinate(x, y-1)) return null;
+                return new Coordinate(x, y-1);
             }
         }
 

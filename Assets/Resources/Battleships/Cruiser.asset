@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98e806b9178646c4caa23a80fe3d4095, type: 3}
   m_Name: Cruiser
   m_EditorClassIdentifier: 
-  model: {fileID: -5754084199372789682, guid: 3cc439e0f95bc4646813205a14c24463, type: 3}
+  model: {fileID: -5754084199372789682, guid: 50a3357b55d998544bbf6a44981603b8, type: 3}
   preferedScale: {x: 9, y: 9, z: 9}
   normalRotation: {x: -90, y: 0, z: 0}
   correction: {x: 0.2, y: 0, z: 0}

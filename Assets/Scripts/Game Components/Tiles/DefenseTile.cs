@@ -16,12 +16,13 @@ namespace BattleShips.GameComponents.Tiles
             base.OnPointerExit(eventData);
         }
 
-        internal void PlaceShip(Ship ship,TileData startTile,int index)
+        internal void PlaceShip(Ship ship,TileData startTile,int index,Directions direction)
         {
             tileData.tileState = TileState.HasShip;
             tileData.ship = ship;
             tileData.startTile = startTile;
             tileData.shipIndex = index;
+            tileData.shipDirection = direction;
         }
     }
 }

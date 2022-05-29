@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40250c327a791314685ec51d23f1fe54, type: 3}
   m_Name: Destroyer
   m_EditorClassIdentifier: 
-  model: {fileID: -5754084199372789682, guid: d9445486668aa7e47a0ccb487c63cfaf, type: 3}
+  model: {fileID: -5754084199372789682, guid: 63b30dde771344649bb120e985d8db40, type: 3}
   preferedScale: {x: 10, y: 10, z: 10}
   normalRotation: {x: -90, y: 0, z: 0}
   correction: {x: 0.2, y: 0, z: 0}

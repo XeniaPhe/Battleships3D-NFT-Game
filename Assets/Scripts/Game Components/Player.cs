@@ -160,6 +160,6 @@ namespace BattleShips.GameComponents
             return AttackResult.Miss;
         }
 
-        Attack IPlayer.PlayRandom(Coordinate hit = null) => new Attack(new Coordinate(UnityEngine.Random.Range(1, 9),UnityEngine.Random.Range(1, 9)), 80);
+        Attack IPlayer.PlayRandom(Coordinate hit = null) => new Attack(new Coordinate(UnityEngine.Random.Range(1, 11),UnityEngine.Random.Range(1, 11)), 80);
     }
 }

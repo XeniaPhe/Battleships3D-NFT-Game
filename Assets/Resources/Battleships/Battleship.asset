@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29032c2b0226f7f48938654223455dfa, type: 3}
   m_Name: Battleship
   m_EditorClassIdentifier: 
-  model: {fileID: -5754084199372789682, guid: cb20b10d1e9821a4e8150a644b458ca3, type: 3}
+  model: {fileID: -5754084199372789682, guid: e5b7b0898dcaadf47af1bf73d77bf706, type: 3}
   preferedScale: {x: 8, y: 8, z: 8}
   normalRotation: {x: -90, y: 0, z: 0}
   correction: {x: -0.1, y: 0, z: 0.1}

@@ -59,7 +59,6 @@ namespace BattleShips.Management
         {
             currentDirection = (Directions)(((int)currentDirection + 1) % 4);
             HighlightShipPlacement(enteredTile);
-            Debug.Log(currentDirection);
         }
 
         internal void HighlightShipPlacement(DefenseTile startTile)
@@ -92,14 +91,28 @@ namespace BattleShips.Management
 
             Vector3 rotation = selectedShip.NormalRotation;
             Vector3 pos = enteredTile.transform.position;
-            
+
             if(selectedShip.Length %2 == 0)
             {
-
+                switch (currentDirection)
+                {
+                    case Directions.Right:
+                        pos += (Vector3.back / 2);
+                        break;
+                    case Directions.Up:
+                        pos += (Vector3.right / 2);
+                        break;
+                    case Directions.Left:
+                        pos += (Vector3.forward / 2);
+                        break;
+                    case Directions.Down:
+                        pos += (Vector3.left / 2);
+                        break;
+                }
             }
 
-            pos.y = 1;
-            rotation.y = (int)(currentDirection+1) * 90;
+            pos.y = 1.2f;
+            rotation.y = (int)(currentDirection) * 90;
             
             shipInstance = Instantiate<Transform>(selectedShip.Model.transform, pos, Quaternion.Euler(rotation), null);
             shipInstance.localScale = selectedShip.PreferedScale;
@@ -142,7 +155,7 @@ namespace BattleShips.Management
             {
                 tile = tilesToPlaceTo[i];
                 tile.RemoveTemporaryPaint();
-                tile.PlaceShip(selectedShip,start,i);
+                tile.PlaceShip(selectedShip,start,i,Helper.GetOppositeDirection(currentDirection));
             }
 
             tilesToPlaceTo.Clear();

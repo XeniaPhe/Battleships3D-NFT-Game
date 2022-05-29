@@ -24,14 +24,14 @@ namespace BattleShips.GameComponents.AI
 
         #region Cached Fields
 
-        readonly int[] lengths = { 2, 3, 3, 4, 5 };
-
+        readonly int[] lengths = { 2, 3, 3,4, 5 };
         TileData[,] tiles = new TileData[10, 10];
         TileData[,] enemyTiles = new TileData[10, 10];
+
         List<TileData> moveLog = new List<TileData>();
         int[,] heatMap = new int[10, 10];
         double[,] probabilityMap = new double[10, 10];
-        TileData tileFound;
+        ShipBundle deck;
         AIMode mode = AIMode.Hunt;
         Parity parity;
         ShipFlag shipFlag = new ShipFlag();
@@ -56,6 +56,29 @@ namespace BattleShips.GameComponents.AI
                         tiles[i - 1, j - 1] = tile;
                         tile = new TileData(i, j);
                         enemyTiles[i - 1, j - 1] = tile;
+                    }
+                }
+
+                var bundle = shipBundles[currentLevel-1];
+
+                deck = new ShipBundle();
+                deck.battleship = Instantiate<Battleship>(bundle.battleship, null);
+                deck.destroyer = Instantiate<Destroyer>(bundle.destroyer, null);
+                deck.cruiser = Instantiate<Cruiser>(bundle.cruiser, null);
+                deck.carrier = Instantiate<Carrier>(bundle.carrier, null);
+                deck.submarine = Instantiate<Submarine>(bundle.submarine, null);
+
+                SetAll(deck.submarine);
+                SetAll(deck.carrier);
+                SetAll(deck.destroyer);
+                SetAll(deck.cruiser);
+                SetAll(deck.battleship);
+
+                void SetAll(Ship ship)
+                {
+                    for (int i = 0; i < ship.Length; i++)
+                    {
+                        ship[i] = 80;
                     }
                 }
             }
@@ -360,18 +383,22 @@ namespace BattleShips.GameComponents.AI
                     otherDimension = UnityEngine.Random.Range(0, 10);
                     startIndex = UnityEngine.Random.Range(0, 11 - lengths[i]);
 
-                    TileData startTile = (horizontal ? tiles[startIndex + j, otherDimension] : tiles[otherDimension, startIndex + j]);
+                    TileData startTile = null;
+
                     for (j = 0; j < lengths[i]; j++)
                     {
-                        tile = horizontal ? tiles[startIndex + j, otherDimension] : tiles[otherDimension, startIndex + j];
+                        tile = horizontal ? tiles[otherDimension, startIndex + j] : tiles[startIndex + j, otherDimension];
+                        if (j == 0)
+                            startTile = tile;
 
                         if (tile.ship || tile.tileState != TileState.Normal)
                             break;
 
-                        tile.ship = shipBundles[currentLevel - 1][i];
+                        tile.ship =deck[i];
                         tile.tileState = TileState.HasShip;
                         tile.shipIndex = j;
                         tile.startTile = startTile;
+                        tile.shipDirection = horizontal ? Directions.Right : Directions.Up;
                     }
                 }
             }
@@ -403,15 +430,13 @@ namespace BattleShips.GameComponents.AI
 
                 shipFlag.SetShipDestroyed(ship.Type);
                 Coordinate coords = tileData.startTile.Coordinates;
-                var direction = Coordinate.GetDirection(coords, tileData.Coordinates);
-
-                if (!direction.HasValue) Debug.LogError("There's something wrong!");
+                var direction = tileData.shipDirection;
 
                 for (int i = 0; i < ship.Length; i++)
                 {
                     vectorCoords = coords.GetCoordinateVector(true);
                     tiles[vectorCoords.x, vectorCoords.y].tileState = TileState.HasSunkenShip;
-                    coords = coords.GetCoordinatesAt(direction.Value);
+                    coords = coords.GetCoordinatesAt(direction);
                 }
 
                 if (shipFlag.AreAllDestroyed())
@@ -430,7 +455,7 @@ namespace BattleShips.GameComponents.AI
             return AttackResult.Miss;
         }
 
-        Attack IPlayer.PlayRandom(Coordinate hit = null) => new Attack(new Coordinate(UnityEngine.Random.Range(1, 9), UnityEngine.Random.Range(1, 9)), 80);
+        Attack IPlayer.PlayRandom(Coordinate hit = null) => new Attack(new Coordinate(UnityEngine.Random.Range(1, 11), UnityEngine.Random.Range(1, 11)), 80);
 
         #endregion
     }

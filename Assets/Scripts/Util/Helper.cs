@@ -35,5 +35,16 @@ namespace BattleShips.Utils
             Directions.Left => Vector3.left,
             _ => throw new NotImplementedException("Undefined Direction!")
         };
+
+        internal static Vector3 ConvertVectorIntoGridVector(Vector3 vector)
+        {
+            float x = vector.x,y = vector.y, z = vector.z;
+
+            vector.x = z;
+            vector.y = x;
+            vector.z = y;
+
+            return vector;
+        }
     }
 }

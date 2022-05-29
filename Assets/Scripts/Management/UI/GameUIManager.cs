@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 using BattleShips.GameComponents;
 using BattleShips.GUI;
 using System.Collections.Generic;
@@ -17,7 +19,9 @@ namespace BattleShips.Management.UI
 
         #region Serialized Fields
 
-        [SerializeField] RectTransform shipPlacementMenu;
+        [SerializeField] RectTransform shipsMenu;
+        [SerializeField] Button readyButton;
+        [SerializeField] TMP_Text moveReporter;
 
         #endregion
 
@@ -55,15 +59,22 @@ namespace BattleShips.Management.UI
             shipWrappers.Find(s => s.Constraint == ShipType.Battleship).Initialise(player.GetBattleship());
             shipWrappers.Find(s => s.Constraint == ShipType.Carrier).Initialise(player.GetCarrier());
 
-            TurnOffMenu(UIParts.ShipPlacement);
+            TurnOnMenu(UIParts.Ships);
+            TurnOnMenu(UIParts.MoveReporter);
         }
 
         internal void TurnOnMenu(UIParts menu)
         {
             switch (menu)
             {
-                case UIParts.ShipPlacement:
-                    shipPlacementMenu.gameObject.SetActive(true);
+                case UIParts.Ships:
+                    shipsMenu.gameObject.SetActive(true);
+                    break;
+                case UIParts.ReadyButton:
+                    readyButton.gameObject.SetActive(true);
+                    break;
+                case UIParts.MoveReporter:
+                    moveReporter.gameObject.SetActive(true);
                     break;
             }
         }
@@ -72,8 +83,14 @@ namespace BattleShips.Management.UI
         {
             switch(menu)
             {
-                case UIParts.ShipPlacement:
-                    shipPlacementMenu.gameObject.SetActive(false);
+                case UIParts.Ships:
+                    shipsMenu.gameObject.SetActive(false);
+                    break;
+                case UIParts.ReadyButton:
+                    readyButton.gameObject.SetActive(false);
+                    break;
+                case UIParts.MoveReporter:
+                    moveReporter.gameObject.SetActive(false);
                     break;
             }
         }
@@ -82,10 +99,19 @@ namespace BattleShips.Management.UI
         {
             switch (menu)
             {
-                case UIParts.ShipPlacement:
-                    shipPlacementMenu.gameObject.SetActive(!shipPlacementMenu.gameObject.activeSelf);
+                case UIParts.Ships:
+                    shipsMenu.gameObject.SetActive(!shipsMenu.gameObject.activeSelf);
+                    break;
+                case UIParts.ReadyButton:
+                    readyButton.gameObject.SetActive(!readyButton.gameObject.activeSelf);
+                    break;
+                case UIParts.MoveReporter:
+                    moveReporter.gameObject.SetActive(!moveReporter.gameObject.activeSelf);
                     break;
             }
         }
+
+        internal void EnableReadyButton() => readyButton.interactable = true;
+        internal void DisableReadyButton() => readyButton.interactable = false;
     }
 }

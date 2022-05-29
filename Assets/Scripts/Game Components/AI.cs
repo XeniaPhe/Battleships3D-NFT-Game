@@ -24,48 +24,17 @@ namespace BattleShips.GameComponents.AI
 
         #region Cached Fields
 
-        readonly int[] lengths = { 2, 3, 4, 5 };
+        readonly int[] lengths = { 2, 3, 3, 4, 5 };
 
         TileData[,] tiles = new TileData[10, 10];
+        TileData[,] enemyTiles = new TileData[10, 10];
         List<TileData> moveLog = new List<TileData>();
         int[,] heatMap = new int[10, 10];
         double[,] probabilityMap = new double[10, 10];
         TileData tileFound;
         AIMode mode = AIMode.Hunt;
         Parity parity;
-
-        #endregion
-
-        #region Ship Bitmask
-
-        byte shipFlag = 0b00011111;
-
-        /// <summary>
-        /// Checks if a ship is destroyed or not
-        /// </summary>
-        /// <param name="ship">Destroyer = 0, Submarine=1, Cruiser=2, Battleship=3, Carrier=4</param>
-        /// <returns></returns>
-        /// <exception cref="ArgumentOutOfRangeException">Value of argument ship should be between 0 and 4 (inclusive)</exception>
-        private bool CheckShip(byte ship)
-        {
-            if (ship > 4)
-                throw new ArgumentOutOfRangeException("ship", ship, "Ship should be between 0 and 4!");
-
-            return (shipFlag & (byte)(1 << ship)) == 1;
-        }
-
-        /// <summary>
-        /// Sets a ship as destroyed
-        /// </summary>
-        /// <param name="ship">Destroyer = 0, Submarine=1, Cruiser=2, Battleship=3, Carrier=4</param>
-        /// <exception cref="ArgumentOutOfRangeException">Value of argument ship should be between 0 and 4 (inclusive)</exception>
-        private void SetShipDestroyed(byte ship)
-        {
-            if (ship > 4)
-                throw new ArgumentOutOfRangeException("ship", ship, "Ship should be between 0 and 4!");
-
-            shipFlag &= (byte)(~(1 << ship));
-        }
+        ShipFlag shipFlag = new ShipFlag();
 
         #endregion
 
@@ -80,15 +49,22 @@ namespace BattleShips.GameComponents.AI
                 TileData tile;
 
                 for (int i = 1; i < 11; i++)
+                {
                     for (int j = 1; j < 11; j++)
                     {
                         tile = new TileData(i, j);
                         tiles[i - 1, j - 1] = tile;
+                        tile = new TileData(i, j);
+                        enemyTiles[i - 1, j - 1] = tile;
                     }
+                }
             }
         }
 
-        private TileData GetTileAt(Coordinate coords) => tiles[coords.X-1,coords.Y-1];
+        private TileData GetTileAt(Coordinate coords) => tiles[coords.X - 1, coords.Y - 1];
+
+        #region On Development
+
         private double GetProbabilityAt(int n) => probabilityMap[n / 10, n % 10];
         private double GetProbabilityAt(Coordinate coords) => probabilityMap[coords.X - 1, coords.Y - 1];
         private double GetRealProbabilityAt(int n)
@@ -102,28 +78,24 @@ namespace BattleShips.GameComponents.AI
         private double GetRealProbabilityAt(Coordinate coords)
         {
             double pn = GetProbabilityAt(coords);
-            if (coords.GetCoordinates(true) == Vector2Int.zero)
+            if (coords.GetCoordinateVector(true) == Vector2Int.zero)
                 return pn;
             Coordinate prev = coords.Previous;
             return pn - GetProbabilityAt(prev);
         }
-        private void MakeDecision()
-        {
 
-        }
-
-        private async void RecalculateHeatMap()
+        private void RecalculateHeatMap()
         {
             int CheckShips(int l)
             {
-                if ((l == 2 && !CheckShip(0)) || (l == 4 && !CheckShip(3)) || (l == 5 && !CheckShip(4)))
+                if ((l == 2 && !shipFlag.IsDestroyerDestroyed()) || (l == 4 && !shipFlag.IsBattleshipDestroyed()) || (l == 5 && !shipFlag.IsCarrierDestroyed()))
                     return 0;
 
                 if (l == 3)
                 {
-                    if (!CheckShip(1) && !CheckShip(2))
+                    if (!shipFlag.IsSubmarineDestroyed() && !shipFlag.IsCruiserDestroyed())
                         return 0;
-                    if (CheckShip(1) && CheckShip(2))
+                    if (shipFlag.IsSubmarineDestroyed() && shipFlag.IsCruiserDestroyed())
                         return 2;
                 }
 
@@ -145,28 +117,28 @@ namespace BattleShips.GameComponents.AI
                     Vector2Int index;
                     if(left is not null)
                     {
-                        index = left.GetCoordinates(true);
+                        index = left.GetCoordinateVector(true);
                         if (heatMap[index.x, index.y] != 0)
                             heatMap[index.x, index.y] -= count;
                         left = left.Left;
                     }
                     if(right is not null)
                     {
-                        index = right.GetCoordinates(true);
+                        index = right.GetCoordinateVector(true);
                         if (heatMap[index.x, index.y] != 0)
                             heatMap[index.x, index.y] -= count;
                         right = right.Right;
                     }
                     if (down is not null)
                     {
-                        index = down.GetCoordinates(true);
+                        index = down.GetCoordinateVector(true);
                         if (heatMap[index.x, index.y] != 0)
                             heatMap[index.x, index.y] -= count;
                         down = down.Down;
                     }
                     if (up is not null)
                     {
-                        index = up.GetCoordinates(true);
+                        index = up.GetCoordinateVector(true);
                         if (heatMap[index.x, index.y] != 0)
                             heatMap[index.x, index.y] -= count;
                         up = up.Up;
@@ -203,7 +175,7 @@ namespace BattleShips.GameComponents.AI
                         for (int y = 0; y < 11 - l; y++)
                             for (int j = y; j < y + l; j++)
                             {
-                                if (tiles[x, j].tileState != TileState.Normal)
+                                if (enemyTiles[x, j].tileState != TileState.Normal)
                                 {
                                     for (int k = j - 1; k >= y; --k)
                                         heatMap[x, k] -= count;
@@ -216,7 +188,7 @@ namespace BattleShips.GameComponents.AI
                         for (int y = 0; y < 10; y++)
                             for (int j = x; j < x + l; j++)
                             {
-                                if (tiles[j, y].tileState != TileState.Normal)
+                                if (enemyTiles[j, y].tileState != TileState.Normal)
                                 {
                                     for (int k = j - 1; k >= x; --k)
                                         heatMap[k, y] -= count;
@@ -354,13 +326,23 @@ namespace BattleShips.GameComponents.AI
 
         }
 
-        public void Attack()
-        {
-            
-        }
+        #endregion
 
         #region Temporary
-        internal void PlaceShipsRandom()
+
+        private void PrintTileInformation()
+        {
+            string board = "";
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                    board += tiles[i, j].tileState == TileState.Normal ? "[0]" : "[+]";
+                Debug.Log(board);
+                board = "";
+            }
+        }
+
+        void IPlayer.PlaceShipsRandom()
         {
             bool horizontal;
             TileData tile;
@@ -378,6 +360,7 @@ namespace BattleShips.GameComponents.AI
                     otherDimension = UnityEngine.Random.Range(0, 10);
                     startIndex = UnityEngine.Random.Range(0, 11 - lengths[i]);
 
+                    TileData startTile = (horizontal ? tiles[startIndex + j, otherDimension] : tiles[otherDimension, startIndex + j]);
                     for (j = 0; j < lengths[i]; j++)
                     {
                         tile = horizontal ? tiles[startIndex + j, otherDimension] : tiles[otherDimension, startIndex + j];
@@ -387,24 +370,65 @@ namespace BattleShips.GameComponents.AI
 
                         tile.ship = shipBundles[currentLevel - 1][i];
                         tile.tileState = TileState.HasShip;
+                        tile.shipIndex = j;
+                        tile.startTile = startTile;
                     }
                 }
             }
         }
 
-        private void PrintTileInformation()
+        AttackResult IPlayer.CheckTile(Attack attack)
         {
-            string board = "";
-            for (int i = 0; i < 10; i++)
+            Vector2Int vectorCoords = attack.coordinates.GetCoordinateVector(true);
+            var tileData = tiles[vectorCoords.x, vectorCoords.y];
+            var ship = tileData.ship;
+
+            if (ship is null)
             {
-                for (int j = 0; j < 10; j++)
-                    board += tiles[i, j].tileState == TileState.Normal ? "[0]" : "[+]";
-                Debug.Log(board);
-                board = "";
+                tileData.tileState = TileState.Miss;
+                return AttackResult.Miss;
             }
+            else if (ship[tileData.shipIndex] > 0)
+            {
+                if ((ship[tileData.shipIndex] -= attack.attackPower) <= 0)
+                    tileData.tileState = TileState.HasDestroyedShipPart;
+                else
+                    tileData.tileState = TileState.HasHitShip;
+
+                for (int i = 0; i < ship.Length; i++)
+                    if (ship[i] > 0)
+                        return AttackResult.Hit;
+
+                shipFlag.SetShipDestroyed(ship.Type);
+                Coordinate coords = tileData.startTile.Coordinates;
+                var direction = Coordinate.GetDirection(coords, tileData.Coordinates);
+
+                if (!direction.HasValue) Debug.LogError("There's something wrong!");
+
+                for (int i = 0; i < ship.Length; i++)
+                {
+                    vectorCoords = coords.GetCoordinateVector(true);
+                    tiles[vectorCoords.x, vectorCoords.y].tileState = TileState.HasSunkenShip;
+                    coords = coords.GetCoordinatesAt(direction.Value);
+                }
+
+                if (shipFlag.AreAllDestroyed())
+                    return AttackResult.AllDestroyed;
+                else return ship.Type switch
+                {
+                    ShipType.Destroyer => AttackResult.DestroyerDestroyed,
+                    ShipType.Submarine => AttackResult.SubmarineDestroyed,
+                    ShipType.Cruiser => AttackResult.CruiserDestroyed,
+                    ShipType.Battleship => AttackResult.BattleshipDestroyed,
+                    ShipType.Carrier => AttackResult.CarrierDestroyed,
+                    _ => throw new Exception("Undefined Ship type!")
+                };
+            }
+
+            return AttackResult.Miss;
         }
 
- 
+        Attack IPlayer.PlayRandom(Coordinate hit = null) => new Attack(new Coordinate(UnityEngine.Random.Range(1, 9), UnityEngine.Random.Range(1, 9)), 80);
 
         #endregion
     }

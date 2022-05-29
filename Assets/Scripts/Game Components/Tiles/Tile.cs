@@ -9,14 +9,14 @@ namespace BattleShips.GameComponents.Tiles
     {
         #region Serialized Fields
 
-        [SerializeField] protected Color disabledColor;
+        [SerializeField] Color enteredColor;
         [SerializeField] protected float temporaryMaskDuration = 0.18f;
 
         #endregion
 
         #region Cached Fields
 
-        protected TileData tileData;
+        internal TileData tileData;
         protected SpriteRenderer self;
         protected Color normalColor;
         protected WaitForSeconds maskWait;
@@ -29,7 +29,6 @@ namespace BattleShips.GameComponents.Tiles
         {
             self = GetComponent<SpriteRenderer>();
             normalColor = self.color;
-            self.color = disabledColor;
             var wrapper = GetComponent<CoordinateWrapper>();
             tileData = new TileData(wrapper.x, wrapper.y);
             maskWait = new WaitForSeconds(temporaryMaskDuration);
@@ -42,24 +41,22 @@ namespace BattleShips.GameComponents.Tiles
 
         public virtual void OnPointerEnter(PointerEventData eventData)
         {
-            self.color = normalColor;
+            self.color = enteredColor;
             board.EnteredTile = this;
         }
-        public abstract void OnPointerClick(PointerEventData eventData);
+        public virtual void OnPointerClick(PointerEventData eventData)
+        {
+            if (eventData.button != PointerEventData.InputButton.Left)
+                return;
+            board.ClickedTile = this;
+        }
         public virtual void OnPointerExit(PointerEventData eventData)
         {
-            self.color = disabledColor;
+            self.color = normalColor;
             board.EnteredTile = null;
         }
-        internal Coordinate GetTileCoordinatesAt(Directions direction) =>
-            direction switch
-            {
-                Directions.Up => tileData.Coordinates.Up,
-                Directions.Down => tileData.Coordinates.Down,
-                Directions.Left => tileData.Coordinates.Left,
-                Directions.Right => tileData.Coordinates.Right,
-                _ => null
-            };
+
+        internal Coordinate GetTileCoordinatesAt(Directions direction) => tileData.Coordinates.GetCoordinatesAt(direction);
 
         internal bool IsTileInNormalState() => (tileData.tileState == TileState.Normal && !isTemporarilyPainted);
 
@@ -71,7 +68,7 @@ namespace BattleShips.GameComponents.Tiles
 
         internal virtual void RemoveTemporaryPaint()
         {
-            self.color = disabledColor;
+            self.color = normalColor;
             isTemporarilyPainted = false;
         }
     }

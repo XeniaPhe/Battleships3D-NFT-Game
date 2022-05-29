@@ -13,10 +13,5 @@ namespace BattleShips.GameComponents.Tiles
         [SerializeField] Color completeShipColor;
 
         #endregion
-
-        public override void OnPointerClick(PointerEventData eventData)
-        {
-
-        }
     }
 }

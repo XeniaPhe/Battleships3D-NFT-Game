@@ -51,8 +51,6 @@ namespace BattleShips.Management
 
         internal void SelectShip(Ship ship)
         {
-            if (selectedShip is null && ship is not null)
-                DefenseTile.maskMode = TileMaskMode.TemporaryMask;
             selectedShip = ship;
             selectedShip.ShipPlaced += GameManager.Instance.OnShipPlaced;
         }
@@ -65,8 +63,6 @@ namespace BattleShips.Management
 
         internal void HighlightShipPlacement(DefenseTile startTile)
         {
-            enteredTile = startTile;
-
             if(shipInstance) Destroy(shipInstance.gameObject);
 
             foreach (var tile in tilesToPlaceTo)
@@ -74,22 +70,50 @@ namespace BattleShips.Management
 
             if (!(selectedShip is not null && startTile is not null && startTile.IsTileInNormalState()))
                 return;
-            
-            tilesToPlaceTo = new List<DefenseTile>() { startTile };
-            DefenseTile temp;
-            isSelectionSuccessful = true;
 
-            void Traverse(DefenseTile tile,Directions direction,int distance)
+            enteredTile = startTile;
+            tilesToPlaceTo = new List<DefenseTile>();
+            isSelectionSuccessful = true;
+            int firstDir = selectedShip.Length / 2;
+            Coordinate tileCoord = enteredTile.tileData.Coordinates;
+
+            for (int i = 0; i < firstDir; i++)
+                tileCoord = tileCoord?.GetCoordinatesAt(currentDirection);
+
+            DefenseTile temp;
+            var oppositeDirection = Helper.GetOppositeDirection(currentDirection);
+
+            Traverse(firstDir,oppositeDirection);
+            tilesToPlaceTo.Add(enteredTile);
+            tileCoord = enteredTile.GetTileCoordinatesAt(oppositeDirection);
+            int secondDir = selectedShip.Length - firstDir - 1;
+            Traverse(secondDir,oppositeDirection);
+
+            Vector3 rotation = selectedShip.NormalRotation;
+            Vector3 pos = enteredTile.transform.position;
+            pos.y = 1;
+            rotation.y = (int)(currentDirection+1) * 90;
+            
+            shipInstance = Instantiate<Transform>(selectedShip.Model.transform, pos, Quaternion.Euler(rotation), null);
+            shipInstance.localScale = selectedShip.PreferedScale;
+
+            foreach(var mat in shipInstance.GetComponent<MeshRenderer>().materials)
+                mat.color = Color.black;
+
+            foreach (var tile in tilesToPlaceTo)
+                tile.PaintTemporarily(isSelectionSuccessful ? successfulColor : unsuccessfulColor);
+
+
+            void Traverse(int distance,Directions direction)
             {
                 for (int i = 0; i < distance; i++)
                 {
-                    Coordinate coord = tile.GetTileCoordinatesAt(direction);
-                    temp = board.GetTile(coord, TileType.Defense) as DefenseTile;
+                    temp = board.GetTile(tileCoord, TileType.Defense) as DefenseTile;
 
-                    if (temp is not null && temp.IsTileInNormalState())
+                    if (temp != null && temp.IsTileInNormalState())
                     {
                         tilesToPlaceTo.Add(temp);
-                        tile = temp;
+                        tileCoord = tileCoord.GetCoordinatesAt(direction);
                     }
                     else
                     {
@@ -98,48 +122,32 @@ namespace BattleShips.Management
                     }
                 }
             }
-
-            tilesToPlaceTo.Add(startTile);
-            int firstDir = selectedShip.Length / 2;
-            Traverse(startTile, currentDirection, firstDir);
-            Directions oppositeDir = Helper.GetOppositeDirection(currentDirection);
-            int secondDir = selectedShip.Length - firstDir - 1;
-            Traverse(startTile, oppositeDir,secondDir);
-
-            Vector3 rotation = selectedShip.NormalRotation;
-            Vector3 pos = enteredTile.transform.position;
-            pos.y = 1;
-            rotation.y = (int)(currentDirection+1) * 90;
-            
-            shipInstance = Instantiate<Transform>(selectedShip.Model, pos, Quaternion.Euler(rotation), null);
-            shipInstance.localScale = selectedShip.PreferedScale;
-            foreach(var mat in shipInstance.GetComponent<MeshRenderer>().materials)
-                mat.color = Color.black;
-
-            foreach (var tile in tilesToPlaceTo)
-                tile.PaintTemporarily(isSelectionSuccessful ? successfulColor : unsuccessfulColor);
         }
 
-        internal void PlaceShip(DefenseTile tile)
+        internal void PlaceShip()
         {
-            if (selectedShip is null || !isSelectionSuccessful) 
-                return;
+            if (selectedShip is null) return;
+            if (isSelectionSuccessful is false) return;
 
-            tilesToPlaceTo.ForEach(t =>
+            DefenseTile tile;
+            TileData start = tilesToPlaceTo[0].tileData;
+            for (int i = 0; i < tilesToPlaceTo.Count; i++)
             {
-                t.RemoveTemporaryPaint();
-                t.PlaceShip(selectedShip);
-            });
+                tile = tilesToPlaceTo[i];
+                tile.RemoveTemporaryPaint();
+                tile.PlaceShip(selectedShip,start,i);
+            }
 
             tilesToPlaceTo.Clear();
             selectedShip.OnShipPlaced();
+
             if(selectedShip.Type == ShipType.Submarine)
                 shipInstance.position = new Vector3(shipInstance.position.x, 0f, shipInstance.position.z);
             else
                 shipInstance.position = new Vector3(shipInstance.position.x, 0.4f, shipInstance.position.z);
+
             shipInstance = null;
             selectedShip = null;
-            DefenseTile.maskMode = TileMaskMode.PermanentMask;
         }
     }
 }

@@ -28,6 +28,7 @@ namespace BattleShips.GUI
             imageComponent = GetComponent<Image>();
             normalSprite = imageComponent.sprite;
         }
+
         public override void OnSelect(BaseEventData eventData)
         {
             if (currentlySelected)

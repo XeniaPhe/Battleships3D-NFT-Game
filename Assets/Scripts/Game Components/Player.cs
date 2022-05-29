@@ -56,6 +56,8 @@ namespace BattleShips.GameComponents
 
         Deck deck;
         GameManager manager;
+        GameBoard board;
+        ShipFlag shipFlag = new ShipFlag();
 
         #endregion
 
@@ -82,6 +84,7 @@ namespace BattleShips.GameComponents
         private void Start()
         {
             manager = GameManager.Instance;
+            board = GameBoard.Instance;
         }
 
         internal bool IsDeckFull => deck.IsDeckFull();
@@ -101,9 +104,62 @@ namespace BattleShips.GameComponents
             _ => throw new NotImplementedException()
         };
 
-        public void Attack()
+        void IPlayer.PlaceShipsRandom()
         {
 
         }
+
+        AttackResult IPlayer.CheckTile(Attack attack)
+        {
+            var tile = board.GetTile(attack.coordinates, TileType.Defense);
+
+            var tileData = tile.tileData;
+            var ship = tileData.ship;
+
+            if (ship is null)
+            {
+                tileData.tileState = TileState.Miss;
+                return AttackResult.Miss;
+            }
+            else if(ship[tileData.shipIndex] > 0)
+            {
+                if ((ship[tileData.shipIndex] -= attack.attackPower) <= 0)
+                    tileData.tileState = TileState.HasDestroyedShipPart;
+                else
+                    tileData.tileState = TileState.HasHitShip;
+
+                for (int i = 0; i < ship.Length; i++)
+                    if (ship[i] > 0)
+                        return AttackResult.Hit;
+
+                shipFlag.SetShipDestroyed(ship.Type);
+                Coordinate coords = tileData.startTile.Coordinates;
+                var direction = Coordinate.GetDirection(coords, tileData.Coordinates);
+
+                if (!direction.HasValue) Debug.LogError("There's something wrong!");
+
+                for (int i = 0; i < ship.Length; i++)
+                {
+                    board.GetTile(coords, TileType.Defense).tileData.tileState = TileState.HasSunkenShip;
+                    coords = coords.GetCoordinatesAt(direction.Value);
+                }
+
+                if (shipFlag.AreAllDestroyed())
+                    return AttackResult.AllDestroyed;
+                else return ship.Type switch
+                {
+                    ShipType.Destroyer => AttackResult.DestroyerDestroyed,
+                    ShipType.Submarine => AttackResult.SubmarineDestroyed,
+                    ShipType.Cruiser => AttackResult.CruiserDestroyed,
+                    ShipType.Battleship => AttackResult.BattleshipDestroyed,
+                    ShipType.Carrier => AttackResult.CarrierDestroyed,
+                    _ => throw new Exception("Undefined Ship type!")
+                };
+            }
+
+            return AttackResult.Miss;
+        }
+
+        Attack IPlayer.PlayRandom(Coordinate hit = null) => new Attack(new Coordinate(UnityEngine.Random.Range(1, 9),UnityEngine.Random.Range(1, 9)), 80);
     }
 }

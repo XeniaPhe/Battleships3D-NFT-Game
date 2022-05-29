@@ -14,7 +14,7 @@ namespace BattleShips.GameComponents
 
         #region Serialized Fields
 
-        [SerializeField] protected Transform model;
+        [SerializeField] protected MeshFilter model;
         [SerializeField] protected Vector3 preferedScale;
         [SerializeField] protected Vector3 normalRotation;
         [SerializeField] protected Vector3 correction;
@@ -29,9 +29,10 @@ namespace BattleShips.GameComponents
         internal Vector3 PreferedScale => preferedScale;
         internal Vector3 NormalRotation => normalRotation;
         internal Vector3 Correction => correction;
-        internal Transform Model => model;
+        internal MeshFilter Model => model;
         internal RenderTexture Texture => texture;
         internal int Armour => armour;
+
         //internal Weapon Weapon1 => weapon1;
         //internal Weapon Weapon2 => weapon2;
 

@@ -11,7 +11,8 @@ namespace BattleShips.GameComponents.Tiles
 
         internal TileState tileState;
         internal Ship ship;
-        internal TileData shipStart;
+        internal int shipIndex;
+        internal TileData startTile;
 
         internal TileData(Coordinate coordinates)
         {

@@ -13,19 +13,26 @@ namespace BattleShips.Utils
     {
         #region Serialized Fields
 
+        [Header("Control")]
+        [SerializeField] bool active;
         [SerializeField] Transform emptyGameObject;
 
         [Header("Grid Specs")]
-        [SerializeField] LineRenderer lineTemplate;
-        [SerializeField] DefenseTile defenseTile;
-        [SerializeField] AttackTile attackTile;
         [SerializeField] float tileSize;
         [SerializeField] float extraLength;
         [SerializeField] float gapBetweenGrids;
 
         [Header("Line Specs")]
+        [SerializeField] LineRenderer lineTemplate;
+        [SerializeField] bool lineActive = true;
         [SerializeField] float thickness;
         [SerializeField] Color color;
+
+        [Header("Tile Specs")]
+        [SerializeField] SpriteRenderer defenseTile;
+        [SerializeField] SpriteRenderer attackTile;
+        [SerializeField] Color evenColor;
+        [SerializeField] Color oddColor;
 
         #endregion
 
@@ -34,16 +41,18 @@ namespace BattleShips.Utils
         Transform parent;
         Transform prevEmpty = null;
         LineRenderer prevLine = null;
-        DefenseTile prevDefTile = null;
-        AttackTile prevAttTile = null;
+        Color prevColor;
+        bool prevLineActive = false;
+        SpriteRenderer prevDefTile = null;
+        SpriteRenderer prevAttTile = null;
         float prevTileSize;
         float prevTinyExtraLength;
         float prevThickness;
         float prevGap;
-        Color prevColor;
-
+        Color prevOddColor;
+        Color prevEvenColor;
         List<LineRenderer> lines;
-        List<Tile> tiles;
+        List<SpriteRenderer> tiles;
         Vector3 prevRot = Vector3.zero;
         Vector3 prevPos = Vector3.zero;
 
@@ -51,6 +60,7 @@ namespace BattleShips.Utils
 
         private void Update()
         {
+            if (!active) return;
             if (Application.isPlaying) return;
             if (!IsInstantiated()) return;
             if (IsBuildNecessary()) BuildGameBoard();
@@ -112,6 +122,9 @@ namespace BattleShips.Utils
             if (thickness != prevThickness) return true;
             if (gapBetweenGrids != prevGap) return true;
             if (color != prevColor) return true;
+            if (lineActive != prevLineActive) return true;
+            if (oddColor != prevOddColor) return true;
+            if (evenColor != prevEvenColor) return true;
 
             return false;
         }
@@ -128,13 +141,13 @@ namespace BattleShips.Utils
             prevRot = Vector3.zero;
             prevPos = Vector3.zero;
             lines = new List<LineRenderer>();
-            tiles = new List<Tile>();
+            tiles = new List<SpriteRenderer>();
 
             LineRenderer line;
 
             float centerDif = tileSize / 2;
             string tileName = "Defense Tile #";
-            Tile tile = defenseTile;
+            SpriteRenderer tile = defenseTile;
             float len = 10 * tileSize;
 
             float zMin = -len - gapBetweenGrids/2;
@@ -147,35 +160,39 @@ namespace BattleShips.Utils
 
             for (int i = 0; i < 2; i++)
             {
-                for (int j = 0; j < 11; j++)
+                if (lineActive)
                 {
-                    line = Instantiate<LineRenderer>(lineTemplate, Vector3.zero, transform.rotation, parent);
-                    line.SetPositions(new Vector3[] { new Vector3(xPos, 0, zMin - extraLength), new Vector3(xPos, 0, zMax + extraLength) });
-                    line.startWidth = thickness;
-                    line.endWidth = thickness;
-                    line.startColor = color;
-                    line.endColor = color;
-                    line.name = $"Line #{22 * i + 2 * j +1}";
-                    lines.Add(line);
+                    for (int j = 0; j < 11; j++)
+                    {
+                        line = Instantiate<LineRenderer>(lineTemplate, Vector3.zero, transform.rotation, parent);
+                        line.SetPositions(new Vector3[] { new Vector3(xPos, 0, zMin - extraLength), new Vector3(xPos, 0, zMax + extraLength) });
+                        line.startWidth = thickness;
+                        line.endWidth = thickness;
+                        line.startColor = color;
+                        line.endColor = color;
+                        line.name = $"Line #{22 * i + 2 * j + 1}";
+                        lines.Add(line);
 
-                    line = Instantiate<LineRenderer>(lineTemplate, Vector3.zero, transform.rotation, parent);
-                    line.SetPositions(new Vector3[] { new Vector3(xMin - extraLength, 0, zPos), new Vector3(xMax + extraLength , 0, zPos) });
-                    line.startWidth = thickness;
-                    line.endWidth = thickness;
-                    line.startColor = color;
-                    line.endColor = color;
-                    line.name = $"Line #{22 * i + 2 * (j + 1)}";
-                    lines.Add(line);
+                        line = Instantiate<LineRenderer>(lineTemplate, Vector3.zero, transform.rotation, parent);
+                        line.SetPositions(new Vector3[] { new Vector3(xMin - extraLength, 0, zPos), new Vector3(xMax + extraLength, 0, zPos) });
+                        line.startWidth = thickness;
+                        line.endWidth = thickness;
+                        line.startColor = color;
+                        line.endColor = color;
+                        line.name = $"Line #{22 * i + 2 * (j + 1)}";
+                        lines.Add(line);
 
-                    zPos += tileSize;
-                    xPos += tileSize;
+                        zPos += tileSize;
+                        xPos += tileSize;
+                    } 
                 }
 
                 for (int j = 0; j < 10; j++)
                     for (int k = 0; k < 10; k++)
                     {
-                        tile = Instantiate<Tile>(tile, new Vector3(j * tileSize + xMin + centerDif, 0, k * tileSize + zMin + centerDif), tile.transform.rotation, parent);
+                        tile = Instantiate<SpriteRenderer>(tile, new Vector3(j * tileSize + xMin + centerDif, 0, k * tileSize + zMin + centerDif), tile.transform.rotation, parent);
                         tile.name = string.Concat(tileName, $"{j + 1}-{k + 1}");
+                        tile.GetComponent<SpriteRenderer>().color = (j%2 == k%2) ? oddColor : evenColor;
                         tile.GetComponent<CoordinateWrapper>().Coordinates = new Vector2Int(j + 1, k + 1);
                         tiles.Add(tile);
                     }
@@ -200,6 +217,9 @@ namespace BattleShips.Utils
             prevThickness = thickness;
             prevGap = gapBetweenGrids;
             prevColor = color;
+            prevOddColor = oddColor;
+            prevEvenColor = evenColor;
+            prevLineActive = lineActive;
         }
 
         private void UpdateTransform()

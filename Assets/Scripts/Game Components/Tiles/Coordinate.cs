@@ -76,16 +76,16 @@ namespace BattleShips.GameComponents.Tiles
         #endregion
 
         private Coordinate() { }
-        internal Coordinate(int x,int y,bool zeroBased = false)
+        internal Coordinate(int x, int y, bool zeroBased = false)
         {
             void CheckCoordinate(int c, bool zeroBased = false)
             {
                 if ((zeroBased && (c < 0 && c > 9)) || (!zeroBased && (c < 1 || c > 10)))
-                    throw new ArgumentOutOfRangeException("c",c,"Coordinates should be between 1 and 10!");
+                    throw new ArgumentOutOfRangeException("c", c, "Coordinates should be between 1 and 10!");
             }
 
-            CheckCoordinate(x,zeroBased);
-            CheckCoordinate(y,zeroBased);
+            CheckCoordinate(x, zeroBased);
+            CheckCoordinate(y, zeroBased);
             this.x = zeroBased ? x + 1 : x;
             this.y = zeroBased ? y + 1 : y;
         }
@@ -94,12 +94,22 @@ namespace BattleShips.GameComponents.Tiles
         {
             List<Coordinate> neighbors = new List<Coordinate>();
             Coordinate temp;
-            if((temp = Left) is not null) neighbors.Add(temp);
-            if((temp = Right) is not null) neighbors.Add(temp);
-            if((temp = Down) is not null) neighbors.Add(temp);
-            if((temp = Up) is not null) neighbors.Add(temp);
+            if ((temp = Left) is not null) neighbors.Add(temp);
+            if ((temp = Right) is not null) neighbors.Add(temp);
+            if ((temp = Down) is not null) neighbors.Add(temp);
+            if ((temp = Up) is not null) neighbors.Add(temp);
             return neighbors;
         }
+
+        internal Coordinate GetCoordinatesAt(Directions direction) => direction switch
+        {
+            Directions.Up => Up,
+            Directions.Down => Down,
+            Directions.Left => Left,
+            Directions.Right => Right,
+            _ => throw new ArgumentException("Undefined Direction!")
+        };
+
         internal static bool IsValidCoordinate(int x, int y, bool zeroBased = false) =>
             zeroBased switch
             {
@@ -114,11 +124,35 @@ namespace BattleShips.GameComponents.Tiles
                 false => coord.x > 0 && coord.x < 11 && coord.y > 0 && coord.y < 11
             };
 
-        internal Vector2Int GetCoordinates(bool zeroBased = false) =>
+        internal Vector2Int GetCoordinateVector(bool zeroBased = false) =>
             zeroBased switch
             {
                 true => new Vector2Int(x - 1, y - 1),
                 false => new Vector2Int(x, y)
             };
+
+        internal static Directions? GetDirection(Coordinate coordinate1,Coordinate coordinate2)
+        {
+            if (coordinate1.x == coordinate2.x)
+            {
+                if (coordinate1.y > coordinate2.y)
+                    return Directions.Up;
+                else if (coordinate1.y < coordinate2.y)
+                    return Directions.Down;
+                else
+                    return null;
+            }
+            else if (coordinate1.y == coordinate2.y)
+            {
+                if (coordinate1.x > coordinate2.x)
+                    return Directions.Left;
+                else if (coordinate1.x < coordinate2.x)
+                    return Directions.Right;
+                else
+                    return null;
+            }
+            else
+                return null;
+        }
     }
 }

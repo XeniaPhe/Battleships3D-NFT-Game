@@ -1,9 +1,13 @@
-﻿using BattleShips.GameComponents.Tiles;
+﻿using UnityEngine;
+using BattleShips.GameComponents.Tiles;
+using BattleShips.Management;
 
 namespace BattleShips.GameComponents
 {
     internal interface IPlayer
     {
-        void Attack();
+        internal AttackResult CheckTile(Attack attack);
+        internal Attack PlayRandom(Coordinate hit = null);
+        internal void PlaceShipsRandom();
     }
 }

@@ -35,6 +35,7 @@ namespace BattleShips.Management
         IPlayer player;
         GameUIManager uiManager;
         ShipSelector shipSelector;
+        GameBoard board;
         Timer timer;
         MoveLogger moveReporter;
         GamePhase phase;
@@ -99,6 +100,7 @@ namespace BattleShips.Management
             uiManager = GameUIManager.Instance;
             timer = Timer.Instance;
             moveReporter = MoveLogger.Instance;
+            board = GameBoard.Instance;
             uiManager.Initialize();
             shipSelector = ShipSelector.Instance;
             StartShipPlacementPhase();
@@ -126,6 +128,7 @@ namespace BattleShips.Management
         public void StartAIShipPlacement()
         {
             turn = Turn.AI;
+            timer.CancelCountdown(1);
             uiManager.TurnOffMenu(UIParts.ReadyButton);
             computer.PlaceShipsRandom();
             moveReporter.PublishReport("Enemy is placing his ships",Color.white,aiShipPlacementTime);
@@ -151,18 +154,21 @@ namespace BattleShips.Management
                 hit = null;
                 keepTurn = false;
                 moveReporter.PublishReport("Miss!", Color.red, aiTurnTime);
+                board.PlacePeg(TileType.Attack,attack.coordinates,false);
             }
             else if (attackResult == AttackResult.Hit)
             {
                 //Place red peg at the tile (attack)
                 hit = attack.coordinates;
                 moveReporter.PublishReport("Hit!", Color.green, aiTurnTime);
+                board.PlacePeg(TileType.Attack, attack.coordinates,true);
             }
             else
             {
                 //Reveal enemy ship
                 hit = null;
                 moveReporter.PublishReport($"Enemy Ship Sunk!", Color.green, aiTurnTime); //Details later
+                board.RevealShip(null);
             }
 
             turn = Turn.Player;
@@ -189,6 +195,7 @@ namespace BattleShips.Management
                 action += () =>
                 {
                     moveReporter.PublishReport("Enemy hit a ship!", Color.red, aiTurnTime);
+                    board.PlacePeg(TileType.Defense, attack.coordinates, true);
                 };
             }
             else if (attackResult == AttackResult.Miss)
@@ -198,6 +205,7 @@ namespace BattleShips.Management
                 action += () =>
                 {
                     moveReporter.PublishReport("Enemy missed!", Color.green, aiTurnTime);
+                    board.PlacePeg(TileType.Defense, attack.coordinates, false);
                 };
             }
             else
@@ -206,6 +214,7 @@ namespace BattleShips.Management
                 action += () =>
                 {
                     moveReporter.PublishReport($"Enemy sank your ship", Color.red, aiTurnTime);
+                    board.SunkShip();
                 };
             }
 
@@ -235,6 +244,7 @@ namespace BattleShips.Management
             }
             else
             {
+                timer.CancelCountdown(1);
                 moveReporter.PublishReport("Enemy's turn", Color.white, aiTurnTime,intermediateTextDuration);
                 var attack = computer.PlayRandom(hit);
                 EnemyAttack(attack);

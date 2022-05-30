@@ -15,8 +15,8 @@ namespace BattleShips.GameComponents
 
         #region Serialized Fields
 
-        [SerializeField] Transform redPeg;
-        [SerializeField] Transform whitePeg;
+        [SerializeField] Peg redPeg;
+        [SerializeField] Peg whitePeg;
 
         #endregion
 
@@ -84,6 +84,23 @@ namespace BattleShips.GameComponents
             return type == TileType.Defense ? defenseTiles[index] : attackTiles[index];
         }
         
+        internal void PlacePeg(TileType tileType,Coordinate coordinate,bool red)
+        {
+            Peg peg = red ? redPeg : whitePeg;
+            Vector3 pos = GetTile(coordinate, tileType).transform.position;
+            peg = Instantiate<Peg>(peg, pos, transform.rotation, transform);
+        }
+
+        internal void RevealShip(TileData shipStart)
+        {
+
+        }
+
+        internal void SunkShip()
+        {
+
+        }
+
         internal Tile GetTile(Vector2Int coord,TileType type,bool zeroBased = false) => GetTile(coord.x,coord.y,type,zeroBased);
 
         internal Tile GetTile(Coordinate coord,TileType type) => coord is not null ? GetTile(coord.GetCoordinateVector(), type, false) : null;

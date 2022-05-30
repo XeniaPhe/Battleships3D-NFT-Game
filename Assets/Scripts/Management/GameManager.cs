@@ -134,7 +134,7 @@ namespace BattleShips.Management
 
         private void PlayerAttack(Attack attack)
         {
-            shipPlacementTool.
+            shipSelector.FireFromSelectedShip();
             var attackResult = computer.CheckTile(attack);
 
             if(attackResult == AttackResult.AllDestroyed)

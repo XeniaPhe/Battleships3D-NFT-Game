@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using BattleShips.GameComponents;
 using BattleShips.GameComponents.Tiles;
@@ -58,7 +59,11 @@ namespace BattleShips.Management
 
         internal void FireFromSelectedShip()
         {
+            if (selectedShip is null) Debug.Log("Not selected ship!");
 
+            var ship = FindObjectsOfType<ShipFire>().Where(f => f.name == selectedShip.Type.ToString()).FirstOrDefault();
+
+            ship.FireFromShip(1);
         }
 
 
@@ -125,6 +130,14 @@ namespace BattleShips.Management
             
             shipInstance = Instantiate<Transform>(selectedShip.Model.transform, pos, Quaternion.Euler(rotation), null);
             shipInstance.localScale = selectedShip.PreferedScale;
+            foreach (var child in shipInstance.transform)
+            {
+                foreach (var item in (Transform)child)
+                {
+                    ((Transform)item).localScale *= (selectedShip.PreferedScale.y / 25);
+                }
+            }
+            shipInstance.name = selectedShip.Type.ToString();
 
             foreach(var mat in shipInstance.GetComponent<MeshRenderer>().materials)
                 mat.color = Color.black;

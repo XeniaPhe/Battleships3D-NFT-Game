@@ -422,6 +422,8 @@ namespace BattleShips.GameComponents.AI
                     placing[j].shipDirection = horizontal ? Directions.Right : Directions.Up;
                 }
             }
+
+            PrintTileInformation();
         }
 
         AttackResult IPlayer.CheckTile(Attack attack)

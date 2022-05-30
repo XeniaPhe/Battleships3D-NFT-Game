@@ -34,7 +34,7 @@ namespace BattleShips.Management
         IPlayer computer;
         IPlayer player;
         GameUIManager uiManager;
-        ShipPlacementTool shipPlacementTool;
+        ShipSelector shipSelector;
         Timer timer;
         MoveLogger moveReporter;
         GamePhase phase;
@@ -57,9 +57,9 @@ namespace BattleShips.Management
             {
                 enteredTile = value;
                 if (phase == GamePhase.ShipPlacement && enteredTile?.GetType() == typeof(DefenseTile))
-                    shipPlacementTool.HighlightShipPlacement((DefenseTile)enteredTile);
+                    shipSelector.HighlightShipPlacement((DefenseTile)enteredTile);
                 else
-                    shipPlacementTool.HighlightShipPlacement(null);
+                    shipSelector.HighlightShipPlacement(null);
             }
         }
 
@@ -72,7 +72,7 @@ namespace BattleShips.Management
                 clickedTile = value;
                 if (phase == GamePhase.ShipPlacement && clickedTile?.GetType() == typeof(DefenseTile))
                 {
-                    shipPlacementTool.PlaceShip();
+                    shipSelector.PlaceShip();
                 }
                 else
                 {
@@ -100,14 +100,14 @@ namespace BattleShips.Management
             timer = Timer.Instance;
             moveReporter = MoveLogger.Instance;
             uiManager.Initialize();
-            shipPlacementTool = ShipPlacementTool.Instance;
+            shipSelector = ShipSelector.Instance;
             StartShipPlacementPhase();
         }
 
         private void Update()
         {
             if (phase == GamePhase.ShipPlacement && Input.GetKeyDown(KeyCode.R))
-                shipPlacementTool.Rotate();
+                shipSelector.Rotate();
             if (actionToExecute != null && canExecuteAction)
             {
                 actionToExecute.Invoke();
@@ -134,6 +134,7 @@ namespace BattleShips.Management
 
         private void PlayerAttack(Attack attack)
         {
+            shipPlacementTool.
             var attackResult = computer.CheckTile(attack);
 
             if(attackResult == AttackResult.AllDestroyed)
@@ -146,23 +147,27 @@ namespace BattleShips.Management
 
             if (attackResult == AttackResult.Miss)
             {
+                //Place white peg at the tile
                 hit = null;
                 keepTurn = false;
                 moveReporter.PublishReport("Miss!", Color.red, aiTurnTime);
             }
             else if (attackResult == AttackResult.Hit)
             {
+                //Place red peg at the tile (attack)
                 hit = attack.coordinates;
                 moveReporter.PublishReport("Hit!", Color.green, aiTurnTime);
             }
             else
             {
+                //Reveal enemy ship
                 hit = null;
                 moveReporter.PublishReport($"Enemy Ship Sunk!", Color.green, aiTurnTime); //Details later
             }
 
             turn = Turn.Player;
             SwitchTurn(keepTurn);
+            //Place peg
         }
 
         private void EnemyAttack(Attack attack)

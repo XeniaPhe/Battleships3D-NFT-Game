@@ -1,3 +1,5 @@
+using BattleShips.GameComponents.Ships;
+
 namespace BattleShips.GameComponents
 {
     internal sealed class Deck

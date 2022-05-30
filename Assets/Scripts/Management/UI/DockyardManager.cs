@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using BattleShips.GUI;
 using BattleShips.GameComponents;
+using BattleShips.GameComponents.Ships;
 
 namespace BattleShips.Management.UI
 {

@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using BattleShips.Management;
 using BattleShips.GameComponents.Tiles;
+using BattleShips.GameComponents.Ships;
 
 namespace BattleShips.GameComponents
 {
@@ -75,9 +76,15 @@ namespace BattleShips.GameComponents
                 if(debugMode)
                 {
                     var allTypes = Enum.GetValues(typeof(ShipType)).Cast<ShipType>().ToList();
+                    Ship ship;
 
                     foreach (var type in allTypes)
-                        deck.Assign(shipsOwned.Find(s => s.Type == type));
+                    {
+                        ship = Instantiate<Ship>(shipsOwned.Find(s => s.Type == type),null);
+                        for (int i = 0; i < ship.Length; i++)
+                            ship[i] = ship.Armour;
+                        deck.Assign(ship);
+                    }
                 }
             }
         }

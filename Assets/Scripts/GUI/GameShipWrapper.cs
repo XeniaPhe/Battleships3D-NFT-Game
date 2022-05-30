@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using BattleShips.Management;
 using BattleShips.GameComponents;
+using BattleShips.GameComponents.Ships;
 
 namespace BattleShips.GUI
 {
@@ -29,19 +30,17 @@ namespace BattleShips.GUI
         internal void Initialise(Ship ship)
         {
             this.ship = ship;
-            shipImage.texture = ship.Texture;
+            shipImage.sprite = ship.CardSprite;
             ship.ShipPlaced += OnShipPlaced;
         }
 
-        private void OnClick() => ShipPlacementTool.Instance.SelectShip(Ship);
+        private void OnClick() => ShipSelector.Instance.SelectShip(Ship);
 
         private void OnShipPlaced()
         {
             BaseEventData data = new BaseEventData(FindObjectOfType<EventSystem>());
             data.selectedObject = null;
             button.OnDeselect(data);
-            button.interactable = false;
-            button.SetSprite();
         }
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine.EventSystems;
+using BattleShips.GameComponents.Ships;
 
 namespace BattleShips.GameComponents.Tiles
 {

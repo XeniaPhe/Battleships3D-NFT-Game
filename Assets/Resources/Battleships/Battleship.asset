@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29032c2b0226f7f48938654223455dfa, type: 3}
   m_Name: Battleship
   m_EditorClassIdentifier: 
-  model: {fileID: -5754084199372789682, guid: e5b7b0898dcaadf47af1bf73d77bf706, type: 3}
+  baseUID: UssIndianapolis
+  model: {fileID: 10138635634259670, guid: 9d031b20f92264ab589f61233fdfa61b, type: 3}
+  cardSprite: {fileID: 21300000, guid: bb113706d863047d2ab6972b1412273e, type: 3}
   preferedScale: {x: 8, y: 8, z: 8}
   normalRotation: {x: -90, y: 0, z: 0}
-  correction: {x: -0.1, y: 0, z: 0.1}
-  texture: {fileID: 8400000, guid: 4468b18cdc368b149b85ef29ce58be65, type: 2}
   armour: 80
+  weapon1: {fileID: 0}
+  weapon2: {fileID: 0}

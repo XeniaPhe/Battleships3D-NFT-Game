@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using BattleShips.GameComponents.Ships;
 
 namespace BattleShips.GameComponents.Tiles
 {

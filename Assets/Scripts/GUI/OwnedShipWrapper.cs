@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 
 namespace BattleShips.GUI
 {
+    [System.Obsolete("Be careful using this class since it has unhandled errors", false)]
     internal class OwnedShipWrapper : ShipWrapper,ISelectHandler,IDeselectHandler
     {
         #region Serialized Fields

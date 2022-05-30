@@ -4,10 +4,12 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using BattleShips.GameComponents;
+using BattleShips.GameComponents.Ships;
 using BattleShips.Management.UI;
 
 namespace BattleShips.GUI
 {
+    [System.Obsolete("Be careful using this class since it has unhandled errors",false)]
     internal class DeckShipWrapper : ShipWrapper,ISelectHandler,IDeselectHandler
     {
         #region Serialized Fields
@@ -31,11 +33,11 @@ namespace BattleShips.GUI
                     if(ship)
                     {
                         shipImage.gameObject.SetActive(true);
-                        shipImage.texture = ship.Texture;
+                        shipImage.sprite = ship.CardSprite;
                     }
                     else
                     {
-                        shipImage.texture = null;
+                        shipImage.sprite = null;
                         shipImage.gameObject.SetActive(false);
                     }
                 }

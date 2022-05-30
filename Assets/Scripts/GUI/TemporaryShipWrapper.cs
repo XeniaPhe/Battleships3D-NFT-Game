@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using BattleShips.GameComponents;
+using BattleShips.GameComponents.Ships;
 using BattleShips.Management;
 
 namespace BattleShips.GUI
@@ -13,7 +14,7 @@ namespace BattleShips.GUI
         private void Start()
         {
             button = GetComponent<GameShipWrapperButton>();
-            button.onClick.AddListener(() => { ShipPlacementTool.Instance.SelectShip(ship); });
+            button.onClick.AddListener(() => { ShipSelector.Instance.SelectShip(ship); });
         }
     }
 }

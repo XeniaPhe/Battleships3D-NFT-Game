@@ -197,7 +197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &15293409
 SpriteRenderer:
@@ -326,7 +326,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -538,7 +538,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -670,7 +670,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -802,7 +802,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -934,7 +934,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -1139,7 +1139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -1411,7 +1411,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &59961984
 SpriteRenderer:
@@ -1540,7 +1540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &60008294
 SpriteRenderer:
@@ -1747,7 +1747,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &63939448
 SpriteRenderer:
@@ -1876,7 +1876,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &69878647
 SpriteRenderer:
@@ -2145,7 +2145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &71919567
 SpriteRenderer:
@@ -2274,7 +2274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &77265399
 SpriteRenderer:
@@ -2403,7 +2403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &90717179
 SpriteRenderer:
@@ -2532,7 +2532,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -2664,7 +2664,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -2796,7 +2796,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -2928,7 +2928,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &109214940
 SpriteRenderer:
@@ -3057,7 +3057,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -3401,7 +3401,7 @@ Transform:
   - {fileID: 107812407}
   - {fileID: 1767449852}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &117152463
 GameObject:
@@ -3695,7 +3695,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -3818,7 +3818,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &147696855
 GameObject:
@@ -3894,7 +3894,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -4026,7 +4026,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &162682484
 SpriteRenderer:
@@ -4155,7 +4155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -4287,7 +4287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &176515702
 SpriteRenderer:
@@ -4416,7 +4416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &180721022
 SpriteRenderer:
@@ -4685,7 +4685,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -4817,7 +4817,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -5089,7 +5089,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &217387246
 SpriteRenderer:
@@ -5434,7 +5434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &225338458
 SpriteRenderer:
@@ -5780,7 +5780,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -5912,7 +5912,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &289308118
 SpriteRenderer:
@@ -6136,7 +6136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -6268,7 +6268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -6553,7 +6553,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50.9, y: 90, z: 0}
 --- !u!114 &330585547
 MonoBehaviour:
@@ -6600,6 +6600,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9252d638ad36b6b4492bd3b6fb282670, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  renderScale: 1
+  reflectionLayer:
+    serializedVersion: 2
+    m_Bits: 4294967279
+  reflectSkybox: 0
+  reflectionTarget: {fileID: 0}
+  reflectionPlaneOffset: 0
+  hideReflectionCamera: 0
 --- !u!114 &330585549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6975,7 +6983,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &357681683
 SpriteRenderer:
@@ -7244,7 +7252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &358820583
 SpriteRenderer:
@@ -7373,7 +7381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &359447885
 SpriteRenderer:
@@ -7502,7 +7510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -7634,7 +7642,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &375771572
 SpriteRenderer:
@@ -7843,7 +7851,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &408259664
 SpriteRenderer:
@@ -8131,7 +8139,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 2.5, y: 176.3, z: 0}
 --- !u!114 &410087042
 MonoBehaviour:
@@ -8227,7 +8235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &412662250
 SpriteRenderer:
@@ -8546,7 +8554,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -8678,7 +8686,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &424347144
 SpriteRenderer:
@@ -8883,7 +8891,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -9080,7 +9088,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -9212,7 +9220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &468651643
 SpriteRenderer:
@@ -9341,7 +9349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &471130343
 SpriteRenderer:
@@ -9470,7 +9478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -9675,7 +9683,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &516687717
 SpriteRenderer:
@@ -10111,7 +10119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &560315601
 SpriteRenderer:
@@ -10240,7 +10248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -10512,7 +10520,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &589996240
 SpriteRenderer:
@@ -10781,7 +10789,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &602879002
 SpriteRenderer:
@@ -11062,7 +11070,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -11194,7 +11202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &638554363
 SpriteRenderer:
@@ -11323,7 +11331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &640867391
 SpriteRenderer:
@@ -11452,7 +11460,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -11584,7 +11592,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &641216277
 SpriteRenderer:
@@ -11713,7 +11721,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -11845,7 +11853,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -11977,7 +11985,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -12189,7 +12197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -12321,7 +12329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &677620517
 SpriteRenderer:
@@ -12740,7 +12748,7 @@ PrefabInstance:
     - target: {fileID: 6529775560924583256, guid: c300e7744ae41bb41ab4490174351a2a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6529775560924583256, guid: c300e7744ae41bb41ab4490174351a2a,
         type: 3}
@@ -12956,7 +12964,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &708287341
 SpriteRenderer:
@@ -13296,7 +13304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &715441648
 SpriteRenderer:
@@ -13547,7 +13555,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -13679,7 +13687,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -13811,7 +13819,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -14058,7 +14066,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -14190,7 +14198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -14322,7 +14330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &757857066
 SpriteRenderer:
@@ -14451,7 +14459,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &761555319
 SpriteRenderer:
@@ -14720,7 +14728,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -14852,7 +14860,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -14984,7 +14992,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &802229590
 SpriteRenderer:
@@ -15113,7 +15121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -15318,7 +15326,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -15423,7 +15431,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &841474989
 GameObject:
@@ -15499,7 +15507,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &841474994
 SpriteRenderer:
@@ -15768,7 +15776,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -15900,7 +15908,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &847189663
 SpriteRenderer:
@@ -16309,7 +16317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -16581,7 +16589,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &873728248
 SpriteRenderer:
@@ -16710,7 +16718,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -16842,7 +16850,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &900021028
 SpriteRenderer:
@@ -17049,7 +17057,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -17181,7 +17189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &905998015
 SpriteRenderer:
@@ -17310,7 +17318,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &916201534
 SpriteRenderer:
@@ -17579,7 +17587,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &922670110
 SpriteRenderer:
@@ -17786,7 +17794,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &931778442
 SpriteRenderer:
@@ -17915,7 +17923,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &933494617
 SpriteRenderer:
@@ -18044,7 +18052,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &934059051
 SpriteRenderer:
@@ -18173,7 +18181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -18305,7 +18313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &949232941
 SpriteRenderer:
@@ -18650,7 +18658,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -18855,7 +18863,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &988885329
 SpriteRenderer:
@@ -19124,7 +19132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -19256,7 +19264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &1016671381
 SpriteRenderer:
@@ -19385,7 +19393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &1047551946
 SpriteRenderer:
@@ -19623,7 +19631,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &1061468597
 SpriteRenderer:
@@ -19752,7 +19760,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -19884,7 +19892,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -19974,7 +19982,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1068729435
 MonoBehaviour:
@@ -20002,6 +20010,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca0c196ce15bcf346b2828792cb2833b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shipPlacementTime: 0
+  turnTime: 0
+  aiShipPlacementTime: 0
+  aiTurnTime: 0
+  timeTillWinLoseScreen: 0
+  intermediateTextDuration: 0
 --- !u!114 &1068729438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20014,7 +20028,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2673484bc3dd01b4eba344f69714bc68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shipPlacementMenu: {fileID: 1724516282}
+  shipsMenu: {fileID: 0}
+  readyButton: {fileID: 0}
+  moveReporter: {fileID: 0}
 --- !u!1 &1069319732
 GameObject:
   m_ObjectHideFlags: 0
@@ -20338,7 +20354,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -20610,7 +20626,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -20742,7 +20758,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &1095589444
 SpriteRenderer:
@@ -20871,7 +20887,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -21003,7 +21019,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &1125743396
 SpriteRenderer:
@@ -21268,7 +21284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &1147694324
 SpriteRenderer:
@@ -21613,7 +21629,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &1169176270
 SpriteRenderer:
@@ -21742,7 +21758,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -21874,7 +21890,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &1170671908
 SpriteRenderer:
@@ -22003,7 +22019,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -22135,7 +22151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &1187397873
 SpriteRenderer:
@@ -22264,7 +22280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &1201998946
 SpriteRenderer:
@@ -22636,7 +22652,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -22768,7 +22784,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &1234678141
 SpriteRenderer:
@@ -22897,7 +22913,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -23029,7 +23045,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -23161,7 +23177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &1246861139
 SpriteRenderer:
@@ -23290,7 +23306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -23836,7 +23852,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &1266583137
 SpriteRenderer:
@@ -24106,7 +24122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -24238,7 +24254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -24583,7 +24599,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &1287875053
 SpriteRenderer:
@@ -24852,7 +24868,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &1307586547
 SpriteRenderer:
@@ -24981,7 +24997,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -25113,7 +25129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -25313,7 +25329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &1333360435
 SpriteRenderer:
@@ -25442,7 +25458,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -25714,7 +25730,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &1342446320
 SpriteRenderer:
@@ -25843,7 +25859,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &1354526029
 SpriteRenderer:
@@ -25972,7 +25988,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -26244,7 +26260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &1371819814
 SpriteRenderer:
@@ -26373,7 +26389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -26645,7 +26661,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -26917,7 +26933,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -27049,7 +27065,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -27394,7 +27410,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &1407248812
 SpriteRenderer:
@@ -27523,7 +27539,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &1410220028
 SpriteRenderer:
@@ -27652,7 +27668,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &1410748405
 SpriteRenderer:
@@ -27921,7 +27937,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -28053,7 +28069,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -28185,7 +28201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -28317,7 +28333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -28449,7 +28465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &1488994186
 SpriteRenderer:
@@ -28794,7 +28810,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -28926,7 +28942,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -29134,7 +29150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &1526111366
 SpriteRenderer:
@@ -29263,7 +29279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &1545759841
 SpriteRenderer:
@@ -29392,7 +29408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -29524,7 +29540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -29656,7 +29672,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &1572254757
 SpriteRenderer:
@@ -29785,7 +29801,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -29917,7 +29933,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -30049,7 +30065,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -30181,7 +30197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -30313,7 +30329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &1606912196
 SpriteRenderer:
@@ -30378,7 +30394,7 @@ PrefabInstance:
     - target: {fileID: 4695364207084456052, guid: 8c0bc2d8185e23043a4b58381534b0f7,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4695364207084456052, guid: 8c0bc2d8185e23043a4b58381534b0f7,
         type: 3}
@@ -30516,7 +30532,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &1611515630
 SpriteRenderer:
@@ -30601,7 +30617,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &1618606422
 MonoBehaviour:
@@ -30615,19 +30631,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d41fc07ac12134499cf4236aaf32eb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  active: 0
   emptyGameObject: {fileID: 8896873556008472912, guid: 84912cf1a7846e84ca91a0351d6d9bed,
-    type: 3}
-  lineTemplate: {fileID: 5832733325400307398, guid: 639fa8e18f80cce42ba1d28dce63ac61,
-    type: 3}
-  defenseTile: {fileID: 3369724966070355897, guid: caa675e91367bd54ea4167edc15615fc,
-    type: 3}
-  attackTile: {fileID: -7839106854977478495, guid: 2c8439e28cc481140a8deca5a11a2452,
     type: 3}
   tileSize: 1.5
   extraLength: 1.01
   gapBetweenGrids: 2.9
+  lineTemplate: {fileID: 5832733325400307398, guid: 639fa8e18f80cce42ba1d28dce63ac61,
+    type: 3}
+  lineActive: 1
   thickness: 0.12
   color: {r: 1, g: 1, b: 1, a: 1}
+  defenseTile: {fileID: 0}
+  attackTile: {fileID: 0}
+  evenColor: {r: 0, g: 0, b: 0, a: 0}
+  oddColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &1629604210
 GameObject:
   m_ObjectHideFlags: 0
@@ -30842,7 +30860,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &1637132441
 SpriteRenderer:
@@ -31360,7 +31378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -31492,7 +31510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -31624,7 +31642,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &1687632131
 SpriteRenderer:
@@ -31753,7 +31771,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -32025,7 +32043,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -32157,7 +32175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -32313,7 +32331,7 @@ RectTransform:
   - {fileID: 61952039}
   - {fileID: 710294691}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -32548,7 +32566,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -32680,7 +32698,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -32812,7 +32830,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -32944,7 +32962,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &1771307802
 SpriteRenderer:
@@ -33180,7 +33198,7 @@ Transform:
   - {fileID: 1828648699}
   - {fileID: 1665089391}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1784076333
 GameObject:
@@ -33256,7 +33274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &1784076338
 SpriteRenderer:
@@ -33385,7 +33403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &1790973212
 SpriteRenderer:
@@ -33514,7 +33532,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &1821284720
 SpriteRenderer:
@@ -33643,7 +33661,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &1826514677
 SpriteRenderer:
@@ -33852,7 +33870,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &1830262996
 SpriteRenderer:
@@ -33981,7 +33999,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -34113,7 +34131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -34245,7 +34263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -34377,7 +34395,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -34509,7 +34527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &1882272411
 SpriteRenderer:
@@ -34638,7 +34656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -34983,7 +35001,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &1908149421
 SpriteRenderer:
@@ -35188,7 +35206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &1928366025
 SpriteRenderer:
@@ -35457,7 +35475,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &1944356791
 SpriteRenderer:
@@ -35659,7 +35677,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &1960886660
 SpriteRenderer:
@@ -35788,7 +35806,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &1976034529
 SpriteRenderer:
@@ -36057,7 +36075,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &1981920532
 SpriteRenderer:
@@ -36186,7 +36204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &1998605956
 SpriteRenderer:
@@ -36451,7 +36469,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &2024902771
 SpriteRenderer:
@@ -36658,7 +36676,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -36790,7 +36808,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &2038676345
 SpriteRenderer:
@@ -36919,7 +36937,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &2039456943
 SpriteRenderer:
@@ -37266,7 +37284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -37398,7 +37416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &2087126750
 SpriteRenderer:
@@ -37527,7 +37545,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -37659,7 +37677,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -37791,7 +37809,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &2097020231
 SpriteRenderer:
@@ -37920,7 +37938,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -37998,7 +38016,7 @@ PrefabInstance:
     - target: {fileID: 1026232914987417531, guid: 2c2f5b952298ef342874e8e61f569cbf,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 1026232914987417531, guid: 2c2f5b952298ef342874e8e61f569cbf,
         type: 3}
@@ -38181,7 +38199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &2108553759
 SpriteRenderer:
@@ -38310,7 +38328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -38442,7 +38460,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eaec902c9001f4099b114db8e3c31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
 --- !u!212 &2120611361
 SpriteRenderer:
@@ -38571,7 +38589,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -38703,7 +38721,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc9cc3859de6224ba3939731bf6e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 1, g: 1, b: 1, a: 0}
+  enteredColor: {r: 0, g: 0, b: 0, a: 0}
   temporaryMaskDuration: 0.18
   missPegColor: {r: 0, g: 0, b: 0, a: 0}
   hitPegColor: {r: 0, g: 0, b: 0, a: 0}
@@ -38843,7 +38861,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8105025272048701828
 MonoBehaviour:
@@ -38857,3 +38875,153 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16629e6f345891348b53ecc2ace028bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  refractionExpanded: 0
+  vertexPaintingExpanded: 0
+  surfaceFoamExpanded: 0
+  foamShadowsExpanded: 0
+  intersectionEffectsExpanded: 0
+  planarReflectionsExpanded: 0
+  causticsExpanded: 0
+  reflectionStrength: 0
+  reflectionFresnel: 1
+  causticsStrength: 0
+  causticsTexture: {fileID: 0}
+  causticsSplit: 0
+  causticsSpeed: 0
+  causticsScale: 0
+  causticsShadowMask: 0
+  causticsLightMatrix:
+    e00: 0
+    e01: 0
+    e02: 0
+    e03: 0
+    e10: 0
+    e11: 0
+    e12: 0
+    e13: 0
+    e20: 0
+    e21: 0
+    e22: 0
+    e23: 0
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 0
+  useLegacyCaustics: 0
+  causticsDepth: 0
+  useColorGradient: 0
+  colorGradient:
+    serializedVersion: 2
+    key0: {r: 1, g: 1, b: 1, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  colorGradientTexture: {fileID: 0}
+  shallowColor: {r: 0, g: 0, b: 0, a: 0}
+  deepColor: {r: 0, g: 0, b: 0, a: 0}
+  colorDepth: 0
+  horizonColor: {r: 0, g: 0, b: 0, a: 0}
+  horizonDistance: 0
+  shoreFade: 0
+  shoreColor: {r: 0, g: 0, b: 0, a: 0}
+  shoreStrength: 0
+  shoreBlend: 0
+  shoreDepth: 0
+  waveColor: {r: 0, g: 0, b: 0, a: 0}
+  underwaterColor: {r: 0, g: 0, b: 0, a: 0}
+  underwaterColorStrength: 0
+  underwaterRefractionStrength: 0
+  surfaceFoamTexture: {fileID: 0}
+  surfaceFoamSampling: {x: 0, y: 0}
+  surfaceFoamCutoff: 0
+  surfaceFoamDistortion: 0
+  surfaceFoamBlend: 0
+  surfaceFoamColor1: {r: 0, g: 0, b: 0, a: 0}
+  surfaceFoamColor2: {r: 0, g: 0, b: 0, a: 0}
+  surfaceFoamMovement: {x: 0, y: 0, z: 0, w: 0}
+  surfaceFoamDirection1: 0
+  surfaceFoamDirection2: 0
+  surfaceFoamSpeed1: 0
+  surfaceFoamSpeed2: 0
+  surfaceFoamTilingAndOffset: {x: 0, y: 0, z: 0, w: 0}
+  surfaceFoamOffsetX: 0
+  surfaceFoamOffsetY: 0
+  surfaceFoamScale1: 0
+  surfaceFoamScale2: 0
+  enableSurfaceFoam: 0
+  surfaceFoamHeightMask: 0
+  surfaceFoamHeightMaskSmoothness: 0
+  enableHeightMask: 0
+  foamShadowStrength: 0
+  foamShadowDepth: 0
+  surfaceFoamShadowProjection: 0
+  intersectionFoamShadowProjection: 0
+  foamMovement: 0
+  intersectionFoamDepth: 0
+  intersectionFoamTexture: {fileID: 0}
+  intersectionFoamColor: {r: 0, g: 0, b: 0, a: 0}
+  intersectionFoamMovement: {x: 0, y: 0}
+  intersectionFoamDirection: 0
+  intersectionFoamSpeed: 0
+  intersectionFoamScale: 0
+  intersectionFoamSampling: {x: 0, y: 0}
+  intersectionFoamCutoff: 0
+  intersectionFoamDistortion: 0
+  enableIntersectionEffects: 0
+  intersectionFoamBlend: 0
+  intersectionWaterBlend: 0
+  shoreFoamSpeed: 0
+  shoreFoamWidth: 0
+  shoreFoamFrequency: 0
+  shoreFoamBreakupStrength: 0
+  shoreFoamBreakupScale: 0
+  lighting: 0
+  lightingSmoothness: 0
+  lightingSpecularColor: {r: 0, g: 0, b: 0, a: 0}
+  lightingDiffuseColor: {r: 0, g: 0, b: 0, a: 0}
+  lightingHardness: 0
+  normalsTexture: {fileID: 0}
+  normalsMovement: {x: 0, y: 0}
+  normalsStrength: 0
+  normalsScale: 0
+  normalsSpeed: 0
+  refractionStrength: 0
+  waveVisuals: {x: 0, y: 0, z: 0}
+  waveSteepness: 0
+  waveLength: 0
+  waveSpeed: 0
+  waveDirections: {x: 0, y: 0, z: 0, w: 0}
+  waveDirection1: 0
+  waveDirection2: 0
+  waveDirection3: 0
+  waveDirection4: 0
+  waterUVs: 0
+  hideComponents: 0
+  enableFoamShadows: 0
+  enableRefraction: 0
+  meshRenderer: {fileID: 0}
+  meshFilter: {fileID: 0}
+  material: {fileID: 0}

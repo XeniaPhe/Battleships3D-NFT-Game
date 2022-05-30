@@ -1,5 +1,6 @@
 using UnityEngine;
 using BattleShips.GameComponents;
+using BattleShips.GameComponents.Ships;
 using UnityEngine.UI;
 using TMPro;
 
@@ -10,7 +11,7 @@ namespace BattleShips.GUI
     {
         #region Serialized Fields
 
-        [SerializeField] protected RawImage shipImage;
+        [SerializeField] protected Image shipImage;
         [SerializeField] protected TMP_Text typeText;
         [SerializeField] protected ShipType constraint;
 
@@ -32,7 +33,7 @@ namespace BattleShips.GUI
                 {
                     ship = value;
                     shipImage.gameObject.SetActive(true);
-                    shipImage.texture = ship.Texture;
+                    shipImage.sprite = ship.CardSprite;
                     typeText.text = constraint.ToString();
                 }
                 else

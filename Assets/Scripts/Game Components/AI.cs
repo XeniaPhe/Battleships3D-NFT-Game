@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using BattleShips.Utils;
 using BattleShips.GameComponents.Tiles;
+using BattleShips.GameComponents.Ships;
 
 namespace BattleShips.GameComponents.AI
 {
@@ -24,7 +25,7 @@ namespace BattleShips.GameComponents.AI
 
         #region Cached Fields
 
-        readonly int[] lengths = { 2, 3, 3,4, 5 };
+        readonly int[] lengths = { 2, 3, 3, 4, 5 };
         TileData[,] tiles = new TileData[10, 10];
         TileData[,] enemyTiles = new TileData[10, 10];
 
@@ -359,7 +360,21 @@ namespace BattleShips.GameComponents.AI
             for (int i = 0; i < 10; i++)
             {
                 for (int j = 0; j < 10; j++)
-                    board += tiles[i, j].tileState == TileState.Normal ? "[0]" : "[+]";
+                {
+                    if (tiles[i, j].ship == null)
+                        board += "[0]";
+                    else if (tiles[i, j].ship == deck.submarine)
+                        board += "[S]";
+                    else if (tiles[i, j].ship == deck.battleship)
+                        board += "[B]";
+                    else if (tiles[i, j].ship == deck.cruiser)
+                        board += "[C]";
+                    else if (tiles[i, j].ship == deck.carrier)
+                        board += "[A]";
+                    else
+                        board += "[D]";
+                }
+
                 Debug.Log(board);
                 board = "";
             }
@@ -372,38 +387,41 @@ namespace BattleShips.GameComponents.AI
             int startIndex;
             int otherDimension;
             int j = 0;
+            List<TileData> placing = new List<TileData>();
 
             for (int i = 0; i < 5; i++)
             {
                 j = 0;
+
                 horizontal = (UnityEngine.Random.Range(0, 2) & 1) == 0;
 
                 while (j != lengths[i])
                 {
+
                     otherDimension = UnityEngine.Random.Range(0, 10);
                     startIndex = UnityEngine.Random.Range(0, 11 - lengths[i]);
 
-                    TileData startTile = null;
+                    placing.Clear();
 
                     for (j = 0; j < lengths[i]; j++)
                     {
                         tile = horizontal ? tiles[otherDimension, startIndex + j] : tiles[startIndex + j, otherDimension];
-                        if (j == 0)
-                            startTile = tile;
-
                         if (tile.ship || tile.tileState != TileState.Normal)
                             break;
-
-                        tile.ship =deck[i];
-                        tile.tileState = TileState.HasShip;
-                        tile.shipIndex = j;
-                        tile.startTile = startTile;
-                        tile.shipDirection = horizontal ? Directions.Right : Directions.Up;
+                        else
+                            placing.Add(tile);
                     }
                 }
-            }
 
-            PrintTileInformation();
+                for (j = 0; j < placing.Count; j++)
+                {
+                    placing[j].ship = deck[i];
+                    placing[j].tileState = TileState.HasShip;
+                    placing[j].shipIndex = j;
+                    placing[j].startTile = placing[0];
+                    placing[j].shipDirection = horizontal ? Directions.Right : Directions.Up;
+                }
+            }
         }
 
         AttackResult IPlayer.CheckTile(Attack attack)

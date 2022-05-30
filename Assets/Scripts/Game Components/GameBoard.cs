@@ -13,6 +13,13 @@ namespace BattleShips.GameComponents
 
         #endregion
 
+        #region Serialized Fields
+
+        [SerializeField] Transform redPeg;
+        [SerializeField] Transform whitePeg;
+
+        #endregion
+
         #region Cached Fields
 
         Player player;

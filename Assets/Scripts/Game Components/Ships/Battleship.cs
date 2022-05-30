@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace BattleShips.GameComponents
+namespace BattleShips.GameComponents.Ships
 {
     [CreateAssetMenu(fileName = "Battleship", menuName = "Ships/Battleship")]
     internal class Battleship : Ship

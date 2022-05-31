@@ -11,11 +11,11 @@ namespace BattleShips.Firebase.Get
 
         Points points;
 
-        [DllImport("__Internal")] public static extern void SendGetBattleDeckRequest(string objectName, string callback, string fallback);
+        [DllImport("__Internal")] public static extern void SendGetPointsRequest(string objectName, string callback, string fallback);
 
         public void Start()
         {
-            SendGetBattleDeckRequest(gameObject.name, "OnRequestSuccess", "OnRequestFailed");
+            SendGetPointsRequest(gameObject.name, "OnRequestSuccess", "OnRequestFailed");
         }
 
         private void OnRequestSuccess(string jsonPoints)

@@ -96,3 +96,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 656244af8679827468e909c34724af52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dragSpeedMin: 0.5
+  dragSpeedMax: 2
+  dragAmountMin: 0.05
+  dragAmountMax: 0.21
+  rotationSpeedMin: 0.6
+  rotationSpeedMax: 2.1
+  rotationAmountMin: 2
+  rotationAmountMax: 10
+  randomTranslation: 0.003
+  randomRotation: 0.12

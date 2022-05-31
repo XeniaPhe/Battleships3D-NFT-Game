@@ -28,12 +28,12 @@ namespace BattleShips.GUI
             durabilityIndicator = GetComponent<ShipDurabilityIndicator>();
             button = GetComponent<GameShipWrapperButton>();
             button.onClick.AddListener(OnClick);
-            ship.wrapper = this;
         }
 
         internal void Initialise(Ship ship)
         {
             this.ship = ship;
+            ship.wrapper = this;
             shipImage.sprite = ship.CardSprite;
             ship.ShipPlaced += OnShipPlaced;
         }

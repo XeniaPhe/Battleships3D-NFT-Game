@@ -66,7 +66,6 @@ namespace BattleShips.Management
             ship.FireFromShip(1);
         }
 
-
         #region Ship Placement
 
         internal void Rotate()

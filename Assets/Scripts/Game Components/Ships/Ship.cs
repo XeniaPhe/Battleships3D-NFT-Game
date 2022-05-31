@@ -31,6 +31,8 @@ namespace BattleShips.GameComponents.Ships
         internal Vector3 PreferedScale => preferedScale;
         internal Vector3 NormalRotation => normalRotation;
         internal MeshFilter Model => model;
+
+        internal ShipHit shipHit;
         internal Sprite CardSprite => cardSprite;
         internal int Armour => armour;
         internal Weapon Weapon1 => weapon1;
@@ -54,5 +56,13 @@ namespace BattleShips.GameComponents.Ships
 
         protected abstract void Awake();
         internal void OnShipPlaced() => ShipPlaced?.Invoke();
+
+        internal void UpdateUI()
+        {
+            for (int i = 0; i < armourParts.Length; i++)
+            {
+                wrapper.durabilityIndicator.UpdateIndicators(armourParts[i] < 0 ? 0 : armourParts[i], armour, i);
+            }
+        }
     }
 }

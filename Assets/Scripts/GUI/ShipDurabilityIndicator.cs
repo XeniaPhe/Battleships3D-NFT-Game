@@ -18,7 +18,7 @@ namespace BattleShips.GUI.Ships
                 fill.fillMethod = Image.FillMethod.Horizontal;
                 fill.fillOrigin = (int)Image.OriginHorizontal.Left;
                 fill.color  = goodColor;
-                fill.fillAmount = 0.5f;
+                fill.fillAmount = 1;
             }
             foreach (var fill in badFills)
             {
@@ -26,7 +26,7 @@ namespace BattleShips.GUI.Ships
                 fill.fillMethod= Image.FillMethod.Horizontal;
                 fill.fillOrigin = (int)Image.OriginHorizontal.Right;
                 fill.color = badColor;
-                fill.fillAmount = 0.5f;
+                fill.fillAmount = 0f;
             }
         }
 

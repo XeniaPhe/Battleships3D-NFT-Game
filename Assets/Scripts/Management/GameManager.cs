@@ -40,8 +40,7 @@ namespace BattleShips.Management
         MoveLogger moveReporter;
         GamePhase phase;
         Turn turn = Turn.Player;
-        bool canExecuteAction;
-        UnityAction actionToExecute;
+
         int shipsPlaced = 0;
         Coordinate hit;
         bool keepTurn = false;
@@ -75,7 +74,7 @@ namespace BattleShips.Management
                 {
                     shipSelector.PlaceShip();
                 }
-                else
+                else if(phase == GamePhase.Bombarding && turn == Turn.Player)
                 {
                     var attack = new Attack(clickedTile.tileData.Coordinates, 80);
                     PlayerAttack(attack);
@@ -110,11 +109,12 @@ namespace BattleShips.Management
         {
             if (phase == GamePhase.ShipPlacement && Input.GetKeyDown(KeyCode.R))
                 shipSelector.Rotate();
-            if (actionToExecute != null && canExecuteAction)
-            {
-                actionToExecute.Invoke();
-                actionToExecute = null;
-            }
+            //if (GetActionToExecute() != null && GetCanExecute())
+            //{
+            //    Debug.Log("five");
+            //    GetActionToExecute().Invoke();
+            //    SetActionToExecute("142",null);
+            //}
         }
 
         private void StartShipPlacementPhase()
@@ -142,6 +142,7 @@ namespace BattleShips.Management
 
             if(attackResult == AttackResult.AllDestroyed)
             {
+                board.PlacePeg(TileType.Attack, attack.coordinates, true);
                 StartCoroutine(WaitFor(() => { DisplayWinLoseScreen(Turn.Player); }, timeTillWinLoseScreen));
                 return;
             }
@@ -168,24 +169,26 @@ namespace BattleShips.Management
                 //Reveal enemy ship
                 hit = null;
                 moveReporter.PublishReport($"Enemy Ship Sunk!", Color.green, aiTurnTime); //Details later
+                board.PlacePeg(TileType.Attack, attack.coordinates,true);
                 board.RevealShip(null);
             }
 
-            turn = Turn.Player;
             SwitchTurn(keepTurn);
-            //Place peg
         }
-
+        bool enemyHit = false;
         private void EnemyAttack(Attack attack)
         {
             var attackResult = player.CheckTile(attack);
 
             if (attackResult == AttackResult.AllDestroyed)
             {
+                board.GetTile(attack.coordinates, TileType.Defense).tileData.ship.Model.GetComponent<ShipHit>().
+                    HitShip(board.GetTile(attack.coordinates, TileType.Defense).tileData.shipIndex + 1);
+                board.GetTile(attack.coordinates, TileType.Defense).tileData.ship.UpdateUI();
+                board.PlacePeg(TileType.Defense, attack.coordinates, true);
                 StartCoroutine(WaitFor(() => { DisplayWinLoseScreen(Turn.AI); }, timeTillWinLoseScreen));
                 return;
             }
-
             UnityAction action = () => { };
             keepTurn = true;
 
@@ -195,7 +198,10 @@ namespace BattleShips.Management
                 action += () =>
                 {
                     moveReporter.PublishReport("Enemy hit a ship!", Color.red, aiTurnTime);
+                    board.GetTile(attack.coordinates, TileType.Defense).tileData.ship.Model.GetComponent<ShipHit>().
+                    HitShip(board.GetTile(attack.coordinates,TileType.Defense).tileData.shipIndex+1);
                     board.PlacePeg(TileType.Defense, attack.coordinates, true);
+                    board.GetTile(attack.coordinates, TileType.Defense).tileData.ship.UpdateUI();
                 };
             }
             else if (attackResult == AttackResult.Miss)
@@ -213,19 +219,21 @@ namespace BattleShips.Management
                 hit = null;
                 action += () =>
                 {
+                    board.GetTile(attack.coordinates, TileType.Defense).tileData.ship.UpdateUI();
+                    board.GetTile(attack.coordinates, TileType.Defense).tileData.ship.Model.GetComponent<ShipHit>().
+                    HitShip(board.GetTile(attack.coordinates, TileType.Defense).tileData.shipIndex + 1);
                     moveReporter.PublishReport($"Enemy sank your ship", Color.red, aiTurnTime);
+                    board.PlacePeg(TileType.Defense, attack.coordinates, true);
                     board.SunkShip();
                 };
             }
 
-            turn = Turn.AI;
             action += () => { SwitchTurn(keepTurn); };
             StartCoroutine(WaitFor(action, aiTurnTime));
         }
 
         internal void SwitchTurn(bool keepTurn = false)
         {
-            
             if ((turn == Turn.AI && !keepTurn) || (turn == Turn.Player && keepTurn))
             {
                 if (phase == GamePhase.ShipPlacement)
@@ -235,18 +243,19 @@ namespace BattleShips.Management
                 }
 
                 moveReporter.PublishReport("Player's turn", Color.white, turnTime,intermediateTextDuration);
-
                 timer.StartCountdown(turnTime, () =>
                 {
                     var attack = player.PlayRandom();
                     PlayerAttack(attack);
                 });
+                turn = Turn.Player;
             }
             else
             {
                 timer.CancelCountdown(1);
                 moveReporter.PublishReport("Enemy's turn", Color.white, aiTurnTime,intermediateTextDuration);
                 var attack = computer.PlayRandom(hit);
+                turn = Turn.AI;
                 EnemyAttack(attack);
             }
         }
@@ -264,10 +273,8 @@ namespace BattleShips.Management
 
         IEnumerator WaitFor(UnityAction action,float seconds)
         {
-            actionToExecute = action;
-            canExecuteAction = false;
             yield return new WaitForSeconds(seconds);
-            canExecuteAction = true;
+            action?.Invoke();
         }
 
         private void DisplayWinLoseScreen(Turn winner)

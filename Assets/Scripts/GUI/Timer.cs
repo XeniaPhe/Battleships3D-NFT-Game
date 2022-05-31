@@ -51,13 +51,14 @@ namespace BattleShips.GUI
 
         internal void StartCountdown(uint seconds,UnityAction timeOutAction)
         {
-            StopAllCoroutines();
             gameObject.SetActive(true);
+            StopAllCoroutines();
             StartCoroutine(Countdown(seconds, timeOutAction));
         }
 
         internal void CancelCountdown(uint seconds = 0)
         {
+            gameObject.SetActive(true);
             StopAllCoroutines();
             StartCoroutine(TurnOff(seconds));
         }

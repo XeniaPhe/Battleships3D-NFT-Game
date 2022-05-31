@@ -6,6 +6,7 @@ using BattleShips.GameComponents.AI;
 using BattleShips.GameComponents.Tiles;
 using BattleShips.GUI;
 using BattleShips.Management.UI;
+using UnityEngine.SceneManagement;
 
 namespace BattleShips.Management
 {
@@ -76,6 +77,11 @@ namespace BattleShips.Management
                 }
                 else if(phase == GamePhase.Bombarding && turn == Turn.Player && clickedTile?.GetType() == typeof(AttackTile))
                 {
+                    if (shipSelector.selectedShip == null)
+                    {
+                        moveReporter.PublishReport("You should select a ship!", Color.red,2,0.5f);
+                        return;
+                    }
                     var attack = new Attack(clickedTile.tileData.Coordinates, 80);
                     PlayerAttack(attack);
                 }
@@ -279,7 +285,10 @@ namespace BattleShips.Management
 
         private void DisplayWinLoseScreen(Turn winner)
         {
-
+            if (winner == Turn.Player)
+                SceneManager.LoadScene("Victory");
+            else
+                SceneManager.LoadScene("Lose");
         }
     }
 }

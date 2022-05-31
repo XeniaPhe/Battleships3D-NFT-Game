@@ -15,7 +15,7 @@ namespace BattleShips.Firebase.Get
 
         private void OnRequestSuccess()
         {
-            SceneManager.LoadScene("3DUI", LoadSceneMode.Single);
+            SceneManager.LoadScene("3D", LoadSceneMode.Single);
         }
 
         private void OnRequestFailed()

@@ -324,7 +324,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6529775559910503373}
         m_TargetAssemblyTypeName: BattleShips.Management.GameSceneManager, Assembly-CSharp
-        m_MethodName: LoadLoadingShips
+        m_MethodName: LoadDeck
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

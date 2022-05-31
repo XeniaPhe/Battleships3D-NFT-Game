@@ -26,5 +26,12 @@ mergeInto(LibraryManager.library, {
             UTF8ToString(callback),
             UTF8ToString(fallback),
         )
+    },
+    SendGetPointsRequest: function (objectName, callback, fallback){
+        requestGetPoints(
+            UTF8ToString(objectName),
+            UTF8ToString(callback),
+            UTF8ToString(fallback),
+        )
     }
 });

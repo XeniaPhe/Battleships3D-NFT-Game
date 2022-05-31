@@ -4,10 +4,9 @@ using UnityEngine;
 
 namespace BattleShips.Firebase.Json
 {
-    [System.Serializable]
-    public class Admiral
+    public class Points
     {
-        public string baseUID;
-        public int level;
+        public int xws;
+        public int xp;
     }
 }

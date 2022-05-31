@@ -19,20 +19,17 @@ namespace BattleShips.GameComponents
         [SerializeField] float randomRotation;
 
         [Header("Shake Settings")]
-        [SerializeField] float shakeDragSpeedMin;
-        [SerializeField] float shakeDragSpeedMax;
-        [SerializeField] float shakeDragMin;
-        [SerializeField] float shakeDragMax;
-        [SerializeField] float shakeRotationSpeedMin;
-        [SerializeField] float shakeRotationSpeedMax;
         [SerializeField] float shakeRotationMin;
         [SerializeField] float shakeRotationMax;
-        [SerializeField] float shakeDuration;
+        [SerializeField] float shakeRotationSpeed;
+        [SerializeField] int shakePeriodCount;
+        [SerializeField] Axis shakeAxis;
 
         #endregion
 
         #region Cached Fields
         float t;
+        float shakeDuration;
         float shakeBeginningTime;
         bool isShaking;
 
@@ -40,10 +37,6 @@ namespace BattleShips.GameComponents
         Vector3 dragAmount;
         Vector3 rotationSpeed;
         Vector3 rotationAmount;
-        Vector3 shakeDragSpeed;
-        Vector3 shakeDragAmount;
-        Vector3 shakeRotationSpeed;
-        Vector3 shakeRotationAmount;
 
 
         #endregion
@@ -71,8 +64,12 @@ namespace BattleShips.GameComponents
             {
 
 
-                if(t - shakeBeginningTime > shakeDuration)
-                    isShaking = false;
+
+                //if (t - shakeBeginningTime > shakeDuration)
+                //{
+                //    isShaking = false;
+                //    InitializeRandom();
+                //}
             }
             else
             {
@@ -86,15 +83,14 @@ namespace BattleShips.GameComponents
         {
             shakeBeginningTime = t;
             isShaking = true;
+
+
         }
 
         float CalculateMotion(float speed,float amount) => Mathf.Sin(t * speed) * amount;
 
         //We can always remove that if fps drops immensely as more pegs get placed
-        Vector3 GetRandom(float distance)
-        {
-            return new Vector3(Random.Range(-distance, distance), Random.Range(-distance, distance), Random.Range(-distance, distance));
-        }
+        Vector3 GetRandom(float distance) => new Vector3(Random.Range(-distance, distance), Random.Range(-distance, distance), Random.Range(-distance, distance));
         
     }
 }

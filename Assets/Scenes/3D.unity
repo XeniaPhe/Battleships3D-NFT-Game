@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17276797, g: 0.2158917, b: 0.29782546, a: 1}
+  m_IndirectSpecularColor: {r: 0.17276844, g: 0.21589246, b: 0.2978263, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5606,7 +5606,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 50.9, y: 90, z: 0}
 --- !u!114 &330585547
 MonoBehaviour:
@@ -18607,10 +18607,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca0c196ce15bcf346b2828792cb2833b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shipPlacementTime: 25
+  shipPlacementTime: 120
   turnTime: 50
-  aiShipPlacementTime: 1
-  aiTurnTime: 1
+  aiShipPlacementTime: 6
+  aiTurnTime: 4
   timeTillWinLoseScreen: 3
   intermediateTextDuration: 2
 --- !u!114 &1068729438
@@ -27687,7 +27687,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &1618606422
 MonoBehaviour:
@@ -33834,7 +33834,7 @@ Transform:
   - {fileID: 809364725}
   - {fileID: 1119707438}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1954576056
 GameObject:
@@ -37130,7 +37130,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8105025272048701828
 MonoBehaviour:
@@ -37211,36 +37211,36 @@ MonoBehaviour:
   colorGradientTexture: {fileID: 2800000, guid: dc6718ba72a00f740b9452b8cade6548,
     type: 3}
   shallowColor: {r: 0, g: 0.7725491, b: 0.62352943, a: 0.5019608}
-  deepColor: {r: 0, g: 0.29351515, b: 0.78431374, a: 1}
+  deepColor: {r: 0, g: 0.293515, b: 0.78431374, a: 1}
   colorDepth: 2.11
-  horizonColor: {r: 0, g: 0.22664487, b: 0.8, a: 1}
+  horizonColor: {r: 0, g: 0.22664472, b: 0.8, a: 1}
   horizonDistance: 20
   shoreFade: 1
-  shoreColor: {r: 0, g: 0.98039216, b: 0.30115467, a: 0}
+  shoreColor: {r: 0, g: 0.98039216, b: 0.30115452, a: 0}
   shoreStrength: 0
   shoreBlend: 1
   shoreDepth: 0.74
   waveColor: {r: 0, g: 0, b: 0, a: 0}
-  underwaterColor: {r: 0, g: 0.33103016, b: 0.9811321, a: 0.7}
+  underwaterColor: {r: 0, g: 0.33103, b: 0.9811321, a: 0.7}
   underwaterColorStrength: 0.7
   underwaterRefractionStrength: 0.3
   surfaceFoamTexture: {fileID: 2800000, guid: 0a33360c1c6b85c45bb8a19af0c4e87a, type: 3}
-  surfaceFoamSampling: {x: 0.56, y: 0.4}
-  surfaceFoamCutoff: 0.56
-  surfaceFoamDistortion: 0.4
+  surfaceFoamSampling: {x: 0.62, y: 0}
+  surfaceFoamCutoff: 0.62
+  surfaceFoamDistortion: 0
   surfaceFoamBlend: 1
-  surfaceFoamColor1: {r: 0.88235295, g: 0.88235295, b: 1, a: 0.39215687}
-  surfaceFoamColor2: {r: 0.92156863, g: 0.92156863, b: 1, a: 0.78431374}
-  surfaceFoamMovement: {x: 0.47, y: 0.05, z: 0.53, w: 0.06}
-  surfaceFoamDirection1: 0.47
-  surfaceFoamDirection2: 0.53
-  surfaceFoamSpeed1: 0.05
-  surfaceFoamSpeed2: 0.06
-  surfaceFoamTilingAndOffset: {x: 0.8, y: 0.6, z: 1.5, w: 1.5}
-  surfaceFoamOffsetX: 0.8
-  surfaceFoamOffsetY: 0.6
-  surfaceFoamScale1: 1.5
-  surfaceFoamScale2: 1.5
+  surfaceFoamColor1: {r: 1, g: 1, b: 1, a: 0.3215686}
+  surfaceFoamColor2: {r: 1, g: 1, b: 1, a: 0.7294118}
+  surfaceFoamMovement: {x: 0.7, y: 0, z: 0.47, w: 0.01}
+  surfaceFoamDirection1: 0.7
+  surfaceFoamDirection2: 0.47
+  surfaceFoamSpeed1: 0
+  surfaceFoamSpeed2: 0.01
+  surfaceFoamTilingAndOffset: {x: -1, y: -1, z: 0.57, w: 0.22}
+  surfaceFoamOffsetX: -1
+  surfaceFoamOffsetY: -1
+  surfaceFoamScale1: 0.57
+  surfaceFoamScale2: 0.22
   enableSurfaceFoam: 0
   surfaceFoamHeightMask: 0
   surfaceFoamHeightMaskSmoothness: 0

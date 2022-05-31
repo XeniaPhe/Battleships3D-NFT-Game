@@ -23,6 +23,11 @@ namespace BattleShips.Management
             }
         }
 
+        public void LoadDeck()
+        {
+            SceneManager.LoadScene("Loading Deck");
+        }
+
         public void LoadGameScene()
         {
             var operation = SceneManager.LoadSceneAsync("3D");

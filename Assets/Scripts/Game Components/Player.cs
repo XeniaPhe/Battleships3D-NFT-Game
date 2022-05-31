@@ -20,7 +20,7 @@ namespace BattleShips.GameComponents
         #region Serialized Fields
 
         [SerializeField] List<Ship> shipsOwned;     //Will be given with welcome pack
-        [SerializeField] bool debugMode;
+        [SerializeField] bool debugMode = true;
 
         #endregion
 
@@ -75,16 +75,7 @@ namespace BattleShips.GameComponents
 
                 if(debugMode)
                 {
-                    var allTypes = Enum.GetValues(typeof(ShipType)).Cast<ShipType>().ToList();
-                    Ship ship;
 
-                    foreach (var type in allTypes)
-                    {
-                        ship = Instantiate<Ship>(shipsOwned.Find(s => s.Type == type),null);
-                        for (int i = 0; i < ship.Length; i++)
-                            ship[i] = ship.Armour;
-                        deck.Assign(ship);
-                    }
                 }
             }
         }
@@ -92,6 +83,17 @@ namespace BattleShips.GameComponents
         {
             manager = GameManager.Instance;
             board = GameBoard.Instance;
+
+            var allTypes = Enum.GetValues(typeof(ShipType)).Cast<ShipType>().ToList();
+            Ship ship;
+
+            foreach (var type in allTypes)
+            {
+                ship = Instantiate<Ship>(shipsOwned.Find(s => s.Type == type), null);
+                for (int i = 0; i < ship.Length; i++)
+                    ship[i] = ship.Armour;
+                deck.Assign(ship);
+            }
         }
 
         internal bool IsDeckFull => deck.IsDeckFull();

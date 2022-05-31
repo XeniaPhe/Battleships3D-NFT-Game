@@ -5,6 +5,7 @@ namespace BattleShips.Management.UI
         Main,
         Ships,
         ReadyButton,
-        MoveReporter
+        MoveReporter,
+        DurabilityIndicator
     }
 }

@@ -154,5 +154,16 @@ namespace BattleShips.GameComponents.Tiles
             else
                 return null;
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj.GetType() != typeof(Coordinate))
+                return false;
+
+            Coordinate other = (Coordinate)obj;
+            return this.x == other.x && this.y == other.y;
+        }
+
+        public override string ToString() => x + " - " + y;
     }
 }

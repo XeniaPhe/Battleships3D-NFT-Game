@@ -1,4 +1,4 @@
-﻿namespace BattleShips.GameComponents
+﻿namespace BattleShips.GameComponents.Ships
 {
     internal enum ShipType
     {

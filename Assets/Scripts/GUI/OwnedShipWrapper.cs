@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-using BattleShips.GameComponents;
+using BattleShips.GameComponents.Ships;
 using BattleShips.Management.UI;
 using UnityEngine.EventSystems;
 

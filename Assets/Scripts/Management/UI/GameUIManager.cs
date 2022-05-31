@@ -1,10 +1,11 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using BattleShips.GameComponents;
+using BattleShips.GameComponents.Ships;
 using BattleShips.GUI;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace BattleShips.Management.UI
 {
@@ -61,6 +62,7 @@ namespace BattleShips.Management.UI
 
             TurnOnMenu(UIParts.Ships);
             TurnOnMenu(UIParts.MoveReporter);
+           // TurnOffMenu(UIParts.DurabilityIndicator);
         }
 
         internal void TurnOnMenu(UIParts menu)
@@ -75,6 +77,9 @@ namespace BattleShips.Management.UI
                     break;
                 case UIParts.MoveReporter:
                     moveReporter.gameObject.SetActive(true);
+                    break;
+                case UIParts.DurabilityIndicator:
+                    shipWrappers.ForEach(w => w.durabilityIndicator.gameObject.SetActive(true));
                     break;
             }
         }
@@ -92,6 +97,9 @@ namespace BattleShips.Management.UI
                 case UIParts.MoveReporter:
                     moveReporter.gameObject.SetActive(false);
                     break;
+                case UIParts.DurabilityIndicator:
+                    shipWrappers.ForEach(w => w.durabilityIndicator.gameObject.SetActive(false));
+                    break;
             }
         }
 
@@ -107,6 +115,9 @@ namespace BattleShips.Management.UI
                     break;
                 case UIParts.MoveReporter:
                     moveReporter.gameObject.SetActive(!moveReporter.gameObject.activeSelf);
+                    break;
+                case UIParts.DurabilityIndicator:
+                    shipWrappers.ForEach(w => w.durabilityIndicator.gameObject.SetActive(!w.gameObject.activeSelf));
                     break;
             }
         }

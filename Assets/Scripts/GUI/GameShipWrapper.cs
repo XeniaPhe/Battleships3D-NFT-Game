@@ -1,8 +1,8 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using BattleShips.Management;
-using BattleShips.GameComponents;
 using BattleShips.GameComponents.Ships;
+using BattleShips.GUI.Ships;
 
 namespace BattleShips.GUI
 {
@@ -12,6 +12,8 @@ namespace BattleShips.GUI
         #region Public Fields/Properties
 
         new internal ShipType Constraint { get => constraint; }
+
+        internal ShipDurabilityIndicator durabilityIndicator;
 
         #endregion
 
@@ -23,8 +25,10 @@ namespace BattleShips.GUI
 
         protected override void Awake()
         {
+            durabilityIndicator = GetComponent<ShipDurabilityIndicator>();
             button = GetComponent<GameShipWrapperButton>();
             button.onClick.AddListener(OnClick);
+            ship.wrapper = this;
         }
 
         internal void Initialise(Ship ship)

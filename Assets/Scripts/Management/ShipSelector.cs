@@ -90,9 +90,15 @@ namespace BattleShips.Management
             isSelectionSuccessful = true;
             int firstDir = selectedShip.Length / 2;
             Coordinate tileCoord = enteredTile.tileData.Coordinates;
+            Coordinate tempCoords;
 
             for (int i = 0; i < firstDir; i++)
-                tileCoord = tileCoord?.GetCoordinatesAt(currentDirection);
+            {
+                if ((tempCoords = tileCoord.GetCoordinatesAt(currentDirection)) != null)
+                    tileCoord = tempCoords;
+                else
+                    isSelectionSuccessful = false;
+            }
 
             DefenseTile temp;
             var oppositeDirection = Helper.GetOppositeDirection(currentDirection);

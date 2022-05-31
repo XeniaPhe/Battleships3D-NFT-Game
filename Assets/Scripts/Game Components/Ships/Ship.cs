@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
-using BattleShips.GameComponents.Tiles;
+using BattleShips.GUI;
 
 namespace BattleShips.GameComponents.Ships
 {
@@ -26,12 +26,13 @@ namespace BattleShips.GameComponents.Ships
         #endregion
 
         #region Public Fields/Properties
+
+        internal GameShipWrapper wrapper;
         internal Vector3 PreferedScale => preferedScale;
         internal Vector3 NormalRotation => normalRotation;
         internal MeshFilter Model => model;
         internal Sprite CardSprite => cardSprite;
         internal int Armour => armour;
-
         internal Weapon Weapon1 => weapon1;
         internal Weapon Weapon2 => weapon2;
 

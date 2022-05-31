@@ -74,7 +74,7 @@ namespace BattleShips.Management
                 {
                     shipSelector.PlaceShip();
                 }
-                else if(phase == GamePhase.Bombarding && turn == Turn.Player)
+                else if(phase == GamePhase.Bombarding && turn == Turn.Player && clickedTile?.GetType() == typeof(AttackTile))
                 {
                     var attack = new Attack(clickedTile.tileData.Coordinates, 80);
                     PlayerAttack(attack);

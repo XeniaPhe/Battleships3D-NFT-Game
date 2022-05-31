@@ -27,7 +27,7 @@ namespace BattleShips.Management
         #region Cached Fields
 
         GameBoard board;
-        Ship selectedShip;
+        internal Ship selectedShip;
         Directions currentDirection = Directions.Up;
         DefenseTile enteredTile;
         List<DefenseTile> tilesToPlaceTo = new List<DefenseTile>();

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17276844, g: 0.21589246, b: 0.2978263, a: 1}
+  m_IndirectSpecularColor: {r: 0.17276797, g: 0.2158917, b: 0.29782546, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -37116,7 +37116,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7028614547837580524
 Transform:
   m_ObjectHideFlags: 0
@@ -37211,17 +37211,17 @@ MonoBehaviour:
   colorGradientTexture: {fileID: 2800000, guid: dc6718ba72a00f740b9452b8cade6548,
     type: 3}
   shallowColor: {r: 0, g: 0.7725491, b: 0.62352943, a: 0.5019608}
-  deepColor: {r: 0, g: 0.293515, b: 0.78431374, a: 1}
+  deepColor: {r: 0, g: 0.29351494, b: 0.78431374, a: 1}
   colorDepth: 2.11
-  horizonColor: {r: 0, g: 0.22664472, b: 0.8, a: 1}
+  horizonColor: {r: 0, g: 0.22664467, b: 0.8, a: 1}
   horizonDistance: 20
   shoreFade: 1
-  shoreColor: {r: 0, g: 0.98039216, b: 0.30115452, a: 0}
+  shoreColor: {r: 0, g: 0.98039216, b: 0.30115443, a: 0}
   shoreStrength: 0
   shoreBlend: 1
   shoreDepth: 0.74
   waveColor: {r: 0, g: 0, b: 0, a: 0}
-  underwaterColor: {r: 0, g: 0.33103, b: 0.9811321, a: 0.7}
+  underwaterColor: {r: 0, g: 0.33102995, b: 0.9811321, a: 0.7}
   underwaterColorStrength: 0.7
   underwaterRefractionStrength: 0.3
   surfaceFoamTexture: {fileID: 2800000, guid: 0a33360c1c6b85c45bb8a19af0c4e87a, type: 3}

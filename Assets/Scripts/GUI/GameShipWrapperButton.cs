@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -18,6 +19,7 @@ namespace BattleShips.GUI
                 currentlySelected.OnDeselect(null);
 
             currentlySelected = this;
+            onClick?.Invoke();
             base.OnSelect(eventData);
         }
 

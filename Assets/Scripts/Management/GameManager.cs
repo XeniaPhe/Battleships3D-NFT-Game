@@ -135,7 +135,7 @@ namespace BattleShips.Management
         {
             turn = Turn.AI;
             timer.CancelCountdown(1);
-            uiManager.TurnOffMenu(UIParts.ReadyButton);
+            uiManager.TurnOffMenu(UIParts.ReadyButton);uiManager.SetWrapperButtonsInteractable();
             computer.PlaceShipsRandom();
             moveReporter.PublishReport("Enemy is placing his ships",Color.white,aiShipPlacementTime);
             StartCoroutine(WaitFor(() => { SwitchTurn(keepTurn); },aiShipPlacementTime));

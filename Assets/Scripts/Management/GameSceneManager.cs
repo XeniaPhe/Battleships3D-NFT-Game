@@ -25,7 +25,7 @@ namespace BattleShips.Management
 
         public void LoadGameScene()
         {
-            var operation = SceneManager.LoadSceneAsync("Game Scene");
+            var operation = SceneManager.LoadSceneAsync("3D");
         }
 
         public void LoadMainMenu()

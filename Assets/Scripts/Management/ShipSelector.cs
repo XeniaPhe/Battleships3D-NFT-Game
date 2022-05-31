@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 using BattleShips.GameComponents;
 using BattleShips.GameComponents.Tiles;
 using BattleShips.GameComponents.Ships;
@@ -174,7 +175,18 @@ namespace BattleShips.Management
         internal void PlaceShip()
         {
             if (selectedShip is null) return;
+            if (shipInstance is null) return;
             if (isSelectionSuccessful is false) return;
+
+            if (selectedShip.Type == ShipType.Submarine)
+                shipInstance.position = new Vector3(shipInstance.position.x, 0f, shipInstance.position.z);
+            else
+                shipInstance.position = new Vector3(shipInstance.position.x, 0.4f, shipInstance.position.z);
+
+            selectedShip.wrapper.GetComponent<Button>().interactable = false;
+            selectedShip.OnShipPlaced();
+            shipInstance = null;
+            selectedShip = null;
 
             DefenseTile tile;
             TileData start = tilesToPlaceTo[0].tileData;
@@ -186,15 +198,6 @@ namespace BattleShips.Management
             }
 
             tilesToPlaceTo.Clear();
-            selectedShip.OnShipPlaced();
-
-            if(selectedShip.Type == ShipType.Submarine)
-                shipInstance.position = new Vector3(shipInstance.position.x, 0f, shipInstance.position.z);
-            else
-                shipInstance.position = new Vector3(shipInstance.position.x, 0.4f, shipInstance.position.z);
-
-            shipInstance = null;
-            selectedShip = null;
         }
 
         #endregion

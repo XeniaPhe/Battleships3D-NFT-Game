@@ -122,6 +122,10 @@ namespace BattleShips.Management.UI
             }
         }
 
+        internal void SetWrapperButtonsInteractable()
+        {
+            shipsMenu.GetComponentsInChildren<GameShipWrapperButton>().ToList().ForEach(b => b.interactable = true);
+        }
         internal void EnableReadyButton() => readyButton.interactable = true;
         internal void DisableReadyButton() => readyButton.interactable = false;
     }

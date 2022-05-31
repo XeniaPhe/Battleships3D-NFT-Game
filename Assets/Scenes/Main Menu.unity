@@ -324,7 +324,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6529775559910503373}
         m_TargetAssemblyTypeName: BattleShips.Management.GameSceneManager, Assembly-CSharp
-        m_MethodName: LoadLoadingShips
+        m_MethodName: LoadGameScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -536,80 +536,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1001 &352006183
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4695364207084456052, guid: 8c0bc2d8185e23043a4b58381534b0f7,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4695364207084456052, guid: 8c0bc2d8185e23043a4b58381534b0f7,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4695364207084456052, guid: 8c0bc2d8185e23043a4b58381534b0f7,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4695364207084456052, guid: 8c0bc2d8185e23043a4b58381534b0f7,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4695364207084456052, guid: 8c0bc2d8185e23043a4b58381534b0f7,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4695364207084456052, guid: 8c0bc2d8185e23043a4b58381534b0f7,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4695364207084456052, guid: 8c0bc2d8185e23043a4b58381534b0f7,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4695364207084456052, guid: 8c0bc2d8185e23043a4b58381534b0f7,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4695364207084456052, guid: 8c0bc2d8185e23043a4b58381534b0f7,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4695364207084456052, guid: 8c0bc2d8185e23043a4b58381534b0f7,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4695364207084456052, guid: 8c0bc2d8185e23043a4b58381534b0f7,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4695364207084456053, guid: 8c0bc2d8185e23043a4b58381534b0f7,
-        type: 3}
-      propertyPath: debugMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4695364207084456059, guid: 8c0bc2d8185e23043a4b58381534b0f7,
-        type: 3}
-      propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 8c0bc2d8185e23043a4b58381534b0f7, type: 3}
 --- !u!1 &756535147
 GameObject:
   m_ObjectHideFlags: 0
@@ -1438,7 +1364,7 @@ PrefabInstance:
     - target: {fileID: 1026232914987417531, guid: 2c2f5b952298ef342874e8e61f569cbf,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1026232914987417531, guid: 2c2f5b952298ef342874e8e61f569cbf,
         type: 3}
@@ -1653,7 +1579,7 @@ PrefabInstance:
     - target: {fileID: 6529775560924583256, guid: c300e7744ae41bb41ab4490174351a2a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6529775560924583256, guid: c300e7744ae41bb41ab4490174351a2a,
         type: 3}

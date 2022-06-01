@@ -10,10 +10,10 @@ namespace BattleShips.Firebase.Get
 
         public void Start()
         {
-            SendGetBattleDeckRequest(gameObject.name, "OnRequestSuccess", "OnRequestFailed");
+            SendGetBattleDeckRequest(gameObject.name, "OnGetBattleDeckRequestSuccess", "OnRequestFailed");
         }
 
-        private void OnRequestSuccess()
+        private void OnGetBattleDeckRequestSuccess()
         {
             SceneManager.LoadScene("3D", LoadSceneMode.Single);
         }

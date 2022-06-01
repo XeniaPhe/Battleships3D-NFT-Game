@@ -19,13 +19,13 @@ namespace BattleShips.Firebase.Load
 
         public void Start()
         {
-            SendLoadBattleDeckRequest(gameObject.name, "OnRequestSuccess", "OnRequestFailed");
+            SendLoadBattleDeckRequest(gameObject.name, "OnLoadBattleDeckRequestSuccess", "OnRequestFailed");
             //string jsonString = "{ \"ships\":[{ \"slot\":\"1\",\"baseUID\":\"Bismarck\",\"level\":1,\"armorLevel\":0,\"powerLevel\":0,\"speedLevel\":0}]}";
             //userBattleDeck = JsonUtility.FromJson<UserBattleDeck>(jsonString);
             //Debug.Log(userBattleDeck.userBattleDeckShips[0].slot);
         }
 
-        private void OnRequestSuccess(string jsonBattleDeck)
+        private void OnLoadBattleDeckRequestSuccess(string jsonBattleDeck)
         {
             userBattleDeck = JsonUtility.FromJson<UserBattleDeck>(jsonBattleDeck);
             foreach(Ship ship in userBattleDeck.userBattleDeckShips)

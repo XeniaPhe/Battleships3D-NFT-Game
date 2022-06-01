@@ -10,10 +10,10 @@ namespace BattleShips.Firebase.Get
 
         public void Get()
         {
-            SendGetPointsRequest(gameObject.name, "OnRequestSuccess", "OnRequestFailed");
+            SendGetPointsRequest(gameObject.name, "OnGetPointsRequestSuccess", "OnRequestFailed");
         }
 
-        private void OnRequestSuccess(string jsonPoints)
+        private void OnGetPointsRequestSuccess()
         {
             SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
         }

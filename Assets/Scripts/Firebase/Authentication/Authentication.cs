@@ -10,10 +10,10 @@ namespace BattleShips.Firebase.Auth
 
         public void Start()
         {
-            SendAuthenticateRequest(gameObject.name, "OnRequestSuccess", "OnRequestFailed");
+            SendAuthenticateRequest(gameObject.name, "OnAuthenticateRequestSuccess", "OnRequestFailed");
         }
 
-        private void OnRequestSuccess()
+        private void OnAuthenticateRequestSuccess()
         {
             gameObject.GetComponent<GetPoints>().Get();
         }

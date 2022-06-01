@@ -17,10 +17,10 @@ namespace BattleShips.Firebase.Load
 
         public void Start()
         {
-            SendLoadPointsRequest(gameObject.name, "OnRequestSuccess", "OnRequestFailed");
+            SendLoadPointsRequest(gameObject.name, "OnLoadPointsRequestSuccess", "OnRequestFailed");
         }
 
-        private void OnRequestSuccess(string jsonPoints)
+        private void OnLoadPointsRequestSuccess(string jsonPoints)
         {
             points = JsonUtility.FromJson<Points>(jsonPoints);
             xwsText.text = points.xws.ToString();

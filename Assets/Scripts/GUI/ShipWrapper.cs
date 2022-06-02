@@ -12,7 +12,7 @@ namespace BattleShips.GUI
         #region Serialized Fields
 
         [SerializeField] protected Image shipImage;
-        [SerializeField] protected TMP_Text typeText;
+        [SerializeField] protected TMP_Text nameText;
         [SerializeField] protected ShipType constraint;
 
         #endregion
@@ -34,7 +34,7 @@ namespace BattleShips.GUI
                     ship = value;
                     shipImage.gameObject.SetActive(true);
                     shipImage.sprite = ship.CardSprite;
-                    typeText.text = constraint.ToString();
+                    nameText.text = ship.name;
                 }
                 else
                     Debug.LogWarning("Non-matching ship type!");
@@ -46,7 +46,7 @@ namespace BattleShips.GUI
 
         protected virtual void Awake()
         {
-            typeText.text = "";
+            nameText.text = "";
             shipImage.gameObject.SetActive(false);
         }
     }

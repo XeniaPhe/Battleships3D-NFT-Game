@@ -51,7 +51,6 @@ namespace BattleShips.GUI
         protected override void Awake()
         {
             base.Awake();
-            typeText.text = constraint.ToString();
             OnDeselect(null);
             unequipButton.onClick.AddListener(Unequip);
         }
@@ -79,6 +78,7 @@ namespace BattleShips.GUI
                     return;
             }
 
+            nameText.text = ship.name;
             UnityAction markAsEquipped = () => DockyardManager.Instance.Equip(this);
             StartCoroutine(InvokeWhenManagerIsReady(markAsEquipped));
         }

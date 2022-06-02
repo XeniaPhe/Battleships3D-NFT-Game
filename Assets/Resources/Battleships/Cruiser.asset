@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseUID: Mikasa
   model: {fileID: 3354790458235630924, guid: da51e9739ea3743c895420742eda3570, type: 3}
-  cardSprite: {fileID: 21300000, guid: 2d595f9e27a3e44a086f8d876a2a04a4, type: 3}
+  cardSprite: {fileID: 21300000, guid: d4e7f6ca3f1234511a02e096e1398b54, type: 3}
   preferedScale: {x: 9, y: 9, z: 9}
   normalRotation: {x: -90, y: 0, z: 0}
   armour: 80

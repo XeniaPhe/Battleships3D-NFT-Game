@@ -9,6 +9,14 @@ namespace BattleShips.GUI
     [RequireComponent(typeof(GameShipWrapperButton))]
     internal class GameShipWrapper : ShipWrapper
     {
+        #region Serialized Fields
+
+        [SerializeField] GameShipWrapperButton up;
+        [SerializeField] GameShipWrapperButton down;
+        [SerializeField] bool isSelectedByDefault;
+
+        #endregion
+
         #region Public Fields/Properties
 
         new internal ShipType Constraint { get => constraint; }
@@ -25,9 +33,18 @@ namespace BattleShips.GUI
 
         protected override void Awake()
         {
+            
+        }
+
+        private void Start()
+        {
             durabilityIndicator = GetComponent<ShipDurabilityIndicator>();
             button = GetComponent<GameShipWrapperButton>();
             button.onClick.AddListener(OnClick);
+            button.up = up;
+            button.down = down;
+            if (isSelectedByDefault && GameShipWrapperButton.currentlySelected == null)
+                button.OnSelect(null);
         }
 
         internal void Initialise(Ship ship)

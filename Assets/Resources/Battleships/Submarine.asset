@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseUID: Invisible
   model: {fileID: 8688397068753773434, guid: 978ea8c4b215e46ddbfda67b78593483, type: 3}
-  cardSprite: {fileID: 21300000, guid: 5a8aa57ce680948bd965b49ce8c5fc26, type: 3}
+  cardSprite: {fileID: 21300000, guid: eef8f01570fe74ce8ab12f32b38a45ad, type: 3}
   preferedScale: {x: 14, y: 14, z: 14}
   normalRotation: {x: -90, y: 0, z: 0}
   armour: 80

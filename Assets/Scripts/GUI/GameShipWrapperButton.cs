@@ -7,32 +7,13 @@ namespace BattleShips.GUI
 {
     public class GameShipWrapperButton : Button
     {
-        #region Serialized Fields
-
-        public GameShipWrapperButton up;
-        public GameShipWrapperButton down;
-        public bool isSelectedByDefault;
-
-        #endregion
-
         #region Cached Fields
 
         internal static GameShipWrapperButton currentlySelected;
+        internal GameShipWrapperButton up;
+        internal GameShipWrapperButton down;
 
         #endregion
-
-        protected override void Awake()
-        {
-            base.Awake();
-            if (isSelectedByDefault && currentlySelected==null)
-                currentlySelected = this;
-        }
-
-        protected override void Start()
-        {
-            base.Start();
-            if (currentlySelected == this) OnSelect(null);
-        }
 
         internal void SelectUpper() => up.OnSelect(null);
         internal void SelectLower() => down.OnSelect(null);

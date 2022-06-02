@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseUID: Shinano
   model: {fileID: 6637085511003296922, guid: ad57477f5c220492183101431e143fbe, type: 3}
-  cardSprite: {fileID: 21300000, guid: 3ec4be5cdd08d445c9cdbc49a04b4754, type: 3}
+  cardSprite: {fileID: 21300000, guid: d6e24d4d8a75e43c5a64676ad6886c3f, type: 3}
   preferedScale: {x: 11, y: 11, z: 11}
   normalRotation: {x: -90, y: 0, z: 0}
   armour: 80

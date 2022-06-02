@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseUID: UssIndianapolis
   model: {fileID: 10138635634259670, guid: 9d031b20f92264ab589f61233fdfa61b, type: 3}
-  cardSprite: {fileID: 21300000, guid: bb113706d863047d2ab6972b1412273e, type: 3}
+  cardSprite: {fileID: 21300000, guid: 1b9c33cca57344e73bbd4da43d73b215, type: 3}
   preferedScale: {x: 8, y: 8, z: 8}
   normalRotation: {x: -90, y: 0, z: 0}
   armour: 80

@@ -893,6 +893,9 @@ MonoBehaviour:
   shipImage: {fileID: 18594777}
   nameText: {fileID: 0}
   constraint: 2
+  up: {fileID: 0}
+  down: {fileID: 0}
+  isSelectedByDefault: 0
 --- !u!114 &18594780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -937,9 +940,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
-  up: {fileID: 0}
-  down: {fileID: 0}
-  isSelectedByDefault: 0
 --- !u!114 &18594781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3544,6 +3544,9 @@ MonoBehaviour:
   shipImage: {fileID: 97167856}
   nameText: {fileID: 0}
   constraint: 3
+  up: {fileID: 0}
+  down: {fileID: 0}
+  isSelectedByDefault: 0
 --- !u!114 &97167855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3588,9 +3591,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
-  up: {fileID: 0}
-  down: {fileID: 0}
-  isSelectedByDefault: 0
 --- !u!114 &97167856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5868,6 +5868,7 @@ GameObject:
   - component: {fileID: 186946937}
   - component: {fileID: 186946939}
   - component: {fileID: 186946938}
+  - component: {fileID: 186946940}
   m_Layer: 5
   m_Name: Text_Name
   m_TagString: Untagged
@@ -5993,6 +5994,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 186946936}
   m_CullTransparentMesh: 0
+--- !u!225 &186946940
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 186946936}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &188112138
 GameObject:
   m_ObjectHideFlags: 0
@@ -13397,6 +13410,9 @@ MonoBehaviour:
   shipImage: {fileID: 370858944}
   nameText: {fileID: 0}
   constraint: 1
+  up: {fileID: 0}
+  down: {fileID: 0}
+  isSelectedByDefault: 0
 --- !u!114 &370858943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13441,9 +13457,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
-  up: {fileID: 0}
-  down: {fileID: 0}
-  isSelectedByDefault: 0
 --- !u!114 &370858944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14339,6 +14352,9 @@ MonoBehaviour:
   shipImage: {fileID: 383125120}
   nameText: {fileID: 0}
   constraint: 1
+  up: {fileID: 0}
+  down: {fileID: 0}
+  isSelectedByDefault: 0
 --- !u!114 &383125119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14383,9 +14399,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
-  up: {fileID: 0}
-  down: {fileID: 0}
-  isSelectedByDefault: 0
 --- !u!114 &383125120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18567,6 +18580,9 @@ MonoBehaviour:
   shipImage: {fileID: 1161322704}
   nameText: {fileID: 186946938}
   constraint: 3
+  up: {fileID: 2028548684}
+  down: {fileID: 1956715519}
+  isSelectedByDefault: 0
 --- !u!114 &492465420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18591,7 +18607,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 1, g: 0, b: 0, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -18611,9 +18627,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
-  up: {fileID: 2028548684}
-  down: {fileID: 1956715519}
-  isSelectedByDefault: 0
 --- !u!1 &492738976
 GameObject:
   m_ObjectHideFlags: 0
@@ -37325,6 +37338,9 @@ MonoBehaviour:
   shipImage: {fileID: 1020511050}
   nameText: {fileID: 0}
   constraint: 1
+  up: {fileID: 0}
+  down: {fileID: 0}
+  isSelectedByDefault: 0
 --- !u!114 &1020511053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37369,9 +37385,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
-  up: {fileID: 0}
-  down: {fileID: 0}
-  isSelectedByDefault: 0
 --- !u!114 &1020511054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38590,7 +38603,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2673484bc3dd01b4eba344f69714bc68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shipsMenu: {fileID: 765232991}
+  shipsMenu: {fileID: 1025869293}
   readyButton: {fileID: 1144777002}
   moveReporter: {fileID: 110890837}
 --- !u!82 &1068729439
@@ -40025,6 +40038,9 @@ MonoBehaviour:
   shipImage: {fileID: 2137000061}
   nameText: {fileID: 1630214841}
   constraint: 2
+  up: {fileID: 1956715519}
+  down: {fileID: 1892447590}
+  isSelectedByDefault: 1
 --- !u!114 &1103006340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40049,7 +40065,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 1, g: 0, b: 0, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -40069,9 +40085,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
-  up: {fileID: 1956715519}
-  down: {fileID: 1892447590}
-  isSelectedByDefault: 1
 --- !u!1 &1104570804
 GameObject:
   m_ObjectHideFlags: 0
@@ -41029,6 +41042,9 @@ MonoBehaviour:
   shipImage: {fileID: 1132980108}
   nameText: {fileID: 0}
   constraint: 4
+  up: {fileID: 0}
+  down: {fileID: 0}
+  isSelectedByDefault: 0
 --- !u!114 &1132980107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41073,9 +41089,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
-  up: {fileID: 0}
-  down: {fileID: 0}
-  isSelectedByDefault: 0
 --- !u!114 &1132980108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42229,6 +42242,7 @@ GameObject:
   - component: {fileID: 1161322703}
   - component: {fileID: 1161322705}
   - component: {fileID: 1161322704}
+  - component: {fileID: 1161322706}
   m_Layer: 5
   m_Name: Character
   m_TagString: Untagged
@@ -42294,6 +42308,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1161322702}
   m_CullTransparentMesh: 0
+--- !u!225 &1161322706
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1161322702}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1161887487
 GameObject:
   m_ObjectHideFlags: 0
@@ -42373,6 +42399,9 @@ MonoBehaviour:
   shipImage: {fileID: 1161887492}
   nameText: {fileID: 0}
   constraint: 2
+  up: {fileID: 0}
+  down: {fileID: 0}
+  isSelectedByDefault: 0
 --- !u!114 &1161887491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42417,9 +42446,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
-  up: {fileID: 0}
-  down: {fileID: 0}
-  isSelectedByDefault: 0
 --- !u!114 &1161887492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47005,6 +47031,9 @@ MonoBehaviour:
   shipImage: {fileID: 1270948692}
   nameText: {fileID: 0}
   constraint: 3
+  up: {fileID: 0}
+  down: {fileID: 0}
+  isSelectedByDefault: 0
 --- !u!114 &1270948691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47049,9 +47078,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
-  up: {fileID: 0}
-  down: {fileID: 0}
-  isSelectedByDefault: 0
 --- !u!114 &1270948692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49369,6 +49395,9 @@ MonoBehaviour:
   shipImage: {fileID: 1346566318}
   nameText: {fileID: 0}
   constraint: 2
+  up: {fileID: 0}
+  down: {fileID: 0}
+  isSelectedByDefault: 0
 --- !u!114 &1346566317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49413,9 +49442,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
-  up: {fileID: 0}
-  down: {fileID: 0}
-  isSelectedByDefault: 0
 --- !u!114 &1346566318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52548,6 +52574,9 @@ MonoBehaviour:
   shipImage: {fileID: 1423259604}
   nameText: {fileID: 0}
   constraint: 0
+  up: {fileID: 0}
+  down: {fileID: 0}
+  isSelectedByDefault: 0
 --- !u!114 &1423259607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52592,9 +52621,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
-  up: {fileID: 0}
-  down: {fileID: 0}
-  isSelectedByDefault: 0
 --- !u!114 &1423259608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54369,6 +54395,9 @@ MonoBehaviour:
   shipImage: {fileID: 1473443517}
   nameText: {fileID: 0}
   constraint: 4
+  up: {fileID: 0}
+  down: {fileID: 0}
+  isSelectedByDefault: 0
 --- !u!114 &1473443516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54413,9 +54442,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
-  up: {fileID: 0}
-  down: {fileID: 0}
-  isSelectedByDefault: 0
 --- !u!114 &1473443517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59044,6 +59070,9 @@ MonoBehaviour:
   shipImage: {fileID: 1591923476}
   nameText: {fileID: 0}
   constraint: 0
+  up: {fileID: 0}
+  down: {fileID: 0}
+  isSelectedByDefault: 0
 --- !u!114 &1591923475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59088,9 +59117,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
-  up: {fileID: 0}
-  down: {fileID: 0}
-  isSelectedByDefault: 0
 --- !u!114 &1591923476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60049,7 +60075,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1610437981
 RectTransform:
   m_ObjectHideFlags: 0
@@ -60069,7 +60095,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -553, y: 387}
+  m_AnchoredPosition: {x: -135, y: 703}
   m_SizeDelta: {x: 800, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1610437982
@@ -61289,6 +61315,7 @@ GameObject:
   - component: {fileID: 1654932146}
   - component: {fileID: 1654932148}
   - component: {fileID: 1654932147}
+  - component: {fileID: 1654932149}
   m_Layer: 5
   m_Name: TextGlow
   m_TagString: Untagged
@@ -61354,6 +61381,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1654932145}
   m_CullTransparentMesh: 0
+--- !u!225 &1654932149
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1654932145}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1655698484
 GameObject:
   m_ObjectHideFlags: 0
@@ -62712,6 +62751,9 @@ MonoBehaviour:
   shipImage: {fileID: 1706456829}
   nameText: {fileID: 0}
   constraint: 0
+  up: {fileID: 0}
+  down: {fileID: 0}
+  isSelectedByDefault: 0
 --- !u!114 &1706456828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62756,9 +62798,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
-  up: {fileID: 0}
-  down: {fileID: 0}
-  isSelectedByDefault: 0
 --- !u!114 &1706456829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66448,6 +66487,7 @@ GameObject:
   - component: {fileID: 1780000673}
   - component: {fileID: 1780000675}
   - component: {fileID: 1780000674}
+  - component: {fileID: 1780000676}
   m_Layer: 5
   m_Name: BottomGlow
   m_TagString: Untagged
@@ -66513,6 +66553,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1780000672}
   m_CullTransparentMesh: 0
+--- !u!225 &1780000676
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1780000672}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1781871106
 GameObject:
   m_ObjectHideFlags: 0
@@ -69572,6 +69624,9 @@ MonoBehaviour:
   shipImage: {fileID: 1869814514}
   nameText: {fileID: 0}
   constraint: 3
+  up: {fileID: 0}
+  down: {fileID: 0}
+  isSelectedByDefault: 0
 --- !u!114 &1869814517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69616,9 +69671,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
-  up: {fileID: 0}
-  down: {fileID: 0}
-  isSelectedByDefault: 0
 --- !u!114 &1869814518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70576,6 +70628,9 @@ MonoBehaviour:
   shipImage: {fileID: 713883618}
   nameText: {fileID: 320709252}
   constraint: 0
+  up: {fileID: 1103006340}
+  down: {fileID: 2028548684}
+  isSelectedByDefault: 0
 --- !u!114 &1892447590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70600,7 +70655,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 1, g: 0, b: 0, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -70620,9 +70675,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
-  up: {fileID: 1103006340}
-  down: {fileID: 2028548684}
-  isSelectedByDefault: 0
 --- !u!1 &1892933808
 GameObject:
   m_ObjectHideFlags: 0
@@ -73654,6 +73706,9 @@ MonoBehaviour:
   shipImage: {fileID: 1011417531}
   nameText: {fileID: 317516052}
   constraint: 4
+  up: {fileID: 492465420}
+  down: {fileID: 1103006340}
+  isSelectedByDefault: 0
 --- !u!114 &1956715519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73678,7 +73733,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 1, g: 0, b: 0, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -73698,9 +73753,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
-  up: {fileID: 492465420}
-  down: {fileID: 1103006340}
-  isSelectedByDefault: 0
 --- !u!1 &1967150095
 GameObject:
   m_ObjectHideFlags: 0
@@ -75731,6 +75783,9 @@ MonoBehaviour:
   shipImage: {fileID: 1169238748}
   nameText: {fileID: 421939980}
   constraint: 1
+  up: {fileID: 1892447590}
+  down: {fileID: 492465420}
+  isSelectedByDefault: 0
 --- !u!114 &2028548684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75755,7 +75810,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 1, g: 0, b: 0, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -75775,9 +75830,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
-  up: {fileID: 1892447590}
-  down: {fileID: 492465420}
-  isSelectedByDefault: 0
 --- !u!1 &2030319569
 GameObject:
   m_ObjectHideFlags: 0
@@ -75789,6 +75841,7 @@ GameObject:
   - component: {fileID: 2030319570}
   - component: {fileID: 2030319572}
   - component: {fileID: 2030319571}
+  - component: {fileID: 2030319573}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -75914,6 +75967,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2030319569}
   m_CullTransparentMesh: 0
+--- !u!225 &2030319573
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2030319569}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &2030980645
 GameObject:
   m_ObjectHideFlags: 0
@@ -77805,6 +77870,9 @@ MonoBehaviour:
   shipImage: {fileID: 2072321474}
   nameText: {fileID: 0}
   constraint: 4
+  up: {fileID: 0}
+  down: {fileID: 0}
+  isSelectedByDefault: 0
 --- !u!114 &2072321477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77849,9 +77917,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
-  up: {fileID: 0}
-  down: {fileID: 0}
-  isSelectedByDefault: 0
 --- !u!114 &2072321478
 MonoBehaviour:
   m_ObjectHideFlags: 0

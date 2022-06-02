@@ -47,6 +47,14 @@ namespace BattleShips.Management.UI
                 Debug.LogWarning("There's something wrong");
         }
 
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
+                GameShipWrapperButton.currentlySelected.SelectLower();
+            else if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
+                GameShipWrapperButton.currentlySelected.SelectUpper();
+        }
+
         internal void Initialize()
         {
             Start();

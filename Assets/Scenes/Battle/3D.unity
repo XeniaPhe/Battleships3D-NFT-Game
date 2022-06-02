@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.8566203, g: 0.57479763, b: 0.41058967, a: 1}
+  m_IndirectSpecularColor: {r: 0.8566143, g: 0.5726598, b: 0.41056612, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -891,7 +891,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shipImage: {fileID: 18594777}
-  typeText: {fileID: 0}
+  nameText: {fileID: 0}
   constraint: 2
 --- !u!114 &18594780
 MonoBehaviour:
@@ -3539,7 +3539,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shipImage: {fileID: 97167856}
-  typeText: {fileID: 0}
+  nameText: {fileID: 0}
   constraint: 3
 --- !u!114 &97167855
 MonoBehaviour:
@@ -13389,7 +13389,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shipImage: {fileID: 370858944}
-  typeText: {fileID: 0}
+  nameText: {fileID: 0}
   constraint: 1
 --- !u!114 &370858943
 MonoBehaviour:
@@ -14328,7 +14328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shipImage: {fileID: 383125120}
-  typeText: {fileID: 0}
+  nameText: {fileID: 0}
   constraint: 1
 --- !u!114 &383125119
 MonoBehaviour:
@@ -18463,6 +18463,8 @@ GameObject:
   - component: {fileID: 492465416}
   - component: {fileID: 492465418}
   - component: {fileID: 492465417}
+  - component: {fileID: 492465420}
+  - component: {fileID: 492465419}
   m_Layer: 5
   m_Name: Card_Blue
   m_TagString: Untagged
@@ -18538,6 +18540,65 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 492465415}
   m_CullTransparentMesh: 0
+--- !u!114 &492465419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 492465415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faf63dd84d8a8234c933d0769b4c16d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shipImage: {fileID: 1161322704}
+  nameText: {fileID: 186946938}
+  constraint: 3
+--- !u!114 &492465420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 492465415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 057c6f690d3ba9945ac1c2fa45676fb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 492465417}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &492738976
 GameObject:
   m_ObjectHideFlags: 0
@@ -37247,7 +37308,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shipImage: {fileID: 1020511050}
-  typeText: {fileID: 0}
+  nameText: {fileID: 0}
   constraint: 1
 --- !u!114 &1020511053
 MonoBehaviour:
@@ -39854,6 +39915,8 @@ GameObject:
   - component: {fileID: 1103006336}
   - component: {fileID: 1103006338}
   - component: {fileID: 1103006337}
+  - component: {fileID: 1103006340}
+  - component: {fileID: 1103006339}
   m_Layer: 5
   m_Name: Card_Red
   m_TagString: Untagged
@@ -39929,6 +39992,65 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1103006335}
   m_CullTransparentMesh: 0
+--- !u!114 &1103006339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1103006335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faf63dd84d8a8234c933d0769b4c16d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shipImage: {fileID: 2137000061}
+  nameText: {fileID: 1630214841}
+  constraint: 2
+--- !u!114 &1103006340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1103006335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 057c6f690d3ba9945ac1c2fa45676fb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1103006337}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1104570804
 GameObject:
   m_ObjectHideFlags: 0
@@ -40884,7 +41006,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shipImage: {fileID: 1132980108}
-  typeText: {fileID: 0}
+  nameText: {fileID: 0}
   constraint: 4
 --- !u!114 &1132980107
 MonoBehaviour:
@@ -42225,7 +42347,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shipImage: {fileID: 1161887492}
-  typeText: {fileID: 0}
+  nameText: {fileID: 0}
   constraint: 2
 --- !u!114 &1161887491
 MonoBehaviour:
@@ -46854,7 +46976,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shipImage: {fileID: 1270948692}
-  typeText: {fileID: 0}
+  nameText: {fileID: 0}
   constraint: 3
 --- !u!114 &1270948691
 MonoBehaviour:
@@ -49215,7 +49337,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shipImage: {fileID: 1346566318}
-  typeText: {fileID: 0}
+  nameText: {fileID: 0}
   constraint: 2
 --- !u!114 &1346566317
 MonoBehaviour:
@@ -52391,7 +52513,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shipImage: {fileID: 1423259604}
-  typeText: {fileID: 0}
+  nameText: {fileID: 0}
   constraint: 0
 --- !u!114 &1423259607
 MonoBehaviour:
@@ -54209,7 +54331,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shipImage: {fileID: 1473443517}
-  typeText: {fileID: 0}
+  nameText: {fileID: 0}
   constraint: 4
 --- !u!114 &1473443516
 MonoBehaviour:
@@ -58881,7 +59003,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shipImage: {fileID: 1591923476}
-  typeText: {fileID: 0}
+  nameText: {fileID: 0}
   constraint: 0
 --- !u!114 &1591923475
 MonoBehaviour:
@@ -62546,7 +62668,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shipImage: {fileID: 1706456829}
-  typeText: {fileID: 0}
+  nameText: {fileID: 0}
   constraint: 0
 --- !u!114 &1706456828
 MonoBehaviour:
@@ -69403,7 +69525,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shipImage: {fileID: 1869814514}
-  typeText: {fileID: 0}
+  nameText: {fileID: 0}
   constraint: 3
 --- !u!114 &1869814517
 MonoBehaviour:
@@ -70314,6 +70436,8 @@ GameObject:
   - component: {fileID: 1892447586}
   - component: {fileID: 1892447588}
   - component: {fileID: 1892447587}
+  - component: {fileID: 1892447590}
+  - component: {fileID: 1892447589}
   m_Layer: 5
   m_Name: Card_Orange
   m_TagString: Untagged
@@ -70389,6 +70513,65 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1892447585}
   m_CullTransparentMesh: 0
+--- !u!114 &1892447589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1892447585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faf63dd84d8a8234c933d0769b4c16d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shipImage: {fileID: 713883618}
+  nameText: {fileID: 320709252}
+  constraint: 0
+--- !u!114 &1892447590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1892447585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 057c6f690d3ba9945ac1c2fa45676fb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1892447587}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1892933808
 GameObject:
   m_ObjectHideFlags: 0
@@ -73329,6 +73512,8 @@ GameObject:
   - component: {fileID: 1956715515}
   - component: {fileID: 1956715517}
   - component: {fileID: 1956715516}
+  - component: {fileID: 1956715519}
+  - component: {fileID: 1956715518}
   m_Layer: 5
   m_Name: Card_Green
   m_TagString: Untagged
@@ -73403,6 +73588,65 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1956715514}
   m_CullTransparentMesh: 0
+--- !u!114 &1956715518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1956715514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faf63dd84d8a8234c933d0769b4c16d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shipImage: {fileID: 1011417531}
+  nameText: {fileID: 317516052}
+  constraint: 4
+--- !u!114 &1956715519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1956715514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 057c6f690d3ba9945ac1c2fa45676fb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1956715516}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1967150095
 GameObject:
   m_ObjectHideFlags: 0
@@ -75341,6 +75585,8 @@ GameObject:
   - component: {fileID: 2028548680}
   - component: {fileID: 2028548682}
   - component: {fileID: 2028548681}
+  - component: {fileID: 2028548684}
+  - component: {fileID: 2028548683}
   m_Layer: 5
   m_Name: Card_Purple
   m_TagString: Untagged
@@ -75416,6 +75662,65 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2028548679}
   m_CullTransparentMesh: 0
+--- !u!114 &2028548683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2028548679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faf63dd84d8a8234c933d0769b4c16d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shipImage: {fileID: 1169238748}
+  nameText: {fileID: 421939980}
+  constraint: 1
+--- !u!114 &2028548684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2028548679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 057c6f690d3ba9945ac1c2fa45676fb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 2028548681}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2030319569
 GameObject:
   m_ObjectHideFlags: 0
@@ -77441,7 +77746,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shipImage: {fileID: 2072321474}
-  typeText: {fileID: 0}
+  nameText: {fileID: 0}
   constraint: 4
 --- !u!114 &2072321477
 MonoBehaviour:

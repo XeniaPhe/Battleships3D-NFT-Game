@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Loading/Loading.unity
     guid: eccded36ea8ffd94189a950e6d804ece
   - enabled: 1
-    path: Assets/Scenes/Main Menu.unity
+    path: Assets/Scenes/Main Menu/Main Menu.unity
     guid: 4a72a19432cef2b4ead58e0952b36e54
   - enabled: 1
     path: Assets/Scenes/Loading/Loading Deck.unity

@@ -65,7 +65,7 @@ namespace BattleShips.Management
 
             var ship = FindObjectsOfType<ShipFire>().Where(f => f.name == selectedShip.Type.ToString()).FirstOrDefault();
 
-            ship.FireFromShip(1);
+            ship.FireFromShip(0);
         }
 
         #region Ship Placement

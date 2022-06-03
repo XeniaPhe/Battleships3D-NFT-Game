@@ -20,6 +20,8 @@ public class ShipHit : MonoBehaviour
         shipAudioSource.Play();
     }
 
+    
+
     private void Update()
     {
         if (hit)

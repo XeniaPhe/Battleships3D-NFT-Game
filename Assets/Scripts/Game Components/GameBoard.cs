@@ -17,6 +17,8 @@ namespace BattleShips.GameComponents
 
         [SerializeField] Peg redPeg;
         [SerializeField] Peg whitePeg;
+        [SerializeField] WaterHit waterHitter;
+        [SerializeField] ExplosionHit explosionHitter;
 
         #endregion
 
@@ -84,6 +86,8 @@ namespace BattleShips.GameComponents
             return type == TileType.Defense ? defenseTiles[index] : attackTiles[index];
         }
         
+
+
         internal void PlacePeg(TileType tileType,Coordinate coordinate,bool red)
         {
             Peg peg = red ? redPeg : whitePeg;
@@ -93,6 +97,11 @@ namespace BattleShips.GameComponents
             peg = Instantiate<Peg>(peg, pos, transform.rotation, transform);
             peg.InitializeRandom(pos);
             tile.peg = peg;
+
+            if (tileType == TileType.Attack && red)
+                explosionHitter.HitExplosion(tile.transform);
+            else if (!red)
+                waterHitter.HitWater(tile.transform);
         }
 
         internal void RevealShip(TileData shipStart)

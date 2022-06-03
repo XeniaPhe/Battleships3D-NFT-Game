@@ -185,6 +185,10 @@ namespace BattleShips.Management
             else
                 shipInstance.position = new Vector3(shipInstance.position.x, 0.4f, shipInstance.position.z);
 
+            selectedShip.OnShipPlaced();
+            shipInstance = null;
+            selectedShip = null;
+
             DefenseTile tile;
             TileData start = tilesToPlaceTo[0].tileData;
             for (int i = 0; i < tilesToPlaceTo.Count; i++)
@@ -196,9 +200,7 @@ namespace BattleShips.Management
 
             tilesToPlaceTo.Clear();
 
-            selectedShip.OnShipPlaced();
-            shipInstance = null;
-            selectedShip = null;
+            
         }
 
         #endregion

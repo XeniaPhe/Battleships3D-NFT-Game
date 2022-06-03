@@ -52,7 +52,7 @@ namespace BattleShips.GameComponents
 
             t = Time.time;
 
-            transform.position = new Vector3(CalculateMotion(dragSpeed.x, dragAmount.x),
+            transform.position = transform.position + new Vector3(CalculateMotion(dragSpeed.x, dragAmount.x),
                 CalculateMotion(dragSpeed.y, dragAmount.y), CalculateMotion(dragSpeed.z, dragAmount.z)) + GetRandom(randomTranslation);
             transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(CalculateMotion(rotationSpeed.x, rotationAmount.x),
                 CalculateMotion(rotationSpeed.y, rotationAmount.y), CalculateMotion(rotationSpeed.z, rotationAmount.z)) + GetRandom(randomRotation));

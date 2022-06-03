@@ -1,6 +1,7 @@
 using System.Runtime.InteropServices;
 using UnityEngine;
 using BattleShips.Firebase.Get;
+using UnityEngine.SceneManagement;
 
 namespace BattleShips.Firebase.Auth
 {
@@ -10,7 +11,7 @@ namespace BattleShips.Firebase.Auth
 
         public void Start() => SendAuthenticateRequest(gameObject.name, "OnRequestSuccess", "OnRequestFailed");
 
-        private void OnRequestSuccess() => gameObject.GetComponent<GetPoints>().Get();
+        private void OnRequestSuccess() => SceneManager.LoadScene("Main Menu");
 
         private void OnRequestFailed()
         {

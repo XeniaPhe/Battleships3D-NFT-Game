@@ -59,9 +59,8 @@ namespace BattleShips.GUI
 
         private void OnShipPlaced()
         {
-            BaseEventData data = new BaseEventData(FindObjectOfType<EventSystem>());
-            data.selectedObject = null;
-            button.OnDeselect(data);
+            button.OnDeselect(null);
+            button.interactable = false;
         }
     }
 }

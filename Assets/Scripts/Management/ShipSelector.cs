@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.UI;
 using BattleShips.GameComponents;
 using BattleShips.GameComponents.Tiles;
 using BattleShips.GameComponents.Ships;
 using BattleShips.Utils;
+using BattleShips.GUI;
 
 namespace BattleShips.Management
 {
@@ -185,11 +185,6 @@ namespace BattleShips.Management
             else
                 shipInstance.position = new Vector3(shipInstance.position.x, 0.4f, shipInstance.position.z);
 
-            selectedShip.wrapper.GetComponent<Button>().interactable = false;
-            selectedShip.OnShipPlaced();
-            shipInstance = null;
-            selectedShip = null;
-
             DefenseTile tile;
             TileData start = tilesToPlaceTo[0].tileData;
             for (int i = 0; i < tilesToPlaceTo.Count; i++)
@@ -200,6 +195,10 @@ namespace BattleShips.Management
             }
 
             tilesToPlaceTo.Clear();
+
+            selectedShip.OnShipPlaced();
+            shipInstance = null;
+            selectedShip = null;
         }
 
         #endregion

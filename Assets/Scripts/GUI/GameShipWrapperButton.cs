@@ -17,7 +17,6 @@ namespace BattleShips.GUI
 
         internal void SelectUpper() => up.OnSelect(null);
         internal void SelectLower() => down.OnSelect(null);
-
         public override void OnSelect(BaseEventData eventData)
         {
             currentlySelected?.OnDeselect(null);

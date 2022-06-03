@@ -8,15 +8,9 @@ namespace BattleShips.Firebase.Auth
     {
         [DllImport("__Internal")] public static extern void SendAuthenticateRequest(string objectName, string callback, string fallback);
 
-        public void Start()
-        {
-            SendAuthenticateRequest(gameObject.name, "OnAuthenticateRequestSuccess", "OnRequestFailed");
-        }
+        public void Start() => SendAuthenticateRequest(gameObject.name, "OnRequestSuccess", "OnRequestFailed");
 
-        private void OnAuthenticateRequestSuccess()
-        {
-            gameObject.GetComponent<GetPoints>().Get();
-        }
+        private void OnRequestSuccess() => gameObject.GetComponent<GetPoints>().Get();
 
         private void OnRequestFailed()
         {

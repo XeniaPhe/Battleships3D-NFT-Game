@@ -299,8 +299,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Your Deck is Being Prepared
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a5f99a2bbbdf784489a9e857f3d3fb99, type: 2}
-  m_sharedMaterial: {fileID: 4381973950278582443, guid: a5f99a2bbbdf784489a9e857f3d3fb99,
+  m_fontAsset: {fileID: 11400000, guid: 2cbe4e5d33fcd2c4eb2cb9a8c3595979, type: 2}
+  m_sharedMaterial: {fileID: 5692687901762607322, guid: 2cbe4e5d33fcd2c4eb2cb9a8c3595979,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -325,8 +325,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 75
-  m_fontSizeBase: 75
+  m_fontSize: 65
+  m_fontSizeBase: 65
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -528,8 +528,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 12.146179}
+  m_SizeDelta: {x: 0, y: 568.4365}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1933715696
 MonoBehaviour:

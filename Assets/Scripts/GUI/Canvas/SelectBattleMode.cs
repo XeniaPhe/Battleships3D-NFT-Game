@@ -7,9 +7,8 @@ namespace BattleShips.GUI.Canvas
 {
     public class SelectBattleMode : MonoBehaviour
     {
-        public void FreeToPlayButtonClick()
-        {
-            SceneManager.LoadScene("Loading Deck", LoadSceneMode.Single);
-        }
+        public void FreeToPlayButtonClick() => SceneManager.LoadScene("Loading Deck", LoadSceneMode.Single);
+
+        public void GoBackToMainMenu() => SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
     }
 }

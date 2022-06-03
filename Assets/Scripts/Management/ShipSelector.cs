@@ -146,8 +146,8 @@ namespace BattleShips.Management
             }
             shipInstance.name = selectedShip.Type.ToString();
 
-            foreach(var mat in shipInstance.GetComponent<MeshRenderer>().materials)
-                mat.color = Color.gray;
+            /*foreach(var mat in shipInstance.GetComponent<MeshRenderer>().materials)
+                mat.color = Color.white;*/
 
             foreach (var tile in tilesToPlaceTo)
                 tile.PaintTemporarily(isSelectionSuccessful ? successfulColor : unsuccessfulColor);

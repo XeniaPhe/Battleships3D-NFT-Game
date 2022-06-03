@@ -8,15 +8,9 @@ namespace BattleShips.Firebase.Get
     {
         [DllImport("__Internal")] public static extern void SendGetBattleDeckRequest(string objectName, string callback, string fallback);
 
-        public void Start()
-        {
-            SendGetBattleDeckRequest(gameObject.name, "OnGetBattleDeckRequestSuccess", "OnRequestFailed");
-        }
+        public void Start() => SendGetBattleDeckRequest(gameObject.name, "OnRequestSuccess", "OnRequestFailed");
 
-        private void OnGetBattleDeckRequestSuccess()
-        {
-            SceneManager.LoadScene("3D", LoadSceneMode.Single);
-        }
+        private void OnRequestSuccess() => SceneManager.LoadScene("3D", LoadSceneMode.Single);
 
         private void OnRequestFailed()
         {

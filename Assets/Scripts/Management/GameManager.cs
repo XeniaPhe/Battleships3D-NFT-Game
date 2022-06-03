@@ -269,6 +269,7 @@ namespace BattleShips.Management
         internal void OnShipPlaced()
         {
             ++shipsPlaced;
+            //This is being called twice
 
             if (shipsPlaced == 5)
             {

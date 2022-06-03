@@ -89,6 +89,7 @@ namespace BattleShips.GameComponents
             Peg peg = red ? redPeg : whitePeg;
             Vector3 pos = GetTile(coordinate, tileType).transform.position;
             peg = Instantiate<Peg>(peg, pos, transform.rotation, transform);
+            peg.InitializeRandom();
         }
 
         internal void RevealShip(TileData shipStart)

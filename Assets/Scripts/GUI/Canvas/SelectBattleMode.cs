@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 namespace BattleShips.GUI.Canvas
 {
-    public class SelectBattleMode
+    public class SelectBattleMode : MonoBehaviour
     {
         public void FreeToPlayButtonClick()
         {

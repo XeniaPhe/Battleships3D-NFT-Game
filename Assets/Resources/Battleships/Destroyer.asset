@@ -15,7 +15,7 @@ MonoBehaviour:
   baseUID: Savarona
   model: {fileID: 3105172814961934266, guid: 12fe97438f9d746ecaed82dec5b69615, type: 3}
   cardSprite: {fileID: 21300000, guid: f3f4f5140899849c2a68b3400c3d87ef, type: 3}
-  preferedScale: {x: 10, y: 10, z: 10}
+  preferedScale: {x: 13, y: 13, z: 13}
   normalRotation: {x: -90, y: 0, z: 0}
   armour: 80
   weapon1: {fileID: 0}

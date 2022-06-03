@@ -15,7 +15,7 @@ MonoBehaviour:
   baseUID: Mikasa
   model: {fileID: 3354790458235630924, guid: da51e9739ea3743c895420742eda3570, type: 3}
   cardSprite: {fileID: 21300000, guid: d4e7f6ca3f1234511a02e096e1398b54, type: 3}
-  preferedScale: {x: 9, y: 9, z: 9}
+  preferedScale: {x: 12, y: 12, z: 12}
   normalRotation: {x: -90, y: 0, z: 0}
   armour: 80
   weapon1: {fileID: 0}

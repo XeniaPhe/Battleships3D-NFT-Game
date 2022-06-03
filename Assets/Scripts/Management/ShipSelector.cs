@@ -55,7 +55,6 @@ namespace BattleShips.Management
         internal void SelectShip(Ship ship)
         {
             selectedShip = ship;
-            selectedShip.ShipPlaced += GameManager.Instance.OnShipPlaced;
             if(shipInstance)
                 HighlightShipPlacement(enteredTile);
         }

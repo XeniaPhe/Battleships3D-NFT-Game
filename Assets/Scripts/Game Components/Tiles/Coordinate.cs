@@ -101,6 +101,18 @@ namespace BattleShips.GameComponents.Tiles
             return neighbors;
         }
 
+        internal List<Directions> GetNeighborDirections()
+        {
+            List<Directions> directions = new List<Directions>();
+            Coordinate temp;
+
+            if ((temp = Left) is not null) directions.Add(Directions.Left);
+            if ((temp = Right) is not null) directions.Add(Directions.Right);
+            if ((temp = Down) is not null) directions.Add(Directions.Down);
+            if ((temp = Up) is not null) directions.Add(Directions.Up);
+            return directions;
+        }
+
         internal Coordinate GetCoordinatesAt(Directions direction) => direction switch
         {
             Directions.Up => Up,

@@ -2,6 +2,7 @@
 {
     internal enum AIMode
     {
+        Search,
         Hunt,
         Destroy,
         MoveShip

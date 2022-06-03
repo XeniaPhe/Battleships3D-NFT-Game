@@ -64,5 +64,15 @@ namespace BattleShips.GameComponents.Ships
                 wrapper.durabilityIndicator.UpdateIndicators(armourParts[i] < 0 ? 0 : armourParts[i], armour, i);
             }
         }
+
+        internal static int GetLength(ShipType type) => type switch
+        {
+            ShipType.Battleship => 4,
+            ShipType.Destroyer => 2,
+            ShipType.Submarine => 3,
+            ShipType.Carrier => 5,
+            ShipType.Cruiser => 3,
+            _ => 0,
+        };
     }
 }

@@ -53,6 +53,7 @@ namespace BattleShips.GUI
             ship.wrapper = this;
             shipImage.sprite = ship.CardSprite;
             ship.ShipPlaced += OnShipPlaced;
+            ship.ShipPlaced += GameManager.Instance.OnShipPlaced;
         }
 
         private void OnClick() => ShipSelector.Instance.SelectShip(Ship);

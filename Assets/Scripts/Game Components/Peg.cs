@@ -6,7 +6,6 @@ namespace BattleShips.GameComponents
     {
         #region Serialized Fields
 
-        [Header("Continuous Motion Settings")]
         [SerializeField] float dragSpeedMin;
         [SerializeField] float dragSpeedMax;
         [SerializeField] float dragAmountMin;
@@ -17,12 +16,17 @@ namespace BattleShips.GameComponents
         [SerializeField] float rotationAmountMax;
         [SerializeField] float randomTranslation;
         [SerializeField] float randomRotation;
+        [SerializeField] float resetTime;
+        [SerializeField] internal bool isWhitePeg;
+
         #endregion
 
         #region Cached Fields
 
         float t;
         bool initialized = false;
+        Vector3 posOffset;
+        Vector3 rotOffset;
         Vector3 dragSpeed;
         Vector3 dragAmount;
         Vector3 rotationSpeed;
@@ -35,7 +39,7 @@ namespace BattleShips.GameComponents
             initialized = false;
         }
 
-        internal void InitializeRandom()
+        internal void InitializeRandom(Vector3? posOffset = null,Vector3? rotOffset = null)
         {
             dragSpeed = new Vector3(Random.Range(dragSpeedMin, dragSpeedMax), Random.Range(dragSpeedMin, dragSpeedMax), Random.Range(dragSpeedMin, dragSpeedMax));
             dragAmount = new Vector3(Random.Range(dragAmountMin, dragAmountMax), Random.Range(dragAmountMin, dragAmountMax), Random.Range(dragAmountMin, dragAmountMax));
@@ -43,6 +47,9 @@ namespace BattleShips.GameComponents
             rotationAmount = new Vector3(Random.Range(rotationAmountMin, rotationAmountMax), Random.Range(rotationAmountMin, rotationAmountMax), Random.Range(rotationAmountMin, rotationAmountMax));
             randomRotation = Mathf.Abs(randomRotation);
             randomTranslation = Mathf.Abs(randomTranslation);
+
+            this.posOffset = posOffset ?? transform.position;
+            this.rotOffset = rotOffset ?? transform.rotation.eulerAngles;
             initialized = true;
         }
 
@@ -52,9 +59,9 @@ namespace BattleShips.GameComponents
 
             t = Time.time;
 
-            transform.position = transform.position + new Vector3(CalculateMotion(dragSpeed.x, dragAmount.x),
+            transform.position = posOffset + new Vector3(CalculateMotion(dragSpeed.x, dragAmount.x),
                 CalculateMotion(dragSpeed.y, dragAmount.y), CalculateMotion(dragSpeed.z, dragAmount.z)) + GetRandom(randomTranslation);
-            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(CalculateMotion(rotationSpeed.x, rotationAmount.x),
+            transform.rotation = Quaternion.Euler(rotOffset + new Vector3(CalculateMotion(rotationSpeed.x, rotationAmount.x),
                 CalculateMotion(rotationSpeed.y, rotationAmount.y), CalculateMotion(rotationSpeed.z, rotationAmount.z)) + GetRandom(randomRotation));
         }
 

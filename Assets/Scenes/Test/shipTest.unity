@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1289,6 +1289,93 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &655828559
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3622705997985275088, guid: f5d90578d39efa24cb53b11f4c343173,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3622705997985275088, guid: f5d90578d39efa24cb53b11f4c343173,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3622705997985275088, guid: f5d90578d39efa24cb53b11f4c343173,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3622705997985275088, guid: f5d90578d39efa24cb53b11f4c343173,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3622705997985275088, guid: f5d90578d39efa24cb53b11f4c343173,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3622705997985275088, guid: f5d90578d39efa24cb53b11f4c343173,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3622705997985275088, guid: f5d90578d39efa24cb53b11f4c343173,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3622705997985275088, guid: f5d90578d39efa24cb53b11f4c343173,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3622705997985275088, guid: f5d90578d39efa24cb53b11f4c343173,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3622705997985275088, guid: f5d90578d39efa24cb53b11f4c343173,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3622705997985275088, guid: f5d90578d39efa24cb53b11f4c343173,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3622705997985275089, guid: f5d90578d39efa24cb53b11f4c343173,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -5584731567421172091, guid: e7e8fcb40a596634bb1e1e34ed4954d9,
+        type: 3}
+    - target: {fileID: 3622705997985275095, guid: f5d90578d39efa24cb53b11f4c343173,
+        type: 3}
+      propertyPath: m_Name
+      value: Red Peg
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f5d90578d39efa24cb53b11f4c343173, type: 3}
+--- !u!114 &655828560 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5569695797136056883, guid: f5d90578d39efa24cb53b11f4c343173,
+    type: 3}
+  m_PrefabInstance: {fileID: 655828559}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 656244af8679827468e909c34724af52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &922391527
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1925,7 +2012,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dc64ee1730e40e428622fe131b31aeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  peg: {fileID: 0}
+  peg: {fileID: 655828560}
 --- !u!114 &1162217714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1972,7 +2059,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1162217713}
         m_TargetAssemblyTypeName: TempScript, Assembly-CSharp
-        m_MethodName: X
+        m_MethodName: InitializePeg
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2433,8 +2520,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1509586879}
-  m_LocalRotation: {x: 0.27701813, y: 0.10209522, z: -0.029617274, w: 0.9549662}
-  m_LocalPosition: {x: -0.75510967, y: 3.792142, z: -4.9611893}
+  m_LocalRotation: {x: -0.059954323, y: 0.93705267, z: -0.2014991, w: -0.27881172}
+  m_LocalPosition: {x: 1.3195553, y: 1.5246006, z: 2.0212388}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

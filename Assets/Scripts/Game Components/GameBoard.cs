@@ -87,9 +87,12 @@ namespace BattleShips.GameComponents
         internal void PlacePeg(TileType tileType,Coordinate coordinate,bool red)
         {
             Peg peg = red ? redPeg : whitePeg;
-            Vector3 pos = GetTile(coordinate, tileType).transform.position;
+            var tile = GetTile(coordinate, tileType);
+            var pos = tile.transform.position;
+            pos.y -= 0.5f;
             peg = Instantiate<Peg>(peg, pos, transform.rotation, transform);
-            peg.InitializeRandom();
+            peg.InitializeRandom(pos);
+            tile.peg = peg;
         }
 
         internal void RevealShip(TileData shipStart)

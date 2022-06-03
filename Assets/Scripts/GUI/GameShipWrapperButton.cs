@@ -21,7 +21,8 @@ namespace BattleShips.GUI
         {
             currentlySelected?.OnDeselect(null);
             currentlySelected = this;
-            onClick?.Invoke();
+            if (eventData is null)
+                onClick?.Invoke();
             base.OnSelect(eventData);
         }
 

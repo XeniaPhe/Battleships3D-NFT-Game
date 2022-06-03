@@ -77,9 +77,14 @@ namespace BattleShips.Management
                 }
                 else if(phase == GamePhase.Bombarding && turn == Turn.Player && clickedTile?.GetType() == typeof(AttackTile))
                 {
-                    if (shipSelector.selectedShip == null)
+                    if (shipSelector.selectedShip is null)
                     {
-                        moveReporter.PublishReport("You should select a ship!", Color.red,2,0.5f);
+                        moveReporter.PublishReport("You should select a ship!", Color.red,2);
+                        return;
+                    }
+                    else if(clickedTile.peg.isWhitePeg)
+                    {
+                        moveReporter.PublishReport("There's nothing in that tile!", Color.red, 2);
                         return;
                     }
                     var attack = new Attack(clickedTile.tileData.Coordinates, 80);
@@ -115,30 +120,57 @@ namespace BattleShips.Management
         {
             if (phase == GamePhase.ShipPlacement && Input.GetKeyDown(KeyCode.R))
                 shipSelector.Rotate();
-            //if (GetActionToExecute() != null && GetCanExecute())
-            //{
-            //    Debug.Log("five");
-            //    GetActionToExecute().Invoke();
-            //    SetActionToExecute("142",null);
-            //}
         }
 
         private void StartShipPlacementPhase()
         {
             uiManager.DisableReadyButton();
             phase = GamePhase.ShipPlacement;
-            moveReporter.PublishReport("Place your ships and press ready",Color.white,shipPlacementTime);
+            moveReporter.PublishReport("Place",Color.white,shipPlacementTime);
+            //Place your ships - shipPlacementTime
             timer.StartCountdown(shipPlacementTime, player.PlaceShipsRandom);
         }
 
         public void StartAIShipPlacement()
         {
             turn = Turn.AI;
-            timer.CancelCountdown(1);
+            timer.CancelCountdown();
             uiManager.TurnOffMenu(UIParts.ReadyButton);uiManager.SetWrapperButtonsInteractable();
             computer.PlaceShipsRandom();
-            moveReporter.PublishReport("Enemy is placing his ships",Color.white,aiShipPlacementTime);
+            moveReporter.PublishReport("Wait",Color.white,aiShipPlacementTime);
+            //Wait for enemy to place his ships - aiShipPlacementTime
             StartCoroutine(WaitFor(() => { SwitchTurn(keepTurn); },aiShipPlacementTime));
+        }
+
+        internal void SwitchTurn(bool keepTurn = false)
+        {
+            if ((turn == Turn.AI && !keepTurn) || (turn == Turn.Player && keepTurn))
+            {
+                if (phase == GamePhase.ShipPlacement)
+                {
+                    //moveReporter.PublishReport("Attack", Color.white, turnTime);
+                    //Enemy placed his ships,your turn -turntime
+                    phase = GamePhase.Bombarding;
+                }
+
+                moveReporter.PublishReport("Attack", Color.white, turnTime, intermediateTextDuration);
+                //Your turn-override the old
+                timer.StartCountdown(turnTime, () =>
+                {
+                    var attack = player.PlayRandom();
+                    PlayerAttack(attack);
+                });
+                turn = Turn.Player;
+            }
+            else
+            {
+                timer.CancelCountdown(1);
+                moveReporter.PublishReport("Wait", Color.white, aiTurnTime, intermediateTextDuration);
+                //Enemy's turn
+                var attack = computer.PlayRandom(hit);
+                turn = Turn.AI;
+                EnemyAttack(attack);
+            }
         }
 
         private void PlayerAttack(Attack attack)
@@ -161,6 +193,7 @@ namespace BattleShips.Management
                 hit = null;
                 keepTurn = false;
                 moveReporter.PublishReport("Miss!", Color.red, aiTurnTime);
+                //Miss
                 board.PlacePeg(TileType.Attack,attack.coordinates,false);
             }
             else if (attackResult == AttackResult.Hit)
@@ -236,34 +269,6 @@ namespace BattleShips.Management
 
             action += () => { SwitchTurn(keepTurn); };
             StartCoroutine(WaitFor(action, aiTurnTime));
-        }
-
-        internal void SwitchTurn(bool keepTurn = false)
-        {
-            if ((turn == Turn.AI && !keepTurn) || (turn == Turn.Player && keepTurn))
-            {
-                if (phase == GamePhase.ShipPlacement)
-                {
-                    moveReporter.PublishReport("Enemy placed his ships", Color.white, turnTime);
-                    phase = GamePhase.Bombarding;
-                }
-
-                moveReporter.PublishReport("Player's turn", Color.white, turnTime,intermediateTextDuration);
-                timer.StartCountdown(turnTime, () =>
-                {
-                    var attack = player.PlayRandom();
-                    PlayerAttack(attack);
-                });
-                turn = Turn.Player;
-            }
-            else
-            {
-                timer.CancelCountdown(1);
-                moveReporter.PublishReport("Enemy's turn", Color.white, aiTurnTime,intermediateTextDuration);
-                var attack = computer.PlayRandom(hit);
-                turn = Turn.AI;
-                EnemyAttack(attack);
-            }
         }
 
         internal void OnShipPlaced()

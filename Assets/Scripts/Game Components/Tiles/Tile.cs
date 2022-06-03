@@ -22,6 +22,7 @@ namespace BattleShips.GameComponents.Tiles
         protected WaitForSeconds maskWait;
         protected static GameBoard board;
         protected bool isTemporarilyPainted;
+        internal Peg peg;
 
         #endregion
 
@@ -59,6 +60,7 @@ namespace BattleShips.GameComponents.Tiles
         internal Coordinate GetTileCoordinatesAt(Directions direction) => tileData.Coordinates.GetCoordinatesAt(direction);
 
         internal bool IsTileInNormalState() => (tileData.tileState == TileState.Normal && !isTemporarilyPainted);
+        internal bool HasPeg() => peg is not null;
 
         internal virtual void PaintTemporarily(Color color)
         {

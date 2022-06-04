@@ -33542,6 +33542,8 @@ GameObject:
   m_Component:
   - component: {fileID: 896349854}
   - component: {fileID: 896349853}
+  - component: {fileID: 896349856}
+  - component: {fileID: 896349855}
   m_Layer: 0
   m_Name: Grid Parent
   m_TagString: Untagged
@@ -33563,10 +33565,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   redPeg: {fileID: 5569695797136056883, guid: f5d90578d39efa24cb53b11f4c343173, type: 3}
   whitePeg: {fileID: -6047527084033686561, guid: d8a16951e2eab8a4cbd238ddfc2cd09a,
-    type: 3}
-  waterHitter: {fileID: 2469555062416256985, guid: 537b2e1e036adc145b0086dcc1003a89,
-    type: 3}
-  explosionHitter: {fileID: 9214940605493979167, guid: fd9bff55ea886c947bf9855e33f22009,
     type: 3}
 --- !u!4 &896349854
 Transform:
@@ -33783,6 +33781,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &896349855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 896349852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8753e724a3d284ae6a5e560b6062465c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitTransform: {fileID: 4059997290636535954, guid: fd9bff55ea886c947bf9855e33f22009,
+    type: 3}
+--- !u!114 &896349856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 896349852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a57446fd96b149d9ba2590e23022cd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitTransform: {fileID: 2469555062416256984, guid: 537b2e1e036adc145b0086dcc1003a89,
+    type: 3}
 --- !u!1 &898953033
 GameObject:
   m_ObjectHideFlags: 0

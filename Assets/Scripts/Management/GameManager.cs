@@ -188,6 +188,7 @@ namespace BattleShips.Management
             if(attackResult == AttackResult.AllDestroyed)
             {
                 board.PlacePeg(TileType.Attack, attack.coordinates, true);
+                board.CreateExplosion(attack.coordinates, TileType.Attack);
                 moveLogger.PublishReport("You won!",Color.green,timeTillWinLoseScreen);
                 StartCoroutine(WaitFor(() => { DisplayWinLoseScreen(Turn.Player); }, timeTillWinLoseScreen));
                 return;
@@ -200,16 +201,19 @@ namespace BattleShips.Management
                 keepTurn = false;
                 moveLogger.PublishReport("Miss!", Color.red, aiTurnTime);
                 board.PlacePeg(TileType.Attack,attack.coordinates,false);
+                board.CreateWaterHit(attack.coordinates, TileType.Attack);
             }
             else if (attackResult == AttackResult.Hit)
             {
                 moveLogger.PublishReport("Hit!", Color.green, aiTurnTime);
                 board.PlacePeg(TileType.Attack, attack.coordinates,true);
+                board.CreateExplosion(attack.coordinates, TileType.Attack);
             }
             else
             {
                 moveLogger.PublishReport($"You sank enemy's {GetShipType(attackResult).ToString()}!", Color.green, aiTurnTime); //Details later
                 board.PlacePeg(TileType.Attack, attack.coordinates,true);
+                board.CreateExplosion(attack.coordinates, TileType.Attack);
                 board.RevealShip(null);
             }
 
@@ -222,9 +226,8 @@ namespace BattleShips.Management
 
             if (attackResult == AttackResult.AllDestroyed)
             {
-                board.GetTile(attack.coordinates, TileType.Defense).tileData.ship.Model.GetComponent<ShipHit>().
-                    HitShip(board.GetTile(attack.coordinates, TileType.Defense).tileData.shipIndex + 1);
-                board.GetTile(attack.coordinates, TileType.Defense).tileData.ship.UpdateUI();
+                board.HitShip(attack.coordinates, TileType.Defense);
+                board.UpdateShipUI(attack.coordinates);
                 board.PlacePeg(TileType.Defense, attack.coordinates, true);
                 moveLogger.PublishReport("Enemy won!", Color.red, timeTillWinLoseScreen);
                 StartCoroutine(WaitFor(() => { DisplayWinLoseScreen(Turn.AI); }, timeTillWinLoseScreen));
@@ -240,10 +243,9 @@ namespace BattleShips.Management
                 action += () =>
                 {
                     moveLogger.PublishReport("Enemy hits!", Color.red, aiTurnTime);
-                    board.GetTile(attack.coordinates, TileType.Defense).tileData.ship.Model.GetComponent<ShipHit>().
-                    HitShip(board.GetTile(attack.coordinates,TileType.Defense).tileData.shipIndex+1);
+                    board.HitShip(attack.coordinates, TileType.Defense);
+                    board.UpdateShipUI(attack.coordinates);
                     board.PlacePeg(TileType.Defense, attack.coordinates, true);
-                    board.GetTile(attack.coordinates, TileType.Defense).tileData.ship.UpdateUI();
                 };
             }
             else if (attackResult == AttackResult.Miss)
@@ -253,8 +255,8 @@ namespace BattleShips.Management
                 keepTurn = false;
                 action += () =>
                 {
+                    board.CreateWaterHit(attack.coordinates, TileType.Defense);
                     moveLogger.PublishReport("Enemy misses!", Color.green, aiTurnTime);
-                    board.GetComponent<WaterHit>().HitWater(board.GetTile(attack.coordinates,TileType.Defense).transform);
                     board.PlacePeg(TileType.Defense, attack.coordinates, false);
                 };
             }
@@ -264,11 +266,10 @@ namespace BattleShips.Management
                 shipSunk = GetShipType(attackResult);
                 action += () =>
                 {
-                    board.GetTile(attack.coordinates, TileType.Defense).tileData.ship.UpdateUI();
-                    board.GetTile(attack.coordinates, TileType.Defense).tileData.ship.Model.GetComponent<ShipHit>().
-                    HitShip(board.GetTile(attack.coordinates, TileType.Defense).tileData.shipIndex + 1);
-                    moveLogger.PublishReport($"Enemy sank your {shipSunk.ToString()}!", Color.red, aiTurnTime);
+                    board.UpdateShipUI(attack.coordinates);
+                    board.HitShip(attack.coordinates, TileType.Defense);
                     board.PlacePeg(TileType.Defense, attack.coordinates, true);
+                    moveLogger.PublishReport($"Enemy sank your {shipSunk.ToString()}!", Color.red, aiTurnTime);
                     board.SunkShip();
                 };
             }
@@ -286,8 +287,6 @@ namespace BattleShips.Management
             {
                 uiManager.EnableReadyButton();
                 moveLogger.PublishReport("Press ready whenever you are!", Color.white, timer.RemainingTime);
-
-                
             }
         }
 

@@ -18,8 +18,6 @@ namespace BattleShips.GameComponents
 
         [SerializeField] Peg redPeg;
         [SerializeField] Peg whitePeg;
-        [SerializeField] WaterHit waterHitter;
-        [SerializeField] ExplosionHit explosionHitter;
 
         #endregion
 
@@ -28,6 +26,8 @@ namespace BattleShips.GameComponents
         Player player;
         DefenseTile[] defenseTiles;
         AttackTile[] attackTiles;
+        WaterHit waterHitter;
+        ExplosionHit explosionHitter;
 
         #endregion
 
@@ -72,6 +72,8 @@ namespace BattleShips.GameComponents
                 defenseTiles = GetComponentsInChildren<DefenseTile>();
                 attackTiles = GetComponentsInChildren<AttackTile>();
                 tileSize = GetComponentInChildren<Tile>().transform.localScale.x;
+                waterHitter = GetComponent<WaterHit>();
+                explosionHitter = GetComponent<ExplosionHit>();
             }
         }
 
@@ -96,22 +98,11 @@ namespace BattleShips.GameComponents
             peg = Instantiate<Peg>(peg, pos, transform.rotation, transform);
             peg.InitializeRandom(pos);
             tile.peg = peg;
-
-            if (tileType == TileType.Attack && red)
-                explosionHitter.HitExplosion(tile.transform);
-            else if (!red)
-                waterHitter.HitWater(tile.transform);
         }
 
         internal void RevealShip(TileData shipStart)
         {
-            Dictionary<TileData, Ships.Ship> a = new Dictionary<TileData, Ships.Ship>();
-
-            foreach (var item in defenseTiles)
-            {
-                if(item.tileData.ship)
-                    a.TryAdd(item.tileData.startTile,item.tileData.ship);
-            }
+           
         }
 
         internal void SunkShip()
@@ -122,5 +113,25 @@ namespace BattleShips.GameComponents
         internal Tile GetTile(Vector2Int coord,TileType type,bool zeroBased = false) => GetTile(coord.x,coord.y,type,zeroBased);
 
         internal Tile GetTile(Coordinate coord,TileType type) => coord is not null ? GetTile(coord.GetCoordinateVector(), type, false) : null;
+
+        internal void UpdateShipUI(Coordinate coord)
+        {
+            GetTile(coord, TileType.Defense).tileData.ship.UpdateUI();
+        }
+        internal void HitShip(Coordinate coord,TileType type)
+        {
+            var tile = GetTile(coord, type).tileData;
+            tile.ship.Model.GetComponent<ShipHit>().HitShip(tile.shipIndex + 1);
+        }
+
+        internal void CreateExplosion(Coordinate coord,TileType type)
+        {
+            explosionHitter.HitExplosion((GetTile(coord, type).transform));
+        }
+
+        internal void CreateWaterHit(Coordinate coord, TileType type)
+        {
+            waterHitter.HitWater((GetTile(coord, type).transform));
+        }
     }
 }

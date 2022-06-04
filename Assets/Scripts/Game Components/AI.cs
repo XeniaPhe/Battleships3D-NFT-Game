@@ -381,6 +381,7 @@ namespace BattleShips.GameComponents.AI
                 }
 
                 Debug.Log(board);
+                board = "";
             }
         }
 
@@ -544,14 +545,14 @@ namespace BattleShips.GameComponents.AI
             {
                 if (sunkenShip.HasValue)
                 {
-                    foundShipDirection = Helper.GetOppositeDirection(foundShipDirection.Value);
-
-                    Coordinate coords = lastAttack;
+                    var cleaner = GetTileAt(enemyTiles, tileHit.Coordinates);
+                    directionsGone[foundShipDirection.Value]
+                    foundShipDirection = cleaner.shipDirection;
 
                     for (int i = 0; i < Ship.GetLength(sunkenShip.Value); i++)
                     {
-                        GetTileAt(enemyTiles, lastAttack).tileState = TileState.HasSunkenShip;
-                        coords = coords.GetCoordinatesAt(foundShipDirection.Value);
+                        cleaner.tileState = TileState.HasSunkenShip;
+                        cleaner = GetTileAt(enemyTiles, cleaner.Coordinates.GetCoordinatesAt(foundShipDirection.Value));
                     }
 
                     enemyShips.SetShipDestroyed(sunkenShip.Value);
@@ -571,7 +572,18 @@ namespace BattleShips.GameComponents.AI
 
                 if (mode != AIMode.Search)
                 {
-                    int distanceGone = directionsGone[foundShipDirection.Value] + 1;
+                    int distanceGone = 0;
+                    if(directionsGone.ContainsKey(foundShipDirection.Value))
+                        distanceGone = directionsGone[foundShipDirection.Value] + 1;
+                    else
+                    {
+                        mode = AIMode.Search;
+                        tileHit = null;
+                        foundShipDirection = null;
+                        directionsGone = null;
+                        ((IPlayer)this).PlayRandom();
+                    }
+
                     Coordinate coords = tileHit.Coordinates;
 
                     for (int i = 0; i < distanceGone; i++)

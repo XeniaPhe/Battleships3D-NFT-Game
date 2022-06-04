@@ -1,6 +1,7 @@
 using UnityEngine;
 using BattleShips.Management;
 using BattleShips.GameComponents.Tiles;
+using System.Collections.Generic;
 
 namespace BattleShips.GameComponents
 {
@@ -104,7 +105,13 @@ namespace BattleShips.GameComponents
 
         internal void RevealShip(TileData shipStart)
         {
+            Dictionary<TileData, Ships.Ship> a = new Dictionary<TileData, Ships.Ship>();
 
+            foreach (var item in defenseTiles)
+            {
+                if(item.tileData.ship)
+                    a.TryAdd(item.tileData.startTile,item.tileData.ship);
+            }
         }
 
         internal void SunkShip()

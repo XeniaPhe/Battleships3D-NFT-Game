@@ -148,18 +148,18 @@ namespace BattleShips.GameComponents.Tiles
             if (coordinate1.x == coordinate2.x)
             {
                 if (coordinate1.y > coordinate2.y)
-                    return Directions.Left;
-                else if (coordinate1.y < coordinate2.y)
                     return Directions.Right;
+                else if (coordinate1.y < coordinate2.y)
+                    return Directions.Left;
                 else
                     return null;
             }
             else if (coordinate1.y == coordinate2.y)
             {
                 if (coordinate1.x > coordinate2.x)
-                    return Directions.Down;
-                else if (coordinate1.x < coordinate2.x)
                     return Directions.Up;
+                else if (coordinate1.x < coordinate2.x)
+                    return Directions.Down;
                 else
                     return null;
             }

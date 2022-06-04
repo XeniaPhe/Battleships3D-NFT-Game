@@ -120,13 +120,25 @@ namespace BattleShips.GameComponents
         {
             var tile = board.GetTile(attack.coordinates, TileType.Defense);
 
-            var tileData = tile.tileData;
-            var ship = tileData.ship;
+            TileData tileData;
+            Ship ship;
+
+            try
+            {
+                tileData = tile.tileData;
+                ship = tileData.ship;
+            }
+            catch (Exception)
+            {
+                Debug.Log(attack.coordinates);
+
+                throw;
+            }
+            
 
             if (ship is null)
             {
                 tileData.tileState = TileState.Miss;
-                Debug.Log("where did you assign these ships man");
                 return AttackResult.Miss;
             }
             else if(ship[tileData.shipIndex] > 0)

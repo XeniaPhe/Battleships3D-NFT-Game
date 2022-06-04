@@ -174,7 +174,7 @@ namespace BattleShips.Management
                     moveLogger.PublishReport("Enemy's turn", Color.white, aiTurnTime - intermediateTextDuration);
                 }, intermediateTextDuration));
 
-                var attack = computer.PlayRandom(hit);
+                var attack = computer.PlayRandom(hit,shipSunk);
                 turn = Turn.AI;
                 EnemyAttack(attack);
             }
@@ -236,6 +236,7 @@ namespace BattleShips.Management
             if (attackResult == AttackResult.Hit)
             {
                 hit = attack.coordinates;
+                shipSunk = null;
                 action += () =>
                 {
                     moveLogger.PublishReport("Enemy hits!", Color.red, aiTurnTime);
@@ -248,10 +249,12 @@ namespace BattleShips.Management
             else if (attackResult == AttackResult.Miss)
             {
                 hit = null;
+                shipSunk = null;
                 keepTurn = false;
                 action += () =>
                 {
                     moveLogger.PublishReport("Enemy misses!", Color.green, aiTurnTime);
+                    board.GetComponent<WaterHit>().HitWater(board.GetTile(attack.coordinates,TileType.Defense).transform);
                     board.PlacePeg(TileType.Defense, attack.coordinates, false);
                 };
             }
@@ -283,6 +286,8 @@ namespace BattleShips.Management
             {
                 uiManager.EnableReadyButton();
                 moveLogger.PublishReport("Press ready whenever you are!", Color.white, timer.RemainingTime);
+
+                
             }
         }
 

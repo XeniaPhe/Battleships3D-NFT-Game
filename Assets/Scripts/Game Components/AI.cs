@@ -380,7 +380,7 @@ namespace BattleShips.GameComponents.AI
                         board += "[D]";
                 }
 
-                board = "";
+                Debug.Log(board);
             }
         }
 
@@ -423,7 +423,7 @@ namespace BattleShips.GameComponents.AI
                     placing[j].tileState = TileState.HasShip;
                     placing[j].shipIndex = j;
                     placing[j].startTile = placing[0];
-                    placing[j].shipDirection = horizontal ? Directions.Right : Directions.Up;
+                    placing[j].shipDirection = horizontal ? Directions.Right : Directions.Down;
                 }
             }
 
@@ -458,9 +458,18 @@ namespace BattleShips.GameComponents.AI
 
                 for (int i = 0; i < ship.Length; i++)
                 {
-                    vectorCoords = coords.GetCoordinateVector(true);
-                    tiles[vectorCoords.x, vectorCoords.y].tileState = TileState.HasSunkenShip;
-                    coords = coords.GetCoordinatesAt(direction);
+                    try
+                    {
+                        vectorCoords = coords.GetCoordinateVector(true);
+                        tiles[vectorCoords.x, vectorCoords.y].tileState = TileState.HasSunkenShip;
+                        coords = coords.GetCoordinatesAt(direction);
+                    }
+                    catch (Exception)
+                    {
+                        Debug.Log("Coords : " + coords?.ToString());
+                        Debug.Log("Start Coords : " + tileData.startTile.Coordinates.ToString());
+                        Debug.Log("Direction : " + direction);
+                    }
                 }
 
                 if (ships.AreAllDestroyed())
@@ -496,7 +505,8 @@ namespace BattleShips.GameComponents.AI
             {
                 if (hit != null &&  tileHit != GetTileAt(enemyTiles,hit) && !foundShipDirection.HasValue)
                 {
-                    foundShipDirection = Coordinate.GetDirection(tileHit.Coordinates, hit);
+                    foundShipDirection = Coordinate.GetDirection(hit,tileHit.Coordinates);
+                    directionsGone[foundShipDirection.Value] = 1;
                     mode = AIMode.Destroy;
                 }
                 else if(hit == null)
@@ -514,11 +524,17 @@ namespace BattleShips.GameComponents.AI
                         found = true;
 
                         lastAttack = tileHit.Coordinates.GetCoordinatesAt((Directions)direction);
-                        found &= directionsGone.ContainsKey((Directions)direction);
+                        if (!directionsGone.ContainsKey((Directions)direction))
+                        {
+                            found = false;
+                            continue;
+                        }
                         found &= (directionsGone[(Directions)direction] == 0);
                         found &= CheckTileAvailability(enemyTiles, lastAttack);
 
                     } while (!found);
+
+                    directionsGone[(Directions)direction]++;
 
                     return new Attack(lastAttack, 80);
                 }
@@ -561,13 +577,17 @@ namespace BattleShips.GameComponents.AI
                     for (int i = 0; i < distanceGone; i++)
                         coords = coords.GetCoordinatesAt(foundShipDirection.Value);
 
-                    if (coords == null || (coords != null && CheckTileAvailability(enemyTiles, coords)))
+                    if (coords == null || (coords != null && !CheckTileAvailability(enemyTiles, coords)))
                     {
                         foundShipDirection = Helper.GetOppositeDirection(foundShipDirection.Value);
                         coords = tileHit.Coordinates.GetCoordinatesAt(foundShipDirection.Value);
                     }
 
+                    directionsGone[foundShipDirection.Value]++;
                     lastAttack = coords;
+
+                    if (coords == null)
+                        Debug.Log("wtfff");
 
                     return new Attack(lastAttack, 80);
                 }

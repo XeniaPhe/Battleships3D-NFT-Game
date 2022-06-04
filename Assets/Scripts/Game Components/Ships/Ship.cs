@@ -59,10 +59,11 @@ namespace BattleShips.GameComponents.Ships
 
         internal void UpdateUI()
         {
-            for (int i = 0; i < armourParts.Length; i++)
-            {
-                wrapper.durabilityIndicator.UpdateIndicators(armourParts[i] < 0 ? 0 : armourParts[i], armour, i);
-            }
+            float sum = 0;
+
+            foreach (var part in armourParts)
+                sum+=part;
+            wrapper.durabilityIndicator.UpdateIndicators(sum/(armour*Length));
         }
 
         internal static int GetLength(ShipType type) => type switch

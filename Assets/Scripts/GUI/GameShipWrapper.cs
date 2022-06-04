@@ -62,6 +62,8 @@ namespace BattleShips.GUI
         {
             button.OnDeselect(null);
             button.interactable = false;
+            button.selectable = false;
+            GameShipWrapperButton.nonSelectableCount++;
         }
     }
 }

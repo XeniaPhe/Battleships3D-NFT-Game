@@ -126,6 +126,7 @@ namespace BattleShips.GameComponents
             if (ship is null)
             {
                 tileData.tileState = TileState.Miss;
+                Debug.Log("where did you assign these ships man");
                 return AttackResult.Miss;
             }
             else if(ship[tileData.shipIndex] > 0)
@@ -163,8 +164,6 @@ namespace BattleShips.GameComponents
                     _ => throw new Exception("Undefined Ship type!")
                 };
             }
-
-            Debug.Log(ship[tileData.shipIndex]);
 
             return AttackResult.Miss;
         }

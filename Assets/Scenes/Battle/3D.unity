@@ -958,16 +958,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 407ea7c27cae5c84c867c4b7d1adab39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goodFills:
-  - {fileID: 160722909}
-  - {fileID: 1003379890}
-  - {fileID: 1139912875}
-  badFills:
-  - {fileID: 538379786}
-  - {fileID: 437675912}
-  - {fileID: 640739639}
-  goodColor: {r: 0, g: 0.7372549, b: 0.015686275, a: 1}
-  badColor: {r: 0.7372549, g: 0, b: 0, a: 1}
+  fill: {fileID: 0}
 --- !u!1 &19107319
 GameObject:
   m_ObjectHideFlags: 0
@@ -3928,18 +3919,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 407ea7c27cae5c84c867c4b7d1adab39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goodFills:
-  - {fileID: 1696369632}
-  - {fileID: 1297162670}
-  - {fileID: 368424535}
-  - {fileID: 1423887690}
-  badFills:
-  - {fileID: 1586468909}
-  - {fileID: 2141753366}
-  - {fileID: 602023210}
-  - {fileID: 374607545}
-  goodColor: {r: 0, g: 0.7372549, b: 0.015686275, a: 1}
-  badColor: {r: 0.7372549, g: 0, b: 0, a: 1}
+  fill: {fileID: 0}
 --- !u!114 &97167854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7067,17 +7047,17 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 209092017}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 90}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1445890380}
-  m_Father: {fileID: 1025869293}
-  m_RootOrder: 10
+  m_Father: {fileID: 1956715515}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 34.299927, y: -446.2806}
+  m_AnchoredPosition: {x: 214.33307, y: -22.195251}
   m_SizeDelta: {x: 377.6233, y: 29}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &209092019
@@ -7105,7 +7085,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -7119,7 +7099,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 209092020}
   m_FillRect: {fileID: 1192708013}
   m_HandleRect: {fileID: 0}
@@ -7127,7 +7107,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.793
+  m_Value: 0.765
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -14499,16 +14479,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 407ea7c27cae5c84c867c4b7d1adab39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goodFills:
-  - {fileID: 661570685}
-  - {fileID: 1586810267}
-  - {fileID: 2279269}
-  badFills:
-  - {fileID: 287904032}
-  - {fileID: 583173752}
-  - {fileID: 2072044868}
-  goodColor: {r: 0, g: 0.7372549, b: 0.015686275, a: 1}
-  badColor: {r: 0.7372549, g: 0, b: 0, a: 1}
+  fill: {fileID: 0}
 --- !u!114 &370858942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15444,16 +15415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 407ea7c27cae5c84c867c4b7d1adab39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goodFills:
-  - {fileID: 1925747829}
-  - {fileID: 1353919235}
-  - {fileID: 868936835}
-  badFills:
-  - {fileID: 62533922}
-  - {fileID: 1211573908}
-  - {fileID: 2073845791}
-  goodColor: {r: 0, g: 0.7372549, b: 0.015686275, a: 1}
-  badColor: {r: 0.7372549, g: 0, b: 0, a: 1}
+  fill: {fileID: 0}
 --- !u!114 &383125118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19631,6 +19593,7 @@ GameObject:
   - component: {fileID: 492465417}
   - component: {fileID: 492465420}
   - component: {fileID: 492465419}
+  - component: {fileID: 492465421}
   m_Layer: 5
   m_Name: Card_Blue
   m_TagString: Untagged
@@ -19768,6 +19731,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &492465421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 492465415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 407ea7c27cae5c84c867c4b7d1adab39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fill: {fileID: 668466175}
 --- !u!1 &492738976
 GameObject:
   m_ObjectHideFlags: 0
@@ -26557,7 +26533,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -26571,7 +26547,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 668466176}
   m_FillRect: {fileID: 2026265687}
   m_HandleRect: {fileID: 0}
@@ -26579,7 +26555,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.793
+  m_Value: 0.765
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -32254,7 +32230,7 @@ RectTransform:
   - {fileID: 1855012870}
   - {fileID: 330218224}
   m_Father: {fileID: 1956715515}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -36136,7 +36112,7 @@ RectTransform:
   - {fileID: 1231701615}
   - {fileID: 765438641}
   m_Father: {fileID: 1956715515}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -38007,7 +37983,7 @@ RectTransform:
   - {fileID: 754490158}
   - {fileID: 734999072}
   m_Father: {fileID: 1025869293}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -39102,16 +39078,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 407ea7c27cae5c84c867c4b7d1adab39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goodFills:
-  - {fileID: 1340034425}
-  - {fileID: 2147014712}
-  - {fileID: 796267925}
-  badFills:
-  - {fileID: 1482114117}
-  - {fileID: 599168309}
-  - {fileID: 1441617344}
-  goodColor: {r: 0, g: 0.7372549, b: 0.015686275, a: 1}
-  badColor: {r: 0.7372549, g: 0, b: 0, a: 1}
+  fill: {fileID: 0}
 --- !u!1 &1022257458
 GameObject:
   m_ObjectHideFlags: 0
@@ -39413,7 +39380,6 @@ RectTransform:
   - {fileID: 2028548680}
   - {fileID: 492465416}
   - {fileID: 1956715515}
-  - {fileID: 209092018}
   - {fileID: 1001583861}
   m_Father: {fileID: 743389092}
   m_RootOrder: 2
@@ -40685,10 +40651,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shipPlacementTime: 120
   turnTime: 50
-  aiShipPlacementTime: 5
-  aiTurnTime: 5
+  aiShipPlacementTime: 1
+  aiTurnTime: 1
   timeTillWinLoseScreen: 5
-  intermediateTextDuration: 5
+  intermediateTextDuration: 0.5
 --- !u!114 &1068729438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42307,6 +42273,7 @@ GameObject:
   - component: {fileID: 1103006337}
   - component: {fileID: 1103006340}
   - component: {fileID: 1103006339}
+  - component: {fileID: 1103006341}
   m_Layer: 5
   m_Name: Card_Red
   m_TagString: Untagged
@@ -42444,6 +42411,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1103006341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1103006335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 407ea7c27cae5c84c867c4b7d1adab39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fill: {fileID: 2058053443}
 --- !u!1 &1104570804
 GameObject:
   m_ObjectHideFlags: 0
@@ -43237,20 +43217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 407ea7c27cae5c84c867c4b7d1adab39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goodFills:
-  - {fileID: 368098865}
-  - {fileID: 1367346967}
-  - {fileID: 1473508230}
-  - {fileID: 2095658000}
-  - {fileID: 1831959368}
-  badFills:
-  - {fileID: 68472884}
-  - {fileID: 1546234774}
-  - {fileID: 1312318369}
-  - {fileID: 1735381945}
-  - {fileID: 2024564260}
-  goodColor: {r: 0, g: 0.7372549, b: 0.015686275, a: 1}
-  badColor: {r: 0.7372549, g: 0, b: 0, a: 1}
+  fill: {fileID: 0}
 --- !u!114 &1132980106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44544,16 +44511,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 407ea7c27cae5c84c867c4b7d1adab39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goodFills:
-  - {fileID: 320187770}
-  - {fileID: 266385521}
-  - {fileID: 22858494}
-  badFills:
-  - {fileID: 1693881110}
-  - {fileID: 1202062934}
-  - {fileID: 76120313}
-  goodColor: {r: 0, g: 0.7372549, b: 0.015686275, a: 1}
-  badColor: {r: 0.7372549, g: 0, b: 0, a: 1}
+  fill: {fileID: 0}
 --- !u!114 &1161887490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48658,18 +48616,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 407ea7c27cae5c84c867c4b7d1adab39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goodFills:
-  - {fileID: 579876763}
-  - {fileID: 1429647487}
-  - {fileID: 646449118}
-  - {fileID: 1490913702}
-  badFills:
-  - {fileID: 1089055656}
-  - {fileID: 1906468655}
-  - {fileID: 1153175967}
-  - {fileID: 1393965088}
-  goodColor: {r: 0, g: 0.7372549, b: 0.015686275, a: 1}
-  badColor: {r: 0.7372549, g: 0, b: 0, a: 1}
+  fill: {fileID: 0}
 --- !u!114 &1270948690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52065,16 +52012,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 407ea7c27cae5c84c867c4b7d1adab39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goodFills:
-  - {fileID: 1385119581}
-  - {fileID: 1607054526}
-  - {fileID: 68220954}
-  badFills:
-  - {fileID: 4442158}
-  - {fileID: 1087527320}
-  - {fileID: 1758390611}
-  goodColor: {r: 0, g: 0.7372549, b: 0.015686275, a: 1}
-  badColor: {r: 0.7372549, g: 0, b: 0, a: 1}
+  fill: {fileID: 0}
 --- !u!114 &1346566316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54536,14 +54474,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 407ea7c27cae5c84c867c4b7d1adab39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goodFills:
-  - {fileID: 2113553313}
-  - {fileID: 538935961}
-  badFills:
-  - {fileID: 1608892075}
-  - {fileID: 2058407783}
-  goodColor: {r: 0, g: 0.735849, b: 0.01731418, a: 1}
-  badColor: {r: 0.735849, g: 0, b: 0, a: 1}
+  fill: {fileID: 0}
 --- !u!1 &1423887688
 GameObject:
   m_ObjectHideFlags: 0
@@ -56599,20 +56530,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 407ea7c27cae5c84c867c4b7d1adab39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goodFills:
-  - {fileID: 753775938}
-  - {fileID: 600365091}
-  - {fileID: 1197774728}
-  - {fileID: 30012656}
-  - {fileID: 639357136}
-  badFills:
-  - {fileID: 1781871108}
-  - {fileID: 381293714}
-  - {fileID: 1447850353}
-  - {fileID: 643231207}
-  - {fileID: 1058215286}
-  goodColor: {r: 0, g: 0.7372549, b: 0.015686275, a: 1}
-  badColor: {r: 0.7372549, g: 0, b: 0, a: 1}
+  fill: {fileID: 0}
 --- !u!114 &1473443515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61309,14 +61227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 407ea7c27cae5c84c867c4b7d1adab39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goodFills:
-  - {fileID: 1754895304}
-  - {fileID: 1234702295}
-  badFills:
-  - {fileID: 326604791}
-  - {fileID: 537621472}
-  goodColor: {r: 0, g: 0.735849, b: 0.01731418, a: 1}
-  badColor: {r: 0.735849, g: 0, b: 0, a: 1}
+  fill: {fileID: 0}
 --- !u!114 &1591923474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65395,14 +65306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 407ea7c27cae5c84c867c4b7d1adab39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goodFills:
-  - {fileID: 28322050}
-  - {fileID: 1764649882}
-  badFills:
-  - {fileID: 1921319233}
-  - {fileID: 1191610401}
-  goodColor: {r: 0, g: 0.735849, b: 0.01731418, a: 1}
-  badColor: {r: 0.735849, g: 0, b: 0, a: 1}
+  fill: {fileID: 0}
 --- !u!114 &1706456827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67779,7 +67683,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -67793,7 +67697,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1772864883}
   m_FillRect: {fileID: 822383967}
   m_HandleRect: {fileID: 0}
@@ -67801,7 +67705,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.793
+  m_Value: 0.765
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -70586,18 +70490,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 407ea7c27cae5c84c867c4b7d1adab39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goodFills:
-  - {fileID: 1258290821}
-  - {fileID: 1306046266}
-  - {fileID: 750894930}
-  - {fileID: 2068935193}
-  badFills:
-  - {fileID: 1031662361}
-  - {fileID: 189761374}
-  - {fileID: 1893122279}
-  - {fileID: 628733234}
-  goodColor: {r: 0, g: 0.7372549, b: 0.015686275, a: 1}
-  badColor: {r: 0.7372549, g: 0, b: 0, a: 1}
+  fill: {fileID: 0}
 --- !u!1 &1869930912
 GameObject:
   m_ObjectHideFlags: 0
@@ -71751,7 +71644,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -71765,7 +71658,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1889569936}
   m_FillRect: {fileID: 1209742956}
   m_HandleRect: {fileID: 0}
@@ -71773,7 +71666,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.793
+  m_Value: 0.765
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -71828,6 +71721,7 @@ GameObject:
   - component: {fileID: 1892447587}
   - component: {fileID: 1892447590}
   - component: {fileID: 1892447589}
+  - component: {fileID: 1892447591}
   m_Layer: 5
   m_Name: Card_Orange
   m_TagString: Untagged
@@ -71965,6 +71859,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1892447591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1892447585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 407ea7c27cae5c84c867c4b7d1adab39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fill: {fileID: 1772864882}
 --- !u!1 &1893122277
 GameObject:
   m_ObjectHideFlags: 0
@@ -75062,7 +74969,7 @@ RectTransform:
   - {fileID: 1914801270}
   - {fileID: 1563100632}
   m_Father: {fileID: 1956715515}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -75120,6 +75027,7 @@ GameObject:
   - component: {fileID: 1956715516}
   - component: {fileID: 1956715519}
   - component: {fileID: 1956715518}
+  - component: {fileID: 1956715520}
   m_Layer: 5
   m_Name: Card_Green
   m_TagString: Untagged
@@ -75145,6 +75053,7 @@ RectTransform:
   - {fileID: 277546360}
   - {fileID: 317516051}
   - {fileID: 877897449}
+  - {fileID: 209092018}
   - {fileID: 1956228336}
   - {fileID: 954792819}
   - {fileID: 851994471}
@@ -75256,6 +75165,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1956715520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1956715514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 407ea7c27cae5c84c867c4b7d1adab39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fill: {fileID: 209092019}
 --- !u!1 &1967150095
 GameObject:
   m_ObjectHideFlags: 0
@@ -77463,6 +77385,7 @@ GameObject:
   - component: {fileID: 2028548681}
   - component: {fileID: 2028548684}
   - component: {fileID: 2028548683}
+  - component: {fileID: 2028548685}
   m_Layer: 5
   m_Name: Card_Purple
   m_TagString: Untagged
@@ -77600,6 +77523,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2028548685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2028548679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 407ea7c27cae5c84c867c4b7d1adab39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fill: {fileID: 1889569935}
 --- !u!1 &2030319569
 GameObject:
   m_ObjectHideFlags: 0
@@ -78641,7 +78577,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -78655,7 +78591,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 2058053444}
   m_FillRect: {fileID: 1155001989}
   m_HandleRect: {fileID: 0}
@@ -78663,7 +78599,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.793
+  m_Value: 0.765
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -79828,20 +79764,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 407ea7c27cae5c84c867c4b7d1adab39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goodFills:
-  - {fileID: 2055775317}
-  - {fileID: 319023289}
-  - {fileID: 953467470}
-  - {fileID: 617555488}
-  - {fileID: 1818488149}
-  badFills:
-  - {fileID: 1595642130}
-  - {fileID: 469223466}
-  - {fileID: 621133616}
-  - {fileID: 19107321}
-  - {fileID: 2031119679}
-  goodColor: {r: 0, g: 0.7372549, b: 0.015686275, a: 1}
-  badColor: {r: 0.7372549, g: 0, b: 0, a: 1}
+  fill: {fileID: 0}
 --- !u!1 &2073845789
 GameObject:
   m_ObjectHideFlags: 0

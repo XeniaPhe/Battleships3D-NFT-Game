@@ -5,36 +5,16 @@ namespace BattleShips.GUI.Ships
 {
     internal class ShipDurabilityIndicator : MonoBehaviour
     {
-        [SerializeField] Image[] goodFills;
-        [SerializeField] Image[] badFills;
-        [SerializeField] Color goodColor;
-        [SerializeField] Color badColor;
+        [SerializeField] Slider fill;
 
         private void Awake()
         {
-            foreach (var fill in goodFills)
-            {
-                fill.type = Image.Type.Filled;
-                fill.fillMethod = Image.FillMethod.Horizontal;
-                fill.fillOrigin = (int)Image.OriginHorizontal.Left;
-                fill.color  = goodColor;
-                fill.fillAmount = 1;
-            }
-            foreach (var fill in badFills)
-            {
-                fill.type= Image.Type.Filled;
-                fill.fillMethod= Image.FillMethod.Horizontal;
-                fill.fillOrigin = (int)Image.OriginHorizontal.Right;
-                fill.color = badColor;
-                fill.fillAmount = 0f;
-            }
+            fill.value = 1;
         }
 
-        internal void UpdateIndicators(int armour,int maxArmour,int partIndex)
+        internal void UpdateIndicators(float ratio)
         {
-            float good = (float)armour / maxArmour;
-            goodFills[partIndex].fillAmount = good;
-            badFills[partIndex].fillAmount = 1 - good;
+            fill.value = ratio;
         }
     }
 }

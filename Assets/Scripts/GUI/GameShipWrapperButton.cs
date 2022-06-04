@@ -12,6 +12,8 @@ namespace BattleShips.GUI
         internal static GameShipWrapperButton currentlySelected;
         internal GameShipWrapperButton up;
         internal GameShipWrapperButton down;
+        internal bool selectable = true;
+        internal static int nonSelectableCount = 0;
 
         #endregion
 
@@ -19,6 +21,25 @@ namespace BattleShips.GUI
         internal void SelectLower() => down.OnSelect(null);
         public override void OnSelect(BaseEventData eventData)
         {
+            if (nonSelectableCount == 5)
+                return;
+
+            if (!selectable)
+            {
+                if (currentlySelected == up)
+                {
+                    currentlySelected = this;
+                    SelectLower();
+                }
+                else if(currentlySelected == down)
+                {
+                    currentlySelected = this;
+                    SelectUpper();
+                }
+
+                return;
+            }
+
             currentlySelected?.OnDeselect(null);
             currentlySelected = this;
             if (eventData is null)

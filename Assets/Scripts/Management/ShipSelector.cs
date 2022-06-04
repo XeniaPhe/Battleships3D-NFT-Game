@@ -55,7 +55,7 @@ namespace BattleShips.Management
         internal void SelectShip(Ship ship)
         {
             selectedShip = ship;
-            if(shipInstance)
+            if(enteredTile)
                 HighlightShipPlacement(enteredTile);
         }
 
@@ -184,10 +184,6 @@ namespace BattleShips.Management
             else
                 shipInstance.position = new Vector3(shipInstance.position.x, 0.4f, shipInstance.position.z);
 
-            selectedShip.OnShipPlaced();
-            shipInstance = null;
-            selectedShip = null;
-
             DefenseTile tile;
             TileData start = tilesToPlaceTo[0].tileData;
             for (int i = 0; i < tilesToPlaceTo.Count; i++)
@@ -197,9 +193,10 @@ namespace BattleShips.Management
                 tile.PlaceShip(selectedShip,start,i,Helper.GetOppositeDirection(currentDirection));
             }
 
+            selectedShip.OnShipPlaced();
+            shipInstance = null;
+            selectedShip = null;
             tilesToPlaceTo.Clear();
-
-            
         }
 
         #endregion

@@ -120,16 +120,16 @@ namespace BattleShips.Management
                 switch (currentDirection)
                 {
                     case Directions.Right:
-                        pos += (Vector3.back / 2);
+                        pos += (Vector3.back);
                         break;
                     case Directions.Up:
-                        pos += (Vector3.right / 2);
+                        pos += (Vector3.right);
                         break;
                     case Directions.Left:
-                        pos += (Vector3.forward / 2);
+                        pos += (Vector3.forward);
                         break;
                     case Directions.Down:
-                        pos += (Vector3.left / 2);
+                        pos += (Vector3.left);
                         break;
                 }
             }

@@ -506,7 +506,7 @@ namespace BattleShips.GameComponents.AI
             {
                 if (hit != null &&  tileHit != GetTileAt(enemyTiles,hit) && !foundShipDirection.HasValue)
                 {
-                    foundShipDirection = Coordinate.GetDirection(hit,tileHit.Coordinates);
+                    foundShipDirection = Coordinate.GetDirection(tileHit.Coordinates,hit);
                     directionsGone[foundShipDirection.Value] = 1;
                     mode = AIMode.Destroy;
                 }
@@ -596,13 +596,17 @@ namespace BattleShips.GameComponents.AI
                         tileHit = null;
                         foundShipDirection = null;
                         directionsGone = null;
-                        ((IPlayer)this).PlayRandom();
+                        return ((IPlayer)this).PlayRandom();
                     }
 
                     Coordinate coords = tileHit.Coordinates;
 
                     for (int i = 0; i < distanceGone; i++)
+                    {
+                        if (coords == null) 
+                            break;
                         coords = coords.GetCoordinatesAt(foundShipDirection.Value);
+                    }
 
                     if (coords == null || (coords != null && !CheckTileAvailability(enemyTiles, coords)))
                     {

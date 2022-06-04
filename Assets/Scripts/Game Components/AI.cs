@@ -511,6 +511,7 @@ namespace BattleShips.GameComponents.AI
                     do
                     {
                         direction = UnityEngine.Random.Range(0, 4);
+                        found = true;
 
                         lastAttack = tileHit.Coordinates.GetCoordinatesAt((Directions)direction);
                         found &= directionsGone.ContainsKey((Directions)direction);

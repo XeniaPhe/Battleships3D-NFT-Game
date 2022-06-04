@@ -142,14 +142,12 @@ namespace BattleShips.GameComponents
 
                 shipFlag.SetShipDestroyed(ship.Type);
                 Coordinate coords = tileData.startTile.Coordinates;
-                var direction = Coordinate.GetDirection(coords, tileData.Coordinates);
-
-                if (!direction.HasValue) Debug.LogError("There's something wrong!");
+                var direction = tileData.shipDirection;
 
                 for (int i = 0; i < ship.Length; i++)
                 {
                     board.GetTile(coords, TileType.Defense).tileData.tileState = TileState.HasSunkenShip;
-                    coords = coords.GetCoordinatesAt(direction.Value);
+                    coords = coords.GetCoordinatesAt(direction);
                 }
 
                 if (shipFlag.AreAllDestroyed())

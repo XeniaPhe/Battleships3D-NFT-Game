@@ -546,13 +546,28 @@ namespace BattleShips.GameComponents.AI
                 if (sunkenShip.HasValue)
                 {
                     var cleaner = GetTileAt(enemyTiles, tileHit.Coordinates);
-                    directionsGone[foundShipDirection.Value]
-                    foundShipDirection = cleaner.shipDirection;
-
-                    for (int i = 0; i < Ship.GetLength(sunkenShip.Value); i++)
+                    if(directionsGone.ContainsKey(foundShipDirection.Value))
                     {
-                        cleaner.tileState = TileState.HasSunkenShip;
-                        cleaner = GetTileAt(enemyTiles, cleaner.Coordinates.GetCoordinatesAt(foundShipDirection.Value));
+                        int way = directionsGone[foundShipDirection.Value];
+
+                        for (int i = 0; i < way; i++)
+                        {
+                            cleaner.tileState = TileState.HasSunkenShip;
+                            cleaner = GetTileAt(enemyTiles, cleaner.Coordinates.GetCoordinatesAt(foundShipDirection.Value));
+                        }
+                    }
+
+                    foundShipDirection = Helper.GetOppositeDirection(foundShipDirection.Value);
+
+                    if (directionsGone.ContainsKey(foundShipDirection.Value))
+                    {
+                        int way = directionsGone[foundShipDirection.Value];
+
+                        for (int i = 0; i < way; i++)
+                        {
+                            cleaner.tileState = TileState.HasSunkenShip;
+                            cleaner = GetTileAt(enemyTiles, cleaner.Coordinates.GetCoordinatesAt(foundShipDirection.Value));
+                        }
                     }
 
                     enemyShips.SetShipDestroyed(sunkenShip.Value);

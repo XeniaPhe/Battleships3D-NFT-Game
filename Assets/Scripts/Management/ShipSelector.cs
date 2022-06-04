@@ -114,28 +114,26 @@ namespace BattleShips.Management
 
             Vector3 rotation = selectedShip.NormalRotation;
             Vector3 pos = enteredTile.transform.position;
-
-            if(selectedShip.Length %2 == 0)
+            pos.y = 1.2f;
+            rotation.y = (int)(currentDirection) * 90;
+            if (selectedShip.Length %2 == 0)
             {
                 switch (currentDirection)
                 {
                     case Directions.Right:
-                        pos += (Vector3.back / 2);
+                        pos += (Vector3.back);
                         break;
                     case Directions.Up:
-                        pos += (Vector3.right / 2);
+                        pos += (Vector3.right);
                         break;
                     case Directions.Left:
-                        pos += (Vector3.forward / 2);
+                        pos += (Vector3.forward);
                         break;
                     case Directions.Down:
-                        pos += (Vector3.left / 2);
+                        pos += (Vector3.left);
                         break;
                 }
             }
-
-            pos.y = 1.2f;
-            rotation.y = (int)(currentDirection) * 90;
             
             shipInstance = Instantiate<Transform>(selectedShip.Model.transform, pos, Quaternion.Euler(rotation), null);
             shipInstance.localScale = selectedShip.PreferedScale;

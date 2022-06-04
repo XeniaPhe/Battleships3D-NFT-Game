@@ -40676,11 +40676,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shipPlacementTime: 120
-  turnTime: 50
+  turnTime: 90
   aiShipPlacementTime: 4
-  aiTurnTime: 4
-  timeTillWinLoseScreen: 5
-  intermediateTextDuration: 0.5
+  aiTurnTime: 2.45
+  timeTillWinLoseScreen: 4
+  intermediateTextDuration: 1
 --- !u!114 &1068729438
 MonoBehaviour:
   m_ObjectHideFlags: 0

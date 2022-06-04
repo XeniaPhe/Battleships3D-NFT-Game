@@ -76,6 +76,8 @@ namespace BattleShips.Management
             HighlightShipPlacement(enteredTile);
         }
 
+        static int a = 0;
+
         internal void HighlightShipPlacement(DefenseTile startTile)
         {
             if(shipInstance) Destroy(shipInstance.gameObject);
@@ -142,6 +144,7 @@ namespace BattleShips.Management
                 foreach (var item in (Transform)child)
                 {
                     ((Transform)item).gameObject.SetActive(false);
+                    Debug.Log(a++);
                 }
             }
             shipInstance.name = selectedShip.Type.ToString();

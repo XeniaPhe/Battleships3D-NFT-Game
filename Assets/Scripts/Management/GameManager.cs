@@ -187,7 +187,7 @@ namespace BattleShips.Management
 
             if(attackResult == AttackResult.AllDestroyed)
             {
-                board.PlacePeg(TileType.Attack, attack.coordinates, true);
+                //board.PlacePeg(TileType.Attack, attack.coordinates, true);
                 board.CreateExplosion(attack.coordinates, TileType.Attack);
                 moveLogger.PublishReport("You won!",Color.green,timeTillWinLoseScreen);
                 StartCoroutine(WaitFor(() => { DisplayWinLoseScreen(Turn.Player); }, timeTillWinLoseScreen));
@@ -206,13 +206,13 @@ namespace BattleShips.Management
             else if (attackResult == AttackResult.Hit)
             {
                 moveLogger.PublishReport("Hit!", Color.green, aiTurnTime);
-                board.PlacePeg(TileType.Attack, attack.coordinates,true);
+                //board.PlacePeg(TileType.Attack, attack.coordinates,true);
                 board.CreateExplosion(attack.coordinates, TileType.Attack);
             }
             else
             {
                 moveLogger.PublishReport($"You sank enemy's {GetShipType(attackResult).ToString()}!", Color.green, aiTurnTime); //Details later
-                board.PlacePeg(TileType.Attack, attack.coordinates,true);
+                //board.PlacePeg(TileType.Attack, attack.coordinates,true);
                 board.CreateExplosion(attack.coordinates, TileType.Attack);
                 board.RevealShip(null);
             }

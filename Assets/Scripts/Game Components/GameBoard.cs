@@ -1,7 +1,8 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using BattleShips.Management;
 using BattleShips.GameComponents.Tiles;
-using System.Collections.Generic;
 
 namespace BattleShips.GameComponents
 {
@@ -120,8 +121,26 @@ namespace BattleShips.GameComponents
         }
         internal void HitShip(Coordinate coord,TileType type)
         {
-            var tile = GetTile(coord, type).tileData;
-            tile.ship.Model.GetComponent<ShipHit>().HitShip(tile.shipIndex + 1);
+            string name = GetTile(coord, type).tileData.ship.name;
+            int index = GetTile(coord, type).tileData.shipIndex + 1;
+            switch (name)
+            {
+                case "Carrier(Clone)":
+                    FindObjectsOfType<ShipHit>().Where(s => s.name == "Carrier").FirstOrDefault().HitShip(index);
+                    break;
+                case "Battleship(Clone)":
+                    FindObjectsOfType<ShipHit>().Where(s => s.name == "Battleship").FirstOrDefault().HitShip(index);
+                    break;
+                case "Cruiser(Clone)":
+                    FindObjectsOfType<ShipHit>().Where(s => s.name == "Cruiser").FirstOrDefault().HitShip(index);
+                    break;
+                case "Submar?ne(Clone)":
+                    FindObjectsOfType<ShipHit>().Where(s => s.name == "Submarine").FirstOrDefault().HitShip(index);
+                    break;
+                case "Destroyer(Clone)":
+                    FindObjectsOfType<ShipHit>().Where(s => s.name == "Destroyer").FirstOrDefault().HitShip(index);
+                    break;
+            }
         }
 
         internal void CreateExplosion(Coordinate coord,TileType type)

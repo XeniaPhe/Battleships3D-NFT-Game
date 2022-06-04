@@ -164,6 +164,8 @@ namespace BattleShips.GameComponents
                 };
             }
 
+            Debug.Log(ship[tileData.shipIndex]);
+
             return AttackResult.Miss;
         }
 

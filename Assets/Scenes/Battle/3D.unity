@@ -33588,8 +33588,10 @@ MonoBehaviour:
   redPeg: {fileID: 5569695797136056883, guid: f5d90578d39efa24cb53b11f4c343173, type: 3}
   whitePeg: {fileID: -6047527084033686561, guid: d8a16951e2eab8a4cbd238ddfc2cd09a,
     type: 3}
-  waterHitter: {fileID: 0}
-  explosionHitter: {fileID: 0}
+  waterHitter: {fileID: 2469555062416256985, guid: 537b2e1e036adc145b0086dcc1003a89,
+    type: 3}
+  explosionHitter: {fileID: 9214940605493979167, guid: fd9bff55ea886c947bf9855e33f22009,
+    type: 3}
 --- !u!4 &896349854
 Transform:
   m_ObjectHideFlags: 0
@@ -40683,8 +40685,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shipPlacementTime: 120
   turnTime: 50
-  aiShipPlacementTime: 6
-  aiTurnTime: 4
+  aiShipPlacementTime: 1
+  aiTurnTime: 1
   timeTillWinLoseScreen: 5
   intermediateTextDuration: 5
 --- !u!114 &1068729438

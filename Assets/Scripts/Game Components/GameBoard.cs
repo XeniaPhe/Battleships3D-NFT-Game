@@ -86,8 +86,6 @@ namespace BattleShips.GameComponents
             return type == TileType.Defense ? defenseTiles[index] : attackTiles[index];
         }
         
-
-
         internal void PlacePeg(TileType tileType,Coordinate coordinate,bool red)
         {
             Peg peg = red ? redPeg : whitePeg;

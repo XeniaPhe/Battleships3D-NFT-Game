@@ -990,6 +990,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7799892554203712732}
     m_Modifications:
+    - target: {fileID: 4132650760602699491, guid: 49579f62da0aee447a31081859650b38,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4784697907838861526, guid: 49579f62da0aee447a31081859650b38,
         type: 3}
       propertyPath: m_Materials.Array.size
@@ -1292,6 +1297,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7799892554203712732}
     m_Modifications:
+    - target: {fileID: 4132650760602699491, guid: 49579f62da0aee447a31081859650b38,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4784697907838861526, guid: 49579f62da0aee447a31081859650b38,
         type: 3}
       propertyPath: m_Materials.Array.size
@@ -1438,6 +1448,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7799892554203712732}
     m_Modifications:
+    - target: {fileID: 4132650760602699491, guid: 49579f62da0aee447a31081859650b38,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4784697907838861526, guid: 49579f62da0aee447a31081859650b38,
         type: 3}
       propertyPath: m_Materials.Array.size
@@ -1584,6 +1599,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7799892554203712732}
     m_Modifications:
+    - target: {fileID: 4132650760602699491, guid: 49579f62da0aee447a31081859650b38,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4784697907838861526, guid: 49579f62da0aee447a31081859650b38,
         type: 3}
       propertyPath: m_Materials.Array.size
@@ -2354,6 +2374,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7799892554203712732}
     m_Modifications:
+    - target: {fileID: 4132650760602699491, guid: 49579f62da0aee447a31081859650b38,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4784697907838861526, guid: 49579f62da0aee447a31081859650b38,
         type: 3}
       propertyPath: m_Materials.Array.size

@@ -380,7 +380,6 @@ namespace BattleShips.GameComponents.AI
                         board += "[D]";
                 }
 
-                Debug.Log(board);
                 board = "";
             }
         }

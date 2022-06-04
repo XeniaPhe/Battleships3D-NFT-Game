@@ -40685,8 +40685,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shipPlacementTime: 120
   turnTime: 50
-  aiShipPlacementTime: 1
-  aiTurnTime: 1
+  aiShipPlacementTime: 5
+  aiTurnTime: 5
   timeTillWinLoseScreen: 5
   intermediateTextDuration: 5
 --- !u!114 &1068729438

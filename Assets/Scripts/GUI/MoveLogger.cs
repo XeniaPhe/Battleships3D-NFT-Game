@@ -22,6 +22,7 @@ namespace BattleShips.GUI
         #region Cached Fields
 
         IEnumerator report;
+        IEnumerator secondReport;
 
         #endregion
         private void Awake()
@@ -36,25 +37,13 @@ namespace BattleShips.GUI
             }
         }
 
-        //Just add a queue if things get messy
-        internal void PublishReport(string announcement,Color color,float seconds,float overrideOldReportAfter = 0)
+        internal void PublishReport(string announcement, Color color, float seconds)
         {
-            if(overrideOldReportAfter > 0 && overrideOldReportAfter < seconds && report != null)
-            {
-                report = WaitFor(() =>
-                {
-                    PublishReport(announcement, color, seconds - overrideOldReportAfter);
-                }, overrideOldReportAfter + 0.05f);
-            }
-            else
-            {
-                StopAllCoroutines();
-                gameObject.SetActive(true);
-                reportText.text = announcement;
-                reportText.color = color;
-                report = WaitFor(CancelReport,seconds);
-            }
-
+            gameObject.SetActive(true);
+            StopAllCoroutines();
+            reportText.text = announcement;
+            reportText.color = color;
+            report = WaitFor(CancelReport, seconds);
             StartCoroutine(report);
         }
         
@@ -63,6 +52,7 @@ namespace BattleShips.GUI
             reportText.text = "";
             gameObject.SetActive(false);
             report = null;
+            secondReport = null;
             StopAllCoroutines();
         }
 
@@ -71,5 +61,6 @@ namespace BattleShips.GUI
             yield return new WaitForSeconds(seconds);
             action.Invoke();
         }
+
     }
 }

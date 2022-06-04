@@ -148,20 +148,32 @@ namespace BattleShips.Management
             if ((turn == Turn.AI && !keepTurn) || (turn == Turn.Player && keepTurn))
             {
                 if (phase == GamePhase.ShipPlacement)
+                {
+                    moveLogger.PublishReport("Your turn", Color.white, turnTime);
                     phase = GamePhase.Bombarding;
+                }
 
-                moveLogger.PublishReport("Your turn", Color.white, turnTime, intermediateTextDuration);
+                StartCoroutine(WaitFor(() =>
+                {
+                    moveLogger.PublishReport("Your turn", Color.white, turnTime - intermediateTextDuration);
+                },intermediateTextDuration));
+
                 timer.StartCountdown(turnTime, () =>
                 {
                     var attack = player.PlayRandom();
                     PlayerAttack(attack);
                 });
+
                 turn = Turn.Player;
             }
             else
             {
                 timer.CancelCountdown();
-                moveLogger.PublishReport("Enemy's turn", Color.white, aiTurnTime, intermediateTextDuration);
+                StartCoroutine(WaitFor(() =>
+                {
+                    moveLogger.PublishReport("Enemy's turn", Color.white, aiTurnTime - intermediateTextDuration);
+                }, intermediateTextDuration));
+
                 var attack = computer.PlayRandom(hit);
                 turn = Turn.AI;
                 EnemyAttack(attack);

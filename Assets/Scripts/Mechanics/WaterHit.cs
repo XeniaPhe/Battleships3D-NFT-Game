@@ -6,9 +6,9 @@ public class WaterHit : MonoBehaviour
 {
     public Transform hitTransform;
 
-    public void HitWater(Transform locationTransform)
+    public void HitWater(Vector3 pos)
     {
-        GameObject shot = Instantiate(hitTransform.gameObject, locationTransform.position, hitTransform.rotation);
+        GameObject shot = Instantiate(hitTransform.gameObject, pos, hitTransform.rotation);
         shot.SetActive(true);
     }
 }

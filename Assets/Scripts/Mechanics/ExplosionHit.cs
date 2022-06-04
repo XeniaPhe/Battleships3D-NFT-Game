@@ -6,9 +6,9 @@ public class ExplosionHit : MonoBehaviour
 {
     public Transform hitTransform;
 
-    public void HitExplosion(Transform locationTransform)
+    public void HitExplosion(Vector3 pos)
     {
-        GameObject shot = Instantiate(hitTransform.gameObject, locationTransform.position, hitTransform.rotation);
+        GameObject shot = Instantiate(hitTransform.gameObject, pos, hitTransform.rotation);
         shot.SetActive(true);
     }
 }

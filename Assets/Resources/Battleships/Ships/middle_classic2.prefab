@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -7625156154924667333}
   - component: {fileID: -3610565196337172490}
   - component: {fileID: 1904197282195062513}
+  - component: {fileID: -8641909424446801650}
   m_Layer: 0
   m_Name: middle_classic2
   m_TagString: Untagged
@@ -229,6 +230,28 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f042a4a0e6853ae48b6df9f2a1bd8432, type: 3}
   - {fileID: 8300000, guid: 546f30695436c534b90c36f5200c44d9, type: 3}
   - {fileID: 8300000, guid: 82cb0dd3fccf5f14ea564eeb1ffa22cb, type: 3}
+--- !u!114 &-8641909424446801650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1327039188536549459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d12e8002b97e3845b48630061d72497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dragSpeedMin: 0.2
+  dragSpeedMax: 0.8
+  dragAmountMin: 0.02
+  dragAmountMax: 0.09
+  rotationSpeedMin: 0.2
+  rotationSpeedMax: 0.85
+  rotationAmountMin: 0.5
+  rotationAmountMax: 4
+  randomTranslation: 0.002
+  randomRotation: 0.07
 --- !u!1 &2210140201550109599
 GameObject:
   m_ObjectHideFlags: 0

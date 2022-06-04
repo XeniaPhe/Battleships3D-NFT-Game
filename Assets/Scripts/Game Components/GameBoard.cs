@@ -126,12 +126,16 @@ namespace BattleShips.GameComponents
 
         internal void CreateExplosion(Coordinate coord,TileType type)
         {
-            explosionHitter.HitExplosion((GetTile(coord, type).transform));
+            Debug.Log("abc");
+            Vector3 pos = GetTile(coord, type).transform.position;
+            explosionHitter.HitExplosion(pos);
         }
 
         internal void CreateWaterHit(Coordinate coord, TileType type)
         {
-            waterHitter.HitWater((GetTile(coord, type).transform));
+            Debug.Log("abc");
+            Vector3 pos = GetTile(coord, type).transform.position;
+            waterHitter.HitWater(pos);
         }
     }
 }

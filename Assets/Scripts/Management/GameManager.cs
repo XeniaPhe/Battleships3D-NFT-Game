@@ -247,7 +247,7 @@ namespace BattleShips.Management
             }
             else if (attackResult == AttackResult.Miss)
             {
-                hit = attack.coordinates;
+                hit = null;
                 keepTurn = false;
                 action += () =>
                 {

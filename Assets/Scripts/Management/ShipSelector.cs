@@ -141,7 +141,7 @@ namespace BattleShips.Management
             {
                 foreach (var item in (Transform)child)
                 {
-                    //((Transform)item).gameObject.SetActive(false);
+                    ((Transform)item).gameObject.SetActive(false);
                 }
             }
             shipInstance.name = selectedShip.Type.ToString();

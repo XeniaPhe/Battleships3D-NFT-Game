@@ -506,7 +506,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.05882353, g: 0.6656508, b: 0.74509805, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -759,7 +759,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -1033,7 +1033,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -47.2, y: -271}
+  m_AnchoredPosition: {x: -1, y: -258}
   m_SizeDelta: {x: 1920, y: 158.5656}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1425982428
@@ -1056,7 +1056,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 5
+  m_text: 5 XP
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a5f99a2bbbdf784489a9e857f3d3fb99, type: 2}
   m_sharedMaterial: {fileID: 4381973950278582443, guid: a5f99a2bbbdf784489a9e857f3d3fb99,
@@ -1151,7 +1151,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1455745882
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1398,7 +1398,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -47.2, y: -157}
+  m_AnchoredPosition: {x: 1, y: -166}
   m_SizeDelta: {x: 1920, y: 158.5656}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2047232625
@@ -1421,7 +1421,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 3
+  m_text: 3 WSA
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a5f99a2bbbdf784489a9e857f3d3fb99, type: 2}
   m_sharedMaterial: {fileID: 4381973950278582443, guid: a5f99a2bbbdf784489a9e857f3d3fb99,
@@ -1516,7 +1516,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2133412280
 RectTransform:
   m_ObjectHideFlags: 0

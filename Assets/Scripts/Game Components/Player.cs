@@ -179,5 +179,10 @@ namespace BattleShips.GameComponents
         }
 
         Attack IPlayer.PlayRandom(Coordinate hit = null,ShipType? sunkenShip = null) => new Attack(new Coordinate(UnityEngine.Random.Range(1, 11),UnityEngine.Random.Range(1, 11)), 80);
+
+        Attack IPlayer.Play()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -7,7 +7,7 @@ using BattleShips.GameComponents.Ships;
 
 namespace BattleShips.GameComponents.AI
 {
-    internal class AI : MonoBehaviour,IPlayer
+    internal class AI : MonoBehaviour, IPlayer
     {
         #region Singleton
 
@@ -21,6 +21,10 @@ namespace BattleShips.GameComponents.AI
         [SerializeField] ShipBundle[] shipBundles;
         [SerializeField] int currentLevel = 1;
 
+        //These fields aim to distort the correctness of the AI and make it look more natural
+        [SerializeField] float maxCentrality = 1.11f;
+        [SerializeField] [Range(0.0f, 1.0f)] float offParityChanceMultiplier = 0.2f;
+
         #endregion
 
         #region Cached Fields
@@ -28,18 +32,23 @@ namespace BattleShips.GameComponents.AI
         readonly int[] lengths = { 2, 3, 3, 4, 5 };
         TileData[,] tiles = new TileData[10, 10];
         TileData[,] enemyTiles = new TileData[10, 10];
+
         ShipBundle deck;
+
         ShipFlag ships = new ShipFlag();
         ShipFlag enemyShips = new ShipFlag();
+
         AIMode mode = AIMode.Search;
+
         Dictionary<Directions, int> directionsGone = new Dictionary<Directions, int>();
         Directions? foundShipDirection = null;
         TileData tileHit = null;
         Coordinate lastAttack;
 
-        List<TileData> moveLog = new List<TileData>();
         int[,] heatMap = new int[10, 10];
-        double[,] probabilityMap = new double[10, 10];
+        double[,] probabilityMatrix = new double[10, 10];
+        double[,] centralityMatrix = new double[10, 10];
+        List<Tuple<double, Coordinate>> probabilityList = new List<Tuple<double, Coordinate>>();
         Parity parity;
 
         #endregion
@@ -51,71 +60,76 @@ namespace BattleShips.GameComponents.AI
             else
             {
                 instance = this;
-
-                TileData tile;
-
-                for (int i = 1; i < 11; i++)
-                {
-                    for (int j = 1; j < 11; j++)
-                    {
-                        tile = new TileData(i, j);
-                        tiles[i - 1, j - 1] = tile;
-                        tile = new TileData(i, j);
-                        enemyTiles[i - 1, j - 1] = tile;
-                    }
-                }
-
-                var bundle = shipBundles[currentLevel-1];
-
-                deck = new ShipBundle();
-                deck.battleship = Instantiate<Battleship>(bundle.battleship, null);
-                deck.destroyer = Instantiate<Destroyer>(bundle.destroyer, null);
-                deck.cruiser = Instantiate<Cruiser>(bundle.cruiser, null);
-                deck.carrier = Instantiate<Carrier>(bundle.carrier, null);
-                deck.submarine = Instantiate<Submarine>(bundle.submarine, null);
-
-                SetAll(deck.submarine);
-                SetAll(deck.carrier);
-                SetAll(deck.destroyer);
-                SetAll(deck.cruiser);
-                SetAll(deck.battleship);
-
-                void SetAll(Ship ship)
-                {
-                    for (int i = 0; i < ship.Length; i++)
-                    {
-                        ship[i] = 80;
-                    }
-                }
+                InstantiateTiles();
+                InstantiateDeck();
+                CalculateCentralityMatrix();
             }
         }
-        private TileData GetTileAt(TileData[,] tiles,Coordinate coords) => tiles[coords.X - 1, coords.Y - 1];
+        private TileData GetTileAt(TileData[,] tiles, Coordinate coords) => tiles[coords.X - 1, coords.Y - 1];
         private bool CheckTileAvailability(TileData[,] tiles, Coordinate coords) => GetTileAt(tiles, coords).tileState == TileState.Normal;
 
         #region On Development
-
-        private double GetProbabilityAt(int n) => probabilityMap[n / 10, n % 10];
-        private double GetProbabilityAt(Coordinate coords) => probabilityMap[coords.X - 1, coords.Y - 1];
-        private double GetRealProbabilityAt(int n)
+        private void InstantiateTiles()
         {
-            double pn = probabilityMap[n / 10, n % 10];
-            if(n == 0)
-                return pn;
-            --n;
-            return pn - probabilityMap[n / 10, n % 10];
-        }
-        private double GetRealProbabilityAt(Coordinate coords)
-        {
-            double pn = GetProbabilityAt(coords);
-            if (coords.GetCoordinateVector(true) == Vector2Int.zero)
-                return pn;
-            Coordinate prev = coords.Previous;
-            return pn - GetProbabilityAt(prev);
-        }
+            TileData tile;
 
+            for (int i = 1; i < 11; i++)
+            {
+                for (int j = 1; j < 11; j++)
+                {
+                    tile = new TileData(i, j);
+                    tiles[i - 1, j - 1] = tile;
+                    tile = new TileData(i, j);
+                    enemyTiles[i - 1, j - 1] = tile;
+                }
+            }
+        }
+        private void InstantiateDeck()
+        {
+            deck = new ShipBundle();
+            var bundle = shipBundles[currentLevel - 1];
+
+            deck.battleship = Instantiate<Battleship>(bundle.battleship, null);
+            deck.destroyer = Instantiate<Destroyer>(bundle.destroyer, null);
+            deck.cruiser = Instantiate<Cruiser>(bundle.cruiser, null);
+            deck.carrier = Instantiate<Carrier>(bundle.carrier, null);
+            deck.submarine = Instantiate<Submarine>(bundle.submarine, null);
+
+            SetAll(deck.submarine);
+            SetAll(deck.carrier);
+            SetAll(deck.destroyer);
+            SetAll(deck.cruiser);
+            SetAll(deck.battleship);
+
+            void SetAll(Ship ship)
+            {
+                for (int i = 0; i < ship.Length; i++)
+                {
+                    ship[i] = 80;
+                }
+            }
+        }
+        private void CalculateCentralityMatrix()
+        {
+            double sqrt2Over2 = Math.Sqrt(2.0)/2.0;
+            double minDistance = sqrt2Over2;
+            double diffDistance = 8 * sqrt2Over2;
+            double minCentrality = 1.0;
+            double diffCentrality = maxCentrality - minCentrality;
+            double distance = 0;
+
+            for (int x = 0; x < 10; x++)
+            {
+                for (int y = 0; y < 10; y++)
+                {
+                    distance = sqrt2Over2 + Math.Sqrt(Math.Pow(x - 5, 2) + Math.Pow(y - 5, 2));
+                    centralityMatrix[x, y] = minCentrality + diffCentrality * ((distance - minDistance) / diffDistance);
+                }
+            }
+        }
         private void RecalculateHeatMap()
         {
-            int CheckShips(int l)
+            int GetIterationCount(int l)
             {
                 if ((l == 2 && !ships.IsDestroyerDestroyed()) || (l == 4 && !ships.IsBattleshipDestroyed()) || (l == 5 && !ships.IsCarrierDestroyed()))
                     return 0;
@@ -132,26 +146,26 @@ namespace BattleShips.GameComponents.AI
             }
 
             int count;
-            if (moveLog.Count > 0 && moveLog[moveLog.Count-1].tileState == TileState.Miss)
+            
+            if (lastAttack is not null && GetTileAt(enemyTiles, lastAttack).tileState == TileState.Miss)
             {
-                var coord = moveLog[moveLog.Count - 1].Coordinates;
-                heatMap[coord.X - 1, coord.Y - 1] = 0;
-                Coordinate left = coord.Left,  right = coord.Right, down = coord.Down,up  = coord.Up;
+                heatMap[lastAttack.X - 1, lastAttack.Y - 1] = 0;
+                Coordinate left = lastAttack.Left, right = lastAttack.Right, down = lastAttack.Down, up = lastAttack.Up;
 
                 foreach (var l in lengths)
                 {
-                    if ((count = CheckShips(l)) == 0)
+                    if ((count = GetIterationCount(l)) == 0)
                         continue;
 
                     Vector2Int index;
-                    if(left is not null)
+                    if (left is not null)
                     {
                         index = left.GetCoordinateVector(true);
                         if (heatMap[index.x, index.y] != 0)
                             heatMap[index.x, index.y] -= count;
                         left = left.Left;
                     }
-                    if(right is not null)
+                    if (right is not null)
                     {
                         index = right.GetCoordinateVector(true);
                         if (heatMap[index.x, index.y] != 0)
@@ -181,62 +195,93 @@ namespace BattleShips.GameComponents.AI
 
                 foreach (var l in lengths)
                 {
-                    if ((count = CheckShips(l)) == 0)
+                    if ((count = GetIterationCount(l)) == 0)
                         continue;
 
-                    //Works faster with rather filled grids
+                    #region Worse but more understandable alternatives
 
+                    ////Might work faster with rather empty grids
+                    ////Stride-1 pattern
                     //for (int x = 0; x < 10; x++)
+                    //{
                     //    for (int y = 0; y < 11 - l; y++)
                     //    {
-                    //        int j;
-                    //        for (j = y; j < y + l; j++)
-                    //            if (tiles[x, j].tileState != TileState.Normal)
+                    //        for (int j = y; j < y + l; j++)
+                    //        {
+                    //            if (enemyTiles[x, j].tileState != TileState.Normal)
+                    //            {
+                    //                for (int k = j - 1; k >= y; --k)
+                    //                    heatMap[x, k] -= count;
                     //                break;
-                    //        if (j == y + l)
-                    //            for (j = y; j < y + l; j++)
-                    //                heatMap[x, j] += count;
+                    //            }
+                    //            heatMap[x, j] += count;
+                    //        }
                     //    }
+                    //}
 
-                    //Works faster with rather empty grids
+                    ////Not stride-1
+                    //for (int x = 0; x < 11 - l; x++)
+                    //{
+                    //    for (int y = 0; y < 10; y++)
+                    //    {
+                    //        for (int i = x; i < x + l; i++)
+                    //        {
+                    //            if (enemyTiles[i, y].tileState != TileState.Normal)
+                    //            {
+                    //                for (int k = i - 1; k >= x; --k)
+                    //                    heatMap[k, y] -= count;
+                    //                break;
+                    //            }
+                    //            heatMap[i, y] += count;
+                    //        }
+                    //    }
+                    //}
 
+                    #endregion
+
+                    //Stride-1 pattern
                     for (int x = 0; x < 10; x++)
+                    {
                         for (int y = 0; y < 11 - l; y++)
-                            for (int j = y; j < y + l; j++)
-                            {
-                                if (enemyTiles[x, j].tileState != TileState.Normal)
-                                {
-                                    for (int k = j - 1; k >= y; --k)
-                                        heatMap[x, k] -= count;
+                        {
+                            int j;
+                            for (j = y; j < y + l; j++)
+                                if (tiles[x, j].tileState != TileState.Normal)
                                     break;
-                                }
-                                heatMap[x, j] += count;
-                            }
+                            if (j == y + l)
+                                for (j = y; j < y + l; j++)
+                                    heatMap[x, j] += count;
+                        }
+                    }
 
+                    //Transformed to stride-1 pattern with some extra space tradeoffs
                     for (int x = 0; x < 11 - l; x++)
-                        for (int y = 0; y < 10; y++)
-                            for (int j = x; j < x + l; j++)
-                            {
-                                if (enemyTiles[j, y].tileState != TileState.Normal)
-                                {
-                                    for (int k = j - 1; k >= x; --k)
-                                        heatMap[k, y] -= count;
-                                    break;
-                                }
-                                heatMap[j, y] += count;
-                            }
+                    {
+                        bool[] unavailables = new bool[10];
+
+                        for (int i = x; i < x + l; i++)
+                            for (int y = 0; y < 10; y++)
+                                if (enemyTiles[i, y].tileState != TileState.Normal)
+                                    unavailables[y] = true;
+
+                        for (int i = x; i < x + l; i++)
+                            for (int y = 0; y < 10; y++)
+                                if (!unavailables[y])
+                                    heatMap[i, y] += count;
+                    }
                 }
             }
-            RecalculateProbabilityMap();
+            RecalculateProbabilityList();
         }
-
-        private void RecalculateProbabilityMap(bool parity = true)
+        private void RecalculateProbabilityList()
         {
             double oddSum = 0, evenSum = 0;
             int oddCount = 0, evenCount = 0, tempInt;
 
             for (int i = 0; i < 10; i++)
+            {
                 for (int j = 0; j < 10; j++)
+                {
                     if ((i % 2) == (j % 2))   //Odd parity(I named it odd coz it includes the first tile)
                     {
                         oddSum += (tempInt = heatMap[i, j]);
@@ -247,112 +292,60 @@ namespace BattleShips.GameComponents.AI
                         evenSum += (tempInt = heatMap[i, j]);
                         if (tempInt != 0) ++evenCount;
                     }
+                }
+            }
 
-            
-            double sum = oddSum + evenSum;
+            if (parity != Parity.Off)
+            {
+                if (evenSum / evenCount >= oddSum / oddCount)
+                    this.parity = Parity.Even;
+                else
+                    this.parity = Parity.Odd;
+            }
 
-            if (parity)
-                if (evenSum / evenCount >= oddSum / oddCount) this.parity = Parity.Even;
-                else this.parity = Parity.Odd;
-            else this.parity = Parity.Off;
+            double p = 0,totalP = 0;
 
-            double p, d, ad, d2, c = Math.PI * Math.E / 7;
+            probabilityList = new List<Tuple<double, Coordinate>>();
 
             for (int i = 0; i < 10; i++)
+            {
                 for (int j = 0; j < 10; j++)
                 {
-                    p = heatMap[i, j];
+                    p = (heatMap[i, j] * centralityMatrix[i, j]);
+
                     if (p == 0)
-                    {
-                        probabilityMap[i, j] = 0;
                         continue;
-                    }
-                    else if(this.parity == Parity.Odd)
-                    {
-                        if ((i % 2) != (j % 2))
-                        {
-                            probabilityMap[i, j] = 0;
-                            continue;
-                        }
-                    }
-                    else if(this.parity == Parity.Even)
-                    {
-                        if ((i % 2) == (j % 2))
-                        {
-                            probabilityMap[i, j] = 0;
-                            continue;
-                        }
-                    }
 
-                    d = (p - 14);
-                    ad = Math.Abs(d);
-                    d2 = Math.Pow(Math.Log10(ad), 12) + Helper.Root2n(ad, 2) + Helper.Root2n(ad, 4) + Helper.Root2n(ad, 6);
-                    probabilityMap[i, j] = p + Math.Sign(d) * d2 * c;
+                    if ((this.parity == Parity.Odd && (i % 2) != (j % 2)) || (this.parity == Parity.Even && (i % 2) == (j % 2)))
+                        p *= offParityChanceMultiplier;
+
+                    totalP += p;
+
+                    probabilityList.Add(new (totalP, new Coordinate(i, j, true)));
                 }
-
-            
-
-            double prob = 0;
-            for (int i = 0; i < 10; i++)
-                for (int j = 0; j < 10; j++)
-                {
-                    prob += (probabilityMap[i, j] * 100 / sum);
-                    probabilityMap[i, j] = prob;
-                }
+            }
         }
-
-        private Coordinate SearchProbability(double val)
+        private Coordinate SearchProbability()
         {
             int low = 0;
-            int high = 99;
+            int high = probabilityList.Count - 1;
             int mid = 0;
             double prob;
 
-            while (high>low)
+            System.Random rand = new System.Random();
+            double randomVal = rand.NextDouble() * probabilityList[probabilityList.Count-1].Item1;
+
+            while (high > low)
             {
                 mid = (low + high) / 2;
-                prob = GetProbabilityAt(mid);
+                prob = probabilityList[mid].Item1;
 
-                if (prob < val) low = mid + 1;
-                else if (prob > val) high = mid - 1;
+                if (prob < randomVal) low = mid + 1;
+                else if (prob > randomVal) high = mid - 1;
                 else break;
             }
 
-            double lowVal = GetProbabilityAt(low);
-            double highVal = GetProbabilityAt(high);
-            double midVal = GetProbabilityAt(mid);
-
-            if (val > lowVal && val <= midVal)
-                return new Coordinate(mid / 10, mid % 10, true);
-            else if (val > midVal && val <= highVal)
-                return new Coordinate(high / 10, high % 10, true);
-            else if (low == 0)
-                return new Coordinate(1, 1);
-            else
-                throw new Exception("You made an index error dumbass");
-        }
-        private void AttackTile()
-        {
-            switch (mode)
-            {
-                case AIMode.Hunt:
-                    double rand = Helper.Random100();
-                    var coords = SearchProbability(rand);
-                    TileData tileToAttack = GetTileAt(tiles,coords);
-                    break;
-                case AIMode.Destroy:
-                    if (parity != Parity.Off)
-                        RecalculateProbabilityMap(false);
-
-                    List<double> destroyProbabilityMap = new List<double>();
-
-                        //Make a tile list for neighbors and remove from the list as they're attacked
-                    break;
-
-                default:
-                    throw new Exception("AIMode should be Hunt or Destroy");
-            }
-
+            return probabilityList[mid].Item2;
         }
 
         #endregion
@@ -489,7 +482,7 @@ namespace BattleShips.GameComponents.AI
             return AttackResult.Miss;
         }
 
-        Attack IPlayer.PlayRandom(Coordinate hit = null,ShipType? sunkenShip = null)
+        Attack IPlayer.PlayRandom(Coordinate hit = null, ShipType? sunkenShip = null)
         {
             if (mode == AIMode.Search && hit != null && sunkenShip == null)
             {
@@ -504,13 +497,13 @@ namespace BattleShips.GameComponents.AI
 
             if (mode == AIMode.Hunt)
             {
-                if (hit != null &&  tileHit != GetTileAt(enemyTiles,hit) && !foundShipDirection.HasValue)
+                if (hit != null && tileHit != GetTileAt(enemyTiles, hit) && !foundShipDirection.HasValue)
                 {
-                    foundShipDirection = Coordinate.GetDirection(tileHit.Coordinates,hit);
+                    foundShipDirection = Coordinate.GetDirection(tileHit.Coordinates, hit);
                     directionsGone[foundShipDirection.Value] = 1;
                     mode = AIMode.Destroy;
                 }
-                else if(hit == null)
+                else if (hit == null)
                 {
                     GetTileAt(enemyTiles, lastAttack).tileState = TileState.Miss;
                 }
@@ -546,7 +539,7 @@ namespace BattleShips.GameComponents.AI
                 if (sunkenShip.HasValue)
                 {
                     var cleaner = GetTileAt(enemyTiles, tileHit.Coordinates);
-                    if(directionsGone.ContainsKey(foundShipDirection.Value))
+                    if (directionsGone.ContainsKey(foundShipDirection.Value))
                     {
                         int way = directionsGone[foundShipDirection.Value];
 
@@ -588,7 +581,7 @@ namespace BattleShips.GameComponents.AI
                 if (mode != AIMode.Search)
                 {
                     int distanceGone = 0;
-                    if(directionsGone.ContainsKey(foundShipDirection.Value))
+                    if (directionsGone.ContainsKey(foundShipDirection.Value))
                         distanceGone = directionsGone[foundShipDirection.Value] + 1;
                     else
                     {
@@ -603,7 +596,7 @@ namespace BattleShips.GameComponents.AI
 
                     for (int i = 0; i < distanceGone; i++)
                     {
-                        if (coords == null) 
+                        if (coords == null)
                             break;
                         coords = coords.GetCoordinatesAt(foundShipDirection.Value);
                     }
@@ -633,6 +626,12 @@ namespace BattleShips.GameComponents.AI
             } while (!CheckTileAvailability(enemyTiles, lastAttack));
 
             return new Attack(lastAttack, 80);
+        }
+
+        Attack IPlayer.Play()
+        {
+
+            return new Attack();
         }
 
         #endregion

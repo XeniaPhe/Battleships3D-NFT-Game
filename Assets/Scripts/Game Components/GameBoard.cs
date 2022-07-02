@@ -134,7 +134,7 @@ namespace BattleShips.GameComponents
                 case "Cruiser(Clone)":
                     FindObjectsOfType<ShipHit>().Where(s => s.name == "Cruiser").FirstOrDefault().HitShip(index);
                     break;
-                case "Submar?ne(Clone)":
+                case "Submarine(Clone)":
                     FindObjectsOfType<ShipHit>().Where(s => s.name == "Submarine").FirstOrDefault().HitShip(index);
                     break;
                 case "Destroyer(Clone)":

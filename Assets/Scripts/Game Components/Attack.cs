@@ -7,7 +7,7 @@ namespace BattleShips.GameComponents
         internal Coordinate coordinates;
         internal int attackPower;
 
-        public Attack(Coordinate coordinates,int attackPower)
+        internal Attack(Coordinate coordinates,int attackPower)
         {
             this.attackPower = attackPower;
             this.coordinates = coordinates;

@@ -20,10 +20,11 @@ namespace BattleShips.GameComponents.AI
 
         [SerializeField] ShipBundle[] shipBundles;
         [SerializeField] int currentLevel = 1;
+        [SerializeField] Parity parity;
 
         //These fields aim to distort the correctness of the AI and make it look more natural
         [SerializeField] float maxCentrality = 1.11f;
-        [SerializeField] [Range(0.0f, 1.0f)] float offParityChanceMultiplier = 0.2f;
+        [SerializeField][Range(0.0f, 1.0f)] float offParityChanceMultiplier = 0.2f;
 
         #endregion
 
@@ -38,18 +39,11 @@ namespace BattleShips.GameComponents.AI
         ShipFlag ships = new ShipFlag();
         ShipFlag enemyShips = new ShipFlag();
 
-        AIMode mode = AIMode.Search;
-
-        Dictionary<Directions, int> directionsGone = new Dictionary<Directions, int>();
-        Directions? foundShipDirection = null;
-        TileData tileHit = null;
-        Coordinate lastAttack;
+    
 
         int[,] heatMap = new int[10, 10];
-        double[,] probabilityMatrix = new double[10, 10];
         double[,] centralityMatrix = new double[10, 10];
         List<Tuple<double, Coordinate>> probabilityList = new List<Tuple<double, Coordinate>>();
-        Parity parity;
 
         #endregion
 
@@ -65,10 +59,10 @@ namespace BattleShips.GameComponents.AI
                 CalculateCentralityMatrix();
             }
         }
+
+        #region Funcs
         private TileData GetTileAt(TileData[,] tiles, Coordinate coords) => tiles[coords.X - 1, coords.Y - 1];
         private bool CheckTileAvailability(TileData[,] tiles, Coordinate coords) => GetTileAt(tiles, coords).tileState == TileState.Normal;
-
-        #region On Development
         private void InstantiateTiles()
         {
             TileData tile;
@@ -111,7 +105,7 @@ namespace BattleShips.GameComponents.AI
         }
         private void CalculateCentralityMatrix()
         {
-            double sqrt2Over2 = Math.Sqrt(2.0)/2.0;
+            double sqrt2Over2 = Math.Sqrt(2.0) / 2.0;
             double minDistance = sqrt2Over2;
             double diffDistance = 8 * sqrt2Over2;
             double minCentrality = 1.0;
@@ -131,14 +125,14 @@ namespace BattleShips.GameComponents.AI
         {
             int GetIterationCount(int l)
             {
-                if ((l == 2 && !ships.IsDestroyerDestroyed()) || (l == 4 && !ships.IsBattleshipDestroyed()) || (l == 5 && !ships.IsCarrierDestroyed()))
+                if (!shipNewlyDestroyed && ((l == 2 && ships.IsDestroyerDestroyed()) || (l == 4 && ships.IsBattleshipDestroyed()) || (l == 5 && ships.IsCarrierDestroyed())))
                     return 0;
 
                 if (l == 3)
                 {
-                    if (!ships.IsSubmarineDestroyed() && !ships.IsCruiserDestroyed())
+                    if (ships.IsSubmarineDestroyed() && ships.IsCruiserDestroyed() && !shipNewlyDestroyed)
                         return 0;
-                    if (ships.IsSubmarineDestroyed() && ships.IsCruiserDestroyed())
+                    if (!ships.IsSubmarineDestroyed() && !ships.IsCruiserDestroyed())
                         return 2;
                 }
 
@@ -146,45 +140,58 @@ namespace BattleShips.GameComponents.AI
             }
 
             int count;
-            
+
             if (lastAttack is not null && GetTileAt(enemyTiles, lastAttack).tileState == TileState.Miss)
             {
                 heatMap[lastAttack.X - 1, lastAttack.Y - 1] = 0;
-                Coordinate left = lastAttack.Left, right = lastAttack.Right, down = lastAttack.Down, up = lastAttack.Up;
+                Coordinate left, right, up, down;
 
                 foreach (var l in lengths)
                 {
                     if ((count = GetIterationCount(l)) == 0)
                         continue;
 
-                    Vector2Int index;
-                    if (left is not null)
+                    Vector2Int index = Vector2Int.zero;
+
+                    left = lastAttack.Left;
+                    right = lastAttack.Right;
+                    down = lastAttack.Down;
+                    up = lastAttack.Up;
+
+                    for (int i = 0; i < l - 1; i++)
                     {
-                        index = left.GetCoordinateVector(true);
-                        if (heatMap[index.x, index.y] != 0)
-                            heatMap[index.x, index.y] -= count;
-                        left = left.Left;
-                    }
-                    if (right is not null)
-                    {
-                        index = right.GetCoordinateVector(true);
-                        if (heatMap[index.x, index.y] != 0)
-                            heatMap[index.x, index.y] -= count;
-                        right = right.Right;
-                    }
-                    if (down is not null)
-                    {
-                        index = down.GetCoordinateVector(true);
-                        if (heatMap[index.x, index.y] != 0)
-                            heatMap[index.x, index.y] -= count;
-                        down = down.Down;
-                    }
-                    if (up is not null)
-                    {
-                        index = up.GetCoordinateVector(true);
-                        if (heatMap[index.x, index.y] != 0)
-                            heatMap[index.x, index.y] -= count;
-                        up = up.Up;
+                        if (left is not null)
+                        {
+                            index = left.GetCoordinateVector(true);
+                            DecreaseFromHeatmap();
+                            left = left.Left;
+                        }
+                        if (right is not null)
+                        {
+                            index = right.GetCoordinateVector(true);
+                            DecreaseFromHeatmap();
+                            right = right.Right;
+                        }
+                        if (down is not null)
+                        {
+                            index = down.GetCoordinateVector(true);
+                            DecreaseFromHeatmap();
+                            down = down.Down;
+                        }
+                        if (up is not null)
+                        {
+                            index = up.GetCoordinateVector(true);
+                            DecreaseFromHeatmap();
+                            up = up.Up;
+                        }
+
+                        void DecreaseFromHeatmap()
+                        {
+                            if (heatMap[index.x, index.y] > count)
+                                heatMap[index.x, index.y] -= count;
+                            else
+                                heatMap[index.x, index.y] = 0;
+                        }
                     }
                 }
                 return;
@@ -303,7 +310,7 @@ namespace BattleShips.GameComponents.AI
                     this.parity = Parity.Odd;
             }
 
-            double p = 0,totalP = 0;
+            double p = 0, totalP = 0;
 
             probabilityList = new List<Tuple<double, Coordinate>>();
 
@@ -321,7 +328,7 @@ namespace BattleShips.GameComponents.AI
 
                     totalP += p;
 
-                    probabilityList.Add(new (totalP, new Coordinate(i, j, true)));
+                    probabilityList.Add(new(totalP, new Coordinate(i, j, true)));
                 }
             }
         }
@@ -333,7 +340,7 @@ namespace BattleShips.GameComponents.AI
             double prob;
 
             System.Random rand = new System.Random();
-            double randomVal = rand.NextDouble() * probabilityList[probabilityList.Count-1].Item1;
+            double randomVal = rand.NextDouble() * probabilityList[probabilityList.Count - 1].Item1;
 
             while (high > low)
             {
@@ -347,11 +354,6 @@ namespace BattleShips.GameComponents.AI
 
             return probabilityList[mid].Item2;
         }
-
-        #endregion
-
-        #region Temporary
-
         private void PrintTileInformation()
         {
             string board = "";
@@ -377,7 +379,6 @@ namespace BattleShips.GameComponents.AI
                 board = "";
             }
         }
-
         void IPlayer.PlaceShipsRandom()
         {
             bool horizontal;
@@ -423,7 +424,6 @@ namespace BattleShips.GameComponents.AI
 
             PrintTileInformation();
         }
-
         AttackResult IPlayer.CheckTile(Attack attack)
         {
             Vector2Int vectorCoords = attack.coordinates.GetCoordinateVector(true);
@@ -482,151 +482,15 @@ namespace BattleShips.GameComponents.AI
             return AttackResult.Miss;
         }
 
-        Attack IPlayer.PlayRandom(Coordinate hit = null, ShipType? sunkenShip = null)
-        {
-            if (mode == AIMode.Search && hit != null && sunkenShip == null)
-            {
-                mode = AIMode.Hunt;
-                GetTileAt(enemyTiles, lastAttack).tileState = TileState.HasHitShip;
-                tileHit = GetTileAt(enemyTiles, hit);
-                directionsGone = new Dictionary<Directions, int>();
-                var possibleDirections = hit.GetNeighborDirections();
-                foreach (var dir in possibleDirections)
-                    directionsGone.Add(dir, 0);
-            }
+        #endregion
 
-            if (mode == AIMode.Hunt)
-            {
-                if (hit != null && tileHit != GetTileAt(enemyTiles, hit) && !foundShipDirection.HasValue)
-                {
-                    foundShipDirection = Coordinate.GetDirection(tileHit.Coordinates, hit);
-                    directionsGone[foundShipDirection.Value] = 1;
-                    mode = AIMode.Destroy;
-                }
-                else if (hit == null)
-                {
-                    GetTileAt(enemyTiles, lastAttack).tileState = TileState.Miss;
-                }
+        AIMode mode = AIMode.Seek;
 
-                if (mode != AIMode.Destroy)
-                {
-                    int direction;
-                    bool found = true;
-                    do
-                    {
-                        direction = UnityEngine.Random.Range(0, 4);
-                        found = true;
-
-                        lastAttack = tileHit.Coordinates.GetCoordinatesAt((Directions)direction);
-                        if (!directionsGone.ContainsKey((Directions)direction))
-                        {
-                            found = false;
-                            continue;
-                        }
-                        found &= (directionsGone[(Directions)direction] == 0);
-                        found &= CheckTileAvailability(enemyTiles, lastAttack);
-
-                    } while (!found);
-
-                    directionsGone[(Directions)direction]++;
-
-                    return new Attack(lastAttack, 80);
-                }
-            }
-
-            if (mode == AIMode.Destroy)
-            {
-                if (sunkenShip.HasValue)
-                {
-                    var cleaner = GetTileAt(enemyTiles, tileHit.Coordinates);
-                    if (directionsGone.ContainsKey(foundShipDirection.Value))
-                    {
-                        int way = directionsGone[foundShipDirection.Value];
-
-                        for (int i = 0; i < way; i++)
-                        {
-                            cleaner.tileState = TileState.HasSunkenShip;
-                            cleaner = GetTileAt(enemyTiles, cleaner.Coordinates.GetCoordinatesAt(foundShipDirection.Value));
-                        }
-                    }
-
-                    foundShipDirection = Helper.GetOppositeDirection(foundShipDirection.Value);
-
-                    if (directionsGone.ContainsKey(foundShipDirection.Value))
-                    {
-                        int way = directionsGone[foundShipDirection.Value];
-
-                        for (int i = 0; i < way; i++)
-                        {
-                            cleaner.tileState = TileState.HasSunkenShip;
-                            cleaner = GetTileAt(enemyTiles, cleaner.Coordinates.GetCoordinatesAt(foundShipDirection.Value));
-                        }
-                    }
-
-                    enemyShips.SetShipDestroyed(sunkenShip.Value);
-                    mode = AIMode.Search;
-                    tileHit = null;
-                    foundShipDirection = null;
-                }
-                else if (hit == null)
-                {
-                    GetTileAt(enemyTiles, lastAttack).tileState = TileState.Miss;
-                    foundShipDirection = Helper.GetOppositeDirection(foundShipDirection.Value);
-                }
-                else
-                {
-                    GetTileAt(enemyTiles, lastAttack).tileState = TileState.HasHitShip;
-                }
-
-                if (mode != AIMode.Search)
-                {
-                    int distanceGone = 0;
-                    if (directionsGone.ContainsKey(foundShipDirection.Value))
-                        distanceGone = directionsGone[foundShipDirection.Value] + 1;
-                    else
-                    {
-                        mode = AIMode.Search;
-                        tileHit = null;
-                        foundShipDirection = null;
-                        directionsGone = null;
-                        return ((IPlayer)this).PlayRandom();
-                    }
-
-                    Coordinate coords = tileHit.Coordinates;
-
-                    for (int i = 0; i < distanceGone; i++)
-                    {
-                        if (coords == null)
-                            break;
-                        coords = coords.GetCoordinatesAt(foundShipDirection.Value);
-                    }
-
-                    if (coords == null || (coords != null && !CheckTileAvailability(enemyTiles, coords)))
-                    {
-                        foundShipDirection = Helper.GetOppositeDirection(foundShipDirection.Value);
-                        coords = tileHit.Coordinates.GetCoordinatesAt(foundShipDirection.Value);
-                    }
-
-                    directionsGone[foundShipDirection.Value]++;
-                    lastAttack = coords;
-
-                    if (coords == null)
-                        Debug.Log("wtfff");
-
-                    return new Attack(lastAttack, 80);
-                }
-            }
-
-            if (lastAttack != null && GetTileAt(enemyTiles, lastAttack).tileState != TileState.HasSunkenShip)
-                GetTileAt(enemyTiles, lastAttack).tileState = TileState.Miss;
-
-            do
-            {
-                lastAttack = new Coordinate(UnityEngine.Random.Range(1, 11), UnityEngine.Random.Range(1, 11));
-            } while (!CheckTileAvailability(enemyTiles, lastAttack));
-
-            return new Attack(lastAttack, 80);
-        }
+        Dictionary<Directions, int> directionsGone = new Dictionary<Directions, int>();
+        Directions? shipDirection = null;
+        int[] distanceInDirection = new int[2]; //First : positive course on the direction found,Second : Negative course on the direction found  
+        Coordinate lastAttack;
+        bool shipNewlyDestroyed = false;
 
         Attack IPlayer.Play()
         {
@@ -634,6 +498,154 @@ namespace BattleShips.GameComponents.AI
             return new Attack();
         }
 
+        #region Dont wanna see
+        Attack IPlayer.PlayRandom(Coordinate hit = null, ShipType? sunkenShip = null)
+        {
+            //if (mode == AIMode.Search && hit != null && sunkenShip == null)
+            //{
+            //    mode = AIMode.Hunt;
+            //    GetTileAt(enemyTiles, lastAttack).tileState = TileState.HasHitShip;
+            //    tileHit = GetTileAt(enemyTiles, hit);
+            //    directionsGone = new Dictionary<Directions, int>();
+            //    var possibleDirections = hit.GetNeighborDirections();
+            //    foreach (var dir in possibleDirections)
+            //        directionsGone.Add(dir, 0);
+            //}
+
+            //if (mode == AIMode.Hunt)
+            //{
+            //    if (hit != null && tileHit != GetTileAt(enemyTiles, hit) && !foundShipDirection.HasValue)
+            //    {
+            //        foundShipDirection = Coordinate.GetDirection(tileHit.Coordinates, hit);
+            //        directionsGone[foundShipDirection.Value] = 1;
+            //        mode = AIMode.Destroy;
+            //    }
+            //    else if (hit == null)
+            //    {
+            //        GetTileAt(enemyTiles, lastAttack).tileState = TileState.Miss;
+            //    }
+
+            //    if (mode != AIMode.Destroy)
+            //    {
+            //        int direction;
+            //        bool found = true;
+            //        do
+            //        {
+            //            direction = UnityEngine.Random.Range(0, 4);
+            //            found = true;
+
+            //            lastAttack = tileHit.Coordinates.GetCoordinatesAt((Directions)direction);
+            //            if (!directionsGone.ContainsKey((Directions)direction))
+            //            {
+            //                found = false;
+            //                continue;
+            //            }
+            //            found &= (directionsGone[(Directions)direction] == 0);
+            //            found &= CheckTileAvailability(enemyTiles, lastAttack);
+
+            //        } while (!found);
+
+            //        directionsGone[(Directions)direction]++;
+
+            //        return new Attack(lastAttack, 80);
+            //    }
+            //}
+
+            //if (mode == AIMode.Destroy)
+            //{
+            //    if (sunkenShip.HasValue)
+            //    {
+            //        var cleaner = GetTileAt(enemyTiles, tileHit.Coordinates);
+            //        if (directionsGone.ContainsKey(foundShipDirection.Value))
+            //        {
+            //            int way = directionsGone[foundShipDirection.Value];
+
+            //            for (int i = 0; i < way; i++)
+            //            {
+            //                cleaner.tileState = TileState.HasSunkenShip;
+            //                cleaner = GetTileAt(enemyTiles, cleaner.Coordinates.GetCoordinatesAt(foundShipDirection.Value));
+            //            }
+            //        }
+
+            //        foundShipDirection = Helper.GetOppositeDirection(foundShipDirection.Value);
+
+            //        if (directionsGone.ContainsKey(foundShipDirection.Value))
+            //        {
+            //            int way = directionsGone[foundShipDirection.Value];
+
+            //            for (int i = 0; i < way; i++)
+            //            {
+            //                cleaner.tileState = TileState.HasSunkenShip;
+            //                cleaner = GetTileAt(enemyTiles, cleaner.Coordinates.GetCoordinatesAt(foundShipDirection.Value));
+            //            }
+            //        }
+
+            //        enemyShips.SetShipDestroyed(sunkenShip.Value);
+            //        mode = AIMode.Search;
+            //        tileHit = null;
+            //        foundShipDirection = null;
+            //    }
+            //    else if (hit == null)
+            //    {
+            //        GetTileAt(enemyTiles, lastAttack).tileState = TileState.Miss;
+            //        foundShipDirection = Helper.GetOppositeDirection(foundShipDirection.Value);
+            //    }
+            //    else
+            //    {
+            //        GetTileAt(enemyTiles, lastAttack).tileState = TileState.HasHitShip;
+            //    }
+
+            //    if (mode != AIMode.Search)
+            //    {
+            //        int distanceGone = 0;
+            //        if (directionsGone.ContainsKey(foundShipDirection.Value))
+            //            distanceGone = directionsGone[foundShipDirection.Value] + 1;
+            //        else
+            //        {
+            //            mode = AIMode.Search;
+            //            tileHit = null;
+            //            foundShipDirection = null;
+            //            directionsGone = null;
+            //            return ((IPlayer)this).PlayRandom();
+            //        }
+
+            //        Coordinate coords = tileHit.Coordinates;
+
+            //        for (int i = 0; i < distanceGone; i++)
+            //        {
+            //            if (coords == null)
+            //                break;
+            //            coords = coords.GetCoordinatesAt(foundShipDirection.Value);
+            //        }
+
+            //        if (coords == null || (coords != null && !CheckTileAvailability(enemyTiles, coords)))
+            //        {
+            //            foundShipDirection = Helper.GetOppositeDirection(foundShipDirection.Value);
+            //            coords = tileHit.Coordinates.GetCoordinatesAt(foundShipDirection.Value);
+            //        }
+
+            //        directionsGone[foundShipDirection.Value]++;
+            //        lastAttack = coords;
+
+            //        if (coords == null)
+            //            Debug.Log("wtfff");
+
+            //        return new Attack(lastAttack, 80);
+            //    }
+            //}
+
+            //if (lastAttack != null && GetTileAt(enemyTiles, lastAttack).tileState != TileState.HasSunkenShip)
+            //    GetTileAt(enemyTiles, lastAttack).tileState = TileState.Miss;
+
+            //do
+            //{
+            //    lastAttack = new Coordinate(UnityEngine.Random.Range(1, 11), UnityEngine.Random.Range(1, 11));
+            //} while (!CheckTileAvailability(enemyTiles, lastAttack));
+
+            //return new Attack(lastAttack, 80);
+
+            return new Attack();
+        }
         #endregion
     }
 }

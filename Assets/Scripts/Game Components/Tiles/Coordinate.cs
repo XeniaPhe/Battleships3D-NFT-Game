@@ -143,22 +143,22 @@ namespace BattleShips.GameComponents.Tiles
                 false => new Vector2Int(x, y)
             };
 
-        internal static Directions? GetDirection(Coordinate coordinate1,Coordinate coordinate2)
+        internal static Directions? GetDirection(Coordinate to,Coordinate from)
         {
-            if (coordinate1.x == coordinate2.x)
+            if (to.x == from.x)
             {
-                if (coordinate1.y > coordinate2.y)
+                if (to.y > from.y)
                     return Directions.Right;
-                else if (coordinate1.y < coordinate2.y)
+                else if (to.y < from.y)
                     return Directions.Left;
                 else
                     return null;
             }
-            else if (coordinate1.y == coordinate2.y)
+            else if (to.y == from.y)
             {
-                if (coordinate1.x > coordinate2.x)
+                if (to.x > from.x)
                     return Directions.Up;
-                else if (coordinate1.x < coordinate2.x)
+                else if (to.x < from.x)
                     return Directions.Down;
                 else
                     return null;

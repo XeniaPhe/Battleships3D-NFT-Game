@@ -74728,13 +74728,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45a45528c27b6c644983d003e1d0e51d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shipBundles:
-  - destroyer: {fileID: 11400000, guid: e1beb8ce35fbf124d8a5468ec4edc1e4, type: 2}
-    cruiser: {fileID: 11400000, guid: 014f9d5265c453e4d8365a82496b2a91, type: 2}
-    submarine: {fileID: 11400000, guid: 230274b08f9b6ac45a82f8c9f88a38db, type: 2}
-    battleship: {fileID: 11400000, guid: 5d60b1d5ba868814fb71d207e8480e24, type: 2}
-    carrier: {fileID: 11400000, guid: ea86e292811d48645aff6ea6ffaca14f, type: 2}
-  currentLevel: 1
+  levels: []
 --- !u!4 &1945939276
 Transform:
   m_ObjectHideFlags: 0

@@ -34,7 +34,7 @@ namespace BattleShips.Management
 
         #region Cached Fields
 
-        IPlayer computer;
+        AI computer;
         IPlayer player;
         GameUIManager uiManager;
         ShipSelector shipSelector;
@@ -43,6 +43,8 @@ namespace BattleShips.Management
         MoveLogger moveLogger;
         GamePhase phase;
         Turn turn = Turn.Player;
+        AttackResult attackResult;
+        Attack attack;
 
         int shipsPlaced = 0;
         Coordinate hit = null;
@@ -130,14 +132,32 @@ namespace BattleShips.Management
             uiManager.DisableReadyButton();
             phase = GamePhase.ShipPlacement;
             moveLogger.PublishReport("Place your ships and press ready",Color.white,shipPlacementTime);
-            timer.StartCountdown(shipPlacementTime, player.PlaceShipsRandom);
+            timer.StartCountdown(turnTime, () =>
+            {
+                moveLogger.PublishReport("Timeout!", Color.red, 3f);
+                StartCoroutine(WaitFor(() =>
+                {
+                    DisplayWinLoseScreen(Turn.AI);
+                }, 3f));
+            });
+        }
+
+        internal AttackResult CheckAttack(Attack attack)
+        {
+            this.attack = attack;
+
+            if(turn == Turn.Player)
+                attackResult = computer.AsPlayer().CheckTile(attack);
+            else
+                attackResult = player.CheckTile(attack);
+
+            return attackResult;
         }
 
         public void StartAIShipPlacement()
         {
             turn = Turn.AI;
             uiManager.TurnOffMenu(UIParts.ReadyButton);uiManager.SetWrapperButtonsInteractable();
-            computer.PlaceShipsRandom();
             timer.CancelCountdown();
             moveLogger.PublishReport("Enemy is placing his ships",Color.white,aiShipPlacementTime);
             StartCoroutine(WaitFor(() => { SwitchTurn(keepTurn); },aiShipPlacementTime));
@@ -160,8 +180,11 @@ namespace BattleShips.Management
 
                 timer.StartCountdown(turnTime, () =>
                 {
-                    var attack = player.PlayRandom();
-                    PlayerAttack(attack);
+                    moveLogger.PublishReport("Timeout!", Color.red, 3f);
+                    StartCoroutine(WaitFor(() =>
+                    {
+                        DisplayWinLoseScreen(Turn.AI);
+                    }, 3f));
                 });
 
                 turn = Turn.Player;
@@ -174,16 +197,16 @@ namespace BattleShips.Management
                     moveLogger.PublishReport("Enemy's turn", Color.white, aiTurnTime - intermediateTextDuration);
                 }, intermediateTextDuration));
 
-                var attack = computer.PlayRandom(hit,shipSunk);
                 turn = Turn.AI;
-                EnemyAttack(attack);
+                computer.Play();
+                EnemyAttack();
             }
         }
 
         private void PlayerAttack(Attack attack)
         {
             shipSelector.FireFromSelectedShip();
-            var attackResult = computer.CheckTile(attack);
+            var attackResult = computer.AsPlayer().CheckTile(attack);
 
             if(attackResult == AttackResult.AllDestroyed)
             {
@@ -220,10 +243,8 @@ namespace BattleShips.Management
             SwitchTurn(keepTurn);
         }
         bool enemyHit = false;
-        private void EnemyAttack(Attack attack)
+        private void EnemyAttack()
         {
-            var attackResult = player.CheckTile(attack);
-
             if (attackResult == AttackResult.AllDestroyed)
             {
                 board.HitShip(attack.coordinates, TileType.Defense);

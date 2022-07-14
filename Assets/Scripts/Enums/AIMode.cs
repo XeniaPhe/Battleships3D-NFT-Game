@@ -5,6 +5,7 @@
         Seek,
         TrackDown,
         Mark,
-        Terminate
+        Terminate,
+        Investigation,
     }
 }

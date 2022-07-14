@@ -2,13 +2,13 @@
 {
     internal enum AttackResult
     {
-        Hit = 0,
-        Miss,
-        DestroyerDestroyed,
+        DestroyerDestroyed = 0,
         SubmarineDestroyed,
         CruiserDestroyed,
         BattleshipDestroyed,
         CarrierDestroyed,
-        AllDestroyed
+        AllDestroyed,
+        Hit,
+        Miss
     }
 }

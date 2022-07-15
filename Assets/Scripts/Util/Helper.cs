@@ -8,24 +8,30 @@ namespace BattleShips.Utils
     {
         static System.Random rnd = new System.Random();
 
-        internal static double Root2n(double num, uint n)
-        {
-            if (n % 2 != 0) throw new ArgumentException("This function can't calculate an odd root of a number", "n");
-            if (n == 0) return 1;
-
-            n = n / 2;
-
-            for (int i = 0; i < n; i++)
-                num = Math.Sqrt(num);
-
-            return num;
-        }
-
         internal static double Random(double low,double high) => rnd.NextDouble() * (high - low) + low;
 
-        internal static double Random100() => Random(0, 100);
-
         internal static Directions GetOppositeDirection(Directions direction) => (Directions)(((int)direction + 2) % 4);
+
+        internal static Directions[] GetOrthogonalDirections(Directions direction)
+        {
+            Directions[] directions = new Directions[2];
+
+            switch (direction)
+            {
+                case Directions.Right:
+                case Directions.Left:
+                    directions[0] = Directions.Up;
+                    directions[1] = Directions.Down;
+                    break;
+                case Directions.Up:
+                case Directions.Down:
+                    directions[0] = Directions.Right;
+                    directions[1] = Directions.Left;
+                    break;
+            }
+
+            return directions;
+        }
 
         internal static Vector3 GetDirectionVector(Directions direction) => direction switch
         {

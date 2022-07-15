@@ -6,6 +6,5 @@
         TrackDown,
         Mark,
         Terminate,
-        Investigation,
     }
 }

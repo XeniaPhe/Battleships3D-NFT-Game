@@ -198,7 +198,7 @@ namespace BattleShips.Management
                 }, intermediateTextDuration));
 
                 turn = Turn.AI;
-                computer.Play();
+                computer.MakeMove();
                 EnemyAttack();
             }
         }

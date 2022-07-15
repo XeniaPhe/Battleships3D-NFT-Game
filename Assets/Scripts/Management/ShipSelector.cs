@@ -140,13 +140,8 @@ namespace BattleShips.Management
             shipInstance = Instantiate<Transform>(selectedShip.Model.transform, pos, Quaternion.Euler(rotation), null);
             shipInstance.localScale = selectedShip.PreferedScale;
             foreach (var child in shipInstance.transform)
-            {
                 foreach (var item in (Transform)child)
-                {
                     ((Transform)item).gameObject.SetActive(false);
-                    Debug.Log(a++);
-                }
-            }
             shipInstance.name = selectedShip.Type.ToString();
 
             /*foreach(var mat in shipInstance.GetComponent<MeshRenderer>().materials)

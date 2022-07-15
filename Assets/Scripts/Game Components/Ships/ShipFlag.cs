@@ -34,11 +34,11 @@ namespace BattleShips.GameComponents.Ships
         }
 
         internal bool AreAllDestroyed() => shipFlag == 0;
-        internal bool IsDestroyerDestroyed() => CheckShip(0);
-        internal bool IsSubmarineDestroyed() => CheckShip(1);
-        internal bool IsCruiserDestroyed() => CheckShip(2);
-        internal bool IsBattleshipDestroyed() => CheckShip(3);
-        internal bool IsCarrierDestroyed() => CheckShip(4);
+        internal bool IsDestroyerDestroyed() => !CheckShip(0);
+        internal bool IsSubmarineDestroyed() => !CheckShip(1);
+        internal bool IsCruiserDestroyed() => !CheckShip(2);
+        internal bool IsBattleshipDestroyed() => !CheckShip(3);
+        internal bool IsCarrierDestroyed() => !CheckShip(4);
         internal void SetShipDestroyed(ShipType type)
         {
             switch (type)

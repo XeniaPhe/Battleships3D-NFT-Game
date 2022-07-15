@@ -14,7 +14,6 @@ public class ShipHit : MonoBehaviour
     public void HitShip(int slot)
     {
         GameObject shot = Instantiate(hits.GetChild(slot - 1).gameObject, hits.GetChild(slot - 1).position, hits.GetChild(slot - 1).rotation);
-        Debug.Log(gameObject.name);
         shot.SetActive(true);
         fires.GetChild(slot - 1).gameObject.SetActive(true);
         shipAudioSource.clip = shipHitClips[Random.Range(0, shipHitClips.Count)];

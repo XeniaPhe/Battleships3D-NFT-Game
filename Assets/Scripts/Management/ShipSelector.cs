@@ -29,7 +29,7 @@ namespace BattleShips.Management
 
         GameBoard board;
         internal Ship selectedShip;
-        Directions currentDirection = Directions.Up;
+        Direction currentDirection = Direction.Up;
         DefenseTile enteredTile;
         List<DefenseTile> tilesToPlaceTo = new List<DefenseTile>();
         Transform shipInstance;
@@ -72,7 +72,7 @@ namespace BattleShips.Management
 
         internal void Rotate()
         {
-            currentDirection = (Directions)(((int)currentDirection + 1) % 4);
+            currentDirection = (Direction)(((int)currentDirection + 1) % 4);
             HighlightShipPlacement(enteredTile);
         }
 
@@ -85,8 +85,10 @@ namespace BattleShips.Management
             foreach (var tile in tilesToPlaceTo)
                 tile.RemoveTemporaryPaint();
 
-            if (!(selectedShip is not null && startTile is not null && startTile.IsTileInNormalState()))
+            if (!(selectedShip is not null && startTile is not null))
                 return;
+
+            
 
             enteredTile = startTile;
             tilesToPlaceTo = new List<DefenseTile>();
@@ -94,6 +96,9 @@ namespace BattleShips.Management
             int firstDir = selectedShip.Length / 2;
             Coordinate tileCoord = enteredTile.tileData.Coordinates;
             Coordinate tempCoords;
+
+            if (!startTile.IsTileInNormalState())
+                isSelectionSuccessful = false;
 
             for (int i = 0; i < firstDir; i++)
             {
@@ -119,16 +124,16 @@ namespace BattleShips.Management
             {
                 switch (currentDirection)
                 {
-                    case Directions.Right:
+                    case Direction.Right:
                         pos += (Vector3.back);
                         break;
-                    case Directions.Up:
+                    case Direction.Up:
                         pos += (Vector3.right);
                         break;
-                    case Directions.Left:
+                    case Direction.Left:
                         pos += (Vector3.forward);
                         break;
-                    case Directions.Down:
+                    case Direction.Down:
                         pos += (Vector3.left);
                         break;
                 }
@@ -151,16 +156,19 @@ namespace BattleShips.Management
                 tile.PaintTemporarily(isSelectionSuccessful ? successfulColor : unsuccessfulColor);
 
 
-            void Traverse(int distance,Directions direction)
+            void Traverse(int distance,Direction direction)
             {
                 for (int i = 0; i < distance; i++)
                 {
                     temp = board.GetTile(tileCoord, TileType.Defense) as DefenseTile;
 
-                    if (temp != null && temp.IsTileInNormalState())
+                    if (temp != null)
                     {
                         tilesToPlaceTo.Add(temp);
                         tileCoord = tileCoord.GetCoordinatesAt(direction);
+
+                        if (!temp.IsTileInNormalState())
+                            isSelectionSuccessful = false;
                     }
                     else
                     {

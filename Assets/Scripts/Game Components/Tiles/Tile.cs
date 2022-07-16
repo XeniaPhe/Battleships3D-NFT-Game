@@ -57,7 +57,7 @@ namespace BattleShips.GameComponents.Tiles
             board.EnteredTile = null;
         }
 
-        internal Coordinate GetTileCoordinatesAt(Directions direction) => tileData.Coordinates.GetCoordinatesAt(direction);
+        internal Coordinate GetTileCoordinatesAt(Direction direction) => tileData.Coordinates.GetCoordinatesAt(direction);
 
         internal bool IsTileInNormalState() => (tileData.tileState == TileState.Normal && !isTemporarilyPainted);
         internal bool HasPeg() => peg is not null;

@@ -46,8 +46,8 @@ namespace BattleShips.GameComponents.AI
 
 
         AIMode mode = AIMode.Seek;
-        List<Tuple<Directions, int, double>> validDirections = new List<Tuple<Directions, int, double>>();
-        Directions? searchDirection = null;
+        List<Tuple<Direction, int, double>> validDirections = new List<Tuple<Direction, int, double>>();
+        Direction? searchDirection = null;
         int[] marker = new int[3]; //marker[0] = negative dir,marker[1] = first tile,marker[2] = positive dir 
         Coordinate lastAttack;
         Coordinate firstTile;
@@ -70,7 +70,6 @@ namespace BattleShips.GameComponents.AI
             {
                 instance = this;
                 InstantiateAI(0);
-                Debug.Log(probabilityList.Count);
             }
         }
         private void Start()
@@ -166,7 +165,7 @@ namespace BattleShips.GameComponents.AI
                     placing[j].tileState = TileState.HasShip;
                     placing[j].shipIndex = j;
                     placing[j].startTile = placing[0];
-                    placing[j].shipDirection = horizontal ? Directions.Right : Directions.Down;
+                    placing[j].shipDirection = horizontal ? Direction.Right : Direction.Down;
                 }
             }
         }
@@ -543,7 +542,7 @@ namespace BattleShips.GameComponents.AI
                             ++direction;
 
                     found = true;
-                    tileToAttack = GetTileAt(enemyTiles, firstTile.GetCoordinatesAt((Directions)direction));
+                    tileToAttack = GetTileAt(enemyTiles, firstTile.GetCoordinatesAt((Direction)direction));
 
                     found &= (validDirections[direction].Item2 == 0);
 
@@ -560,7 +559,7 @@ namespace BattleShips.GameComponents.AI
                 if (coords == null || (coords != null && GetTileAt(enemyTiles, coords).tileState != TileState.Normal))
                 {
                     var oppositeDirection = Helper.GetOppositeDirection(searchDirection.Value);
-                    Tuple<Directions, int, double> dir;
+                    Tuple<Direction, int, double> dir;
 
                     if (isPositiveDirection && marker[0] == 0 &&
                         (dir = validDirections.Where(d => d.Item1 == oppositeDirection).FirstOrDefault()) != null && dir.Item2 == 0)
@@ -691,7 +690,7 @@ namespace BattleShips.GameComponents.AI
             firstTile = lastAttack;
             searchDirection = null;
             mode = AIMode.TrackDown;
-            validDirections = new List<Tuple<Directions, int, double>>();
+            validDirections = new List<Tuple<Direction, int, double>>();
             var possibleDirections = firstTile.GetNeighborDirections();
             Coordinate coords = null;
             double prob = 0;
@@ -728,9 +727,9 @@ namespace BattleShips.GameComponents.AI
                 return;
 
             Coordinate[] firstTwo = terminationQueue.Take(2).ToArray();
-            Directions dir = Coordinate.GetDirection(firstTwo[1], firstTwo[0]).Value!;
-            Directions[] orthoDirs = Helper.GetOrthogonalDirections(dir);
-            Directions oppositeDir = Helper.GetOppositeDirection(dir);
+            Direction dir = Coordinate.GetDirection(firstTwo[1], firstTwo[0]).Value!;
+            Direction[] orthoDirs = Helper.GetOrthogonalDirections(dir);
+            Direction oppositeDir = Helper.GetOppositeDirection(dir);
 
             Coordinate first = firstTwo[0];
             Coordinate last = terminationQueue.TakeLast(1).ToArray()[0];

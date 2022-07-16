@@ -101,24 +101,24 @@ namespace BattleShips.GameComponents.Tiles
             return neighbors;
         }
 
-        internal List<Directions> GetNeighborDirections()
+        internal List<Direction> GetNeighborDirections()
         {
-            List<Directions> directions = new List<Directions>();
+            List<Direction> directions = new List<Direction>();
             Coordinate temp;
 
-            if ((temp = Left) is not null) directions.Add(Directions.Left);
-            if ((temp = Right) is not null) directions.Add(Directions.Right);
-            if ((temp = Down) is not null) directions.Add(Directions.Down);
-            if ((temp = Up) is not null) directions.Add(Directions.Up);
+            if ((temp = Left) is not null) directions.Add(Direction.Left);
+            if ((temp = Right) is not null) directions.Add(Direction.Right);
+            if ((temp = Down) is not null) directions.Add(Direction.Down);
+            if ((temp = Up) is not null) directions.Add(Direction.Up);
             return directions;
         }
 
-        internal Coordinate GetCoordinatesAt(Directions direction) => direction switch
+        internal Coordinate GetCoordinatesAt(Direction direction) => direction switch
         {
-            Directions.Up => Up,
-            Directions.Down => Down,
-            Directions.Left => Left,
-            Directions.Right => Right,
+            Direction.Up => Up,
+            Direction.Down => Down,
+            Direction.Left => Left,
+            Direction.Right => Right,
             _ => throw new ArgumentException("Undefined Direction!")
         };
 
@@ -143,23 +143,23 @@ namespace BattleShips.GameComponents.Tiles
                 false => new Vector2Int(x, y)
             };
 
-        internal static Directions? GetDirection(Coordinate to,Coordinate from)
+        internal static Direction? GetDirection(Coordinate to,Coordinate from)
         {
             if (to.x == from.x)
             {
                 if (to.y > from.y)
-                    return Directions.Right;
+                    return Direction.Right;
                 else if (to.y < from.y)
-                    return Directions.Left;
+                    return Direction.Left;
                 else
                     return null;
             }
             else if (to.y == from.y)
             {
                 if (to.x > from.x)
-                    return Directions.Up;
+                    return Direction.Up;
                 else if (to.x < from.x)
-                    return Directions.Down;
+                    return Direction.Down;
                 else
                     return null;
             }

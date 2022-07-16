@@ -1745,6 +1745,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 854358278}
+  - component: {fileID: 854358279}
   m_Layer: 0
   m_Name: Xws
   m_TagString: Untagged
@@ -1774,6 +1775,19 @@ RectTransform:
   m_AnchoredPosition: {x: -45.5, y: 4}
   m_SizeDelta: {x: 170.62021, y: 50.00025}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &854358279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 854358277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ffea081ec345094eab1bec0fea1417c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 723779208}
 --- !u!1 &916274756
 GameObject:
   m_ObjectHideFlags: 0
@@ -3953,7 +3967,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7e9b522c94f25404e8bfcc2dcab9ce46, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c74ab482715871f4fadae37356360d23, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4097,6 +4111,7 @@ GameObject:
   - component: {fileID: 2087966220}
   - component: {fileID: 2087966219}
   - component: {fileID: 2087966218}
+  - component: {fileID: 2087966221}
   m_Layer: 5
   m_Name: Dockyard
   m_TagString: Untagged
@@ -4170,9 +4185,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 300734843}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: DockyardButtonClick
+      - m_Target: {fileID: 2087966221}
+        m_TargetAssemblyTypeName: DemoOpenDockyard, Assembly-CSharp
+        m_MethodName: OpenScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4220,6 +4235,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2087966216}
   m_CullTransparentMesh: 1
+--- !u!114 &2087966221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2087966216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4696dcce5f76ee045b4ba1ce78a965a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2136302861
 GameObject:
   m_ObjectHideFlags: 0

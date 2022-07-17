@@ -83,14 +83,14 @@ namespace BattleShips.GameComponents
             player = Player.Instance;
         }
 
-        internal Tile GetTile(int x,int y,TileType type,bool zeroBased = false)
+        internal Tile GetTile(int x, int y, TileType type, bool zeroBased = false)
         {
             if (!Coordinate.IsValidCoordinate(x, y, zeroBased)) return null;
             int index = zeroBased ? x * 10 + y : x * 10 + y - 11;
             return type == TileType.Defense ? defenseTiles[index] : attackTiles[index];
         }
-        
-        internal void PlacePeg(TileType tileType,Coordinate coordinate,bool red)
+
+        internal void PlacePeg(TileType tileType, Coordinate coordinate, bool red)
         {
             Peg peg = red ? redPeg : whitePeg;
             var tile = GetTile(coordinate, tileType);
@@ -101,25 +101,23 @@ namespace BattleShips.GameComponents
             tile.peg = peg;
         }
 
-        internal void RevealShip(TileData shipStart)
+        internal void RevealShip(Coordinate shipStart)
         {
-           
+            var tile = GetTile(shipStart, TileType.Attack);
+
+            int len = tile.tileData.ship.Length;
+
         }
 
-        internal void SunkShip()
-        {
+        internal Tile GetTile(Vector2Int coord, TileType type, bool zeroBased = false) => GetTile(coord.x, coord.y, type, zeroBased);
 
-        }
-
-        internal Tile GetTile(Vector2Int coord,TileType type,bool zeroBased = false) => GetTile(coord.x,coord.y,type,zeroBased);
-
-        internal Tile GetTile(Coordinate coord,TileType type) => coord is not null ? GetTile(coord.GetCoordinateVector(), type, false) : null;
+        internal Tile GetTile(Coordinate coord, TileType type) => coord is not null ? GetTile(coord.GetCoordinateVector(), type, false) : null;
 
         internal void UpdateShipUI(Coordinate coord)
         {
             GetTile(coord, TileType.Defense).tileData.ship.UpdateUI();
         }
-        internal void HitShip(Coordinate coord,TileType type)
+        internal void HitShip(Coordinate coord, TileType type)
         {
             string name = GetTile(coord, type).tileData.ship.name;
             int index = GetTile(coord, type).tileData.shipIndex + 1;
@@ -143,7 +141,7 @@ namespace BattleShips.GameComponents
             }
         }
 
-        internal void CreateExplosion(Coordinate coord,TileType type)
+        internal void CreateExplosion(Coordinate coord, TileType type)
         {
             Vector3 pos = GetTile(coord, type).transform.position;
             explosionHitter.HitExplosion(pos);

@@ -291,7 +291,7 @@ namespace BattleShips.Management
                     board.HitShip(attack.coordinates, TileType.Defense);
                     //board.PlacePeg(TileType.Defense, attack.coordinates, true);
                     moveLogger.PublishReport($"Enemy sank your {shipSunk.ToString()}!", Color.red, aiTurnTime);
-                    board.SunkShip();
+                    board.RevealShip(attack.coordinates);
                 };
             }
 
@@ -302,7 +302,6 @@ namespace BattleShips.Management
         internal void OnShipPlaced()
         {
             ++shipsPlaced;
-            //This is being called twice
 
             if (shipsPlaced == 5)
             {

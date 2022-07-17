@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Submarine
   m_EditorClassIdentifier: 
   baseUID: Invisible
-  model: {fileID: 8688397068753773434, guid: 978ea8c4b215e46ddbfda67b78593483, type: 3}
+  model: {fileID: 4933526403625940581, guid: 978ea8c4b215e46ddbfda67b78593483, type: 3}
   cardSprite: {fileID: 21300000, guid: eef8f01570fe74ce8ab12f32b38a45ad, type: 3}
   preferedScale: {x: 18.5, y: 18.5, z: 18.5}
   normalRotation: {x: -90, y: 0, z: 0}
+  preferredHeight: 0
   armour: 80
   weapon1: {fileID: 0}
   weapon2: {fileID: 0}

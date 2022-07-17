@@ -15,10 +15,11 @@ namespace BattleShips.GameComponents.Ships
         #region Serialized Fields
 
         [SerializeField] internal string baseUID;
-        [SerializeField] protected MeshFilter model;
+        [SerializeField] protected GameObject model;
         [SerializeField] internal Sprite cardSprite;
         [SerializeField] protected Vector3 preferedScale;
         [SerializeField] protected Vector3 normalRotation;
+        [SerializeField] protected float preferredHeight;
         [SerializeField] protected int armour;
         [SerializeField] protected Weapon weapon1;
         [SerializeField] protected Weapon weapon2;
@@ -30,11 +31,12 @@ namespace BattleShips.GameComponents.Ships
         internal GameShipWrapper wrapper;
         internal Vector3 PreferedScale => preferedScale;
         internal Vector3 NormalRotation => normalRotation;
-        internal MeshFilter Model => model;
+        internal GameObject Model => model;
 
         internal ShipHit shipHit;
         internal Sprite CardSprite => cardSprite;
         internal int Armour => armour;
+        internal float PreferredHeigth => preferredHeight;
         internal Weapon Weapon1 => weapon1;
         internal Weapon Weapon2 => weapon2;
 

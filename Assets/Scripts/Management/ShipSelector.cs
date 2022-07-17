@@ -139,7 +139,7 @@ namespace BattleShips.Management
                 }
             }
 
-            pos.y = 1.2f;
+            pos.y = selectedShip.PreferredHeigth;
             rotation.y = (int)(currentDirection) * 90;
             
             shipInstance = Instantiate<Transform>(selectedShip.Model.transform, pos, Quaternion.Euler(rotation), null);
@@ -149,12 +149,8 @@ namespace BattleShips.Management
                     ((Transform)item).gameObject.SetActive(false);
             shipInstance.name = selectedShip.Type.ToString();
 
-            /*foreach(var mat in shipInstance.GetComponent<MeshRenderer>().materials)
-                mat.color = Color.white;*/
-
             foreach (var tile in tilesToPlaceTo)
                 tile.PaintTemporarily(isSelectionSuccessful ? successfulColor : unsuccessfulColor);
-
 
             void Traverse(int distance,Direction direction)
             {
@@ -185,10 +181,10 @@ namespace BattleShips.Management
             if (shipInstance is null) return;
             if (isSelectionSuccessful is false) return;
 
-            if (selectedShip.Type == ShipType.Submarine)
-                shipInstance.position = new Vector3(shipInstance.position.x, 0f, shipInstance.position.z);
-            else
-                shipInstance.position = new Vector3(shipInstance.position.x, 0.4f, shipInstance.position.z);
+            //if (selectedShip.Type == ShipType.Submarine)
+            //    shipInstance.position = new Vector3(shipInstance.position.x, 0f, shipInstance.position.z);
+            //else
+            //    shipInstance.position = new Vector3(shipInstance.position.x, 0.4f, shipInstance.position.z);
 
             DefenseTile tile;
             TileData start = tilesToPlaceTo[0].tileData;

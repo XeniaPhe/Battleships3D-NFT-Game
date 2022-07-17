@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Carrier
   m_EditorClassIdentifier: 
   baseUID: Shinano
-  model: {fileID: 6637085511003296922, guid: ad57477f5c220492183101431e143fbe, type: 3}
+  model: {fileID: 6989482315705549189, guid: ad57477f5c220492183101431e143fbe, type: 3}
   cardSprite: {fileID: 21300000, guid: d6e24d4d8a75e43c5a64676ad6886c3f, type: 3}
   preferedScale: {x: 13.7, y: 13.7, z: 13.7}
   normalRotation: {x: -90, y: 0, z: 0}
+  preferredHeight: 0.4
   armour: 80
   weapon1: {fileID: 0}
   weapon2: {fileID: 0}

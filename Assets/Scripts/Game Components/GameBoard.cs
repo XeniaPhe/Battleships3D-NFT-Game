@@ -1,7 +1,6 @@
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using BattleShips.Management;
+using BattleShips.GameComponents.Ships;
 using BattleShips.GameComponents.Tiles;
 
 namespace BattleShips.GameComponents
@@ -92,10 +91,14 @@ namespace BattleShips.GameComponents
 
         internal void PlacePeg(TileType tileType, Coordinate coordinate, bool red)
         {
-            Peg peg = red ? redPeg : whitePeg;
             var tile = GetTile(coordinate, tileType);
+
+            if (tile.peg is not null)
+                return;
+
             var pos = tile.transform.position;
             pos.y -= 0.5f;
+            Peg peg = red ? redPeg : whitePeg;
             peg = Instantiate<Peg>(peg, pos, transform.rotation, transform);
             peg.InitializeRandom(pos);
             tile.peg = peg;
@@ -105,7 +108,23 @@ namespace BattleShips.GameComponents
         {
             var tile = GetTile(shipStart, TileType.Attack);
 
-            int len = tile.tileData.ship.Length;
+            Direction dir = 0;
+            Tile temp;
+
+            for (int i = 0; i < 4; i++)
+                if ((temp = GetTile(tile.GetTileCoordinatesAt(dir = (Direction)i), TileType.Attack)).peg is not null && !temp.peg.isWhitePeg)
+                    break;
+
+            temp = tile;
+            int length = 0;
+
+            while (temp.peg is not null && !temp.peg.isWhitePeg)
+            {
+                Destroy(temp.peg.gameObject);
+                temp = GetTile(temp.GetTileCoordinatesAt(dir), TileType.Attack);
+                ++length;
+            }
+
 
         }
 

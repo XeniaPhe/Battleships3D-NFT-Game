@@ -1,6 +1,8 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 using BattleShips.GUI;
+using BattleShips.GameComponents.Tiles;
 
 namespace BattleShips.GameComponents.Ships
 {
@@ -19,7 +21,7 @@ namespace BattleShips.GameComponents.Ships
         [SerializeField] internal Sprite cardSprite;
         [SerializeField] protected Vector3 preferedScale;
         [SerializeField] protected Vector3 normalRotation;
-        [SerializeField] protected float preferredHeight;
+        [SerializeField] protected float preferedHeight;
         [SerializeField] protected int armour;
         [SerializeField] protected Weapon weapon1;
         [SerializeField] protected Weapon weapon2;
@@ -36,7 +38,7 @@ namespace BattleShips.GameComponents.Ships
         internal ShipHit shipHit;
         internal Sprite CardSprite => cardSprite;
         internal int Armour => armour;
-        internal float PreferredHeigth => preferredHeight;
+        internal float PreferedHeigth => preferedHeight;
         internal Weapon Weapon1 => weapon1;
         internal Weapon Weapon2 => weapon2;
 
@@ -76,6 +78,53 @@ namespace BattleShips.GameComponents.Ships
             ShipType.Carrier => 5,
             ShipType.Cruiser => 3,
             _ => 0,
+        };
+
+        internal Transform InstantiateShip(Vector3 position,Direction direction,string name = null)
+        {
+            Vector3 rotation = normalRotation;
+
+            if (Length % 2 == 0)
+            {
+                switch (direction)
+                {
+                    case Direction.Right:
+                        position += (Vector3.back);
+                        break;
+                    case Direction.Up:
+                        position += (Vector3.right);
+                        break;
+                    case Direction.Left:
+                        position += (Vector3.forward);
+                        break;
+                    case Direction.Down:
+                        position += (Vector3.left);
+                        break;
+                }
+            }
+
+            position.y = preferedHeight;
+            rotation.y = (int)(direction) * 90;
+
+            var shipInstance = Instantiate<Transform>(model.transform, position, Quaternion.Euler(rotation), null);
+            shipInstance.localScale = preferedScale;
+
+            foreach (var child in shipInstance.transform)
+                foreach (var item in (Transform)child)
+                    ((Transform)item).gameObject.SetActive(false);
+
+            shipInstance.name = name ?? Type.ToString();
+
+            return shipInstance;
+        }
+        internal static ShipType GetShipType(AttackResult attackResult) => attackResult switch
+        {
+            AttackResult.DestroyerDestroyed => ShipType.Destroyer,
+            AttackResult.SubmarineDestroyed => ShipType.Submarine,
+            AttackResult.CruiserDestroyed => ShipType.Cruiser,
+            AttackResult.BattleshipDestroyed => ShipType.Battleship,
+            AttackResult.CarrierDestroyed => ShipType.Carrier,
+            _ => throw new ArgumentException("Attack result ?? "),
         };
     }
 }

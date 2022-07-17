@@ -234,10 +234,10 @@ namespace BattleShips.Management
             }
             else
             {
-                moveLogger.PublishReport($"You sank enemy's {GetShipType(attackResult).ToString()}!", Color.green, aiTurnTime); //Details later
+                moveLogger.PublishReport($"You sank enemy's {Ship.GetShipType(attackResult).ToString()}!", Color.green, aiTurnTime); //Details later
                 board.PlacePeg(TileType.Attack, attack.coordinates,true);
                 board.CreateExplosion(attack.coordinates, TileType.Attack);
-                board.RevealShip(null);
+                board.RevealShip(attack.coordinates, computer.GetShip(Ship.GetShipType(attackResult)));
             }
 
             SwitchTurn(keepTurn);
@@ -284,14 +284,15 @@ namespace BattleShips.Management
             else
             {
                 hit = attack.coordinates;
-                shipSunk = GetShipType(attackResult);
+                shipSunk = Ship.GetShipType(attackResult);
+
                 action += () =>
                 {
                     board.UpdateShipUI(attack.coordinates);
                     board.HitShip(attack.coordinates, TileType.Defense);
                     //board.PlacePeg(TileType.Defense, attack.coordinates, true);
                     moveLogger.PublishReport($"Enemy sank your {shipSunk.ToString()}!", Color.red, aiTurnTime);
-                    board.RevealShip(attack.coordinates);
+                    //board.SunkShip();
                 };
             }
 
@@ -309,16 +310,6 @@ namespace BattleShips.Management
                 moveLogger.PublishReport("Press ready whenever you are!", Color.white, timer.RemainingTime);
             }
         }
-
-        ShipType GetShipType(AttackResult attackResult) => attackResult switch
-        {
-            AttackResult.DestroyerDestroyed => ShipType.Destroyer,
-            AttackResult.SubmarineDestroyed => ShipType.Submarine,
-            AttackResult.CruiserDestroyed => ShipType.Cruiser,
-            AttackResult.BattleshipDestroyed => ShipType.Battleship,
-            AttackResult.CarrierDestroyed => ShipType.Carrier,
-            _ => throw new ArgumentOutOfRangeException("Attack result ?? "),
-        };
 
         IEnumerator WaitFor(UnityAction action,float seconds)
         {

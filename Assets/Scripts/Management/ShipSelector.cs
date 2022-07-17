@@ -117,37 +117,7 @@ namespace BattleShips.Management
             int secondDir = selectedShip.Length - firstDir - 1;
             Traverse(secondDir,oppositeDirection);
 
-            Vector3 rotation = selectedShip.NormalRotation;
-            Vector3 pos = enteredTile.transform.position;
-
-            if(selectedShip.Length %2 == 0)
-            {
-                switch (currentDirection)
-                {
-                    case Direction.Right:
-                        pos += (Vector3.back);
-                        break;
-                    case Direction.Up:
-                        pos += (Vector3.right);
-                        break;
-                    case Direction.Left:
-                        pos += (Vector3.forward);
-                        break;
-                    case Direction.Down:
-                        pos += (Vector3.left);
-                        break;
-                }
-            }
-
-            pos.y = selectedShip.PreferredHeigth;
-            rotation.y = (int)(currentDirection) * 90;
-            
-            shipInstance = Instantiate<Transform>(selectedShip.Model.transform, pos, Quaternion.Euler(rotation), null);
-            shipInstance.localScale = selectedShip.PreferedScale;
-            foreach (var child in shipInstance.transform)
-                foreach (var item in (Transform)child)
-                    ((Transform)item).gameObject.SetActive(false);
-            shipInstance.name = selectedShip.Type.ToString();
+            shipInstance = selectedShip.InstantiateShip(enteredTile.transform.position, currentDirection);
 
             foreach (var tile in tilesToPlaceTo)
                 tile.PaintTemporarily(isSelectionSuccessful ? successfulColor : unsuccessfulColor);
@@ -180,11 +150,6 @@ namespace BattleShips.Management
             if (selectedShip is null) return;
             if (shipInstance is null) return;
             if (isSelectionSuccessful is false) return;
-
-            //if (selectedShip.Type == ShipType.Submarine)
-            //    shipInstance.position = new Vector3(shipInstance.position.x, 0f, shipInstance.position.z);
-            //else
-            //    shipInstance.position = new Vector3(shipInstance.position.x, 0.4f, shipInstance.position.z);
 
             DefenseTile tile;
             TileData start = tilesToPlaceTo[0].tileData;

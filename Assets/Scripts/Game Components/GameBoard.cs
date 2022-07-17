@@ -104,28 +104,33 @@ namespace BattleShips.GameComponents
             tile.peg = peg;
         }
 
-        internal void RevealShip(Coordinate shipStart)
+        internal void RevealShip(Coordinate shipStart,Ship ship)
         {
-            var tile = GetTile(shipStart, TileType.Attack);
+            var startTile = GetTile(shipStart, TileType.Attack);
 
             Direction dir = 0;
             Tile temp;
 
             for (int i = 0; i < 4; i++)
-                if ((temp = GetTile(tile.GetTileCoordinatesAt(dir = (Direction)i), TileType.Attack)).peg is not null && !temp.peg.isWhitePeg)
+                if ((temp = GetTile(startTile.GetTileCoordinatesAt(dir = (Direction)i), TileType.Attack)) is not null && temp.peg is not null && !temp.peg.isWhitePeg)
                     break;
 
-            temp = tile;
-            int length = 0;
+            temp = startTile;
 
-            while (temp.peg is not null && !temp.peg.isWhitePeg)
+            for (int i = 0; i < ship.Length; i++)
             {
                 Destroy(temp.peg.gameObject);
                 temp = GetTile(temp.GetTileCoordinatesAt(dir), TileType.Attack);
-                ++length;
             }
 
+            Tile middleTile = startTile;
 
+            for (int i = 0; i < ship.Length/2; i++)
+                middleTile = GetTile(middleTile.GetTileCoordinatesAt(dir), TileType.Attack);
+
+            var shipInstance = ship.InstantiateShip(middleTile.transform.position, dir);
+            shipInstance.GetComponent<WaveSimulator>().InitializeRandom(shipInstance.transform.position, shipInstance.transform.rotation.eulerAngles);
+            shipInstance.GetComponent<ShipHit>().HitEntirely();
         }
 
         internal Tile GetTile(Vector2Int coord, TileType type, bool zeroBased = false) => GetTile(coord.x, coord.y, type, zeroBased);
@@ -139,6 +144,7 @@ namespace BattleShips.GameComponents
         internal void HitShip(Coordinate coord, TileType type)
         {
             string name = GetTile(coord, type).tileData.ship.name;
+            Debug.Log(name);
             int index = GetTile(coord, type).tileData.shipIndex + 1;
             switch (name)
             {

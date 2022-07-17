@@ -60,6 +60,19 @@ namespace BattleShips.GameComponents.AI
 
         #endregion
 
+        #region Public Fields and Properties
+
+        internal Ship GetShip(ShipType shipType) => shipType switch
+        {
+            ShipType.Destroyer => deck.destroyer,
+            ShipType.Cruiser => deck.cruiser,
+            ShipType.Submarine => deck.submarine,
+            ShipType.Battleship => deck.battleship,
+            ShipType.Carrier => deck.carrier
+        };
+
+        #endregion
+
         #region Instantiation
 
         private void Awake()
@@ -529,9 +542,9 @@ namespace BattleShips.GameComponents.AI
                 int direction = 0;
                 bool found = true;
 
-                double max = 0;
-                double prob = 0;
                 List<double> probs = validDirections.Select(d => d.Item3).ToList();
+                double max = probs[probs.Count-1];
+                double prob = 0;
 
                 do
                 {
@@ -701,6 +714,7 @@ namespace BattleShips.GameComponents.AI
                 if (GetTileAt(enemyTiles, coords = firstTile.GetCoordinatesAt(dir)).tileState == TileState.Normal)
                 {
                     prob = (from p in probabilityList
+                            where p.Item2.Equals(coords)
                             select ((temp = probabilityList.IndexOf(p)) == 0 ? p.Item1 :
                            p.Item1 - probabilityList[temp - 1].Item1)).First();
 

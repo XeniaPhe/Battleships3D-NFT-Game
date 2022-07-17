@@ -1,5 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ShipHit : MonoBehaviour
@@ -18,6 +18,11 @@ public class ShipHit : MonoBehaviour
         fires.GetChild(slot - 1).gameObject.SetActive(true);
         shipAudioSource.clip = shipHitClips[Random.Range(0, shipHitClips.Count)];
         shipAudioSource.Play();
+    }
+
+    public void HitEntirely()
+    {
+        fires.GetComponentsInChildren<ParticleSystem>().ToList().ForEach(p => p.gameObject.SetActive(true));
     }
 
     private void Update()

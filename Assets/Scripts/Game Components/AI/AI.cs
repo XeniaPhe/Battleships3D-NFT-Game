@@ -372,7 +372,7 @@ namespace BattleShips.GameComponents.AI
                     {
                         int j;
                         for (j = y; j < y + l; j++)
-                            if (tiles[x, j].tileState != TileState.Normal)
+                            if (enemyTiles[x, j].tileState != TileState.Normal)
                                 break;
                         if (j == y + l)
                             for (j = y; j < y + l; j++)
@@ -489,13 +489,14 @@ namespace BattleShips.GameComponents.AI
                 do
                 {
                     prob = Helper.Random(0, max);
+                    direction = 0;
 
                     foreach (var p in probs)
                         if (prob > p)
                             ++direction;
 
                     found = true;
-                    tileToAttack = GetTileAt(enemyTiles, firstTile.GetCoordinatesAt((Direction)direction));
+                    tileToAttack = GetTileAt(enemyTiles, firstTile.GetCoordinatesAt(validDirections[direction].Item1));
 
                     found &= (validDirections[direction].Item2 == 0);
 
@@ -503,11 +504,12 @@ namespace BattleShips.GameComponents.AI
 
                 var dir = validDirections[direction];
 
-                validDirections[direction] = new(dir.Item1, dir.Item2 + 1, dir.Item3);
+                validDirections[direction] = new(dir.Item1, 1, dir.Item3);
             }
             if (mode == AIMode.Mark)
             {
                 var coords = (newlySwappedDirection ? firstTile : lastAttack).GetCoordinatesAt(searchDirection.Value);
+                newlySwappedDirection = false;
 
                 if (coords == null || (coords != null && GetTileAt(enemyTiles, coords).tileState != TileState.Normal))
                 {
@@ -545,7 +547,7 @@ namespace BattleShips.GameComponents.AI
             }
 
             lastAttack = tileToAttack.Coordinates;
-            Attack attack = new Attack(lastAttack, 80);
+            Attack attack = new Attack(lastAttack, 30);
             var result = manager.CheckAttack(attack);
 
             if (result == AttackResult.Miss)
@@ -587,9 +589,9 @@ namespace BattleShips.GameComponents.AI
                     int tilesMarked = 1;
 
                     if (isPositiveDirection)
-                        tilesMarked = ++marker[2];
+                        tilesMarked += ++marker[2];
                     else
-                        tilesMarked = marker[2] + ++marker[0];
+                        tilesMarked += (marker[2] + ++marker[0]);
 
                     int maxShipLength = 0;
                     foreach (var len in lengths)
@@ -608,12 +610,16 @@ namespace BattleShips.GameComponents.AI
                 if (mode != AIMode.Terminate)
                     hitPath.Add(lastAttack);
 
-                enemyShips.SetShipDestroyed((ShipType)result);
+                if(mode == AIMode.TrackDown || mode==AIMode.Mark)
+                    EliminateSurroundingBlocks();
 
-                int shipLength = Ship.GetLength((ShipType)result);
+                if (result != AttackResult.AllDestroyed)
+                    enemyShips.SetShipDestroyed((ShipType)result);
+                else
+                    enemyShips.SetAllDestroyed();
 
                 hitPath.ForEach(c => GetTileAt(enemyTiles, c).tileState = TileState.HasSunkenShip);
-
+                hitPath = new List<Coordinate>();
                 mode = AIMode.Seek;
             }
 
@@ -651,6 +657,7 @@ namespace BattleShips.GameComponents.AI
             var possibleDirections = firstTile.GetNeighborDirections();
             Coordinate coords = null;
             double prob = 0;
+            double sum = 0;
             int temp = 0;
 
             foreach (var dir in possibleDirections)
@@ -662,13 +669,10 @@ namespace BattleShips.GameComponents.AI
                             select ((temp = probabilityList.IndexOf(p)) == 0 ? p.Item1 :
                            p.Item1 - probabilityList[temp - 1].Item1)).First();
 
-                    validDirections.Add(new(dir, 0, prob));
+                    sum += prob;
+                    validDirections.Add(new(dir, 0, sum));
                 }
             }
-
-            validDirections = (from d in validDirections
-                               orderby d.Item3 ascending
-                               select d).ToList();
         }
         private void InstantiateMarkMode()
         {
@@ -681,16 +685,14 @@ namespace BattleShips.GameComponents.AI
         }
         private void EliminateSurroundingBlocks()
         {
-            if (terminationQueue is null || !terminationQueue.Any())
-                return;
-
-            Coordinate[] firstTwo = terminationQueue.Take(2).ToArray();
+            Coordinate.OrderCoordinates(hitPath);
+            Coordinate[] firstTwo = hitPath.Take(2).ToArray();
             Direction dir = Coordinate.GetDirection(firstTwo[1], firstTwo[0]).Value!;
             Direction[] orthoDirs = Helper.GetOrthogonalDirections(dir);
             Direction oppositeDir = Helper.GetOppositeDirection(dir);
 
             Coordinate first = firstTwo[0];
-            Coordinate last = terminationQueue.TakeLast(1).ToArray()[0];
+            Coordinate last = hitPath.TakeLast(1).ToArray()[0];
 
             Coordinate end = first.GetCoordinatesAt(oppositeDir);
 
@@ -702,7 +704,7 @@ namespace BattleShips.GameComponents.AI
 
             Coordinate second = null;
 
-            foreach (var coords in terminationQueue)
+            foreach (var coords in hitPath)
             {
                 first = coords.GetCoordinatesAt(orthoDirs[0]);
                 second = coords.GetCoordinatesAt(orthoDirs[1]);

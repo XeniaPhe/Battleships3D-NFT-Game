@@ -62,6 +62,7 @@ namespace BattleShips.GameComponents.Ships
                     throw new ArgumentException("Undefined ship type!");
             }
         }
+        internal void SetAllDestroyed() => shipFlag = 0;
         internal void SetDestroyerDestroyed() => SetDestroyed(0);
         internal void SetSubmarineDestroyed() => SetDestroyed(1);
         internal void SetCruiserDestroyed() => SetDestroyed(2);

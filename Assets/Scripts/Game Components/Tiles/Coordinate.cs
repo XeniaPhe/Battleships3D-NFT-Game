@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace BattleShips.GameComponents.Tiles
 {
     [Serializable]
-    internal class Coordinate
+    internal class Coordinate : IComparable<Coordinate>
     {
         [SerializeField] int x;
         [SerializeField] int y;
@@ -119,7 +120,7 @@ namespace BattleShips.GameComponents.Tiles
             Direction.Down => Down,
             Direction.Left => Left,
             Direction.Right => Right,
-            _ => throw new ArgumentException("Undefined Direction!")
+            _ => null
         };
 
         internal static bool IsValidCoordinate(int x, int y, bool zeroBased = false) =>
@@ -167,6 +168,21 @@ namespace BattleShips.GameComponents.Tiles
                 return null;
         }
 
+        internal static void OrderCoordinates(List<Coordinate> coordinates)
+        {
+            if (coordinates is null || coordinates.Count < 2)
+                return;
+
+            int count = (from c in coordinates
+                     where c.x == coordinates[0].x || c.y == coordinates[0].y
+                     select c).Count();
+
+            if (count != coordinates.Count)
+                return;
+
+            coordinates.Sort();
+        }
+
         public override bool Equals(object obj)
         {
             if (obj.GetType() != typeof(Coordinate))
@@ -177,5 +193,14 @@ namespace BattleShips.GameComponents.Tiles
         }
 
         public override string ToString() => x + " - " + y;
+
+        public int CompareTo(Coordinate other)
+        {
+            if (other.x > this.x) return 1;
+            if (this.x > other.x) return -1;
+            if (other.y > this.y) return 1;
+            if(this.y > other.y) return -1;
+            return 0;
+        }
     }
 }

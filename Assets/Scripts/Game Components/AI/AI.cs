@@ -721,8 +721,6 @@ namespace BattleShips.GameComponents.AI
         }
         private void InstantiateTerminateMode()
         {
-            terminationDirection = UnityEngine.Random.Range(0, 2) == 0 ? true : false;
-
             int len = marker[0];
             Coordinate tile = firstTile;
             var negativeDirection = (!isPositiveDirection) ? searchDirection.Value : Helper.GetOppositeDirection(searchDirection.Value);
@@ -744,7 +742,7 @@ namespace BattleShips.GameComponents.AI
                 tile = tile.GetCoordinatesAt(firstDirection);
             }
 
-            if (!terminationDirection)
+            if (terminationList[0] == lastAttack)
                 terminationList.Reverse();
 
             terminationQueue = new Queue<Coordinate>();

@@ -164,6 +164,7 @@ namespace BattleShips.Management
             shipInstance.GetComponent<WaveSimulator>().InitializeRandom(shipInstance.transform.position, shipInstance.transform.rotation.eulerAngles);
             shipInstance = null;
             selectedShip = null;
+            enteredTile = null;
             tilesToPlaceTo.Clear();
         }
 

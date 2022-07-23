@@ -359,99 +359,39 @@ namespace BattleShips.GameComponents.AI
         {
             int count;
 
-            if (lastAttack is not null && GetTileAt(enemyTiles, lastAttack).tileState == TileState.Miss)
+            heatMap = new int[10, 10];
+
+            foreach (var l in lengths)
             {
-                heatMap[lastAttack.X - 1, lastAttack.Y - 1] = 0;
-                Coordinate left, right, up, down;
+                if ((count = GetIterationCount(l)) == 0)
+                    continue;
 
-                foreach (var l in lengths)
+                for (int x = 0; x < 10; x++)
                 {
-                    if ((count = GetIterationCount(l)) == 0)
-                        continue;
-
-                    Vector2Int index = Vector2Int.zero;
-
-                    left = lastAttack.Left;
-                    right = lastAttack.Right;
-                    down = lastAttack.Down;
-                    up = lastAttack.Up;
-
-                    for (int i = 0; i < l - 1; i++)
+                    for (int y = 0; y < 11 - l; y++)
                     {
-                        if (left is not null)
-                        {
-                            index = left.GetCoordinateVector(true);
-                            DecreaseFromHeatmap();
-                            left = left.Left;
-                        }
-                        if (right is not null)
-                        {
-                            index = right.GetCoordinateVector(true);
-                            DecreaseFromHeatmap();
-                            right = right.Right;
-                        }
-                        if (down is not null)
-                        {
-                            index = down.GetCoordinateVector(true);
-                            DecreaseFromHeatmap();
-                            down = down.Down;
-                        }
-                        if (up is not null)
-                        {
-                            index = up.GetCoordinateVector(true);
-                            DecreaseFromHeatmap();
-                            up = up.Up;
-                        }
-
-                        void DecreaseFromHeatmap()
-                        {
-                            if (heatMap[index.x, index.y] > count)
-                                heatMap[index.x, index.y] -= count;
-                            else
-                                heatMap[index.x, index.y] = 0;
-                        }
+                        int j;
+                        for (j = y; j < y + l; j++)
+                            if (tiles[x, j].tileState != TileState.Normal)
+                                break;
+                        if (j == y + l)
+                            for (j = y; j < y + l; j++)
+                                heatMap[x, j] += count;
                     }
                 }
-                return;
-            }
-            else
-            {
-                heatMap = new int[10, 10];
 
-                foreach (var l in lengths)
+                for (int x = 0; x < 11 - l; x++)
                 {
-                    if ((count = GetIterationCount(l)) == 0)
-                        continue;
+                    bool[] unavailables = new bool[10];
 
-                    //Stride-1 pattern
-                    for (int x = 0; x < 10; x++)
-                    {
-                        for (int y = 0; y < 11 - l; y++)
-                        {
-                            int j;
-                            for (j = y; j < y + l; j++)
-                                if (tiles[x, j].tileState != TileState.Normal)
-                                    break;
-                            if (j == y + l)
-                                for (j = y; j < y + l; j++)
-                                    heatMap[x, j] += count;
-                        }
-                    }
-
-                    //Transformed to stride-1 pattern with some extra space tradeoffs
-                    for (int x = 0; x < 11 - l; x++)
-                    {
-                        bool[] unavailables = new bool[10];
-
-                        for (int i = x; i < x + l; i++)
-                            for (int y = 0; y < 10; y++)
-                                if (enemyTiles[i, y].tileState != TileState.Normal)
-                                    unavailables[y] = true;
-                        for (int i = x; i < x + l; i++)
-                            for (int y = 0; y < 10; y++)
-                                if (!unavailables[y])
-                                    heatMap[i, y] += count;
-                    }
+                    for (int i = x; i < x + l; i++)
+                        for (int y = 0; y < 10; y++)
+                            if (enemyTiles[i, y].tileState != TileState.Normal)
+                                unavailables[y] = true;
+                    for (int i = x; i < x + l; i++)
+                        for (int y = 0; y < 10; y++)
+                            if (!unavailables[y])
+                                heatMap[i, y] += count;
                 }
             }
         }
@@ -543,7 +483,7 @@ namespace BattleShips.GameComponents.AI
                 bool found = true;
 
                 List<double> probs = validDirections.Select(d => d.Item3).ToList();
-                double max = probs[probs.Count-1];
+                double max = probs[probs.Count - 1];
                 double prob = 0;
 
                 do

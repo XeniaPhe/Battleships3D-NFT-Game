@@ -538,6 +538,7 @@ namespace BattleShips.GameComponents.AI
             {
                 var coords = terminationQueue.Dequeue();
                 tileToAttack = GetTileAt(enemyTiles, coords);
+                hitPath.Add(tileToAttack.Coordinates);
 
                 if (terminationQueue.Count == 0)
                     InstantiateTerminateMode();
@@ -604,6 +605,9 @@ namespace BattleShips.GameComponents.AI
             }
             else
             {
+                if (mode != AIMode.Terminate)
+                    hitPath.Add(lastAttack);
+
                 enemyShips.SetShipDestroyed((ShipType)result);
 
                 int shipLength = Ship.GetLength((ShipType)result);

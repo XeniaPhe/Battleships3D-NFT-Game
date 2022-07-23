@@ -157,9 +157,9 @@ namespace BattleShips.GameComponents.Tiles
             else if (to.y == from.y)
             {
                 if (to.x > from.x)
-                    return Direction.Up;
-                else if (to.x < from.x)
                     return Direction.Down;
+                else if (to.x < from.x)
+                    return Direction.Up;
                 else
                     return null;
             }

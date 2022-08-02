@@ -54,7 +54,6 @@ namespace BattleShips.GameComponents.AI
         bool isPositiveDirection = true;
         bool shipNewlyDestroyed = false;
         bool newlySwappedDirection = false;
-        bool terminationDirection = true;
         Queue<Coordinate> terminationQueue = new Queue<Coordinate>();
         List<Coordinate> hitPath = new List<Coordinate>();
 
@@ -100,6 +99,7 @@ namespace BattleShips.GameComponents.AI
             CalculateDistortionMatrix();
             RecalculateProbabilityList();
             PlaceShips();
+            PrintTileInformation();
         }
         private void InstantiateTiles()
         {

@@ -144,7 +144,6 @@ namespace BattleShips.GameComponents
         internal void HitShip(Coordinate coord, TileType type)
         {
             string name = GetTile(coord, type).tileData.ship.name;
-            Debug.Log(name);
             int index = GetTile(coord, type).tileData.shipIndex + 1;
             switch (name)
             {

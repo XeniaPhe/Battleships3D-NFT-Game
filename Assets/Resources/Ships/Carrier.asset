@@ -9,15 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00a5f73bb7ed9f04ba74620ad0e2d49e, type: 3}
-  m_Name: Submarine
+  m_Script: {fileID: 11500000, guid: 2176004e92819914d9304b243b4c23e3, type: 3}
+  m_Name: Carrier
   m_EditorClassIdentifier: 
-  baseUID: Invisible
-  model: {fileID: 4933526403625940581, guid: 978ea8c4b215e46ddbfda67b78593483, type: 3}
-  cardSprite: {fileID: 21300000, guid: eef8f01570fe74ce8ab12f32b38a45ad, type: 3}
-  preferedScale: {x: 18.5, y: 18.5, z: 18.5}
+  baseUID: Shinano
+  model: {fileID: 919132149155446097, guid: 69e1dda78195f474482835a1c30cb9b6, type: 3}
+  cardSprite: {fileID: 21300000, guid: d6e24d4d8a75e43c5a64676ad6886c3f, type: 3}
+  preferedScale: {x: 13.7, y: 13.7, z: 13.7}
   normalRotation: {x: -90, y: 0, z: 0}
-  preferredHeight: 0
+  preferedHeight: 0
   armour: 80
   weapon1: {fileID: 0}
   weapon2: {fileID: 0}

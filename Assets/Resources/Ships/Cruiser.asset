@@ -9,15 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2176004e92819914d9304b243b4c23e3, type: 3}
-  m_Name: Carrier
+  m_Script: {fileID: 11500000, guid: 98e806b9178646c4caa23a80fe3d4095, type: 3}
+  m_Name: Cruiser
   m_EditorClassIdentifier: 
-  baseUID: Shinano
-  model: {fileID: 6989482315705549189, guid: ad57477f5c220492183101431e143fbe, type: 3}
-  cardSprite: {fileID: 21300000, guid: d6e24d4d8a75e43c5a64676ad6886c3f, type: 3}
-  preferedScale: {x: 13.7, y: 13.7, z: 13.7}
+  baseUID: Mikasa
+  model: {fileID: 919132149155446097, guid: 2ed8579c4bb3b5743a192d9e8d2acbbc, type: 3}
+  cardSprite: {fileID: 21300000, guid: d4e7f6ca3f1234511a02e096e1398b54, type: 3}
+  preferedScale: {x: 12, y: 12, z: 12}
   normalRotation: {x: -90, y: 0, z: 0}
-  preferredHeight: 0.4
+  preferedHeight: 0
   armour: 80
   weapon1: {fileID: 0}
   weapon2: {fileID: 0}

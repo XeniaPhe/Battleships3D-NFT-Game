@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Destroyer
   m_EditorClassIdentifier: 
   baseUID: Savarona
-  model: {fileID: 919132149155446097, guid: a390a5c79b61d12489b9f23e04540c1d, type: 3}
+  model: {fileID: 5003946382911900301, guid: 50ed8b3092293bc48a2243132ae6510b, type: 3}
   cardSprite: {fileID: 21300000, guid: f3f4f5140899849c2a68b3400c3d87ef, type: 3}
   preferedScale: {x: 13, y: 13, z: 13}
   normalRotation: {x: -90, y: 0, z: 0}

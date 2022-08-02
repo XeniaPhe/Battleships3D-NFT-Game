@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Carrier
   m_EditorClassIdentifier: 
   baseUID: Shinano
-  model: {fileID: 919132149155446097, guid: 69e1dda78195f474482835a1c30cb9b6, type: 3}
+  model: {fileID: 5785732640782028751, guid: 6d0239d63be68494880f210143abbc19, type: 3}
   cardSprite: {fileID: 21300000, guid: d6e24d4d8a75e43c5a64676ad6886c3f, type: 3}
   preferedScale: {x: 13.7, y: 13.7, z: 13.7}
   normalRotation: {x: -90, y: 0, z: 0}

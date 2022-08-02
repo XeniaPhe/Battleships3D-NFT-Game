@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Battleship
   m_EditorClassIdentifier: 
   baseUID: UssIndianapolis
-  model: {fileID: 919132149155446097, guid: f47ea98f3d54b8245846897e4e1e807a, type: 3}
+  model: {fileID: 4902151616141870285, guid: 0a07b61d5e55e204bb79cb42e0676d81, type: 3}
   cardSprite: {fileID: 21300000, guid: 1b9c33cca57344e73bbd4da43d73b215, type: 3}
   preferedScale: {x: 10.8, y: 10.8, z: 10.8}
   normalRotation: {x: -90, y: 0, z: 0}

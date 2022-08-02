@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29032c2b0226f7f48938654223455dfa, type: 3}
+  m_Name: big_modern2
+  m_EditorClassIdentifier: 
+  baseUID: UssIndianapolis
+  model: {fileID: 4313973158545029143, guid: ddc4a1ef46a6c2a4a9d890ca13332532, type: 3}
+  cardSprite: {fileID: 21300000, guid: 1b9c33cca57344e73bbd4da43d73b215, type: 3}
+  preferedScale: {x: 10.8, y: 10.8, z: 10.8}
+  normalRotation: {x: -90, y: 0, z: 0}
+  preferedHeight: 0
+  armour: 80
+  weapon1: {fileID: 0}
+  weapon2: {fileID: 0}

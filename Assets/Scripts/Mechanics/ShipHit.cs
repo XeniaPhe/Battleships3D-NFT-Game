@@ -1,6 +1,9 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class ShipHit : MonoBehaviour
 {
@@ -22,7 +25,46 @@ public class ShipHit : MonoBehaviour
 
     public void HitEntirely()
     {
-        fires.GetComponentsInChildren<ParticleSystem>().ToList().ForEach(p => p.gameObject.SetActive(true));
+        var all = hits.GetComponentsInChildren<Transform>(true).Where(t => !t.Equals(hits));
+
+        foreach (var item in all)
+        {
+            GameObject hit = Instantiate(item.gameObject, item.position, item.rotation);
+            hit.SetActive(true);
+            shipAudioSource.clip = shipHitClips[Random.Range(0, shipHitClips.Count)];
+            shipAudioSource.Play();
+        }
+
+        all = fires.GetComponentsInChildren<Transform>(true).Where(t => !t.Equals(fires));
+
+        foreach (var item in all)
+        {
+            GameObject fire = Instantiate(item.gameObject, item.position, item.rotation);
+            fire.SetActive(true);
+        }
+    }
+
+    public void HitEntirely(Transform disposableParent,Func<float,IEnumerator> dispose)
+    {
+        var all = hits.GetComponentsInChildren<Transform>(true).Where(t => !t.Equals(hits));
+
+        foreach (var item in all)
+        {
+            GameObject hit = Instantiate(item.gameObject, item.position, item.rotation,disposableParent);
+            hit.SetActive(true);
+            shipAudioSource.clip = shipHitClips[Random.Range(0, shipHitClips.Count)];
+            shipAudioSource.Play();
+        }
+
+        all = fires.GetComponentsInChildren<Transform>(true).Where(t => !t.Equals(fires));
+
+        foreach (var item in all)
+        {
+            GameObject fire = Instantiate(item.gameObject, item.position, item.rotation,disposableParent);
+            fire.SetActive(true);
+        }
+
+        StartCoroutine(dispose.Invoke(4f));
     }
 
     private void Update()

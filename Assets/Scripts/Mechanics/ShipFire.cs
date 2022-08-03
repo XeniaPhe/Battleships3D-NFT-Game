@@ -15,7 +15,8 @@ public class ShipFire : MonoBehaviour
 
     public void FireFromShip(int slot)
     {
-        GameObject shot = Instantiate(shots.GetChild(slot - 1).gameObject, shots.GetChild(slot - 1).position, shots.GetChild(slot - 1).rotation,transform);
+        GameObject shot = Instantiate(shots.GetChild(slot - 1).gameObject, shots.GetChild(slot - 1).position, shots.GetChild(slot - 1).rotation);
+        shot.tag = "Disposable";
         shot.SetActive(true);
         shipAudioSource.clip = shipFireClips[Random.Range(0, shipFireClips.Count)];
         shipAudioSource.Play();

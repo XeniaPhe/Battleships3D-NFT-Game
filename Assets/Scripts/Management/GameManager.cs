@@ -357,6 +357,7 @@ namespace BattleShips.Management
         {
             FindObjectsOfType<GameObject>().Where(g => g.tag.Equals("Disposable")).ToList().ForEach(d => Destroy(d));
             FindObjectsOfType<Peg>().ToList().ForEach(p => Destroy(p.gameObject));
+            FindObjectsOfType<ShipHit>().ToList().ForEach(s => s.fires.GetComponentsInChildren<ParticleSystem>().ToList().ForEach(p => p.gameObject.SetActive(false)));
 
             uiManager.TurnOnMenu(UIParts.ReadyButton);
             computer.Instantiate();

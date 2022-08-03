@@ -16,7 +16,8 @@ public class ShipHit : MonoBehaviour
 
     public void HitShip(int slot)
     {
-        GameObject shot = Instantiate(hits.GetChild(slot - 1).gameObject, hits.GetChild(slot - 1).position, hits.GetChild(slot - 1).rotation,transform);
+        GameObject shot = Instantiate(hits.GetChild(slot - 1).gameObject, hits.GetChild(slot - 1).position, hits.GetChild(slot - 1).rotation);
+        shot.tag = "Disposable";
         shot.SetActive(true);
         fires.GetChild(slot - 1).gameObject.SetActive(true);
         shipAudioSource.clip = shipHitClips[Random.Range(0, shipHitClips.Count)];
@@ -30,6 +31,7 @@ public class ShipHit : MonoBehaviour
         foreach (var item in all)
         {
             GameObject hit = Instantiate(item.gameObject, item.position, item.rotation);
+            hit.tag = "Disposable";
             hit.SetActive(true);
             shipAudioSource.clip = shipHitClips[Random.Range(0, shipHitClips.Count)];
             shipAudioSource.Play();

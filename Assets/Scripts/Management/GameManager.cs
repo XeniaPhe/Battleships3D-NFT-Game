@@ -1,4 +1,4 @@
-using System;
+using System.Linq;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
@@ -36,6 +36,7 @@ namespace BattleShips.Management
 
         IPlayer computer;
         IPlayer player;
+        
         GameUIManager uiManager;
         ShipSelector shipSelector;
         GameBoard board;
@@ -50,6 +51,8 @@ namespace BattleShips.Management
         Coordinate hit = null;
         ShipType? shipSunk = null;
         bool keepTurn = false;
+        int computerWins = 0;
+        int playerWins = 0;
 
         #endregion
 
@@ -212,6 +215,7 @@ namespace BattleShips.Management
             {
                 board.PlacePeg(TileType.Attack, attack.coordinates, true);
                 board.CreateExplosion(attack.coordinates, TileType.Attack);
+                playerWins++;
                 moveLogger.PublishReport("You won!",Color.green,timeTillWinLoseScreen);
                 StartCoroutine(WaitFor(() => { DisplayWinLoseScreen(Turn.Player); }, timeTillWinLoseScreen));
                 return;
@@ -315,6 +319,19 @@ namespace BattleShips.Management
         {
             yield return new WaitForSeconds(seconds);
             action?.Invoke();
+        }
+
+        private void FinishCurrentGame(Turn winner)
+        {
+            if (computerWins == 2 || playerWins == 2)
+                DisplayWinLoseScreen(winner);
+            else
+                ReinstantiateGame();
+        }
+
+        private void ReinstantiateGame()
+        {
+            FindObjectsOfType<GameObject>().Where(g => g.tag.Equals("Disposable")).ToList().ForEach(d => Destroy(d));
         }
 
         private void DisplayWinLoseScreen(Turn winner)

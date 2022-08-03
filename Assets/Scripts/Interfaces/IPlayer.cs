@@ -6,6 +6,8 @@ namespace BattleShips.GameComponents
 {
     internal interface IPlayer
     {
-        internal AttackResult CheckTile(Attack attack);
+        public AttackResult CheckTile(Attack attack);
+        public void MakeMove();
+        public Ship GetShip(ShipType shipType);
     }
 }

@@ -101,17 +101,7 @@ namespace BattleShips.GameComponents
         internal Submarine GetSubmarine() => deck.Submarine;
         internal Battleship GetBattleship() => deck.Battleship;
         internal Carrier GetCarrier() => deck.Carrier;
-        internal Ship GetShip(ShipType type) => type switch
-        {
-            ShipType.Destroyer => GetDestroyer(),
-            ShipType.Cruiser => GetCruiser(),
-            ShipType.Submarine => GetSubmarine(),
-            ShipType.Battleship => GetBattleship(),
-            ShipType.Carrier => GetCarrier(),
-            _ => throw new NotImplementedException()
-        };
-
-        AttackResult IPlayer.CheckTile(Attack attack)
+        public AttackResult CheckTile(Attack attack)
         {
             var tile = board.GetTile(attack.coordinates, TileType.Defense);
 
@@ -172,5 +162,15 @@ namespace BattleShips.GameComponents
 
             return AttackResult.Miss;
         }
+        public void MakeMove() { }
+        public Ship GetShip(ShipType shipType) => shipType switch
+        {
+            ShipType.Destroyer => GetDestroyer(),
+            ShipType.Cruiser => GetCruiser(),
+            ShipType.Submarine => GetSubmarine(),
+            ShipType.Battleship => GetBattleship(),
+            ShipType.Carrier => GetCarrier(),
+            _ => throw new NotImplementedException()
+        };
     }
 }

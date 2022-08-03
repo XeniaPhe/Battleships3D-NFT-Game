@@ -34,7 +34,7 @@ namespace BattleShips.Management
 
         #region Cached Fields
 
-        AI computer;
+        IPlayer computer;
         IPlayer player;
         GameUIManager uiManager;
         ShipSelector shipSelector;
@@ -147,7 +147,7 @@ namespace BattleShips.Management
             this.attack = attack;
 
             if(turn == Turn.Player)
-                attackResult = computer.AsPlayer().CheckTile(attack);
+                attackResult = computer.CheckTile(attack);
             else
                 attackResult = player.CheckTile(attack);
 
@@ -206,7 +206,7 @@ namespace BattleShips.Management
         private void PlayerAttack(Attack attack)
         {
             shipSelector.FireFromSelectedShip();
-            var attackResult = computer.AsPlayer().CheckTile(attack);
+            var attackResult = computer.CheckTile(attack);
 
             if(attackResult == AttackResult.AllDestroyed)
             {

@@ -61,13 +61,14 @@ namespace BattleShips.GameComponents.AI
 
         #region Public Fields and Properties
 
-        internal Ship GetShip(ShipType shipType) => shipType switch
+        public Ship GetShip(ShipType shipType) => shipType switch
         {
             ShipType.Destroyer => deck.destroyer,
             ShipType.Cruiser => deck.cruiser,
             ShipType.Submarine => deck.submarine,
             ShipType.Battleship => deck.battleship,
-            ShipType.Carrier => deck.carrier
+            ShipType.Carrier => deck.carrier,
+            _ => throw new NotImplementedException()
         };
 
         #endregion
@@ -202,6 +203,7 @@ namespace BattleShips.GameComponents.AI
         #endregion
 
         #region Utilities
+
         private void PrintTileInformation()
         {
             StringBuilder line = new StringBuilder();
@@ -261,13 +263,31 @@ namespace BattleShips.GameComponents.AI
                 }
             }
         }
+        private TileData GetTileAt(TileData[,] tiles, Coordinate coords) => tiles[coords.X - 1, coords.Y - 1];
+        private int GetIterationCount(int l)
+        {
+            if (l < 2 || l > 5)
+                return 0;
+
+            if (!shipNewlyDestroyed && ((l == 2 && ships.IsDestroyerDestroyed()) || (l == 4 && ships.IsBattleshipDestroyed()) || (l == 5 && ships.IsCarrierDestroyed())))
+                return 0;
+
+            if (l == 3)
+            {
+                if (ships.IsSubmarineDestroyed() && ships.IsCruiserDestroyed() && !shipNewlyDestroyed)
+                    return 0;
+                if (!ships.IsSubmarineDestroyed() && !ships.IsCruiserDestroyed())
+                    return 2;
+            }
+
+            return 1;
+        }
 
         #endregion
 
-        #region IPlayer
+        #region Defense
 
-        internal IPlayer AsPlayer() => this as IPlayer;
-        AttackResult IPlayer.CheckTile(Attack attack)
+        public AttackResult CheckTile(Attack attack)
         {
             Vector2Int vectorCoords = attack.coordinates.GetCoordinateVector(true);
             var tileData = tiles[vectorCoords.x, vectorCoords.y];
@@ -466,26 +486,9 @@ namespace BattleShips.GameComponents.AI
 
         #endregion
 
-        private TileData GetTileAt(TileData[,] tiles, Coordinate coords) => tiles[coords.X - 1, coords.Y - 1];
-        private int GetIterationCount(int l)
-        {
-            if (l < 2 || l > 5)
-                return 0;
+        #region Attack
 
-            if (!shipNewlyDestroyed && ((l == 2 && ships.IsDestroyerDestroyed()) || (l == 4 && ships.IsBattleshipDestroyed()) || (l == 5 && ships.IsCarrierDestroyed())))
-                return 0;
-
-            if (l == 3)
-            {
-                if (ships.IsSubmarineDestroyed() && ships.IsCruiserDestroyed() && !shipNewlyDestroyed)
-                    return 0;
-                if (!ships.IsSubmarineDestroyed() && !ships.IsCruiserDestroyed())
-                    return 2;
-            }
-
-            return 1;
-        }
-        internal void MakeMove()
+        public void MakeMove()
         {
             TileData tileToAttack = null;
 
@@ -767,5 +770,7 @@ namespace BattleShips.GameComponents.AI
             foreach (var coord in terminationList)
                 terminationQueue.Enqueue(coord);
         }
+
+        #endregion
     }
 }

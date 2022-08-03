@@ -172,6 +172,16 @@ namespace BattleShips.GameComponents.AI
                     }
                 }
 
+                Direction shipDirection = Coordinate.GetDirection(placing[1].Coordinates, placing[0].Coordinates).Value;
+                Direction oppositeDirection = Helper.GetOppositeDirection(shipDirection);
+                Direction[] orthogonalDirections = Helper.GetOrthogonalDirections(shipDirection);
+                Coordinate tempCoords;
+
+                if((tempCoords = placing[0].Coordinates.GetCoordinatesAt(oppositeDirection)) is not null)
+                    GetTileAt(tiles,tempCoords).tileState = TileState.BlockedByAnotherShip;
+                if ((tempCoords = placing[^1].Coordinates.GetCoordinatesAt(shipDirection)) is not null)
+                    GetTileAt(tiles, tempCoords).tileState = TileState.BlockedByAnotherShip;
+
                 for (j = 0; j < placing.Count; j++)
                 {
                     placing[j].ship = deck[i];
@@ -179,6 +189,12 @@ namespace BattleShips.GameComponents.AI
                     placing[j].shipIndex = j;
                     placing[j].startTile = placing[0];
                     placing[j].shipDirection = horizontal ? Direction.Right : Direction.Down;
+
+                    foreach (var dir in orthogonalDirections)
+                    {
+                        if((tempCoords = placing[j].Coordinates.GetCoordinatesAt(dir)) is not null)
+                            GetTileAt(tiles, tempCoords).tileState = TileState.BlockedByAnotherShip;
+                    }
                 }
             }
         }
@@ -483,7 +499,7 @@ namespace BattleShips.GameComponents.AI
                 bool found = true;
 
                 List<double> probs = validDirections.Select(d => d.Item3).ToList();
-                double max = probs[probs.Count - 1];
+                double max = probs[^1];
                 double prob = 0;
 
                 do

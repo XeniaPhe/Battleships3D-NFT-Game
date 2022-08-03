@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: small_classic2
   m_EditorClassIdentifier: 
   baseUID: Savarona
-  model: {fileID: 5003946382911900301, guid: 50ed8b3092293bc48a2243132ae6510b, type: 3}
+  model: {fileID: 346877649871888369, guid: ee7bfba2051a8904db8a8b7301034e0c, type: 3}
   cardSprite: {fileID: 21300000, guid: f3f4f5140899849c2a68b3400c3d87ef, type: 3}
-  preferedScale: {x: 13, y: 13, z: 13}
+  preferedScale: {x: 23, y: 23, z: 23}
   normalRotation: {x: -90, y: 0, z: 0}
   preferedHeight: 0
   armour: 80

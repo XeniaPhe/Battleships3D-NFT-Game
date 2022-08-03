@@ -125,7 +125,9 @@ namespace BattleShips.GameComponents
 
             Tile middleTile = startTile;
 
-            for (int i = 0; i < ship.Length/2; i++)
+            int middle = (ship.Length % 2 == 0) ? ship.Length / 2 - 1 : ship.Length / 2;
+
+            for (int i = 0; i < middle; i++)
                 middleTile = GetTile(middleTile.GetTileCoordinatesAt(dir), TileType.Attack);
 
             var shipInstance = ship.InstantiateShip(middleTile.transform.position, dir);

@@ -6,14 +6,14 @@ using BattleShips.Management;
 using BattleShips.GameComponents.Tiles;
 using BattleShips.GameComponents.Ships;
 
-namespace BattleShips.GameComponents
+namespace BattleShips.GameComponents.Player
 {
-    internal class Player : MonoBehaviour, IPlayer
+    internal class HumanPlayer : Player
     {
         #region Singleton
 
-        static Player instance;
-        internal static Player Instance { get => instance; }
+        static HumanPlayer instance;
+        internal static HumanPlayer Instance { get => instance; }
 
         #endregion
 
@@ -62,7 +62,7 @@ namespace BattleShips.GameComponents
 
         #endregion
 
-        private void Awake()
+        protected override void Awake()
         {
             if(instance)
                 Destroy(gameObject);
@@ -70,25 +70,30 @@ namespace BattleShips.GameComponents
             {
                 instance = this;
                 DontDestroyOnLoad(gameObject);
+                base.Awake();
+            }
+        }
 
-                deck = Deck.Instance;
+        internal override void Instantiate() 
+        {
+            deck = Deck.Instance;
 
-                if(debugMode)
+            if (debugMode)
+            {
+                var allTypes = Enum.GetValues(typeof(ShipType)).Cast<ShipType>().ToList();
+                Ship ship;
+
+                foreach (var type in allTypes)
                 {
-                    var allTypes = Enum.GetValues(typeof(ShipType)).Cast<ShipType>().ToList();
-                    Ship ship;
-
-                    foreach (var type in allTypes)
-                    {
-                        ship = Instantiate<Ship>(shipsOwned.Find(s => s.Type == type),null);
-                        for (int i = 0; i < ship.Length; i++)
-                            ship[i] = ship.Armour;
-                        deck.Assign(ship);
-                    }
+                    ship = Instantiate<Ship>(shipsOwned.Find(s => s.Type == type), null);
+                    for (int i = 0; i < ship.Length; i++)
+                        ship[i] = ship.Armour;
+                    deck.Assign(ship);
                 }
             }
         }
-        private void Start()
+
+        protected override void Start()
         {
             manager = GameManager.Instance;
             board = GameBoard.Instance;
@@ -96,12 +101,12 @@ namespace BattleShips.GameComponents
 
         internal bool IsDeckFull => deck.IsDeckFull();
         internal void AssignShip(Ship ship) => deck.Assign(ship);
-        internal Destroyer GetDestroyer() => deck.Destroyer;
-        internal Cruiser GetCruiser() => deck.Cruiser;
-        internal Submarine GetSubmarine() => deck.Submarine;
-        internal Battleship GetBattleship() => deck.Battleship;
-        internal Carrier GetCarrier() => deck.Carrier;
-        public AttackResult CheckTile(Attack attack)
+        internal override Destroyer GetDestroyer() => deck.Destroyer;
+        internal override Cruiser GetCruiser() => deck.Cruiser;
+        internal override Submarine GetSubmarine() => deck.Submarine;
+        internal override Battleship GetBattleship() => deck.Battleship;
+        internal override Carrier GetCarrier() => deck.Carrier;
+        internal override AttackResult CheckTile(Attack attack)
         {
             var tile = board.GetTile(attack.coordinates, TileType.Defense);
 
@@ -162,8 +167,7 @@ namespace BattleShips.GameComponents
 
             return AttackResult.Miss;
         }
-        public void MakeMove() { }
-        public Ship GetShip(ShipType shipType) => shipType switch
+        internal override Ship GetShip(ShipType shipType) => shipType switch
         {
             ShipType.Destroyer => GetDestroyer(),
             ShipType.Cruiser => GetCruiser(),

@@ -1,8 +1,8 @@
 ﻿namespace BattleShips.GameComponents
 {
-    internal enum Turn
+    internal enum PlayerType
     {
-        Player,
+        Human,
         AI
     }
 }

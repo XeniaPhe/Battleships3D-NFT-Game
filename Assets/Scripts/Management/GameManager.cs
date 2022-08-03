@@ -3,7 +3,8 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using BattleShips.GameComponents;
-using BattleShips.GameComponents.AI;
+using BattleShips.GameComponents.Player;
+using BattleShips.GameComponents.Player.AI;
 using BattleShips.GameComponents.Tiles;
 using BattleShips.GameComponents.Ships;
 using BattleShips.GUI;
@@ -34,8 +35,8 @@ namespace BattleShips.Management
 
         #region Cached Fields
 
-        IPlayer computer;
-        IPlayer player;
+        AIPlayer computer;
+        HumanPlayer player;
         
         GameUIManager uiManager;
         ShipSelector shipSelector;
@@ -43,7 +44,7 @@ namespace BattleShips.Management
         Timer timer;
         MoveLogger moveLogger;
         GamePhase phase;
-        Turn turn = Turn.Player;
+        PlayerType turn = PlayerType.Human;
         AttackResult attackResult;
         Attack attack;
 
@@ -53,6 +54,7 @@ namespace BattleShips.Management
         bool keepTurn = false;
         int computerWins = 0;
         int playerWins = 0;
+        int currentLevel = 0;
 
         #endregion
 
@@ -83,7 +85,7 @@ namespace BattleShips.Management
                 {
                     shipSelector.PlaceShip();
                 }
-                else if(phase == GamePhase.Bombarding && turn == Turn.Player && clickedTile?.GetType() == typeof(AttackTile))
+                else if(phase == GamePhase.Bombarding && turn == PlayerType.Human && clickedTile?.GetType() == typeof(AttackTile))
                 {
                     if (shipSelector.selectedShip is null)
                     {
@@ -113,21 +115,29 @@ namespace BattleShips.Management
 
         private void Start()
         {
-            computer = AI.Instance;
-            player = Player.Instance;
+            computer = AIPlayer.Instance;
+            player = HumanPlayer.Instance;
             uiManager = GameUIManager.Instance;
             timer = Timer.Instance;
             moveLogger = MoveLogger.Instance;
             board = GameBoard.Instance;
             uiManager.Initialize();
             shipSelector = ShipSelector.Instance;
-            StartShipPlacementPhase();
+            StartGame(0);
         }
 
         private void Update()
         {
             if (phase == GamePhase.ShipPlacement && Input.GetKeyDown(KeyCode.R))
                 shipSelector.Rotate();
+        }
+
+        //Will be called from main menu when player selects AI level
+        internal void StartGame(int level)
+        {
+            currentLevel = level;
+            computer.Instantiate(currentLevel);
+            StartShipPlacementPhase();
         }
 
         private void StartShipPlacementPhase()
@@ -140,7 +150,7 @@ namespace BattleShips.Management
                 moveLogger.PublishReport("Timeout!", Color.red, 3f);
                 StartCoroutine(WaitFor(() =>
                 {
-                    DisplayWinLoseScreen(Turn.AI);
+                    DisplayWinLoseScreen(PlayerType.AI);
                 }, 3f));
             });
         }
@@ -149,7 +159,7 @@ namespace BattleShips.Management
         {
             this.attack = attack;
 
-            if(turn == Turn.Player)
+            if(turn == PlayerType.Human)
                 attackResult = computer.CheckTile(attack);
             else
                 attackResult = player.CheckTile(attack);
@@ -159,8 +169,9 @@ namespace BattleShips.Management
 
         public void StartAIShipPlacement()
         {
-            turn = Turn.AI;
-            uiManager.TurnOffMenu(UIParts.ReadyButton);uiManager.SetWrapperButtonsInteractable();
+            turn = PlayerType.AI;
+            uiManager.TurnOffMenu(UIParts.ReadyButton);
+            uiManager.SetWrapperButtonsInteractable();
             timer.CancelCountdown();
             moveLogger.PublishReport("Enemy is placing his ships",Color.white,aiShipPlacementTime);
             StartCoroutine(WaitFor(() => { SwitchTurn(keepTurn); },aiShipPlacementTime));
@@ -169,7 +180,7 @@ namespace BattleShips.Management
 
         internal void SwitchTurn(bool keepTurn = false)
         {
-            if ((turn == Turn.AI && !keepTurn) || (turn == Turn.Player && keepTurn))
+            if ((turn == PlayerType.AI && !keepTurn) || (turn == PlayerType.Human && keepTurn))
             {
                 if (phase == GamePhase.ShipPlacement)
                 {
@@ -186,11 +197,11 @@ namespace BattleShips.Management
                     moveLogger.PublishReport("Timeout!", Color.red, 3f);
                     StartCoroutine(WaitFor(() =>
                     {
-                        DisplayWinLoseScreen(Turn.AI);
+                        DisplayWinLoseScreen(PlayerType.AI);
                     }, 3f));
                 });
 
-                turn = Turn.Player;
+                turn = PlayerType.Human;
             }
             else
             {
@@ -200,7 +211,7 @@ namespace BattleShips.Management
                     moveLogger.PublishReport("Enemy's turn", Color.white, aiTurnTime - intermediateTextDuration);
                 }, intermediateTextDuration));
 
-                turn = Turn.AI;
+                turn = PlayerType.AI;
                 computer.MakeMove();
                 EnemyAttack();
             }
@@ -217,7 +228,7 @@ namespace BattleShips.Management
                 board.CreateExplosion(attack.coordinates, TileType.Attack);
                 playerWins++;
                 moveLogger.PublishReport("You won!",Color.green,timeTillWinLoseScreen);
-                StartCoroutine(WaitFor(() => { DisplayWinLoseScreen(Turn.Player); }, timeTillWinLoseScreen));
+                StartCoroutine(WaitFor(() => { DisplayWinLoseScreen(PlayerType.Human); }, timeTillWinLoseScreen));
                 return;
             }
 
@@ -255,7 +266,7 @@ namespace BattleShips.Management
                 board.UpdateShipUI(attack.coordinates);
                 //board.PlacePeg(TileType.Defense, attack.coordinates, true);
                 moveLogger.PublishReport("Enemy won!", Color.red, timeTillWinLoseScreen);
-                StartCoroutine(WaitFor(() => { DisplayWinLoseScreen(Turn.AI); }, timeTillWinLoseScreen));
+                StartCoroutine(WaitFor(() => { DisplayWinLoseScreen(PlayerType.AI); }, timeTillWinLoseScreen));
                 return;
             }
             UnityAction action = () => { };
@@ -321,7 +332,7 @@ namespace BattleShips.Management
             action?.Invoke();
         }
 
-        private void FinishCurrentGame(Turn winner)
+        private void FinishCurrentGame(PlayerType winner)
         {
             if (computerWins == 2 || playerWins == 2)
                 DisplayWinLoseScreen(winner);
@@ -332,11 +343,13 @@ namespace BattleShips.Management
         private void ReinstantiateGame()
         {
             FindObjectsOfType<GameObject>().Where(g => g.tag.Equals("Disposable")).ToList().ForEach(d => Destroy(d));
+
+            uiManager.TurnOnMenu(UIParts.ReadyButton);
         }
 
-        private void DisplayWinLoseScreen(Turn winner)
+        private void DisplayWinLoseScreen(PlayerType winner)
         {
-            if (winner == Turn.Player)
+            if (winner == PlayerType.Human)
                 SceneManager.LoadScene("Victory");
             else
                 SceneManager.LoadScene("Lose");

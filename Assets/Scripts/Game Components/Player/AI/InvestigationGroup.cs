@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace BattleShips.GameComponents.AI
+namespace BattleShips.GameComponents.Player.AI
 {
     internal class InvestigationGroup
     {

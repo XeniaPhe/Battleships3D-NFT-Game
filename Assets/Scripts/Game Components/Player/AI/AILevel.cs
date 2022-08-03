@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BattleShips.GameComponents.AI
+namespace BattleShips.GameComponents.Player.AI
 {
     [CreateAssetMenu(fileName = "Leveli",menuName = "AI/Level")]
     internal class AILevel : ScriptableObject

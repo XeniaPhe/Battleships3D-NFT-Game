@@ -8,14 +8,14 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace BattleShips.GameComponents.AI
+namespace BattleShips.GameComponents.Player.AI
 {
-    internal class AI : MonoBehaviour, IPlayer
+    internal class AIPlayer : Player
     {
         #region Singleton
 
-        static AI instance;
-        internal static AI Instance { get => instance; }
+        static AIPlayer instance;
+        internal static AIPlayer Instance { get => instance; }
 
         #endregion
 
@@ -61,7 +61,12 @@ namespace BattleShips.GameComponents.AI
 
         #region Public Fields and Properties
 
-        public Ship GetShip(ShipType shipType) => shipType switch
+        internal override Destroyer GetDestroyer() => deck.destroyer;
+        internal override Cruiser GetCruiser() => deck.cruiser;
+        internal override Submarine GetSubmarine() => deck.submarine;
+        internal override Battleship GetBattleship() => deck.battleship;
+        internal override Carrier GetCarrier() => deck.carrier;
+        internal override Ship GetShip(ShipType shipType) => shipType switch
         {
             ShipType.Destroyer => deck.destroyer,
             ShipType.Cruiser => deck.cruiser,
@@ -75,21 +80,24 @@ namespace BattleShips.GameComponents.AI
 
         #region Instantiation
 
-        private void Awake()
+        protected override void Awake()
         {
             if (instance)
                 Destroy(gameObject);
             else
-            {
                 instance = this;
-                InstantiateAI(0);
-            }
         }
-        private void Start()
+        protected override void Start()
         {
             manager = GameManager.Instance;
         }
-        internal void InstantiateAI(int level)
+
+        internal override void Instantiate() 
+        {
+            Instantiate(currentLevel);
+        }
+
+        internal void Instantiate(int level = 0)
         {
             currentLevel = levels[level];
             parity = currentLevel.Parity ? Parity.Even : Parity.Off;
@@ -287,7 +295,7 @@ namespace BattleShips.GameComponents.AI
 
         #region Defense
 
-        public AttackResult CheckTile(Attack attack)
+        internal override AttackResult CheckTile(Attack attack)
         {
             Vector2Int vectorCoords = attack.coordinates.GetCoordinateVector(true);
             var tileData = tiles[vectorCoords.x, vectorCoords.y];

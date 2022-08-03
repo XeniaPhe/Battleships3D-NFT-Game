@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using BattleShips.GUI;
-using BattleShips.GameComponents;
+using BattleShips.GameComponents.Player;
 using BattleShips.GameComponents.Ships;
 
 namespace BattleShips.Management.UI
@@ -33,7 +33,7 @@ namespace BattleShips.Management.UI
         #region Cached Fields
 
         List<OwnedShipWrapper> ownedShipWrappers;
-        Player player;
+        HumanPlayer player;
 
         #endregion
 
@@ -62,7 +62,7 @@ namespace BattleShips.Management.UI
         private void Start()
         {
             ownedShipWrappers = new List<OwnedShipWrapper>();
-            player = Player.Instance;
+            player = HumanPlayer.Instance;
 
             foreach (var ship in player.ShipsOwned)    
             {

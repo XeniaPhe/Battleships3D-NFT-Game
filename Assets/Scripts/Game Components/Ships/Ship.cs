@@ -16,6 +16,7 @@ namespace BattleShips.GameComponents.Ships
 
         #region Serialized Fields
 
+        [SerializeField] internal string shipName;
         [SerializeField] internal string baseUID;
         [SerializeField] protected GameObject model;
         [SerializeField] internal Sprite cardSprite;
@@ -80,7 +81,7 @@ namespace BattleShips.GameComponents.Ships
             _ => 0,
         };
 
-        internal Transform InstantiateShip(Vector3 position,Direction direction,string name = null)
+        internal Transform InstantiateShip(Vector3 position,Direction direction,PlayerType owner)
         {
             Vector3 rotation = normalRotation;
 
@@ -113,8 +114,8 @@ namespace BattleShips.GameComponents.Ships
                 foreach (var item in (Transform)child)
                     ((Transform)item).gameObject.SetActive(false);
 
-            shipInstance.name = name ?? Type.ToString();
-
+            shipInstance.name = owner.ToString() + " " + shipName;
+            shipInstance.tag = "Disposable";
             return shipInstance;
         }
         internal static ShipType GetShipType(AttackResult attackResult) => attackResult switch

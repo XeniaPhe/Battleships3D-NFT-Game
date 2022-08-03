@@ -2,6 +2,7 @@ using System.Linq;
 using UnityEngine;
 using BattleShips.GameComponents.Ships;
 using BattleShips.GameComponents.Tiles;
+using BattleShips.GameComponents.Player;
 
 namespace BattleShips.GameComponents
 {
@@ -23,7 +24,7 @@ namespace BattleShips.GameComponents
 
         #region Cached Fields
 
-        Player player;
+        HumanPlayer player;
         DefenseTile[] defenseTiles;
         AttackTile[] attackTiles;
         WaterHit waterHitter;
@@ -79,7 +80,7 @@ namespace BattleShips.GameComponents
 
         private void Start()
         {
-            player = Player.Instance;
+            player = HumanPlayer.Instance;
         }
 
         internal Tile GetTile(int x, int y, TileType type, bool zeroBased = false)
@@ -130,7 +131,7 @@ namespace BattleShips.GameComponents
             for (int i = 0; i < middle; i++)
                 middleTile = GetTile(middleTile.GetTileCoordinatesAt(dir), TileType.Attack);
 
-            var shipInstance = ship.InstantiateShip(middleTile.transform.position, dir);
+            var shipInstance = ship.InstantiateShip(middleTile.transform.position, dir,PlayerType.AI);
             shipInstance.GetComponent<WaveSimulator>().InitializeRandom(shipInstance.transform.position, shipInstance.transform.rotation.eulerAngles);
             shipInstance.GetComponent<ShipHit>().HitEntirely();
         }

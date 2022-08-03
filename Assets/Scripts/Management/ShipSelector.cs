@@ -54,6 +54,7 @@ namespace BattleShips.Management
 
         internal void SelectShip(Ship ship)
         {
+            print("who calls me");
             selectedShip = ship;
             if(enteredTile)
                 HighlightShipPlacement(enteredTile);
@@ -63,7 +64,7 @@ namespace BattleShips.Management
         {
             if (selectedShip is null) Debug.Log("Not selected ship!");
 
-            var ship = FindObjectsOfType<ShipFire>().Where(f => f.name == selectedShip.Type.ToString()).FirstOrDefault();
+            var ship = FindObjectsOfType<ShipFire>().Where(f => f.name.Equals(PlayerType.Human.ToString() + " " + selectedShip.shipName)).FirstOrDefault();
 
             ship.FireFromShip(1);
         }
@@ -117,7 +118,7 @@ namespace BattleShips.Management
             int secondDir = selectedShip.Length - firstDir - 1;
             Traverse(secondDir,oppositeDirection);
 
-            shipInstance = selectedShip.InstantiateShip(enteredTile.transform.position, currentDirection);
+            shipInstance = selectedShip.InstantiateShip(enteredTile.transform.position, currentDirection,PlayerType.Human);
 
             foreach (var tile in tilesToPlaceTo)
                 tile.PaintTemporarily(isSelectionSuccessful ? successfulColor : unsuccessfulColor);

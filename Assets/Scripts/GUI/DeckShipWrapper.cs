@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
-using BattleShips.GameComponents;
+using BattleShips.GameComponents.Player;
 using BattleShips.GameComponents.Ships;
 using BattleShips.Management.UI;
 
@@ -60,19 +60,19 @@ namespace BattleShips.GUI
             switch (constraint)
             {
                 case ShipType.Destroyer:
-                    Ship = Player.Instance.GetDestroyer();
+                    Ship = HumanPlayer.Instance.GetDestroyer();
                     break;
                 case ShipType.Cruiser:
-                    Ship = Player.Instance.GetCruiser();
+                    Ship = HumanPlayer.Instance.GetCruiser();
                     break;
                 case ShipType.Submarine:
-                    Ship = Player.Instance.GetSubmarine();
+                    Ship = HumanPlayer.Instance.GetSubmarine();
                     break;
                 case ShipType.Battleship:
-                    Ship = Player.Instance.GetBattleship();
+                    Ship = HumanPlayer.Instance.GetBattleship();
                     break;
                 case ShipType.Carrier:
-                    Ship = Player.Instance.GetCarrier();
+                    Ship = HumanPlayer.Instance.GetCarrier();
                     break;
                 default:
                     return;

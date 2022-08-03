@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using BattleShips.GameComponents;
+using BattleShips.GameComponents.Player;
 using BattleShips.GameComponents.Ships;
 using BattleShips.GUI;
 
@@ -60,7 +60,7 @@ namespace BattleShips.Management.UI
             Start();
             TurnOnMenu(UIParts.Main);
 
-            Player player = Player.Instance;
+            HumanPlayer player = HumanPlayer.Instance;
 
             shipWrappers.Find(s => s.Constraint == ShipType.Destroyer).Initialise(player.GetDestroyer());
             shipWrappers.Find(s => s.Constraint == ShipType.Cruiser).Initialise(player.GetCruiser());

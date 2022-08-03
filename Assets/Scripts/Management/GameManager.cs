@@ -28,7 +28,7 @@ namespace BattleShips.Management
         [SerializeField] uint turnTime;
         [SerializeField] float aiShipPlacementTime;
         [SerializeField] float aiTurnTime;
-        [SerializeField] float timeTillWinLoseScreen;
+        [SerializeField] float roundEndWaitTime;
         [SerializeField] float intermediateTextDuration;
 
         #endregion
@@ -37,7 +37,7 @@ namespace BattleShips.Management
 
         AIPlayer computer;
         HumanPlayer player;
-        
+
         GameUIManager uiManager;
         ShipSelector shipSelector;
         GameBoard board;
@@ -85,14 +85,14 @@ namespace BattleShips.Management
                 {
                     shipSelector.PlaceShip();
                 }
-                else if(phase == GamePhase.Bombarding && turn == PlayerType.Human && clickedTile?.GetType() == typeof(AttackTile))
+                else if (phase == GamePhase.Bombarding && turn == PlayerType.Human && clickedTile?.GetType() == typeof(AttackTile))
                 {
                     if (shipSelector.selectedShip is null)
                     {
-                        moveLogger.PublishReport("You should select a ship!", Color.red,2);
+                        moveLogger.PublishReport("You should select a ship!", Color.red, 2);
                         return;
                     }
-                    else if(clickedTile.peg && clickedTile.peg.isWhitePeg)
+                    else if (clickedTile.peg && clickedTile.peg.isWhitePeg)
                     {
                         moveLogger.PublishReport("There's nothing in that tile!", Color.red, 2);
                         return;
@@ -144,7 +144,7 @@ namespace BattleShips.Management
         {
             uiManager.DisableReadyButton();
             phase = GamePhase.ShipPlacement;
-            moveLogger.PublishReport("Place your ships and press ready",Color.white,shipPlacementTime);
+            moveLogger.PublishReport("Place your ships and press ready", Color.white, shipPlacementTime);
             timer.StartCountdown(turnTime, () =>
             {
                 moveLogger.PublishReport("Timeout!", Color.red, 3f);
@@ -159,7 +159,7 @@ namespace BattleShips.Management
         {
             this.attack = attack;
 
-            if(turn == PlayerType.Human)
+            if (turn == PlayerType.Human)
                 attackResult = computer.CheckTile(attack);
             else
                 attackResult = player.CheckTile(attack);
@@ -173,8 +173,8 @@ namespace BattleShips.Management
             uiManager.TurnOffMenu(UIParts.ReadyButton);
             uiManager.SetWrapperButtonsInteractable();
             timer.CancelCountdown();
-            moveLogger.PublishReport("Enemy is placing his ships",Color.white,aiShipPlacementTime);
-            StartCoroutine(WaitFor(() => { SwitchTurn(keepTurn); },aiShipPlacementTime));
+            moveLogger.PublishReport("Enemy is placing his ships", Color.white, aiShipPlacementTime);
+            StartCoroutine(WaitFor(() => { SwitchTurn(keepTurn); }, aiShipPlacementTime));
             phase = GamePhase.Bombarding;
         }
 
@@ -190,7 +190,7 @@ namespace BattleShips.Management
                 StartCoroutine(WaitFor(() =>
                 {
                     moveLogger.PublishReport("Your turn", Color.white, turnTime - intermediateTextDuration);
-                },intermediateTextDuration));
+                }, intermediateTextDuration));
 
                 timer.StartCountdown(turnTime, () =>
                 {
@@ -222,13 +222,16 @@ namespace BattleShips.Management
             shipSelector.FireFromSelectedShip();
             var attackResult = computer.CheckTile(attack);
 
-            if(attackResult == AttackResult.AllDestroyed)
+            if (attackResult == AttackResult.AllDestroyed)
             {
                 board.PlacePeg(TileType.Attack, attack.coordinates, true);
                 board.CreateExplosion(attack.coordinates, TileType.Attack);
-                playerWins++;
-                moveLogger.PublishReport("You won!",Color.green,timeTillWinLoseScreen);
-                StartCoroutine(WaitFor(() => { DisplayWinLoseScreen(PlayerType.Human); }, timeTillWinLoseScreen));
+
+                //moveLogger.PublishReport("You won!", Color.green, roundEndWaitTime);
+                //StartCoroutine(WaitFor(() => { DisplayWinLoseScreen(PlayerType.Human); }, roundEndWaitTime));
+                //return;
+
+                FinishRound(PlayerType.Human);
                 return;
             }
 
@@ -238,19 +241,19 @@ namespace BattleShips.Management
             {
                 keepTurn = false;
                 moveLogger.PublishReport("Miss!", Color.red, aiTurnTime);
-                board.PlacePeg(TileType.Attack,attack.coordinates,false);
+                board.PlacePeg(TileType.Attack, attack.coordinates, false);
                 board.CreateWaterHit(attack.coordinates, TileType.Attack);
             }
             else if (attackResult == AttackResult.Hit)
             {
                 moveLogger.PublishReport("Hit!", Color.green, aiTurnTime);
-                board.PlacePeg(TileType.Attack, attack.coordinates,true);
+                board.PlacePeg(TileType.Attack, attack.coordinates, true);
                 board.CreateExplosion(attack.coordinates, TileType.Attack);
             }
             else
             {
                 moveLogger.PublishReport($"You sank enemy's {Ship.GetShipType(attackResult).ToString()}!", Color.green, aiTurnTime); //Details later
-                board.PlacePeg(TileType.Attack, attack.coordinates,true);
+                board.PlacePeg(TileType.Attack, attack.coordinates, true);
                 board.CreateExplosion(attack.coordinates, TileType.Attack);
                 board.RevealShip(attack.coordinates, computer.GetShip(Ship.GetShipType(attackResult)));
             }
@@ -264,9 +267,12 @@ namespace BattleShips.Management
             {
                 board.HitShip(attack.coordinates, TileType.Defense);
                 board.UpdateShipUI(attack.coordinates);
-                //board.PlacePeg(TileType.Defense, attack.coordinates, true);
-                moveLogger.PublishReport("Enemy won!", Color.red, timeTillWinLoseScreen);
-                StartCoroutine(WaitFor(() => { DisplayWinLoseScreen(PlayerType.AI); }, timeTillWinLoseScreen));
+
+
+                //moveLogger.PublishReport("Enemy won!", Color.red, roundEndWaitTime);
+                //StartCoroutine(WaitFor(() => { DisplayWinLoseScreen(PlayerType.AI); }, roundEndWaitTime));
+                //return;
+                FinishRound(PlayerType.AI);
                 return;
             }
             UnityAction action = () => { };
@@ -281,7 +287,6 @@ namespace BattleShips.Management
                     moveLogger.PublishReport("Enemy hits!", Color.red, aiTurnTime);
                     board.HitShip(attack.coordinates, TileType.Defense);
                     board.UpdateShipUI(attack.coordinates);
-                    //board.PlacePeg(TileType.Defense, attack.coordinates, true);
                 };
             }
             else if (attackResult == AttackResult.Miss)
@@ -305,9 +310,7 @@ namespace BattleShips.Management
                 {
                     board.UpdateShipUI(attack.coordinates);
                     board.HitShip(attack.coordinates, TileType.Defense);
-                    //board.PlacePeg(TileType.Defense, attack.coordinates, true);
                     moveLogger.PublishReport($"Enemy sank your {shipSunk.ToString()}!", Color.red, aiTurnTime);
-                    //board.SunkShip();
                 };
             }
 
@@ -326,25 +329,39 @@ namespace BattleShips.Management
             }
         }
 
-        IEnumerator WaitFor(UnityAction action,float seconds)
+        IEnumerator WaitFor(UnityAction action, float seconds)
         {
             yield return new WaitForSeconds(seconds);
             action?.Invoke();
         }
 
-        private void FinishCurrentGame(PlayerType winner)
+        private void FinishRound(PlayerType winner)
         {
-            if (computerWins == 2 || playerWins == 2)
-                DisplayWinLoseScreen(winner);
+            if (winner == PlayerType.Human)
+                playerWins++;
             else
-                ReinstantiateGame();
+                computerWins++;
+
+            moveLogger.PublishReport(winner == PlayerType.Human ? "Round won!" : "Round lost!", winner == PlayerType.Human ? Color.green : Color.red, roundEndWaitTime);
+
+            StartCoroutine(WaitFor(() =>
+                {
+                    if (computerWins == 2 || playerWins == 2)
+                        DisplayWinLoseScreen(winner);
+                    else
+                        StartNewRound();
+                }, roundEndWaitTime));
         }
 
-        private void ReinstantiateGame()
+        private void StartNewRound()
         {
             FindObjectsOfType<GameObject>().Where(g => g.tag.Equals("Disposable")).ToList().ForEach(d => Destroy(d));
+            FindObjectsOfType<Peg>().ToList().ForEach(p => Destroy(p.gameObject));
 
             uiManager.TurnOnMenu(UIParts.ReadyButton);
+            computer.Instantiate();
+            player.Instantiate();
+            StartShipPlacementPhase();
         }
 
         private void DisplayWinLoseScreen(PlayerType winner)

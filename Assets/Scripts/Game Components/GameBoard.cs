@@ -83,6 +83,26 @@ namespace BattleShips.GameComponents
             player = HumanPlayer.Instance;
         }
 
+        internal void ReinstantiateTiles()
+        {
+            foreach (var tile in defenseTiles)
+            {
+                Reset(tile.tileData);
+            }
+
+            foreach (var tile in attackTiles)
+            {
+                Reset(tile.tileData);
+            }
+
+            void Reset(TileData tileData)
+            {
+                tileData.startTile = null;
+                tileData.ship = null;
+                tileData.tileState = TileState.Normal;
+            }
+        }
+
         internal Tile GetTile(int x, int y, TileType type, bool zeroBased = false)
         {
             if (!Coordinate.IsValidCoordinate(x, y, zeroBased)) return null;

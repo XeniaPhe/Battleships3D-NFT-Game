@@ -40679,7 +40679,7 @@ MonoBehaviour:
   turnTime: 50
   aiShipPlacementTime: 5
   aiTurnTime: 3
-  timeTillWinLoseScreen: 5
+  roundEndWaitTime: 5
   intermediateTextDuration: 0.5
 --- !u!114 &1068729438
 MonoBehaviour:

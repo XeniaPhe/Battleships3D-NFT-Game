@@ -54,7 +54,6 @@ namespace BattleShips.Management
 
         internal void SelectShip(Ship ship)
         {
-            print("who calls me");
             selectedShip = ship;
             if(enteredTile)
                 HighlightShipPlacement(enteredTile);

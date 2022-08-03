@@ -70,33 +70,35 @@ namespace BattleShips.GameComponents.Player
             {
                 instance = this;
                 DontDestroyOnLoad(gameObject);
-                base.Awake();
+
+                deck = Deck.Instance;
+
+                if (debugMode)
+                {
+                    var allTypes = Enum.GetValues(typeof(ShipType)).Cast<ShipType>().ToList();
+                    Ship ship;
+
+                    foreach (var type in allTypes)
+                    {
+                        ship = Instantiate<Ship>(shipsOwned.Find(s => s.Type == type), null);
+                        for (int i = 0; i < ship.Length; i++)
+                            ship[i] = ship.Armour;
+                        deck.Assign(ship);
+                    }
+                }
             }
         }
 
         internal override void Instantiate() 
         {
-            deck = Deck.Instance;
-
-            if (debugMode)
-            {
-                var allTypes = Enum.GetValues(typeof(ShipType)).Cast<ShipType>().ToList();
-                Ship ship;
-
-                foreach (var type in allTypes)
-                {
-                    ship = Instantiate<Ship>(shipsOwned.Find(s => s.Type == type), null);
-                    for (int i = 0; i < ship.Length; i++)
-                        ship[i] = ship.Armour;
-                    deck.Assign(ship);
-                }
-            }
+            board.ReinstantiateTiles();
         }
 
         protected override void Start()
         {
             manager = GameManager.Instance;
             board = GameBoard.Instance;
+            base.Start();
         }
 
         internal bool IsDeckFull => deck.IsDeckFull();

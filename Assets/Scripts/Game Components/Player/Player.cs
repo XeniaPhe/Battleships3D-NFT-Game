@@ -5,8 +5,8 @@ namespace BattleShips.GameComponents.Player
 {
     internal abstract class Player : MonoBehaviour
     {
-        protected virtual void Awake() { Instantiate(); }
-        protected abstract void Start();
+        protected abstract void Awake();
+        protected virtual void Start() { Instantiate(); }
         internal virtual void Instantiate() { }
         internal abstract AttackResult CheckTile(Attack attack);
         internal abstract Ship GetShip(ShipType shipType);

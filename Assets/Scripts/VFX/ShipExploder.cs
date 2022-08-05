@@ -25,7 +25,9 @@ namespace BattleShips.VFX
             GameObject explosion = Instantiate(explosions.GetChild(slot).gameObject, explosions.GetChild(slot).position, explosions.GetChild(slot).rotation);
             explosion.tag = "Disposable";
             explosion.SetActive(true);
-            fires.GetChild(slot).gameObject.SetActive(true);
+            //fires.GetChild(slot).gameObject.SetActive(true);
+            GameObject fire = Instantiate(fires.GetChild(slot).gameObject, fires.GetChild(slot).position, fires.GetChild(slot).rotation);
+            fire.SetActive(true);
             audioSource.clip = explosionClips[Random.Range(0, explosionClips.Count)];
             audioSource.Play();
         }

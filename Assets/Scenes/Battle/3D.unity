@@ -33542,7 +33542,6 @@ GameObject:
   m_Component:
   - component: {fileID: 896349854}
   - component: {fileID: 896349853}
-  - component: {fileID: 896349856}
   - component: {fileID: 896349855}
   m_Layer: 0
   m_Name: Grid Parent
@@ -33793,21 +33792,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8753e724a3d284ae6a5e560b6062465c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitTransform: {fileID: 4059997290636535954, guid: fd9bff55ea886c947bf9855e33f22009,
+  shipExplosion: {fileID: 3559913363312548300, guid: 4c1df241efc7cf34988e7a7dc6f8c5e7,
     type: 3}
---- !u!114 &896349856
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 896349852}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a57446fd96b149d9ba2590e23022cd2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hitTransform: {fileID: 2469555062416256984, guid: 537b2e1e036adc145b0086dcc1003a89,
+  waterExplosion: {fileID: 4030666733118620127, guid: 17f3e73daa321f747a5128f4de3727aa,
     type: 3}
 --- !u!1 &898953033
 GameObject:

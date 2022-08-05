@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29032c2b0226f7f48938654223455dfa, type: 3}
   m_Name: big_classic1
   m_EditorClassIdentifier: 
+  shipName: UssIndianapolis
   baseUID: UssIndianapolis
   model: {fileID: 5982093428173643346, guid: 79ba56b842c6ca94eb086a6f181cf564, type: 3}
   cardSprite: {fileID: 21300000, guid: 1b9c33cca57344e73bbd4da43d73b215, type: 3}

@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using BattleShips.GUI;
 using BattleShips.GameComponents.Tiles;
+using BattleShips.VFX;
 
 namespace BattleShips.GameComponents.Ships
 {
@@ -36,7 +37,7 @@ namespace BattleShips.GameComponents.Ships
         internal Vector3 NormalRotation => normalRotation;
         internal GameObject Model => model;
 
-        internal ShipHit shipHit;
+        internal ShipExploder shipExploder;
         internal Sprite CardSprite => cardSprite;
         internal int Armour => armour;
         internal float PreferedHeigth => preferedHeight;

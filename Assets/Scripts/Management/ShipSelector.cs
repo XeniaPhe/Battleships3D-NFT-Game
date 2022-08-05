@@ -5,7 +5,7 @@ using BattleShips.GameComponents;
 using BattleShips.GameComponents.Tiles;
 using BattleShips.GameComponents.Ships;
 using BattleShips.Utils;
-using BattleShips.GUI;
+using BattleShips.VFX;
 
 namespace BattleShips.Management
 {
@@ -63,9 +63,9 @@ namespace BattleShips.Management
         {
             if (selectedShip is null) Debug.Log("Not selected ship!");
 
-            var ship = FindObjectsOfType<ShipFire>().Where(f => f.name.Equals(PlayerType.Human.ToString() + " " + selectedShip.shipName)).FirstOrDefault();
+            var ship = FindObjectsOfType<ShipWeapon>().Where(f => f.name.Equals(PlayerType.Human.ToString() + " " + selectedShip.shipName)).FirstOrDefault();
 
-            ship.FireFromShip(1);
+            ship.FireFromShip(0);
         }
 
         #region Ship Placement

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98e806b9178646c4caa23a80fe3d4095, type: 3}
   m_Name: middle_classic2
   m_EditorClassIdentifier: 
+  shipName: Mikasa
   baseUID: Mikasa
   model: {fileID: 2287164296507038955, guid: 06932a09604e93b4396d6ee19b2632f8, type: 3}
   cardSprite: {fileID: 21300000, guid: d4e7f6ca3f1234511a02e096e1398b54, type: 3}

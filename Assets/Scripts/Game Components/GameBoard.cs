@@ -3,6 +3,7 @@ using UnityEngine;
 using BattleShips.GameComponents.Ships;
 using BattleShips.GameComponents.Tiles;
 using BattleShips.GameComponents.Player;
+using BattleShips.VFX;
 
 namespace BattleShips.GameComponents
 {
@@ -27,8 +28,7 @@ namespace BattleShips.GameComponents
         HumanPlayer player;
         DefenseTile[] defenseTiles;
         AttackTile[] attackTiles;
-        WaterHit waterHitter;
-        ExplosionHit explosionHitter;
+        ExplosionCreator explosionCreator;
 
         #endregion
 
@@ -73,8 +73,7 @@ namespace BattleShips.GameComponents
                 defenseTiles = GetComponentsInChildren<DefenseTile>();
                 attackTiles = GetComponentsInChildren<AttackTile>();
                 tileSize = GetComponentInChildren<Tile>().transform.localScale.x;
-                waterHitter = GetComponent<WaterHit>();
-                explosionHitter = GetComponent<ExplosionHit>();
+                explosionCreator = GetComponent<ExplosionCreator>();
             }
         }
 
@@ -153,7 +152,7 @@ namespace BattleShips.GameComponents
 
             var shipInstance = ship.InstantiateShip(middleTile.transform.position, dir,PlayerType.AI);
             shipInstance.GetComponent<WaveSimulator>().InitializeRandom(shipInstance.transform.position, shipInstance.transform.rotation.eulerAngles);
-            shipInstance.GetComponent<ShipHit>().HitEntirely();
+            shipInstance.GetComponent<ShipExploder>().ExplodeEntirely();
         }
 
         internal Tile GetTile(Vector2Int coord, TileType type, bool zeroBased = false) => GetTile(coord.x, coord.y, type, zeroBased);
@@ -167,37 +166,31 @@ namespace BattleShips.GameComponents
         internal void HitShip(Coordinate coord, TileType type)
         {
             string name = GetTile(coord, type).tileData.ship.name;
-            int index = GetTile(coord, type).tileData.shipIndex + 1;
+            int index = GetTile(coord, type).tileData.shipIndex;
             switch (name)
             {
                 case "Carrier(Clone)":
-                    FindObjectsOfType<ShipHit>().Where(s => s.name == "Carrier").FirstOrDefault().HitShip(index);
+                    FindObjectsOfType<ShipExploder>().Where(s => s.name == "Carrier").FirstOrDefault().ExplodeShip(index);
                     break;
                 case "Battleship(Clone)":
-                    FindObjectsOfType<ShipHit>().Where(s => s.name == "Battleship").FirstOrDefault().HitShip(index);
+                    FindObjectsOfType<ShipExploder>().Where(s => s.name == "Battleship").FirstOrDefault().ExplodeShip(index);
                     break;
                 case "Cruiser(Clone)":
-                    FindObjectsOfType<ShipHit>().Where(s => s.name == "Cruiser").FirstOrDefault().HitShip(index);
+                    FindObjectsOfType<ShipExploder>().Where(s => s.name == "Cruiser").FirstOrDefault().ExplodeShip(index);
                     break;
                 case "Submarine(Clone)":
-                    FindObjectsOfType<ShipHit>().Where(s => s.name == "Submarine").FirstOrDefault().HitShip(index);
+                    FindObjectsOfType<ShipExploder>().Where(s => s.name == "Submarine").FirstOrDefault().ExplodeShip(index);
                     break;
                 case "Destroyer(Clone)":
-                    FindObjectsOfType<ShipHit>().Where(s => s.name == "Destroyer").FirstOrDefault().HitShip(index);
+                    FindObjectsOfType<ShipExploder>().Where(s => s.name == "Destroyer").FirstOrDefault().ExplodeShip(index);
                     break;
             }
         }
 
-        internal void CreateExplosion(Coordinate coord, TileType type)
+        internal void CreateExplosion(Coordinate coord, TileType type,ExplosionType explosionType)
         {
             Vector3 pos = GetTile(coord, type).transform.position;
-            explosionHitter.HitExplosion(pos);
-        }
-
-        internal void CreateWaterHit(Coordinate coord, TileType type)
-        {
-            Vector3 pos = GetTile(coord, type).transform.position;
-            waterHitter.HitWater(pos);
+            explosionCreator.Explode(pos,explosionType);
         }
     }
 }

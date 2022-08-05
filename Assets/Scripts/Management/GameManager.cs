@@ -9,6 +9,7 @@ using BattleShips.GameComponents.Tiles;
 using BattleShips.GameComponents.Ships;
 using BattleShips.GUI;
 using BattleShips.Management.UI;
+using BattleShips.VFX;
 using UnityEngine.SceneManagement;
 
 namespace BattleShips.Management
@@ -225,7 +226,7 @@ namespace BattleShips.Management
             if (attackResult == AttackResult.AllDestroyed)
             {
                 board.PlacePeg(TileType.Attack, attack.coordinates, true);
-                board.CreateExplosion(attack.coordinates, TileType.Attack);
+                board.CreateExplosion(attack.coordinates, TileType.Attack, ExplosionType.ShipExplosion);
 
                 //moveLogger.PublishReport("You won!", Color.green, roundEndWaitTime);
                 //StartCoroutine(WaitFor(() => { DisplayWinLoseScreen(PlayerType.Human); }, roundEndWaitTime));
@@ -242,19 +243,19 @@ namespace BattleShips.Management
                 keepTurn = false;
                 moveLogger.PublishReport("Miss!", Color.red, aiTurnTime);
                 board.PlacePeg(TileType.Attack, attack.coordinates, false);
-                board.CreateWaterHit(attack.coordinates, TileType.Attack);
+                board.CreateExplosion(attack.coordinates, TileType.Attack, ExplosionType.WaterExplosion);
             }
             else if (attackResult == AttackResult.Hit)
             {
                 moveLogger.PublishReport("Hit!", Color.green, aiTurnTime);
                 board.PlacePeg(TileType.Attack, attack.coordinates, true);
-                board.CreateExplosion(attack.coordinates, TileType.Attack);
+                board.CreateExplosion(attack.coordinates, TileType.Attack, ExplosionType.ShipExplosion);
             }
             else
             {
                 moveLogger.PublishReport($"You sank enemy's {Ship.GetShipType(attackResult).ToString()}!", Color.green, aiTurnTime); //Details later
                 board.PlacePeg(TileType.Attack, attack.coordinates, true);
-                board.CreateExplosion(attack.coordinates, TileType.Attack);
+                board.CreateExplosion(attack.coordinates, TileType.Attack, ExplosionType.ShipExplosion);
                 board.RevealShip(attack.coordinates, computer.GetShip(Ship.GetShipType(attackResult)));
             }
 
@@ -296,7 +297,7 @@ namespace BattleShips.Management
                 keepTurn = false;
                 action += () =>
                 {
-                    board.CreateWaterHit(attack.coordinates, TileType.Defense);
+                    board.CreateExplosion(attack.coordinates, TileType.Defense, ExplosionType.WaterExplosion);
                     moveLogger.PublishReport("Enemy misses!", Color.green, aiTurnTime);
                     board.PlacePeg(TileType.Defense, attack.coordinates, false);
                 };
@@ -357,7 +358,7 @@ namespace BattleShips.Management
         {
             FindObjectsOfType<GameObject>().Where(g => g.tag.Equals("Disposable")).ToList().ForEach(d => Destroy(d));
             FindObjectsOfType<Peg>().ToList().ForEach(p => Destroy(p.gameObject));
-            FindObjectsOfType<ShipHit>().ToList().ForEach(s => s.fires.GetComponentsInChildren<ParticleSystem>().ToList().ForEach(p => p.gameObject.SetActive(false)));
+            //FindObjectsOfType<ShipExploder>().ToList().ForEach(s => s.fires.GetComponentsInChildren<ParticleSystem>().ToList().ForEach(p => p.gameObject.SetActive(false)));
 
             uiManager.TurnOnMenu(UIParts.ReadyButton);
             computer.Instantiate();

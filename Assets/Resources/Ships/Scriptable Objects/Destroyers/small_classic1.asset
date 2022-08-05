@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40250c327a791314685ec51d23f1fe54, type: 3}
   m_Name: small_classic1
   m_EditorClassIdentifier: 
+  shipName: Savarona
   baseUID: Savarona
   model: {fileID: 5003946382911900301, guid: 50ed8b3092293bc48a2243132ae6510b, type: 3}
   cardSprite: {fileID: 21300000, guid: f3f4f5140899849c2a68b3400c3d87ef, type: 3}

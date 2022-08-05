@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using BattleShips.VFX;
 
 namespace BattleShips.GameComponents.Testing
 {
@@ -14,8 +15,8 @@ namespace BattleShips.GameComponents.Testing
         [SerializeField] Transform disposables;
 
         List<ParticleSystem> fires;
-        List<ShipFire> guns;
-        List<ShipHit> hits;
+        List<ShipWeapon> guns;
+        List<ShipExploder> hits;
 
         bool playing = true;
 
@@ -23,8 +24,8 @@ namespace BattleShips.GameComponents.Testing
         {
             if ((guns is null || hits is null || fires is null) && fireToggle && shootButton && hitButton)
             {
-                guns = FindObjectsOfType<ShipFire>().ToList();
-                hits = guns.Select(g => g.GetComponent<ShipHit>()).ToList();
+                guns = FindObjectsOfType<ShipWeapon>().ToList();
+                hits = guns.Select(g => g.GetComponent<ShipExploder>()).ToList();
                 fires = hits.SelectMany(h => h.GetComponentsInChildren<ParticleSystem>().Where(p => p.name.Contains("Fire"))).ToList();
                 ToggleFire();
                 shootButton.onClick.AddListener(Shoot);
@@ -57,7 +58,7 @@ namespace BattleShips.GameComponents.Testing
 
         private void Hit()
         {
-            hits.ForEach(h => h.HitEntirely(disposables,DisposeAll));
+            hits.ForEach(h => h.ExplodeEntirely(disposables,DisposeAll));
         }
 
         IEnumerator DisposeAll(float seconds)

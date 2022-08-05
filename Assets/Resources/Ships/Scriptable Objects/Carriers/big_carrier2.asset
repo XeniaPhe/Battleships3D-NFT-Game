@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2176004e92819914d9304b243b4c23e3, type: 3}
   m_Name: big_carrier2
   m_EditorClassIdentifier: 
+  shipName: Shinano
   baseUID: Shinano
   model: {fileID: 5785732640782028751, guid: 6d0239d63be68494880f210143abbc19, type: 3}
   cardSprite: {fileID: 21300000, guid: d6e24d4d8a75e43c5a64676ad6886c3f, type: 3}

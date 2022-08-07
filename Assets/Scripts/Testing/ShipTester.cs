@@ -53,18 +53,12 @@ namespace BattleShips.GameComponents.Testing
 
         private void Shoot()
         {
-            guns.ForEach(g => g.FireFromAll(disposables,DisposeAll));
+            guns.ForEach(g => g.FireFromAll());
         }
 
         private void Hit()
         {
-            hits.ForEach(h => h.ExplodeEntirely(disposables,DisposeAll));
-        }
-
-        IEnumerator DisposeAll(float seconds)
-        {
-            yield return new WaitForSeconds(seconds);
-            disposables.GetComponentsInChildren<Transform>().Where(t => !t.Equals(disposables)).ToList().ForEach(t => Destroy(t.gameObject));
+            hits.ForEach(h => h.ExplodeEntirely());
         }
     }
 }

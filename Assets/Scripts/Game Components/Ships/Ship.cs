@@ -111,12 +111,8 @@ namespace BattleShips.GameComponents.Ships
             var shipInstance = Instantiate<Transform>(model.transform, position, Quaternion.Euler(rotation), null);
             shipInstance.localScale = preferedScale;
 
-            foreach (var child in shipInstance.transform)
-                foreach (var item in (Transform)child)
-                    ((Transform)item).gameObject.SetActive(false);
-
-            shipInstance.name = owner.ToString() + " " + shipName;
-            shipInstance.tag = "Disposable";
+            shipInstance.name = owner.ToString().Substring(0) + " " + shipName;
+            shipInstance.tag = Type.ToString();
             return shipInstance;
         }
         internal static ShipType GetShipType(AttackResult attackResult) => attackResult switch

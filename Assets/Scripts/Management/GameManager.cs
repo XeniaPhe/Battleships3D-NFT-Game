@@ -356,7 +356,7 @@ namespace BattleShips.Management
 
         private void StartNewRound()
         {
-            FindObjectsOfType<GameObject>().Where(g => g.tag.Equals("Disposable")).ToList().ForEach(d => Destroy(d));
+            //FindObjectsOfType<GameObject>().Where(g => g.tag.Equals("Disposable")).ToList().ForEach(d => Destroy(d));
             FindObjectsOfType<Peg>().ToList().ForEach(p => Destroy(p.gameObject));
             //FindObjectsOfType<ShipExploder>().ToList().ForEach(s => s.fires.GetComponentsInChildren<ParticleSystem>().ToList().ForEach(p => p.gameObject.SetActive(false)));
 

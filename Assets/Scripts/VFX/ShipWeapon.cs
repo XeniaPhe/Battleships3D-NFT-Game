@@ -22,25 +22,22 @@ namespace BattleShips.VFX
         internal void FireFromShip(int slot)
         {
             GameObject shot = Instantiate(shots.GetChild(slot).gameObject, shots.GetChild(slot).position, shots.GetChild(slot).rotation);
-            shot.tag = "Disposable";
             shot.SetActive(true);
             audioSource.clip = fireClips[Random.Range(0, fireClips.Count)];
             audioSource.Play();
         }
 
-        internal void FireFromAll(Transform disposableParent, Func<float, IEnumerator> dispose)
+        internal void FireFromAll()
         {
             var all = shots.GetComponentsInChildren<Transform>(true).Where(t => !t.Equals(shots));
 
             foreach (var item in all)
             {
-                GameObject shot = Instantiate(item.gameObject, item.position, item.rotation, disposableParent);
+                GameObject shot = Instantiate(item.gameObject, item.position, item.rotation);
                 shot.SetActive(true);
                 audioSource.clip = fireClips[Random.Range(0, fireClips.Count)];
                 audioSource.Play();
             }
-
-            StartCoroutine(dispose.Invoke(2.5f));
         }
     }
 }

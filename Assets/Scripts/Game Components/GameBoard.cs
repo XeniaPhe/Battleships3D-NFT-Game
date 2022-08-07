@@ -165,26 +165,9 @@ namespace BattleShips.GameComponents
         }
         internal void HitShip(Coordinate coord, TileType type)
         {
-            string name = GetTile(coord, type).tileData.ship.name;
+            ShipType shipType = GetTile(coord, type).tileData.ship.Type;
             int index = GetTile(coord, type).tileData.shipIndex;
-            switch (name)
-            {
-                case "Carrier(Clone)":
-                    FindObjectsOfType<ShipExploder>().Where(s => s.name == "Carrier").FirstOrDefault().ExplodeShip(index);
-                    break;
-                case "Battleship(Clone)":
-                    FindObjectsOfType<ShipExploder>().Where(s => s.name == "Battleship").FirstOrDefault().ExplodeShip(index);
-                    break;
-                case "Cruiser(Clone)":
-                    FindObjectsOfType<ShipExploder>().Where(s => s.name == "Cruiser").FirstOrDefault().ExplodeShip(index);
-                    break;
-                case "Submarine(Clone)":
-                    FindObjectsOfType<ShipExploder>().Where(s => s.name == "Submarine").FirstOrDefault().ExplodeShip(index);
-                    break;
-                case "Destroyer(Clone)":
-                    FindObjectsOfType<ShipExploder>().Where(s => s.name == "Destroyer").FirstOrDefault().ExplodeShip(index);
-                    break;
-            }
+            FindObjectsOfType<ShipExploder>().Where(s => s.tag.Equals(shipType.ToString())).FirstOrDefault().ExplodeShip(index);
         }
 
         internal void CreateExplosion(Coordinate coord, TileType type,ExplosionType explosionType)

@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d7027e43fe416c4f83bf52701335605, type: 3}
+  m_Name: Level 1
+  m_EditorClassIdentifier: 
+  shipBundle:
+    containsDestroyer: 1
+    containsCruiser: 1
+    containsSubmarine: 1
+    containsBattleship: 1
+    containsCarrier: 1
+    destroyer: {fileID: 11400000, guid: e1beb8ce35fbf124d8a5468ec4edc1e4, type: 2}
+    cruiser: {fileID: 11400000, guid: 014f9d5265c453e4d8365a82496b2a91, type: 2}
+    submarine: {fileID: 11400000, guid: 230274b08f9b6ac45a82f8c9f88a38db, type: 2}
+    battleship: {fileID: 11400000, guid: 7f40eae66c849d044961b826b51de852, type: 2}
+    carrier: {fileID: 11400000, guid: b1e70c9aaaa4f0d4aba7108fc3994420, type: 2}
+  parity: 1
+  minDistortion: 0.8899999856948853
+  maxDistortion: 1.1299999952316284
+  edgeMultiplier: 1.2100000381469727
+  cornerMultiplier: 0.7900000214576721
+  maxCentrality: 1.5
+  offParityChanceMultiplier: 0.23000000417232513

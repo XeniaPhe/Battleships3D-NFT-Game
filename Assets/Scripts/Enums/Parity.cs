@@ -1,4 +1,4 @@
-﻿namespace BattleShips.GameComponents.AI
+﻿namespace BattleShips.GameComponents.Player.AI
 {
     internal enum Parity
     {

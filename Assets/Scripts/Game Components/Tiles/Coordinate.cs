@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace BattleShips.GameComponents.Tiles
 {
     [Serializable]
-    internal class Coordinate
+    internal class Coordinate : IComparable<Coordinate>
     {
         [SerializeField] int x;
         [SerializeField] int y;
@@ -101,25 +102,25 @@ namespace BattleShips.GameComponents.Tiles
             return neighbors;
         }
 
-        internal List<Directions> GetNeighborDirections()
+        internal List<Direction> GetNeighborDirections()
         {
-            List<Directions> directions = new List<Directions>();
+            List<Direction> directions = new List<Direction>();
             Coordinate temp;
 
-            if ((temp = Left) is not null) directions.Add(Directions.Left);
-            if ((temp = Right) is not null) directions.Add(Directions.Right);
-            if ((temp = Down) is not null) directions.Add(Directions.Down);
-            if ((temp = Up) is not null) directions.Add(Directions.Up);
+            if ((temp = Left) is not null) directions.Add(Direction.Left);
+            if ((temp = Right) is not null) directions.Add(Direction.Right);
+            if ((temp = Down) is not null) directions.Add(Direction.Down);
+            if ((temp = Up) is not null) directions.Add(Direction.Up);
             return directions;
         }
 
-        internal Coordinate GetCoordinatesAt(Directions direction) => direction switch
+        internal Coordinate GetCoordinatesAt(Direction direction) => direction switch
         {
-            Directions.Up => Up,
-            Directions.Down => Down,
-            Directions.Left => Left,
-            Directions.Right => Right,
-            _ => throw new ArgumentException("Undefined Direction!")
+            Direction.Up => Up,
+            Direction.Down => Down,
+            Direction.Left => Left,
+            Direction.Right => Right,
+            _ => null
         };
 
         internal static bool IsValidCoordinate(int x, int y, bool zeroBased = false) =>
@@ -143,28 +144,43 @@ namespace BattleShips.GameComponents.Tiles
                 false => new Vector2Int(x, y)
             };
 
-        internal static Directions? GetDirection(Coordinate coordinate1,Coordinate coordinate2)
+        internal static Direction? GetDirection(Coordinate to,Coordinate from)
         {
-            if (coordinate1.x == coordinate2.x)
+            if (to.x == from.x)
             {
-                if (coordinate1.y > coordinate2.y)
-                    return Directions.Right;
-                else if (coordinate1.y < coordinate2.y)
-                    return Directions.Left;
+                if (to.y > from.y)
+                    return Direction.Right;
+                else if (to.y < from.y)
+                    return Direction.Left;
                 else
                     return null;
             }
-            else if (coordinate1.y == coordinate2.y)
+            else if (to.y == from.y)
             {
-                if (coordinate1.x > coordinate2.x)
-                    return Directions.Up;
-                else if (coordinate1.x < coordinate2.x)
-                    return Directions.Down;
+                if (to.x > from.x)
+                    return Direction.Down;
+                else if (to.x < from.x)
+                    return Direction.Up;
                 else
                     return null;
             }
             else
                 return null;
+        }
+
+        internal static void OrderCoordinates(List<Coordinate> coordinates)
+        {
+            if (coordinates is null || coordinates.Count < 2)
+                return;
+
+            int count = (from c in coordinates
+                     where c.x == coordinates[0].x || c.y == coordinates[0].y
+                     select c).Count();
+
+            if (count != coordinates.Count)
+                return;
+
+            coordinates.Sort();
         }
 
         public override bool Equals(object obj)
@@ -177,5 +193,14 @@ namespace BattleShips.GameComponents.Tiles
         }
 
         public override string ToString() => x + " - " + y;
+
+        public int CompareTo(Coordinate other)
+        {
+            if (other.x > this.x) return 1;
+            if (this.x > other.x) return -1;
+            if (other.y > this.y) return 1;
+            if(this.y > other.y) return -1;
+            return 0;
+        }
     }
 }

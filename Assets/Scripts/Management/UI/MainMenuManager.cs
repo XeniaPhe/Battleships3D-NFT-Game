@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-using BattleShips.GameComponents;
+using BattleShips.GameComponents.Player;
 
 namespace BattleShips.Management.UI
 {
@@ -36,7 +36,7 @@ namespace BattleShips.Management.UI
 
         private void Play()
         {
-            if (Player.Instance.IsDeckFull)
+            if (HumanPlayer.Instance.IsDeckFull)
                 GameSceneManager.Instance.LoadGameScene();
             else
             {

@@ -1,10 +1,10 @@
-﻿namespace BattleShips.GameComponents.AI
+﻿namespace BattleShips.GameComponents.Player.AI
 {
     internal enum AIMode
     {
-        Search,
-        Hunt,
-        Destroy,
-        MoveShip
+        Seek,
+        TrackDown,
+        Mark,
+        Terminate,
     }
 }

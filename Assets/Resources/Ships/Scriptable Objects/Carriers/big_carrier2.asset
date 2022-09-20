@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2176004e92819914d9304b243b4c23e3, type: 3}
+  m_Name: big_carrier2
+  m_EditorClassIdentifier: 
+  shipName: Shinano
+  baseUID: Shinano
+  model: {fileID: 5785732640782028751, guid: 6d0239d63be68494880f210143abbc19, type: 3}
+  cardSprite: {fileID: 21300000, guid: d6e24d4d8a75e43c5a64676ad6886c3f, type: 3}
+  preferedScale: {x: 13.7, y: 13.7, z: 13.7}
+  normalRotation: {x: -90, y: 0, z: 0}
+  preferedHeight: 0
+  armour: 80
+  weapon1: {fileID: 0}
+  weapon2: {fileID: 0}

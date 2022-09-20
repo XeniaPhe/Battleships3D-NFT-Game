@@ -2,8 +2,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 using TMPro;
-using BattleShips.GameComponents;
+using BattleShips.GameComponents.Player;
 using BattleShips.GameComponents.Ships;
 using BattleShips.GUI;
 
@@ -42,9 +43,8 @@ namespace BattleShips.Management.UI
 
         private void Start()
         {
-            shipWrappers = FindObjectsOfType<GameShipWrapper>().ToList();
-            if (shipWrappers.Count != 5)
-                Debug.LogWarning("There's something wrong");
+            if(shipWrappers == null)
+                shipWrappers = FindObjectsOfType<GameShipWrapper>().ToList();
         }
 
         private void Update()
@@ -58,9 +58,13 @@ namespace BattleShips.Management.UI
         internal void Initialize()
         {
             Start();
-            TurnOnMenu(UIParts.Main);
 
-            Player player = Player.Instance;
+            TurnOnMenu(UIParts.Ships);
+            TurnOnMenu(UIParts.DurabilityIndicator);
+            TurnOnMenu(UIParts.MoveLogger);
+            TurnOnMenu(UIParts.ReadyButton);
+
+            HumanPlayer player = HumanPlayer.Instance;
 
             shipWrappers.Find(s => s.Constraint == ShipType.Destroyer).Initialise(player.GetDestroyer());
             shipWrappers.Find(s => s.Constraint == ShipType.Cruiser).Initialise(player.GetCruiser());
@@ -68,9 +72,7 @@ namespace BattleShips.Management.UI
             shipWrappers.Find(s => s.Constraint == ShipType.Battleship).Initialise(player.GetBattleship());
             shipWrappers.Find(s => s.Constraint == ShipType.Carrier).Initialise(player.GetCarrier());
 
-            TurnOnMenu(UIParts.Ships);
-            TurnOnMenu(UIParts.MoveReporter);
-           // TurnOffMenu(UIParts.DurabilityIndicator);
+            ResetWrapperButtons();
         }
 
         internal void TurnOnMenu(UIParts menu)
@@ -83,7 +85,7 @@ namespace BattleShips.Management.UI
                 case UIParts.ReadyButton:
                     readyButton.gameObject.SetActive(true);
                     break;
-                case UIParts.MoveReporter:
+                case UIParts.MoveLogger:
                     moveReporter.gameObject.SetActive(true);
                     break;
                 case UIParts.DurabilityIndicator:
@@ -102,7 +104,7 @@ namespace BattleShips.Management.UI
                 case UIParts.ReadyButton:
                     readyButton.gameObject.SetActive(false);
                     break;
-                case UIParts.MoveReporter:
+                case UIParts.MoveLogger:
                     moveReporter.gameObject.SetActive(false);
                     break;
                 case UIParts.DurabilityIndicator:
@@ -111,28 +113,16 @@ namespace BattleShips.Management.UI
             }
         }
 
-        internal void ToggleMenu(UIParts menu)
+        internal void SetReadyButtonListener(UnityAction callback)
         {
-            switch (menu)
-            {
-                case UIParts.Ships:
-                    shipsMenu.gameObject.SetActive(!shipsMenu.gameObject.activeSelf);
-                    break;
-                case UIParts.ReadyButton:
-                    readyButton.gameObject.SetActive(!readyButton.gameObject.activeSelf);
-                    break;
-                case UIParts.MoveReporter:
-                    moveReporter.gameObject.SetActive(!moveReporter.gameObject.activeSelf);
-                    break;
-                case UIParts.DurabilityIndicator:
-                    shipWrappers.ForEach(w => w.durabilityIndicator.gameObject.SetActive(!w.gameObject.activeSelf));
-                    break;
-            }
+            readyButton.onClick.RemoveAllListeners();
+            readyButton.onClick.AddListener(callback);
+            readyButton.onClick.AddListener(() => TurnOffMenu(UIParts.ReadyButton));
         }
 
-        internal void SetWrapperButtonsInteractable()
+        internal void ResetWrapperButtons()
         {
-            shipsMenu.GetComponentsInChildren<GameShipWrapperButton>().ToList().ForEach(b => b.interactable = true);
+            shipWrappers.ForEach(w => w.Reset());
         }
         internal void EnableReadyButton() => readyButton.interactable = true;
         internal void DisableReadyButton() => readyButton.interactable = false;

@@ -107,3 +107,4 @@ MonoBehaviour:
   randomTranslation: 0.003
   randomRotation: 0.12
   resetTime: 15
+  isWhitePeg: 1

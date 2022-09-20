@@ -5,7 +5,7 @@ using BattleShips.GameComponents;
 using BattleShips.GameComponents.Tiles;
 using BattleShips.GameComponents.Ships;
 using BattleShips.Utils;
-using BattleShips.GUI;
+using BattleShips.VFX;
 
 namespace BattleShips.Management
 {
@@ -29,7 +29,7 @@ namespace BattleShips.Management
 
         GameBoard board;
         internal Ship selectedShip;
-        Directions currentDirection = Directions.Up;
+        Direction currentDirection = Direction.Up;
         DefenseTile enteredTile;
         List<DefenseTile> tilesToPlaceTo = new List<DefenseTile>();
         Transform shipInstance;
@@ -63,16 +63,16 @@ namespace BattleShips.Management
         {
             if (selectedShip is null) Debug.Log("Not selected ship!");
 
-            var ship = FindObjectsOfType<ShipFire>().Where(f => f.name == selectedShip.Type.ToString()).FirstOrDefault();
+            var ship = FindObjectsOfType<ShipWeapon>().Where(f => f.name.Equals(selectedShip.Type.ToString())).FirstOrDefault();
 
-            ship.FireFromShip(1);
+            ship.FireFromShip(0);
         }
 
         #region Ship Placement
 
         internal void Rotate()
         {
-            currentDirection = (Directions)(((int)currentDirection + 1) % 4);
+            currentDirection = (Direction)(((int)currentDirection + 1) % 4);
             HighlightShipPlacement(enteredTile);
         }
 
@@ -85,8 +85,10 @@ namespace BattleShips.Management
             foreach (var tile in tilesToPlaceTo)
                 tile.RemoveTemporaryPaint();
 
-            if (!(selectedShip is not null && startTile is not null && startTile.IsTileInNormalState()))
+            if (!(selectedShip is not null && startTile is not null))
                 return;
+
+            
 
             enteredTile = startTile;
             tilesToPlaceTo = new List<DefenseTile>();
@@ -94,6 +96,9 @@ namespace BattleShips.Management
             int firstDir = selectedShip.Length / 2;
             Coordinate tileCoord = enteredTile.tileData.Coordinates;
             Coordinate tempCoords;
+
+            if (!startTile.IsTileInNormalState())
+                isSelectionSuccessful = false;
 
             for (int i = 0; i < firstDir; i++)
             {
@@ -112,60 +117,24 @@ namespace BattleShips.Management
             int secondDir = selectedShip.Length - firstDir - 1;
             Traverse(secondDir,oppositeDirection);
 
-            Vector3 rotation = selectedShip.NormalRotation;
-            Vector3 pos = enteredTile.transform.position;
-
-            if(selectedShip.Length %2 == 0)
-            {
-                switch (currentDirection)
-                {
-                    case Directions.Right:
-                        pos += (Vector3.back);
-                        break;
-                    case Directions.Up:
-                        pos += (Vector3.right);
-                        break;
-                    case Directions.Left:
-                        pos += (Vector3.forward);
-                        break;
-                    case Directions.Down:
-                        pos += (Vector3.left);
-                        break;
-                }
-            }
-
-            pos.y = 1.2f;
-            rotation.y = (int)(currentDirection) * 90;
-            
-            shipInstance = Instantiate<Transform>(selectedShip.Model.transform, pos, Quaternion.Euler(rotation), null);
-            shipInstance.localScale = selectedShip.PreferedScale;
-            foreach (var child in shipInstance.transform)
-            {
-                foreach (var item in (Transform)child)
-                {
-                    ((Transform)item).gameObject.SetActive(false);
-                    Debug.Log(a++);
-                }
-            }
-            shipInstance.name = selectedShip.Type.ToString();
-
-            /*foreach(var mat in shipInstance.GetComponent<MeshRenderer>().materials)
-                mat.color = Color.white;*/
+            shipInstance = selectedShip.InstantiateShip(enteredTile.transform.position, currentDirection);
 
             foreach (var tile in tilesToPlaceTo)
                 tile.PaintTemporarily(isSelectionSuccessful ? successfulColor : unsuccessfulColor);
 
-
-            void Traverse(int distance,Directions direction)
+            void Traverse(int distance,Direction direction)
             {
                 for (int i = 0; i < distance; i++)
                 {
                     temp = board.GetTile(tileCoord, TileType.Defense) as DefenseTile;
 
-                    if (temp != null && temp.IsTileInNormalState())
+                    if (temp != null)
                     {
                         tilesToPlaceTo.Add(temp);
                         tileCoord = tileCoord.GetCoordinatesAt(direction);
+
+                        if (!temp.IsTileInNormalState())
+                            isSelectionSuccessful = false;
                     }
                     else
                     {
@@ -182,11 +151,6 @@ namespace BattleShips.Management
             if (shipInstance is null) return;
             if (isSelectionSuccessful is false) return;
 
-            if (selectedShip.Type == ShipType.Submarine)
-                shipInstance.position = new Vector3(shipInstance.position.x, 0f, shipInstance.position.z);
-            else
-                shipInstance.position = new Vector3(shipInstance.position.x, 0.4f, shipInstance.position.z);
-
             DefenseTile tile;
             TileData start = tilesToPlaceTo[0].tileData;
             for (int i = 0; i < tilesToPlaceTo.Count; i++)
@@ -200,6 +164,7 @@ namespace BattleShips.Management
             shipInstance.GetComponent<WaveSimulator>().InitializeRandom(shipInstance.transform.position, shipInstance.transform.rotation.eulerAngles);
             shipInstance = null;
             selectedShip = null;
+            enteredTile = null;
             tilesToPlaceTo.Clear();
         }
 

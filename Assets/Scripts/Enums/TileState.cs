@@ -8,5 +8,6 @@ namespace BattleShips.GameComponents.Tiles
         HasHitShip,
         HasDestroyedShipPart,
         HasSunkenShip,
+        BlockedByAnotherShip
     }
 }

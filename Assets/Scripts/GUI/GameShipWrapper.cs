@@ -33,11 +33,6 @@ namespace BattleShips.GUI
 
         protected override void Awake()
         {
-            
-        }
-
-        private void Start()
-        {
             durabilityIndicator = GetComponent<ShipDurabilityIndicator>();
             button = GetComponent<GameShipWrapperButton>();
             button.onClick.AddListener(OnClick);
@@ -54,6 +49,14 @@ namespace BattleShips.GUI
             shipImage.sprite = ship.CardSprite;
             ship.ShipPlaced += OnShipPlaced;
             ship.ShipPlaced += GameManager.Instance.OnShipPlaced;
+        }
+
+        internal void Reset()
+        {
+            if (!button.selectable)
+                GameShipWrapperButton.nonSelectableCount--;
+            button.interactable = true;
+            button.selectable = true;
         }
 
         private void OnClick() => ShipSelector.Instance.SelectShip(Ship);

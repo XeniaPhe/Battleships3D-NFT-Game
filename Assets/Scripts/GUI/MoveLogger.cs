@@ -13,18 +13,11 @@ namespace BattleShips.GUI
         internal static MoveLogger Instance => instance;
         #endregion
 
-        #region Serialized Fields
 
-        [SerializeField] TMP_Text reportText;
+        [SerializeField] TMP_Text logText;
 
-        #endregion
+        IEnumerator log;
 
-        #region Cached Fields
-
-        IEnumerator report;
-        IEnumerator secondReport;
-
-        #endregion
         private void Awake()
         {
             if (instance)
@@ -32,35 +25,26 @@ namespace BattleShips.GUI
             else
             {
                 instance = this;
-                reportText.text = "";
+                logText.text = "";
                 gameObject.SetActive(false);
             }
         }
 
-        internal void PublishReport(string announcement, Color color, float seconds)
+        internal void Log(string log, Color color, float seconds)
         {
             gameObject.SetActive(true);
-            StopAllCoroutines();
-            reportText.text = announcement;
-            reportText.color = color;
-            report = WaitFor(CancelReport, seconds);
-            StartCoroutine(report);
+            CancelInvoke();
+
+            logText.text = log;
+            logText.color = color;
+            Invoke(nameof(CancelLog),seconds);
         }
-        
-        internal void CancelReport()
+
+        internal void CancelLog()
         {
-            reportText.text = "";
+            logText.text = string.Empty;
             gameObject.SetActive(false);
-            report = null;
-            secondReport = null;
-            StopAllCoroutines();
+            CancelInvoke();
         }
-
-        IEnumerator WaitFor(UnityAction action,float seconds)
-        {
-            yield return new WaitForSeconds(seconds);
-            action.Invoke();
-        }
-
     }
 }

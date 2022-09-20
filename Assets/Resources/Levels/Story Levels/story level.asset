@@ -1,0 +1,108 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc1d84d2372fd8641a6a08eac2fbb3ff, type: 3}
+  m_Name: story level
+  m_EditorClassIdentifier: 
+  AiData: {fileID: 0}
+  roundStartTextTime: 0
+  shipPlacementTime: 0
+  turnTime: 0
+  AiShipPlacementTime: 0
+  AiTurnTime: 0
+  roundEndWaitTime: 0
+  intermediateTextTime: 0
+  firstRoundDialogs:
+    playerTriggeredDialogs:
+      b_ShipPlacement: {fileID: 0}
+      b_FirstMove: {fileID: 0}
+      a_FirstMove: {fileID: 0}
+      a_FirstMiss: {fileID: 0}
+      a_FirstHit: {fileID: 0}
+      a_DestroyFirstShip: {fileID: 0}
+      a_DestroyDestroyer: {fileID: 0}
+      a_DestroySubmarine: {fileID: 0}
+      a_DestroyCruiser: {fileID: 0}
+      a_DestroyBattleship: {fileID: 0}
+      a_DestroyCarrier: {fileID: 0}
+      b_Win: {fileID: 0}
+    AiTriggeredDialogs:
+      b_ShipPlacement: {fileID: 0}
+      b_FirstMove: {fileID: 0}
+      a_FirstMove: {fileID: 0}
+      a_FirstMiss: {fileID: 0}
+      a_FirstHit: {fileID: 0}
+      a_DestroyFirstShip: {fileID: 0}
+      a_DestroyDestroyer: {fileID: 0}
+      a_DestroySubmarine: {fileID: 0}
+      a_DestroyCruiser: {fileID: 0}
+      a_DestroyBattleship: {fileID: 0}
+      a_DestroyCarrier: {fileID: 0}
+      b_Win: {fileID: 0}
+    b_RoundEnd: {fileID: 0}
+  secondRoundDialogs:
+    playerTriggeredDialogs:
+      b_ShipPlacement: {fileID: 0}
+      b_FirstMove: {fileID: 0}
+      a_FirstMove: {fileID: 0}
+      a_FirstMiss: {fileID: 0}
+      a_FirstHit: {fileID: 0}
+      a_DestroyFirstShip: {fileID: 0}
+      a_DestroyDestroyer: {fileID: 0}
+      a_DestroySubmarine: {fileID: 0}
+      a_DestroyCruiser: {fileID: 0}
+      a_DestroyBattleship: {fileID: 0}
+      a_DestroyCarrier: {fileID: 0}
+      b_Win: {fileID: 0}
+    AiTriggeredDialogs:
+      b_ShipPlacement: {fileID: 0}
+      b_FirstMove: {fileID: 0}
+      a_FirstMove: {fileID: 0}
+      a_FirstMiss: {fileID: 0}
+      a_FirstHit: {fileID: 0}
+      a_DestroyFirstShip: {fileID: 0}
+      a_DestroyDestroyer: {fileID: 0}
+      a_DestroySubmarine: {fileID: 0}
+      a_DestroyCruiser: {fileID: 0}
+      a_DestroyBattleship: {fileID: 0}
+      a_DestroyCarrier: {fileID: 0}
+      b_Win: {fileID: 0}
+    b_RoundEnd: {fileID: 0}
+  thirdRoundDialogs:
+    playerTriggeredDialogs:
+      b_ShipPlacement: {fileID: 0}
+      b_FirstMove: {fileID: 0}
+      a_FirstMove: {fileID: 0}
+      a_FirstMiss: {fileID: 0}
+      a_FirstHit: {fileID: 0}
+      a_DestroyFirstShip: {fileID: 0}
+      a_DestroyDestroyer: {fileID: 0}
+      a_DestroySubmarine: {fileID: 0}
+      a_DestroyCruiser: {fileID: 0}
+      a_DestroyBattleship: {fileID: 0}
+      a_DestroyCarrier: {fileID: 0}
+      b_Win: {fileID: 0}
+    AiTriggeredDialogs:
+      b_ShipPlacement: {fileID: 0}
+      b_FirstMove: {fileID: 0}
+      a_FirstMove: {fileID: 0}
+      a_FirstMiss: {fileID: 0}
+      a_FirstHit: {fileID: 0}
+      a_DestroyFirstShip: {fileID: 0}
+      a_DestroyDestroyer: {fileID: 0}
+      a_DestroySubmarine: {fileID: 0}
+      a_DestroyCruiser: {fileID: 0}
+      a_DestroyBattleship: {fileID: 0}
+      a_DestroyCarrier: {fileID: 0}
+      b_Win: {fileID: 0}
+    b_RoundEnd: {fileID: 0}
+  b_AI_VictoryScreen: {fileID: 0}
+  b_P_VictoryScreen: {fileID: 0}

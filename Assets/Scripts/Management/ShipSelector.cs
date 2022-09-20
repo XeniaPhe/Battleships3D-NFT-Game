@@ -63,7 +63,7 @@ namespace BattleShips.Management
         {
             if (selectedShip is null) Debug.Log("Not selected ship!");
 
-            var ship = FindObjectsOfType<ShipWeapon>().Where(f => f.name.Equals(PlayerType.Human.ToString() + " " + selectedShip.shipName)).FirstOrDefault();
+            var ship = FindObjectsOfType<ShipWeapon>().Where(f => f.name.Equals(selectedShip.Type.ToString())).FirstOrDefault();
 
             ship.FireFromShip(0);
         }

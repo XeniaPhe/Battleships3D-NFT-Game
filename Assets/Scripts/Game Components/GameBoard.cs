@@ -85,19 +85,21 @@ namespace BattleShips.GameComponents
         internal void ReinstantiateTiles()
         {
             foreach (var tile in defenseTiles)
-            {
-                Reset(tile.tileData);
-            }
+                Reset(tile);
 
             foreach (var tile in attackTiles)
-            {
-                Reset(tile.tileData);
-            }
+                Reset(tile);
 
-            void Reset(TileData tileData)
+            void Reset(Tile tile)
             {
+                if (tile.HasPeg())
+                    Destroy(tile.peg.gameObject);
+
+                var tileData = tile.tileData;
                 tileData.startTile = null;
                 tileData.ship = null;
+                tileData.shipIndex = 0;
+                tileData.shipDirection = Direction.Left;
                 tileData.tileState = TileState.Normal;
             }
         }
@@ -118,6 +120,7 @@ namespace BattleShips.GameComponents
 
             var pos = tile.transform.position;
             pos.y -= 0.5f;
+
             Peg peg = red ? redPeg : whitePeg;
             peg = Instantiate<Peg>(peg, pos, transform.rotation, transform);
             peg.InitializeRandom(pos);
@@ -132,8 +135,19 @@ namespace BattleShips.GameComponents
             Tile temp;
 
             for (int i = 0; i < 4; i++)
-                if ((temp = GetTile(startTile.GetTileCoordinatesAt(dir = (Direction)i), TileType.Attack)) is not null && temp.peg is not null && !temp.peg.isWhitePeg)
-                    break;
+            {
+                dir = (Direction)i;
+                temp = GetTile(startTile.GetTileCoordinatesAt(dir), TileType.Attack);
+
+                if (temp == null)
+                    continue;
+                if (temp.peg == null)
+                    continue;
+                if (temp.peg.isWhitePeg)
+                    continue;
+
+                break;
+            }
 
             temp = startTile;
 
@@ -167,7 +181,7 @@ namespace BattleShips.GameComponents
         {
             ShipType shipType = GetTile(coord, type).tileData.ship.Type;
             int index = GetTile(coord, type).tileData.shipIndex;
-            FindObjectsOfType<ShipExploder>().Where(s => s.tag.Equals(shipType.ToString())).FirstOrDefault().ExplodeShip(index);
+            FindObjectsOfType<ShipExploder>().Where(s => s.name.Equals(shipType.ToString())).FirstOrDefault().ExplodeShip(index);
         }
 
         internal void CreateExplosion(Coordinate coord, TileType type,ExplosionType explosionType)

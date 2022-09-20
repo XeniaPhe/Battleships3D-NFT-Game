@@ -8,8 +8,8 @@ using UnityEngine;
 
 namespace BattleShips.GameComponents.Player.AI
 {
-    [CreateAssetMenu(fileName = "Leveli",menuName = "AI/Level")]
-    internal class AILevel : ScriptableObject
+    [CreateAssetMenu(fileName = "New AI Data",menuName = "AI/Data")]
+    internal class AIData : ScriptableObject
     {
         #region Serialized Fields
 
@@ -28,7 +28,7 @@ namespace BattleShips.GameComponents.Player.AI
 
         #region Properties
 
-        internal ShipBundle ShipBundle { get { return shipBundle; } }
+        internal ShipBundle ShipBundle { get { return (ShipBundle)shipBundle.Clone(); } }
         internal bool Parity { get { return parity; } }
         internal double MinDistortion { get { return minDistortion; } }
         internal double MaxDistortion { get { return maxDistortion; } }

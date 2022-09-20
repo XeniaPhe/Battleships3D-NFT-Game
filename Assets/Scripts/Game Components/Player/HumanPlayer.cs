@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using BattleShips.Management;
+using BattleShips.Management.UI;
 using BattleShips.GameComponents.Tiles;
 using BattleShips.GameComponents.Ships;
 
@@ -20,7 +21,6 @@ namespace BattleShips.GameComponents.Player
         #region Serialized Fields
 
         [SerializeField] List<Ship> shipsOwned;     //Will be given with welcome pack
-        [SerializeField] bool debugMode = true;
 
         #endregion
 
@@ -58,47 +58,70 @@ namespace BattleShips.GameComponents.Player
         Deck deck;
         GameManager manager;
         GameBoard board;
-        ShipFlag shipFlag = new ShipFlag();
+        ShipFlag shipFlag;
 
         #endregion
 
         protected override void Awake()
         {
-            if(instance)
+            if (instance)
                 Destroy(gameObject);
             else
             {
                 instance = this;
                 DontDestroyOnLoad(gameObject);
-
-                deck = Deck.Instance;
-
-                if (debugMode)
-                {
-                    var allTypes = Enum.GetValues(typeof(ShipType)).Cast<ShipType>().ToList();
-                    Ship ship;
-
-                    foreach (var type in allTypes)
-                    {
-                        ship = Instantiate<Ship>(shipsOwned.Find(s => s.Type == type), null);
-                        for (int i = 0; i < ship.Length; i++)
-                            ship[i] = ship.Armour;
-                        deck.Assign(ship);
-                    }
-                }
             }
         }
 
-        internal override void Instantiate() 
+        internal override void Initialize()
         {
             board.ReinstantiateTiles();
+            Instantiate(deck);
+        }
+
+        internal ShipFlag Instantiate(Deck deck)
+        {
+            Ship ship;
+
+            if (deck is not null && deck != this.deck)
+            {
+                this.deck = deck;
+
+                for (int i = 0; i < 5; i++)
+                {
+                    ship = deck.Bundle[i];
+
+                    if (ship is null)
+                        continue;
+
+                    ship = Instantiate<Ship>(ship, null);
+
+                    this.deck.Assign(ship);
+                }
+            }
+            else
+            {
+                this.deck = new Deck();
+                var allTypes = Enum.GetValues(typeof(ShipType)).Cast<ShipType>().ToList();
+
+                foreach (var type in allTypes)
+                {
+                    ship = Instantiate<Ship>(shipsOwned.Find(s => s.Type == type), null);
+                    for (int i = 0; i < ship.Length; i++)
+                        ship[i] = ship.Armour;
+
+                    this.deck.Assign(ship);
+                }
+            }
+
+            shipFlag = new ShipFlag(this.deck.Bundle);
+            return shipFlag;
         }
 
         protected override void Start()
         {
             manager = GameManager.Instance;
             board = GameBoard.Instance;
-            base.Start();
         }
 
         internal bool IsDeckFull => deck.IsDeckFull();
@@ -126,14 +149,14 @@ namespace BattleShips.GameComponents.Player
 
                 throw;
             }
-            
+
 
             if (ship is null)
             {
                 tileData.tileState = TileState.Miss;
                 return AttackResult.Miss;
             }
-            else if(ship[tileData.shipIndex] > 0)
+            else if (ship[tileData.shipIndex] > 0)
             {
                 if ((ship[tileData.shipIndex] -= attack.attackPower) <= 0)
                     tileData.tileState = TileState.HasDestroyedShipPart;

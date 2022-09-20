@@ -26,16 +26,11 @@ namespace BattleShips.GUI
 
             if (!selectable)
             {
+                currentlySelected = this;
                 if (currentlySelected == up)
-                {
-                    currentlySelected = this;
                     SelectLower();
-                }
                 else if(currentlySelected == down)
-                {
-                    currentlySelected = this;
                     SelectUpper();
-                }
 
                 return;
             }

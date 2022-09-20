@@ -111,8 +111,8 @@ namespace BattleShips.GameComponents.Ships
             var shipInstance = Instantiate<Transform>(model.transform, position, Quaternion.Euler(rotation), null);
             shipInstance.localScale = preferedScale;
 
-            shipInstance.name = owner.ToString().Substring(0) + " " + shipName;
-            shipInstance.tag = Type.ToString();
+            shipInstance.name = Type.ToString();
+            shipInstance.tag = "Ship Instance";
             return shipInstance;
         }
         internal static ShipType GetShipType(AttackResult attackResult) => attackResult switch

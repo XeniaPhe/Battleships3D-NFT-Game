@@ -1,5 +1,6 @@
 ﻿using BattleShips.GameComponents.Ships;
 using BattleShips.GameComponents.Tiles;
+using BattleShips.GameComponents.Levels;
 using BattleShips.Management;
 using BattleShips.Utils;
 using System;
@@ -19,16 +20,10 @@ namespace BattleShips.GameComponents.Player.AI
 
         #endregion
 
-        #region Serialized Fields
-
-        [SerializeField] AILevel[] levels;
-
-        #endregion
-
         #region Cached Fields
 
-        GameManager manager;
-        AILevel currentLevel;
+        Level level;
+        AIData data;
 
         readonly int[] lengths = { 2, 3, 4, 5 };
         readonly int[] lengthsRepeated = { 2, 3, 3, 4, 5 };
@@ -36,8 +31,9 @@ namespace BattleShips.GameComponents.Player.AI
         TileData[,] enemyTiles = new TileData[10, 10];
 
         ShipBundle deck;
-        ShipFlag ships = new ShipFlag();
-        ShipFlag enemyShips = new ShipFlag();
+        ShipFlag ships;
+        ShipFlag enemyShips;
+        ShipFlag enemyShipsOriginal;
 
         int[,] heatMap = new int[10, 10];
         double[,] distortionMatrix = new double[10, 10];
@@ -61,18 +57,18 @@ namespace BattleShips.GameComponents.Player.AI
 
         #region Public Fields and Properties
 
-        internal override Destroyer GetDestroyer() => deck.destroyer;
-        internal override Cruiser GetCruiser() => deck.cruiser;
-        internal override Submarine GetSubmarine() => deck.submarine;
-        internal override Battleship GetBattleship() => deck.battleship;
-        internal override Carrier GetCarrier() => deck.carrier;
+        internal override Destroyer GetDestroyer() => deck.Destroyer;
+        internal override Cruiser GetCruiser() => deck.Cruiser;
+        internal override Submarine GetSubmarine() => deck.Submarine;
+        internal override Battleship GetBattleship() => deck.Battleship;
+        internal override Carrier GetCarrier() => deck.Carrier;
         internal override Ship GetShip(ShipType shipType) => shipType switch
         {
-            ShipType.Destroyer => deck.destroyer,
-            ShipType.Cruiser => deck.cruiser,
-            ShipType.Submarine => deck.submarine,
-            ShipType.Battleship => deck.battleship,
-            ShipType.Carrier => deck.carrier,
+            ShipType.Destroyer => deck.Destroyer,
+            ShipType.Cruiser => deck.Cruiser,
+            ShipType.Submarine => deck.Submarine,
+            ShipType.Battleship => deck.Battleship,
+            ShipType.Carrier => deck.Carrier,
             _ => throw new NotImplementedException()
         };
 
@@ -87,20 +83,21 @@ namespace BattleShips.GameComponents.Player.AI
             else
                 instance = this;
         }
-        protected override void Start()
+
+        internal override void Initialize()
         {
-            manager = GameManager.Instance;
+            Instantiate(level, data,enemyShipsOriginal);
         }
 
-        internal override void Instantiate() 
+        internal void Instantiate(Level level, AIData data, ShipFlag playerFlag)
         {
-            Instantiate(currentLevel);
-        }
+            this.level = level;
+            this.data = data;
+            ships = new ShipFlag(data.ShipBundle);
+            enemyShipsOriginal = playerFlag;
+            enemyShips = playerFlag;
 
-        internal void Instantiate(int level = 0)
-        {
-            currentLevel = levels[level];
-            parity = currentLevel.Parity ? Parity.Even : Parity.Off;
+            parity = this.data.Parity ? Parity.Even : Parity.Off;
 
             InstantiateTiles();
             InstantiateDeck();
@@ -108,7 +105,7 @@ namespace BattleShips.GameComponents.Player.AI
             CalculateDistortionMatrix();
             RecalculateProbabilityList();
             PlaceShips();
-            PrintTileInformation();
+            //PrintTileInformation();
         }
         private void InstantiateTiles()
         {
@@ -127,20 +124,19 @@ namespace BattleShips.GameComponents.Player.AI
         }
         private void InstantiateDeck()
         {
-            deck = new ShipBundle();
-            var bundle = currentLevel.ShipBundle;
+            deck = data.ShipBundle;
 
-            deck.battleship = Instantiate<Battleship>(bundle.battleship, null);
-            deck.destroyer = Instantiate<Destroyer>(bundle.destroyer, null);
-            deck.cruiser = Instantiate<Cruiser>(bundle.cruiser, null);
-            deck.carrier = Instantiate<Carrier>(bundle.carrier, null);
-            deck.submarine = Instantiate<Submarine>(bundle.submarine, null);
+            deck.Battleship = Instantiate<Battleship>(deck.Battleship, null);
+            deck.Destroyer = Instantiate<Destroyer>(deck.Destroyer, null);
+            deck.Cruiser = Instantiate<Cruiser>(deck.Cruiser, null);
+            deck.Carrier = Instantiate<Carrier>(deck.Carrier, null);
+            deck.Submarine = Instantiate<Submarine>(deck.Submarine, null);
 
-            SetAllParts(deck.submarine);
-            SetAllParts(deck.carrier);
-            SetAllParts(deck.destroyer);
-            SetAllParts(deck.cruiser);
-            SetAllParts(deck.battleship);
+            SetAllParts(deck.Submarine);
+            SetAllParts(deck.Carrier);
+            SetAllParts(deck.Destroyer);
+            SetAllParts(deck.Cruiser);
+            SetAllParts(deck.Battleship);
 
             void SetAllParts(Ship ship)
             {
@@ -186,8 +182,8 @@ namespace BattleShips.GameComponents.Player.AI
                 Direction[] orthogonalDirections = Helper.GetOrthogonalDirections(shipDirection);
                 Coordinate tempCoords;
 
-                if((tempCoords = placing[0].Coordinates.GetCoordinatesAt(oppositeDirection)) is not null)
-                    GetTileAt(tiles,tempCoords).tileState = TileState.BlockedByAnotherShip;
+                if ((tempCoords = placing[0].Coordinates.GetCoordinatesAt(oppositeDirection)) is not null)
+                    GetTileAt(tiles, tempCoords).tileState = TileState.BlockedByAnotherShip;
                 if ((tempCoords = placing[^1].Coordinates.GetCoordinatesAt(shipDirection)) is not null)
                     GetTileAt(tiles, tempCoords).tileState = TileState.BlockedByAnotherShip;
 
@@ -201,7 +197,7 @@ namespace BattleShips.GameComponents.Player.AI
 
                     foreach (var dir in orthogonalDirections)
                     {
-                        if((tempCoords = placing[j].Coordinates.GetCoordinatesAt(dir)) is not null)
+                        if ((tempCoords = placing[j].Coordinates.GetCoordinatesAt(dir)) is not null)
                             GetTileAt(tiles, tempCoords).tileState = TileState.BlockedByAnotherShip;
                     }
                 }
@@ -222,13 +218,13 @@ namespace BattleShips.GameComponents.Player.AI
                 {
                     if (tiles[i, j].ship == null)
                         line.Append("[0]");
-                    else if (tiles[i, j].ship == deck.submarine)
+                    else if (tiles[i, j].ship == deck.Submarine)
                         line.Append("[S]");
-                    else if (tiles[i, j].ship == deck.battleship)
+                    else if (tiles[i, j].ship == deck.Battleship)
                         line.Append("[B]");
-                    else if (tiles[i, j].ship == deck.cruiser)
+                    else if (tiles[i, j].ship == deck.Cruiser)
                         line.Append("[C]");
-                    else if (tiles[i, j].ship == deck.carrier)
+                    else if (tiles[i, j].ship == deck.Carrier)
                         line.Append("[A]");
                     else
                         line.Append("[D]");
@@ -364,16 +360,16 @@ namespace BattleShips.GameComponents.Player.AI
             double minDistance = sqrt2Over2;
             double diffDistance = 8 * sqrt2Over2;
             double minCentrality = 1.0;
-            double diffCentrality = currentLevel.MaxCentrality - minCentrality;
+            double diffCentrality = data.MaxCentrality - minCentrality;
             double distance = 0;
 
             //Random Distortion
-            double minDistortion = currentLevel.MinDistortion;
-            double maxDistortion = currentLevel.MaxDistortion;
+            double minDistortion = data.MinDistortion;
+            double maxDistortion = data.MaxDistortion;
 
             //Edge and Corner Distortion
-            double edgeDistortion = currentLevel.EdgeMultiplier;
-            double cornerDistortion = currentLevel.CornerMultiplier;
+            double edgeDistortion = data.EdgeMultiplier;
+            double cornerDistortion = data.CornerMultiplier;
 
             distortionMatrix = new double[10, 10];
 
@@ -483,7 +479,7 @@ namespace BattleShips.GameComponents.Player.AI
                         continue;
 
                     if ((this.parity == Parity.Odd && (i % 2) != (j % 2)) || (this.parity == Parity.Even && (i % 2) == (j % 2)))
-                        p *= currentLevel.OffParityChanceMultiplier;
+                        p *= data.OffParityChanceMultiplier;
 
                     totalP += p;
 
@@ -575,7 +571,7 @@ namespace BattleShips.GameComponents.Player.AI
 
             lastAttack = tileToAttack.Coordinates;
             Attack attack = new Attack(lastAttack, 30);
-            var result = manager.CheckAttack(attack);
+            var result = level.CheckAttack(attack);
 
             if (result == AttackResult.Miss)
             {
@@ -637,7 +633,7 @@ namespace BattleShips.GameComponents.Player.AI
                 if (mode != AIMode.Terminate)
                     hitPath.Add(lastAttack);
 
-                if(mode == AIMode.TrackDown || mode==AIMode.Mark)
+                if (mode == AIMode.TrackDown || mode == AIMode.Mark)
                     EliminateSurroundingBlocks();
 
                 if (result != AttackResult.AllDestroyed)

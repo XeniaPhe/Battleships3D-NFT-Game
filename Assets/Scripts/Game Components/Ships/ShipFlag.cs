@@ -2,9 +2,92 @@
 
 namespace BattleShips.GameComponents.Ships
 {
-    internal class ShipFlag
+    internal struct ShipFlag
     {
-        byte shipFlag = 0b00011111;
+        byte flag;
+        byte shipCount;
+
+        internal int AvailableShipCount => shipCount;
+
+        internal int AliveShipCount
+        {
+            get
+            {
+                int count = 0;
+
+                for (byte i = 0; i < 5; i++)
+                {
+                    if (CheckShip(i))
+                        count++;
+                }
+
+                return count;
+            }
+        }
+
+        internal ShipFlag(ShipBundle bundle)
+        {
+            flag = 0b00000000;
+            shipCount = 0;
+
+            if (bundle.ContainsDestroyer)
+            {
+                flag += 0b00000001;
+                shipCount++;
+            }
+            if (bundle.ContainsSubmarine)
+            {
+                flag += 0b00000010;
+                shipCount++;
+            }
+            if (bundle.ContainsCruiser)
+            {
+                flag += 0b00000100;
+                shipCount++;
+            }
+            if (bundle.ContainsBattleship)
+            {
+                flag += 0b00001000;
+                shipCount++;
+            }
+            if (bundle.ContainsCarrier)
+            {
+                flag += 0b00010000;
+                shipCount++;
+            }
+        }
+
+        internal ShipFlag(bool destroyer, bool submarine, bool cruiser, bool battleship, bool carrier)
+        {
+            flag = 0b00000000;
+            shipCount = 0;
+
+            if (destroyer)
+            {
+                flag += 0b00000001;
+                shipCount++;
+            }
+            if (submarine)
+            {
+                flag += 0b00000010;
+                shipCount++;
+            }
+            if (cruiser)
+            {
+                flag += 0b00000100;
+                shipCount++;
+            }
+            if (battleship)
+            {
+                flag += 0b00001000;
+                shipCount++;
+            }
+            if (carrier)
+            {
+                flag += 0b00010000;
+                shipCount++;
+            }
+        }
 
         /// <summary>
         /// Checks if a ship is destroyed or not
@@ -17,7 +100,7 @@ namespace BattleShips.GameComponents.Ships
             if (ship > 4)
                 throw new ArgumentOutOfRangeException("ship", ship, "Ship should be between 0 and 4!");
 
-            return (shipFlag & (byte)(1 << ship)) > 0;
+            return (flag & (byte)(1 << ship)) > 0;
         }
 
         /// <summary>
@@ -30,10 +113,10 @@ namespace BattleShips.GameComponents.Ships
             if (ship > 4)
                 throw new ArgumentOutOfRangeException("ship", ship, "Ship should be between 0 and 4!");
 
-            shipFlag &= (byte)(~(1 << ship));
+            flag &= (byte)(~(1 << ship));
         }
 
-        internal bool AreAllDestroyed() => shipFlag == 0;
+        internal bool AreAllDestroyed() => flag == 0;
         internal bool IsDestroyerDestroyed() => !CheckShip(0);
         internal bool IsSubmarineDestroyed() => !CheckShip(1);
         internal bool IsCruiserDestroyed() => !CheckShip(2);
@@ -62,7 +145,7 @@ namespace BattleShips.GameComponents.Ships
                     throw new ArgumentException("Undefined ship type!");
             }
         }
-        internal void SetAllDestroyed() => shipFlag = 0;
+        internal void SetAllDestroyed() => flag = 0;
         internal void SetDestroyerDestroyed() => SetDestroyed(0);
         internal void SetSubmarineDestroyed() => SetDestroyed(1);
         internal void SetCruiserDestroyed() => SetDestroyed(2);

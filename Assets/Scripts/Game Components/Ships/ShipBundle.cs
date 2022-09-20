@@ -4,40 +4,190 @@ using UnityEngine;
 namespace BattleShips.GameComponents.Ships
 {
     [Serializable]
-    public struct ShipBundle
+    public class ShipBundle : ICloneable
     {
-        [SerializeField] internal Destroyer destroyer;
-        [SerializeField] internal Cruiser cruiser;
-        [SerializeField] internal Submarine submarine;
-        [SerializeField] internal Battleship battleship;
-        [SerializeField] internal Carrier carrier;
+        [SerializeField] bool containsDestroyer;
+        [SerializeField] bool containsCruiser;
+        [SerializeField] bool containsSubmarine;
+        [SerializeField] bool containsBattleship;
+        [SerializeField] bool containsCarrier;
 
-        internal ShipBundle(Destroyer destroyer = null, Cruiser cruiser = null, Submarine submarine = null, Battleship battleship = null, Carrier carrier = null)
+        [SerializeField] Destroyer destroyer;
+        [SerializeField] Cruiser cruiser;
+        [SerializeField] Submarine submarine;
+        [SerializeField] Battleship battleship;
+        [SerializeField] Carrier carrier;
+
+        internal ShipBundle() : this(true, true, true, true, true) { }
+
+        internal ShipBundle(bool containsDestroyer, bool containsCruiser, bool containsSubmarine, bool containsBattleship, bool containsCarrier)
         {
-            this.destroyer = destroyer;
-            this.cruiser = cruiser;
-            this.submarine = submarine;
-            this.battleship = battleship;
-            this.carrier = carrier;
+            this.containsDestroyer = containsDestroyer;
+            this.containsCruiser = containsCruiser;
+            this.containsSubmarine = containsSubmarine;
+            this.containsBattleship = containsBattleship;
+            this.containsCarrier = containsCarrier;
+        }
+
+        internal bool ContainsDestroyer => containsDestroyer;
+        internal bool ContainsCruiser => containsCruiser;
+        internal bool ContainsSubmarine => containsSubmarine;
+        internal bool ContainsBattleship => containsBattleship;
+        internal bool ContainsCarrier => containsCarrier;
+
+        internal Destroyer Destroyer
+        {
+            get => destroyer;
+            set
+            {
+                if (containsDestroyer)
+                    destroyer = value;
+            }
+        }
+
+        internal Cruiser Cruiser
+        {
+            get => cruiser;
+            set
+            {
+                if (containsCruiser)
+                    cruiser = value;
+            }
+        }
+
+        internal Submarine Submarine
+        {
+            get => submarine;
+            set
+            {
+                if(containsSubmarine)
+                    submarine = value;
+            }
+        }
+
+        internal Battleship Battleship
+        {
+            get => battleship;
+            set
+            {
+                if (containsBattleship)
+                    battleship = value;
+            }
+        }
+
+        internal Carrier Carrier
+        {
+            get => carrier;
+            set
+            {
+                if (containsCarrier)
+                    carrier = value;
+            }
+        }
+
+        internal bool IsFull
+        {
+            get
+            {
+                int count = 0;
+
+                if (destroyer is not null)
+                    count++;
+                if (cruiser is not null)
+                    count++;
+                if (submarine is not null)
+                    count++;
+                if (battleship is not null)
+                    count++;
+                if (carrier is not null)
+                    count++;
+
+                return count == FullCount;
+            }
+        }
+
+        internal int FullCount
+        {
+            get
+            {
+                int count = 0;
+
+                if (containsBattleship)
+                    count++;
+                if (containsCarrier)
+                    count++;
+                if (containsCruiser)
+                    count++;
+                if (containsDestroyer)
+                    count++;
+                if (containsSubmarine)
+                    count++;
+
+                return count;
+            }
         }
 
         internal Ship this[int index]
         {
-            get => index == 0 ? destroyer : index == 1 ? cruiser : index == 2 ? submarine : index == 3 ? battleship : index == 4 ? carrier : null;
+            get => index switch
+            {
+                0 => destroyer,
+                1 => cruiser,
+                2 => submarine,
+                3 => battleship,
+                4 => carrier,
+                _ => throw new ArgumentOutOfRangeException(nameof(index))
+            };
             set
             {
                 switch (index)
                 {
-                    case 0: destroyer = (Destroyer)value; break;
-                    case 1: cruiser = (Cruiser)value; break;
-                    case 2: submarine = (Submarine)value; break;
-                    case 3: battleship = (Battleship)value; break;
-                    case 4: carrier = (Carrier)value; break;
+                    case 0: Destroyer = (Destroyer)value; break;
+                    case 1: Cruiser = (Cruiser)value; break;
+                    case 2: Submarine = (Submarine)value; break;
+                    case 3: Battleship = (Battleship)value; break;
+                    case 4: Carrier = (Carrier)value; break;
                     default: throw new ArgumentOutOfRangeException(nameof(index));
                 }
             }
         }
 
-        internal bool IsBundleFull() => destroyer is not null && cruiser is not null && submarine is not null && battleship is not null && carrier is not null;
+        internal void Assign(Ship ship)
+        {
+            if (ship is null)
+                return;
+
+            switch (ship.Type)
+            {
+                case ShipType.Destroyer:
+                    Destroyer = (Destroyer)ship;
+                    break;
+                case ShipType.Cruiser:
+                    Cruiser = (Cruiser)ship;
+                    break;
+                case ShipType.Submarine:
+                    Submarine = (Submarine)ship;
+                    break;
+                case ShipType.Battleship:
+                    Battleship = (Battleship)ship;
+                    break;
+                case ShipType.Carrier:
+                    Carrier = (Carrier)ship;
+                    break;
+            }
+        }
+
+        public object Clone()
+        {
+            ShipBundle clone = new ShipBundle(containsDestroyer, containsCruiser, containsSubmarine, containsBattleship, containsCarrier);
+
+            clone.destroyer = destroyer;
+            clone.submarine = submarine;
+            clone.cruiser = cruiser;
+            clone.battleship = battleship;
+            clone.carrier = carrier;
+
+            return clone;
+        }
     }
 }

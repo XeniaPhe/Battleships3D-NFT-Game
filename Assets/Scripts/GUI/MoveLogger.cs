@@ -34,6 +34,7 @@ namespace BattleShips.GUI
         {
             gameObject.SetActive(true);
             CancelInvoke();
+
             logText.text = log;
             logText.color = color;
             Invoke(nameof(CancelLog),seconds);

@@ -82,7 +82,7 @@ namespace BattleShips.GameComponents.Ships
             _ => 0,
         };
 
-        internal Transform InstantiateShip(Vector3 position,Direction direction,PlayerType owner)
+        internal Transform InstantiateShip(Vector3 position,Direction direction)
         {
             Vector3 rotation = normalRotation;
 

@@ -72123,7 +72123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   countText: {fileID: 1920815990}
-  turnOffTime: 0.2
+  turnOffTime: 0.3
 --- !u!1 &1921111662
 GameObject:
   m_ObjectHideFlags: 0

@@ -117,7 +117,7 @@ namespace BattleShips.Management
             int secondDir = selectedShip.Length - firstDir - 1;
             Traverse(secondDir,oppositeDirection);
 
-            shipInstance = selectedShip.InstantiateShip(enteredTile.transform.position, currentDirection,PlayerType.Human);
+            shipInstance = selectedShip.InstantiateShip(enteredTile.transform.position, currentDirection);
 
             foreach (var tile in tilesToPlaceTo)
                 tile.PaintTemporarily(isSelectionSuccessful ? successfulColor : unsuccessfulColor);

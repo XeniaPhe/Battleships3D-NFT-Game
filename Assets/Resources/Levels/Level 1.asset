@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AiData: {fileID: 11400000, guid: a19d5d66eb416c442bc77855e181ec1e, type: 2}
   roundStartTextTime: 1.5
-  shipPlacementTime: 60
-  turnTime: 45
-  AiShipPlacementTime: 4
-  AiTurnTime: 3
+  shipPlacementTime: 75
+  turnTime: 60
+  AiShipPlacementTime: 5
+  AiTurnTime: 4
   roundEndWaitTime: 3
-  intermediateTextTime: 1
+  intermediateTextTime: 1.85

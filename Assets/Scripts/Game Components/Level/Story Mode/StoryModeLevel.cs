@@ -90,7 +90,7 @@ namespace BattleShips.GameComponents.Levels.StoryMode
 
             if (attackResult == AttackResult.AllDestroyed)
             {
-                logger.Log("You sank all of enemy's ships!", Color.green, AiTurnTime);
+                logger.Log("You sank all of enemy's ships!", Color.green, intermediateTextTime);
                 board.PlacePeg(TileType.Attack, attack.coordinates, true);
                 board.CreateExplosion(attack.coordinates, TileType.Attack, ExplosionType.ShipExplosion);
 
@@ -104,7 +104,7 @@ namespace BattleShips.GameComponents.Levels.StoryMode
             {
                 keepTurn = false;
 
-                logger.Log("Miss!", Color.red, AiTurnTime);
+                logger.Log("Miss!", Color.red, intermediateTextTime);
                 board.PlacePeg(TileType.Attack, attack.coordinates, false);
                 board.CreateExplosion(attack.coordinates, TileType.Attack, ExplosionType.WaterExplosion);
 
@@ -113,7 +113,7 @@ namespace BattleShips.GameComponents.Levels.StoryMode
             }
             else if (attackResult == AttackResult.Hit)
             {
-                logger.Log("Hit!", Color.green, AiTurnTime);
+                logger.Log("Hit!", Color.green, intermediateTextTime);
                 board.PlacePeg(TileType.Attack, attack.coordinates, true);
                 board.CreateExplosion(attack.coordinates, TileType.Attack, ExplosionType.ShipExplosion);
 
@@ -124,7 +124,7 @@ namespace BattleShips.GameComponents.Levels.StoryMode
             {
                 ShipType type;
 
-                logger.Log($"You sank enemy's {(type = Ship.GetShipType(attackResult)).ToString()}!", Color.green, AiTurnTime);
+                logger.Log($"You sank enemy's {(type = Ship.GetShipType(attackResult)).ToString()}!", Color.green, intermediateTextTime);
                 board.PlacePeg(TileType.Attack, attack.coordinates, true);
                 board.CreateExplosion(attack.coordinates, TileType.Attack, ExplosionType.ShipExplosion);
                 board.RevealShip(attack.coordinates, Ai.GetShip(Ship.GetShipType(attackResult)));
@@ -164,7 +164,7 @@ namespace BattleShips.GameComponents.Levels.StoryMode
 
             if (attackResult == AttackResult.AllDestroyed)
             {
-                actionToInvoke += () => logger.Log("Enemy sank all of your ships!", Color.red, AiTurnTime);
+                actionToInvoke += () => logger.Log("Enemy sank all of your ships!", Color.red, intermediateTextTime);
                 actionToInvoke += () => actionToInvoke += () => board.CreateExplosion(attack.coordinates, TileType.Defense, ExplosionType.ShipExplosion);
                 actionToInvoke += () => board.HitShip(attack.coordinates, TileType.Defense);
                 actionToInvoke += () => board.UpdateShipUI(attack.coordinates);
@@ -182,7 +182,7 @@ namespace BattleShips.GameComponents.Levels.StoryMode
                 shipSunk = null;
                 keepTurn = false;
 
-                actionToInvoke += () => logger.Log("Enemy misses!", Color.green, AiTurnTime);
+                actionToInvoke += () => logger.Log("Enemy misses!", Color.green, intermediateTextTime);
                 actionToInvoke += () => board.CreateExplosion(attack.coordinates, TileType.Defense, ExplosionType.WaterExplosion);
                 actionToInvoke += () => board.PlacePeg(TileType.Defense, attack.coordinates, false);
 
@@ -194,7 +194,7 @@ namespace BattleShips.GameComponents.Levels.StoryMode
                 hit = attack.coordinates;
                 shipSunk = null;
 
-                actionToInvoke += () => logger.Log("Enemy hits!", Color.red, AiTurnTime);
+                actionToInvoke += () => logger.Log("Enemy hits!", Color.red, intermediateTextTime);
                 actionToInvoke += () => board.CreateExplosion(attack.coordinates, TileType.Defense, ExplosionType.ShipExplosion);
                 actionToInvoke += () => board.HitShip(attack.coordinates, TileType.Defense);
                 actionToInvoke += () => board.UpdateShipUI(attack.coordinates);
@@ -208,7 +208,7 @@ namespace BattleShips.GameComponents.Levels.StoryMode
                 hit = attack.coordinates;
                 shipSunk = Ship.GetShipType(attackResult);
 
-                actionToInvoke += () => logger.Log($"Enemy sank your {shipSunk.ToString()}!", Color.red, AiTurnTime);
+                actionToInvoke += () => logger.Log($"Enemy sank your {shipSunk.ToString()}!", Color.red, intermediateTextTime);
                 actionToInvoke += () => board.CreateExplosion(attack.coordinates, TileType.Defense, ExplosionType.ShipExplosion);
                 actionToInvoke += () => board.HitShip(attack.coordinates, TileType.Defense);
                 actionToInvoke += () => board.UpdateShipUI(attack.coordinates);

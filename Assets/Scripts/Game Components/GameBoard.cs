@@ -164,7 +164,7 @@ namespace BattleShips.GameComponents
             for (int i = 0; i < middle; i++)
                 middleTile = GetTile(middleTile.GetTileCoordinatesAt(dir), TileType.Attack);
 
-            var shipInstance = ship.InstantiateShip(middleTile.transform.position, dir,PlayerType.AI);
+            var shipInstance = ship.InstantiateShip(middleTile.transform.position, dir);
             shipInstance.GetComponent<WaveSimulator>().InitializeRandom(shipInstance.transform.position, shipInstance.transform.rotation.eulerAngles);
             shipInstance.GetComponent<ShipExploder>().ExplodeEntirely();
         }
